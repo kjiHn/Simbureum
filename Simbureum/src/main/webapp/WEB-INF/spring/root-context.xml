@@ -33,11 +33,8 @@
    
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="dataSource"></property>
-   </bean>  
+   </bean>
    
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
-		destroy-method="clearCache">
-		<constructor-arg ref="sqlSessionFactory" />
-	</bean>
+   <mybatis-spring:scan base-package="mappers"/>  
       
 </beans>

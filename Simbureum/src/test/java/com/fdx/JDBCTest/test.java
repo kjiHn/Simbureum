@@ -1,4 +1,4 @@
-package com.fdx.simbureum;
+package com.fdx.JDBCTest;
 
 public class test {
 
