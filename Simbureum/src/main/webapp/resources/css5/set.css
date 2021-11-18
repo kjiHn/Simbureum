@@ -1,0 +1,684 @@
+@charset "utf-8";
+
+.pt30 {padding-top:30px;}
+.mt0 {margin-top:0;}
+.mt10 {margin-top:10px;}
+.mt20 {margin-top:20px;}
+.mt24 {margin-top:24px;}
+.mt25 {margin-top:25px;}
+.mt30 {margin-top:30px;}
+.mt32 {margin-top:32px;}
+.mt40 {margin-top:40px;}
+.mt46 {margin-top:46px;}
+.mt50 {margin-top:50px;}
+.mt60 {margin-top:60px;}
+.mb60 {margin-bottom:60px;}
+.mt90 {margin-top:90px;}
+
+.idx10 {text-indent:10px;}
+
+/* (공통)부분수정 --------------------------------------------------------------- */
+.login .complete-area .bottom {position:relative; top:189px; left:0; margin-left:0; padding:0; margin-top:151px;}
+.login .complete-area .bottom .item {border-radius:6px 6px 23px 6px;}
+.login .complete-area .complete {padding-top:120px;}
+.login .complete-area .complete .txt {font-size:20rem; line-height:24rem;}
+.login .complete-area .complete .txt .sub {margin-top:10px; display:block; font-size:15rem; color:#333; font-weight:400;}
+.login .complete-area .complete .txt:before {background:none; font-size:42rem; content:"👏"; width:42px; height:55px; line-height:55px; margin:0 auto 30px;}
+.login .complete-area .bottom .box .add {width:121px; height:32px; border-radius:16px;}
+
+.login .my-picture {margin:0 auto 40px; width:120px; height:120px;}
+.login .my-picture .picture {background-size:120px 120px; width:120px; height:120px; border-radius:50%;}
+.login .my-picture .btn.edit {right:0;}
+
+.login .member-input.email {margin-top:25px;}
+.login .member-input.email.mt60 {margin-top:60px;}
+.login .member-input.email .list > li {margin-bottom:20px;}
+.login .member-input.email .list.mb10 > li {margin-bottom:5px;}
+.login .member-input.email .list li .tit {margin-bottom:4px;}
+
+.login .member-input.idpw .list > li {margin-bottom:8px;}
+.login .member-input .list li .tag-area .tag {margin:10px 10px 0 0;}
+.login .member-input .list li .flex-wrap.mt30 {margin-top:30px;}
+.login .member-input .list li .flex-wrap label {width:100%;}
+
+.noti .header.cu.mode7 > .hdr .hdt .mo-header-rightBtn,
+.sett .header.cu.mode7 > .hdr .hdt .mo-header-rightBtn,
+.login .header.cu.mode7 > .hdr .hdt .mo-header-rightBtn {display:none;}
+
+.tag-choise.mt20 .tag-txt.mt60 {margin-top:0;}
+.tag-choise.mt20 .filter-item .tag {text-align:left;}
+.tag-choise.mt66 .filter-item .tag button {color:#333;}
+.tag-choise.mt66 .filter-item .tag button.active {color:#333;}
+
+/* 로그인 ---------------------------------------------------------------------- */
+.login.srch .fake-pop {padding:0;}
+/* .login.srch .fake-pop .pct {margin-top:100px} */
+.login.srch .fake-pop.t02 {text-align: center; margin-top:118px;}
+.login.srch .fake-pop.t02 .pic {font-size:42px; background:none; line-height:55px; height:55px; margin:50px auto 30px}
+.login.srch .container > .inr .pc-tit h2 {line-height:30rem;}
+
+.sett .container > .inr, .login.srch .container > .inr {display:block; min-width:335px; max-width:335px; height:auto;}
+.sett .container > .inr .pc-tit , .login.srch .container > .inr .pc-tit {font-size:30rem; padding:0; margin:42px 0; text-align:center;}
+
+.login.srch .member-input .list > li {margin-bottom:14px;}
+.login.srch .member-input .list > li .btn {color:#000}
+.login.srch .member-input .list > li.b-line {border-bottom:1px solid #ecedef; padding-bottom:20px;}
+
+/*
+.login.srch .member-input .input > input {padding:12px 12px;}
+.login.srch .member-input .input > input::-ms-input-placeholder {color:#9a9a9a;}
+.login.srch .member-input .input > input::-moz-input-placeholder {color:#9a9a9a;}
+.login.srch .member-input .input > input::-webkit-input-placeholder {color:#9a9a9a;}
+*/
+.login.srch .member-input .input.tx-r > input {text-align:right;}
+.login.srch .member-input .validation-check {padding-left:12px; letter-spacing:-0.05em;}
+
+.login.srch .member-input .inputInfoTxt.time {font-size:11rem; color:#ff7777; left:calc(100% - 150px); top:calc(50% - 8px); max-width: 50px;} /* 2021.05.24 수정함 */
+.login.srch .member-input .list.t-line:before {content:""; display:inline-block; background:#ecedef; width:100%; height:1px; margin:16px 0 20px 0;}
+.login.srch .member-input .stxt {text-align:center; font-size:15rem; color:#333; font-weight:400;}
+.login.srch .member-input .stxt .blue {color:#669aff; font-weight: 700;}
+
+.login.srch .check-wrap {margin:20px 0;}
+.login.srch .check-wrap .checkbox > .txt {font-size:13rem; color:#666;}
+.login.srch .check-wrap .checkbox > .txt:before {margin-right:8px;}
+
+.login.srch .lnk-set {width:100%; margin-top:16px; display:inline-block; text-align:center;}
+.login.srch .lnk-set a {font-size:12rem; color:#666;}
+.login.srch .lnk-set a:after {margin:0 20px; content:""; display:inline-block; width:1px; height:8px; background:#9a9a9a; opacity:0.3;}
+.login.srch .lnk-set a:last-child:after {content:unset;}
+
+.login.srch .sns-set {width:100%; display:inline-block; text-align:center; border-top:1px solid #ecedef;}
+.login.srch .sns-set dt {position:relative; top:-11px; z-index:1; margin:0 auto; width:106px; background:#fff; font-size:13rem; color:#666;}
+.login.srch .sns-set dd {width:240px; display: table; margin:30px auto;}
+.login.srch .sns-set dd span {display: table-cell; width:25%;}
+.login.srch .sns-set dd a {text-indent:-9999px; display:inline-block; width:44px; height:44px;  background-size:contain !important;}
+.login.srch .sns-set dd a.naver {background: url(https://aboutpet.co.kr/_images/common/btn_login_naver@2x.png) no-repeat 0 0;}
+.login.srch .sns-set dd a.kakao {background: url(https://aboutpet.co.kr/_images/common/btn_login_kakao@2x.png) no-repeat 0 0;}
+.login.srch .sns-set dd a.google {background: url(https://aboutpet.co.kr/_images/common/btn_login_google@2x.png) no-repeat 0 0;}
+.login.srch .sns-set dd a.apple {background: url(https://aboutpet.co.kr/_images/common/btn_login_apple@2x.png) no-repeat 0 0;}
+
+.login.srch .btnSet .btn.a.w164 {width:164px; margin-top:2px;}
+.login.srch .pull + .text-link {color:#666; font-size:13rem; margin-top:16px;}
+.login.srch .pull + .btn-area .text-btn {color:#9a9a9a; font-size:13rem;}
+
+/* 탭있을때 */
+.login.srch .uiTab {border-bottom:1px solid #ecedef;}
+.login.srch .uiTab.a {height:50px;}
+.login.srch .uiTab.a>li>.bt {font-size:14rem; color:#333; padding:14px 0;}
+.login.srch .uiTab_content .result {margin:28px 0 16px;}
+
+/* 로그인-기존회원 */
+.login.srch .result {text-align:center; font-size:20rem; font-weight: 700; line-height:24rem;}
+.login.srch .result .sub {font-size:15rem; font-weight:400; color:#333; margin-top:10px; line-height:20rem;}
+.login.srch .result .sub.mt0 {margin-top:0;}
+.login.srch .result .sub.left {text-align:left !important;}
+.login.srch .result .blue {color:#669aff;}
+.login.srch .result .block {display:block;}
+.login.srch .result .block.pc {display:inline-block;}
+
+.login.srch .lnk-pw {display:table; margin:20px auto; text-decoration:underline; font-size:13rem; color:#666; letter-spacing:-0.3px;}
+.login.srch .lnk-pw.center {width:100%; text-align:center;}
+.popCoupon.a .poptents.center {padding:40px 100px; text-align:center;}
+
+/* 기존회원 ptsLog_tCont 클래스 관련 추가 2021.05.20 수정함 */
+.ptsLog_tCont {margin-top: 40px;} 
+.login.srch .ptsLog_tCont .result {margin-top: 0;}
+.login.srch .ptsLog_tCont .member-input {margin-top: -15px;}
+.login.srch .ptsLog_tCont .member-input .stxt {line-height: 20rem;}
+.ptsLog_tCont .member-input ul {margin-top: 15px;}
+.ptsLog_tCont > ul > li {margin-top: 5px;}
+.ptsLog_tCont .input.flex .btn {min-width: 90px;}
+.ptsLog_tCont .member-input>ul>li .input>input {padding-right: 70px !important;} /* 2021.05.21 수정함 */
+
+
+/* 로그인-성공 */
+.login.srch .end-box {width:100%; padding:20px 14px; background:#f7f7f7; border-radius:6px;}
+.login.srch .end-box dl {font-size:15rem; width:100%; display:flex; display: -webkit-box; display: -ms-flexbox;}
+.login.srch .end-box dl:first-child {margin-bottom:12px;}
+.login.srch .end-box dl > dt {width:80px; color:#666;}
+.login.srch .end-box dl > dd {color:#333;}
+
+.login.srch .btnSet .btn.a.gray {border:1px solid #ddd; background-color:#ddd;}
+.login.srch .btnSet .btn[disabled] {cursor:default;}
+
+
+/* 로그인-약관동의 */
+.login.agree .allchk .checkbox {cursor:pointer; padding:18px; font-size:16rem; font-weight: 700; border-radius:6px; border:1px solid #ddd; width:100%; height:62px; } 
+.login.agree .allchk .checkbox > .txt:before {vertical-align:-6px; margin-right:10px; background-position:0 -120px;}
+.login.agree .allchk .checkbox > input:checked + .txt::before {background-position:-30px -120px;}
+
+.login.agree .fake-wrap {padding:0 0 56px 0;}
+.login.agree .chk-wrap {padding-top:10px;}
+.login.agree .chk-wrap > dl {padding:20px 0; border-bottom:1px solid #ecedef;}
+.login.agree .chk-wrap > dl:nth-child(3) {border-bottom:0; padding-bottom:0;}
+.login.agree .chk-wrap > dl > dt {font-size:15rem; font-weight: 700;}
+.login.agree .chk-wrap > dl > dt.mt10 {margin-top:0;}
+.login.agree .chk-wrap > dl > dd {margin-top:20px;}
+.login.agree .chk-wrap > dl > dd li {position:relative; margin-bottom:16px;}
+.login.agree .chk-wrap > dl > dd li:last-child {margin-bottom:0;}
+.login.agree .chk-wrap > dl > dd li > a {position:absolute; right:0; top:4px;}
+.login.agree .chk-wrap > dl > dd li > a:before {content:""; display:inline-block; width:16px; height:16px; background: url(https://aboutpet.co.kr/_images/common/icon_arrow.png) no-repeat 0 0}
+.login.agree .chk-wrap > dl > dd .checkbox > .txt {font-size:13rem; color:#666;}
+.login.agree .chk-wrap > dl > dd .checkbox > .txt:before {margin-right:8px;}
+
+.login.agree .pbt.fixed {position:relative; margin-top:40px;}
+.login.agree .bts .btn.a.gray {border:1px solid #ddd; background-color:#ddd;}
+.login.agree .bts .btn.xl {height:56px;}
+.login.agree .bts .btn[disabled] {opacity:1; cursor:default;}
+
+.login.agree .exlist  {margin-top: 20px;}
+
+.login.agree .popLayer.a .tit {font-size:22rem; font-weight: 700;}
+.login.agree .popLayer.a .poptents {padding: 16px 30px;}
+.login.agree .popLayer.a .poptents dl {font-size:14rem; margin-bottom:20px;}
+.login.agree .popLayer.a .poptents dl > dt {color:#666; font-weight: 700;}
+.login.agree .popLayer.a .poptents dl > dd {color:#9a9a9a;  font-weight:400; margin-top:6px;}
+
+.fake-pop.mt118 {margin-top:118px;}
+.fake-pop.mt118 .tag-choise h2{}
+.fake-pop.mt118 .tag-choise h2,
+.fake-pop.mt118 .tag-choise .sub-txt {text-align:center;}
+
+.tag-choise.mt66 {margin-top:66px;}
+.tag-choise.mt66 h2, .tag-choise.mt20 h2 {line-height:25rem;}
+.tag-choise.mt66 h2 em {color:#669aff;}
+.tag-choise.mt66 h2 span {color:#000;}
+.tag-choise.mt66 .filter-item .tag {padding-bottom:20px;}
+.tag-choise.mt20 .tag-txt {padding-bottom:0;}
+.tag-choise.mt66 .sub-txt {margin-top:8px; margin-bottom:50px;}
+
+/* 회원탈퇴 */
+.sett .pbt .tit {font-size:15rem; color:#000; letter-spacing:-0.2rem; font-weight:700;}
+.sett .pbt .btn.base {background:#fff; color:#000; border:1px solid #ddd; font-weight: 700;}
+
+.sett .pbt.sett  {margin:20px 0 42px 0;}
+.sett .pbt.sett  .btnSet {margin-top:24px;}
+.sett .textarea > textarea {font-size:15rem; padding:10px 12px;}
+.sett .textarea .num {text-align:right; margin-top:6px; color:#9a9a9a; font-weight:400; font-size:13rem;}
+
+.sett .member-input .list li .tit {margin-bottom:12px; color:#333;}
+.sett .member-input .list li .tit.mt6 {margin-top:6px;}
+.sett .member-input .list.bt-line:after {content:""; display:inline-block; background:#ecedef; width:100%; height:1px; margin:4px 0 24px 0;}
+.sett .member-input .list li .flex-wrap + .flex-wrap {margin-top:16px;}
+
+.sett .member-input .dot-txt p {line-height:22rem; padding-left:10px; position:relative; margin-bottom:0; font-size:14rem; color:#9a9a9a; letter-spacing:-0.19rem;}
+.sett .member-input .dot-txt p:before {position:absolute; left:0; top:8px; background:#9a9a9a; vertical-align:5px; content:""; display:inline-block; width:3px; height:3px; border-radius:50%; margin:0 5px 0 0;}
+
+
+/* 설정 ---------------------------------------------------------------------- */
+.sett .member-input .list li .flex-wrap label {width:100%;}
+.sett .member-input .list li .flex-wrap.mt30 {margin-top:30px;}
+.login .member-input .list li textarea {border:1px solid #ddd; width:100%; border-radius:4px; padding:12px 14px; height:48px; resize:none;}
+.login .member-input .list li .inputInfoTxt {top:calc(50% - 10px); color:#669aff;}
+
+
+/* address */
+.adrbox.basic{position: relative;}
+.adrbox.basic{padding: 11px 72px 11px 12px;border:1px solid #dddddd;border-radius: 4px;}
+.adrbox.basic+.basic{margin-top: 10px;}
+.adrbox.basic .adr{color: #9a9a9a;}
+.adrbox.basic .adr.on{color: #333333;}
+.adrbox.basic .btAdr{font-weight: 700;color: #333333;position: absolute;right: 12px;top: 8px;color: #669aff;padding: 4px 0;}
+.adrbox.basic + .input{margin-top:10px;}
+
+
+/* 이벤트 ---------------------------------------------------------------------- */
+.comm.event .pageHeadPc.lnb>.inr {padding-left:0;}
+.comm.event .gdset.event .boxs .inf {margin-top:10px;}
+.comm.event .gdset.event .boxs .inf .name .dd {font-size:12rem; color:#9a9a9a;}
+
+.comm.event .sect.event {width:1010px; margin:0 auto;}
+.comm.event .sect.event .list>li+li {margin-top:0;}
+.comm.event .sect.event .list>li .gdset + .gdset {margin-top:62px;}
+.comm.event .sect.event .list>li .gdset .tit {font-size:14rem; line-heigth: 20rem;} /* 2021.05.20 수정함 */
+/* .comm.event .sect.event .list>li.nodata .msg {height:calc(100vh - 0px);} */
+.comm.event .sect.event .list>li.nodata .msg::before {width:82px; height:100px; background:url(https://aboutpet.co.kr/_images/common/img-empty-ghost@2x.png) no-repeat center; background-size:100%;}
+.comm.event .sect.event .list>li.nodata .msg .txt {color:#666; font-size:14rem; font-weight:400;}
+
+.comm.event .uiTab {width:auto; margin-top:42px; padding:0;}
+.comm.event .uiTab > li {text-align:left;}
+.comm.event .uiTab > li + li {margin-left:40px;}
+.comm.event .uiTab > li > a {font-size:16rem; font-weight: 700;}
+
+.comm.event.detail .pageHeadMo {display:none;}
+.comm.event.detail .pageHeadPc .hdt > .sub {font-size:24rem; font-weight: 700; color:#000; margin-top:40px;}
+.comm.event.detail .pageHeadPc .hdt > .date {display:block; font-size:12rem; font-weight:400; color:#9a9a9a; margin-top:10px;}
+
+.comm.event.detail .img {width:100%;}
+.comm.event.detail .detail .top {margin:30px 150px;}
+.comm.event.detail .detail .bt-map {display:none;}
+
+.comm.event.detail .commentBoxAp {position:relative; border:0; padding:0;}
+.comm.event.detail .commentBoxAp > .con {padding:0; margin-top:30px;}
+.comm.event.detail .commentBoxAp > .con > .input {position:relative; display:flex; justify-content:flex-start; line-height:1; padding-top:0; padding-left:0; border:0; padding-right:0; z-index:1; /*height:48px;*/ padding-bottom: 20px;} /* 2021.05.20 수정함 */
+.comm.event.detail .commentBoxAp > .con > .input > span {width:28px; height:28px; top:10px; left:0;}
+.comm.event.detail .commentBoxAp > .con > .input > .btn_wrap {top:auto; right:0;}
+.comm.event.detail .commentBoxAp > .con > .input > textarea {position:relative; right:0; top:0; border:1px solid #ecedef; border-radius:4px; width:100%; margin-left:38px; font-size:15rem; padding:14px 60px 10px 16px;}
+.comm.event.detail .commentBoxAp > .con > .input > button {    
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 48px;
+    padding: 0 16px;
+    color: #669aff;
+    line-height: 48px;
+    border: none;
+    transform: translate(0, -50%);
+    background: transparent;
+}
+.comm.event.detail .commendListBox > .con {padding-right:40px;}
+.comm.event.detail .commendListBox > ul {padding:0 0 40px 0;}
+.comm.event.detail .commendListBox > ul > li {padding:10px 0;}
+.comm.event.detail .commendListBox > ul > li .menu {right:0;}
+.comm.event.detail .commendListBox > ul > li .nameCardAp {margin-left:5px;}
+/* .comm.event.detail .commendListBox > ul > li > .con {padding-left:10px;} */
+/* .comm.event.detail .commendListBox > ul > li > .con > .date, */
+/* .comm.event.detail .commendListBox > ul > li > .con > .txt {padding-top:3px;} */
+.comm.event.detail .commendListBox > ul > li > .con > .tit {line-height: 17rem;} /* 2021.05.20 수정함. */
+.comm.event.detail .commendListBox > ul > li > .con > .date {line-height: 16rem;} /* 2021.05.20 수정함. */
+
+.comm.event.detail .bar-btn-area {display:flex; height:50px; align-items:flex-start; justify-content:flex-end; border-bottom:1px solid #ecedef;}
+.comm.event.detail .bar-btn-area li + li {margin-left:16px;}
+.comm.event.detail .bar-btn-area button {
+    border: 0;
+    padding: 0;
+    color: #666;
+    font-size: 11rem;
+    line-height: 20px;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+  /* 댓글버튼 */
+.comm.event.detail .bar-btn-area button.btn-comment {
+    padding-left: 24px;
+    background: url(https://aboutpet.co.kr/_images/tv/icon_bar_reply_gray.png) no-repeat 0 50%;
+    background-size: 20px;
+}
+
+ /* 공유버튼 */
+.comm.event.detail .bar-btn-area button.btn-share {
+    background: url(https://aboutpet.co.kr/_images/tv/icon_bar_share_gray.png) no-repeat 50%;
+    background-size: 20px;
+    font-size:0;
+    width:20px;
+    height:20px;
+}
+
+
+/* 상세추가 */
+.comm.popLayer .pbd {max-width:562px;}
+.comm.popLayer .pbt {padding:0; margin:0; padding:0;}
+.comm.popLayer .pct {max-height: calc(100vh - 400px);}
+.comm.popLayer .pbt .btn {border-radius:0 0 6px 6px; margin:0; padding:0;}
+.comm.popLayer>.pbd>.phd .tit {font-weight: 700;}
+
+.comm.popLayer.a .poptents {height:100%;}
+.comm.popLayer.a .poptents .pull {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    right: 0;
+}
+.comm.popLayer.a .poptents .pull a {border-radius:0;}
+.comm.popLayer .tag-choise {text-align:center; width:335px; margin:0 auto;}
+.comm.popLayer .tag-choise h2 {margin:40px 0;}
+.comm.popLayer .tag-choise .sub-txt {margin-bottom:0;}
+.comm.popLayer .tag-choise .tag-txt {padding-bottom:0;}
+.comm.popLayer .btnPopTxt.right {display:none;}
+
+/* 공지사항 ---------------------------------------------------------------------- */
+.noti .contents {padding-bottom:100px; overflow-x:hidden;}
+/* .noti .notilist {padding:0 20px;} */
+.noti .notilist ul > li + li {margin-top:10px;}
+.noti .notilist .hBox {position:relative; height:60px; padding:8px 0; line-height:14rem; cursor:pointer;}/* 21.05.20 공지사항 아코디언 버튼 미동작 현상 개선 : cursor 추가 */
+.noti .notilist .hBox .tit {display:inline-block; line-height:23rem; font-size:14rem; font-weight:400; white-space:nowrap; color:#000; max-width:calc(100% - 35px); overflow:hidden; text-overflow:ellipsis;}
+.noti .notilist .hBox .date {display:block; font-size:12rem; font-weight:400; color:#9a9a9a;}
+.noti .notilist .hBox .btnTog {position:absolute; right:0; top:20px; display:inline-block; width:13px; height:12px; text-indent:-9999px; background: url(https://aboutpet.co.kr/_images/common/icon_list_more_black@2x.png) no-repeat 0 0; background-size:13px 12px; z-index:-50;}/* 21.05.20 공지사항 아코디언 버튼 미동작 현상 개선 */
+.noti .notilist .open .hBox .btnTog {transform: rotate(180deg);}
+
+.noti .notilist .hBox .new {position:relative; padding:0 10px 0 0;}
+.noti .notilist .hBox .new:after {position:absolute; content:""; display:inline-block; width:22px; height:22px; margin-left:6px; vertical-align:middle; background: url(https://aboutpet.co.kr/_images/common/icon_noti_new@2x.png) no-repeat 0 0; background-size:100%;}
+.noti .notilist .cBox > p {padding:14px; /*border-radius:6px; 21.05.04 삭제*/ background:#f7f7f7; font-size:14rem; color:#333;}
+.noti .notilist .cBox {border-radius: 6px; overflow: hidden; background:#f7f7f7;}/* 21.05.07 background 추가 */
+.noti .notilist .cBox > table{margin: 14px;}/* 21.05.07 추가 */
+ 
+
+/* FAQ ---------------------------------------------------------------------- */
+/* .noti.faq .top {padding:0 20px;} */
+.noti.faq .top .input {width:567px; position:relative; margin:6px auto 30px;}
+.noti.faq .top .input > input {padding-right:54px;}
+.noti.faq .top .input > input::-ms-input-placeholder {color:#9a9a9a;}
+.noti.faq .top .input > input::-moz-input-placeholder {color:#9a9a9a;}
+.noti.faq .top .input > input::-webkit-input-placeholder {color:#9a9a9a;}
+.noti.faq .top .input {color:#9a9a9a;}
+.noti.faq .top .input.del .btnDel {right:54px;}
+.noti.faq .top .input.del .btnfaq {font-size:14rem; font-weight: 700; position:absolute; right:14px; top:12px; color:#669aff;}
+.noti.faq .top .input .btnfaq {font-size:14rem; font-weight: 700; position:absolute; right:14px; top:12px; color:#669aff;}
+.noti.faq .top .result {font-size:13rem; margin-bottom:14px;}
+.noti.faq .top .result > b {font-weight: 700;}
+
+.noti.faq .menu {margin-bottom:40px;}
+.noti.faq .schs + .menu {margin-bottom:0;}
+.noti.faq .menu:after {content:unset;}
+.noti.faq .menu .uiTab.h>li>.bt {color:#666;}
+.noti.faq .menu .uiTab.h>li.active>.bt {color:#669aff;}
+
+.noti.faq .flist ul {border-bottom:1px solid #ecedef; padding-bottom:20px;}   
+.noti.faq .flist ul.noline {border-bottom: 0;}
+.noti.faq .flist ul > li + li {margin-top:10px;}   
+.noti.faq .flist .nodata {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 600px);
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    padding:0;
+    margin-top:0;
+  }
+.noti.faq .flist .nodata .txt {font-size:15rem; color:#333; font-weight:700;}
+.noti.faq .flist .nodata .txt .sm {display:block; margin-top:20px; font-size:13rem; font-weight:400; color:#333;}
+.noti.faq .flist .nodata .txt .sm > i {font-weight:700;}
+
+.noti.faq .flist .hBox {height:auto; min-height:42px;}   
+.noti.faq .flist .hBox .tit {
+    max-width:100%; 
+    font-weight:400; 
+    min-height:22px;
+    padding:0 18px 0 28px; 
+    white-space:normal; 
+    background: url(https://aboutpet.co.kr/_images/common/icon_list_qna_q@2x.png) no-repeat 0 2px;
+    background-size:20px 20px;
+}
+.noti.faq .flist .hBox .tit.no_ellipsis{text-overflow:normal;}
+.noti.faq .flist .hBox .tit .blue {color:#669aff; font-weight: 700;}
+.noti.faq .flist .hBox .btnTog {top:15px;}
+.noti.faq .flist .cBox {padding:0; min-height:auto;}
+.noti.faq .flist .cBox > p {
+    background:#f7f7f7 url(https://aboutpet.co.kr/_images/common/icon_list_qna_a@2x.png) no-repeat 14px 14px;
+    background-size:20px 20px;
+    padding:14px 14px 14px 42px;
+    border-radius:6px;
+}
+
+.noti.faq .guide {width:567px; margin:0 auto;}
+.noti.faq .guide dt {font-size:16rem; color:#000; font-weight: 700; margin:19px 0 9px 0;}
+.noti.faq .guide .box {padding-right:115px; display:table; width:100%; position:relative; font-size:13rem; color:#666; padding:22px 115px 22px 22px; background:#f7f7f7; height:106px; border-radius:4px 4px 30px 4px;}
+.noti.faq .guide .box:before {position:absolute; right:5px; top:8px; content:""; display:block; width:120px; height:92px; background:url(https://aboutpet.co.kr/_images/common/img-co-cs@2x.png) no-repeat 0 0; background-size:100%;}
+.noti.faq .guide .box span {display:table-cell; vertical-align:middle;}
+.noti.faq .guide .box span.call {margin-bottom:0; font-size:22rem; font-weight: 700; color:#669aff;}
+.noti.faq .guide .box span.call:after {content:unset}
+
+.noti.faq .guide .btnSet {margin-top:10px;}
+.noti.faq .guide .btnSet .btn {background:#fff; border:1px solid #ddd; color:#000; font-weight: 700;}
+
+
+/* 마이페이지(친구초대하기) ---------------------------------------------------------------------- */
+.my.invite .header.cu.mode7 > .hdr .hdt .mo-header-rightBtn {display:none;}
+
+.my.invite .sect .thum .pic .img {width:100%;}
+.my.invite .sect .thum .pic .img.mo {display:none;}
+.my.invite .sect .thum .pic .img.pc {display:block;}
+
+.my.invite .innr {padding:20px;}
+.my.invite .code {margin-top:24px; display:table; width:100%; height:46px; background:#f7f7f7; border-radius:6px;}
+.my.invite .code dt {padding:0 16px; font-size:16px; color:#666; font-weight:400; width:50%; text-align:right; display:table-cell; vertical-align:middle;}
+.my.invite .code dd {display:table-cell; font-size:16px; color:#333; font-weight: 700; vertical-align:middle;}
+.my.invite .code .copy {margin:0 18px; vertical-align:middle; display:inline-block; background: url(https://aboutpet.co.kr/_images/common/btn_code_copy.png) no-repeat 0 0; background-size:15px auto; width:15px; height:18px;}
+
+.my.invite .gud:before {content:""; display:block; width:100%; height:1px; background:#ecedef; margin:20px 0 16px;}
+.my.invite .gud, .my.invite .gud .info-txt {font-size:14rem; padding:0;}
+.my.invite .gud .info-txt {margin-top:10px;}
+.my.invite .gud .info-txt li:last-child {margin-top:0;}
+.my.invite .gud .hdt .tit {font-weight: 700; color:#333;}
+.my.invite .btnSet {width:335px; margin:20px auto 40px;}
+.my.invite .btnSet .btn {margin:0;}
+
+
+/* 마이페이지(정보없는 홈) ---------------------------------------------------------------------- */
+.my.home .top {padding-top:42px;}
+.my.home .top dl {position:relative; display:flex; background:#f8f9fa; border-radius:6px; height:141px;}
+.my.home .top dl > dt {width:170px;}
+.my.home .top .pic {position:relative; width:100px; height:100px; border-radius:100px; margin:23px 39px 0 70px; overflow:hidden;}
+.my.home .img-set .img,
+.my.home .top .pic .img {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    width: 100%;
+    object-fit: cover;
+    max-width: inherit;
+    min-width: 100%;
+    height: 100%;
+}
+.my.home .top .info-bx {display:flex; align-items:center; width:calc(100% - 210px); }
+.my.home .top .info-bx .nm {display:block; font-size:18px; font-weight: 700; color:#000; margin-bottom:13px; width: 240px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; word-wrap: break-word;} /* 2021.05.10 수정함 */
+.my.home .top .info-bx .data {text-align:center; display:flex; width:100%; height:auto; background:#f8f9fa; border-radius:6px; padding:0 150px;}
+.my.home .top .info-bx .data > li {flex:auto;}/* 21.05.25 MY메인 - GSPOINT 좌측여백 개선 */
+.my.home .top .info-bx .data > li:first-child {position:relative;}
+.my.home .top .info-bx .data > li:first-child:after {position:absolute; content:""; display:inline-block; width:1px; height:20px; background:#4b5261; opacity:0.16; top:50%; right:0; transform: translate(0 , -50%);}
+.my.home .top .info-bx .data > li > span {line-height:20px;}
+.my.home .top .info-bx .data .blue {font-size:15rem; font-weight: 700; color:#669aff; margin-left:6px;}
+.my.home .top .info-bx .data .label {
+    margin-left:6px; 
+    display:inline-block; 
+    color:#fff; 
+    font-size:11px; 
+    font-weight:400; 
+    width:43px; 
+    line-height:18px; 
+    border-radius:10px; 
+}
+.my.home .top .info-bx .data .label.vip {background:#ff7777;}
+.my.home .top .info-bx .data .label.vvip {background:#000;}
+.my.home .top .info-bx .data .label.family {background:#f7cd67;}
+.my.home .top .info-bx .data .label.welcome {background:#669aff;}
+.my.home .top .info-bx .data .point {vertical-align:top; display:inline-block; margin-left:6px; border-radius:10px; width:67px; border:1px solid #669aff; line-height:20px; height:20px; font-size:11px; font-weight: 700; color:#669aff;}
+.my.home .btn.re {display:block; width:84px; height:30px; font-size:13rem; color:#000;}
+/* 등급별 혜택 팝업 2021.05.13 */
+.rank_icon {display: inline-block;}
+.popLank.a .pbd {background: none;}
+.popLank>.pbd>.phd {height: 60px;}
+.popLank>.pbd>.phd>.in {height: 60px; background: none;} /* 2021.05.24 수정함 */
+.popLank>.pbd .btnPopClose {width: 24px; height: 24px; top: 18px; right: 32px;}
+.popLank.a .pct {height: auto !important; max-height: calc(100vh - 120px); margin-top: -60px;} /* 2021.05.24 수정함 */
+.popLank.a .poptents {padding: 60px 0 0 0;} /* 2021.05.24 수정함 */
+.rankCont {height: calc(100% + 60px); margin-top: -60px;} /* 2021.05.24 수정함 */
+.rankCont .rank_imgBox {display: none;}
+.rankCont .rank_imgBox.on {display: block;}
+.rankCont .rank_imgBox img {width: 100%;}
+
+.my.home .myinfo {padding:14px 0 165px 0;}
+.my.home .myinfo dl {display:flex; align-items:flex-start; position:relative; border-top:1px solid #ecedef; padding:26px 0;}
+.my.home .myinfo dl > dt {width:217px; font-size:18rem; color:#000; font-weight: 700;}
+.my.home .myinfo dl > dd {width:calc(100% - 217px);}
+
+.my.home .myinfo .my {align-items:flex-start; border-top:0;}
+.my.home .myinfo .my dd {position:relative;}
+.my.home .myinfo .my .btn.re {position:absolute; right:0; top:0;}
+.my.home .myinfo .my .pet {margin-bottom:24px;}
+.my.home .myinfo .my .next {display:none;}
+.my.home .myinfo .my .img-set {position:relative; padding-top:14px; text-align:center;}
+.my.home .myinfo .my .img-set > li {position:relative; display:inline-block; width:60px; height:60px; border-radius:100px; margin-right:10px; overflow:hidden;}
+.my.home .myinfo .my .img-set > button {position:absolute; top:0; right:0;}
+
+.my.home .myinfo .pet {align-items:center; position:relative; font-size:13rem; color:#666; padding:21px 0; background:#f7f7f7; height:99px; border-radius:6px 6px 30px 6px;}
+.my.home .myinfo .pet .ex {text-align:center; font-size:14rem; color:#333;}
+.my.home .myinfo .pet .ex > span {display:inline-block;}
+.my.home .myinfo .pet .add {display:block; position:relative; padding-left:32px; margin:7px auto; font-size:14rem; color:#000; border-radius:16px; width:133px; height:32px; border:1px solid #fff;}
+.my.home .myinfo .pet .add:before {position:absolute; left:13px; top:8px; content:""; display:inline-block; width:14px; height:14px; background:url(https://aboutpet.co.kr/_images/common/icon-school-zzim@2x.png) no-repeat 0 0; background-size: 100%;}
+.my.home .myinfo .pet:before {position:absolute; right:132px; top:0; content:""; display:block; width:120px; height:92px; background:url(https://aboutpet.co.kr/_images/my/img-my-add-mypet@2x.png) no-repeat 0 0; background-size: 100%;}
+.my.home .myinfo .nodata {font-size:14rem; color:#9a9a9a;}
+
+.my.home .myinfo .watch > dt {align-items:center;}
+.my.home .myinfo .watch > dt > a.next {width:auto; padding-right:20px; font-size:15rem; background-size:20px 20px; background-position: 100% 0; line-height:20px;}
+.my.home .myinfo .watch > dd > p.nodata {line-height:28rem;}
+.my.home .myinfo .next.all {
+    top:30px;
+    width: auto;
+    padding-right: 20px;
+    font-size: 15rem;
+    height: 25px;
+    background-position: 100% 50%;
+    background-size: 20px 20px;
+    vertical-align: middle;
+}
+.my.home .myinfo .allmore {padding-right:20px; line-height:1; position:absolute; right:0; top:31px; font-size:15rem; color:#000; font-weight: 700; background: url(https://aboutpet.co.kr/_images/common/icon_sub_arrow@2x.png) no-repeat 100% 50%; background-size:20px 20px;}
+.my.home .myinfo .next {
+    position:absolute;
+    display: inline-block;
+    font-size:0;
+    top:50%;
+    right:0;
+    width:20px;
+    height:20px;
+    background: url(https://aboutpet.co.kr/_images/common/icon_sub_arrow@2x.png) no-repeat 0 0;
+    background-size: 100%;
+    transform:translate(0, -50%);
+}
+.my.home .myinfo .recent .swiper-div {padding-top:35px; padding-bottom:4px;}
+/* .my.home .myinfo .recent .swiper-container {position:relative; width:calc(100% - 100px); overflow:hidden; float:left;} */
+.my.home .myinfo .recent .swiper-container li {width:100px;}
+.my.home .myinfo .recent .swiper-container .tlt {text-align:center; margin-top:5px; display:-webkit-box; overflow:hidden; text-overflow:ellipsis; -webkit-box-orient:vertical; -webkit-line-clamp:2; font-size:13rem; color: #666; line-height: 16rem;}
+.my.home .myinfo .recent .swiper-container .btn-more {display:none;}
+.my.home .myinfo .recent .thumb-box {position:relative;}
+.my.home .myinfo .recent .circular {position:relative; overflow:hidden; height:100px; width:100px; border-radius:100%; background-color:#f6f6f6;}
+.my.home .myinfo .recent .circular canvas {background:#fff;}
+.my.home .myinfo .recent .circular .inner {
+    position: absolute;
+    z-index: 6;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    right: 3px;
+    border-radius: 100%;
+    border: 3px solid #fff;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.my.home .myinfo .shop {padding-top:26px; align-items:flex-start;}
+.my.home .myinfo .shop .coupon {display:flex; padding:0 164px; margin-bottom:31px; margin-top:18px;}
+.my.home .myinfo .shop .coupon li {flex:1; text-align:center;}
+.my.home .myinfo .shop .coupon li > a {margin:0 auto; position:relative; display:block; width:70px; height:70px; padding-top:15px;}
+.my.home .myinfo .shop .coupon li > a > em {display:block; position:relative; top:-38px; left:12px; margin:0 auto; width:22px; line-height:22px; border-radius:50%; background:#669aff; font-weight: 700; font-size:12rem; color:#fff;}
+.my.home .myinfo .shop .coupon li > a > span {font-size:13rem; color:#273957; position:absolute; left:0; bottom:6px; width:100%; text-align:center;}
+.my.home .myinfo .shop .coupon li > a:before {content:""; display:block; height:25px; margin:0 auto;}
+.my.home .myinfo .shop .coupon li > a.my1:before {width:30px; background: url(https://aboutpet.co.kr/_images/my/icon_my_mycoupon@2x.png) no-repeat 50% 0; background-size:30px 20px;}
+.my.home .myinfo .shop .coupon li > a.my2:before {width:25px; background: url(https://aboutpet.co.kr/_images/my/icon_my_recently_view@2x.png) no-repeat 50% 0; background-size:25px 25px;}
+.my.home .myinfo .shop .coupon li > a.my3:before {width:22px; background: url(https://aboutpet.co.kr/_images/my/icon_my_pick@2x.png) no-repeat 50% 0; background-size:22px 25px;}
+.my.home .myinfo .shop .coupon li > a.my4:before {width:25px; background: url(https://aboutpet.co.kr/_images/my/icon_my_cart@2x.png) no-repeat 50% 0; background-size:25px 24px;}
+
+
+.my.home .myinfo .shop .barwrap {display:flex;}
+.my.home .myinfo .shop .bar {flex:1; margin-right:9px;}
+.my.home .myinfo .shop .bar:last-child {margin-right:0;}
+.my.home .myinfo .shop .bar li {position:relative; margin-top:8px; padding:0 12px 0 17px; line-height:46px; border-radius:6px; background:#f7f7f7;}
+.my.home .myinfo .shop .bar .tit {position:relative; width:calc(100% - 24px); display:inline-block; font-size:15rem; color:#000;}
+.my.home .myinfo .shop .bar .tit > em {font-size:16rem; font-weight: 700; color:#669aff; position:absolute; right:0; line-height:48px;}
+.my.home .myinfo .shop .bar .new:after {position:absolute; right:0; top:50%; transform:translate(0, -50%); content:""; display:inline-block; width:22px; height:22px; background: url(https://aboutpet.co.kr/_images/common/icon_noti_new@2x.png) no-repeat 0 0; background-size:100%;}
+.my.home .myinfo .shop .bar .next {right:14px;}
+
+.my.home .myinfo .zzim .next {display:none;}
+.my.home .myinfo .zzim .thumb-box {position:relative;}
+.my.home .myinfo .zzim .swiper-div {margin-top:35px;}
+.my.home .myinfo .zzim .swiper-slide {width:98px;}
+/* .my.home .myinfo .zzim .swiper-container {position:relative; width:calc(100% - 60px); overflow:hidden; float:left;} */
+
+.my.home .myinfo .zzim .tv > i {background: url(https://aboutpet.co.kr/_images/my/icon_shop_13@2x.png) no-repeat 0 0;}
+.my.home .myinfo .zzim .log > i {background: url(https://aboutpet.co.kr/_images/my/icon_log_13@2x.png) no-repeat 0 0;}
+.my.home .myinfo .zzim .shop > i {background: url(https://aboutpet.co.kr/_images/my/icon_tv_13@2x.png) no-repeat 0 0;}
+.my.home .myinfo .zzim .tag > i {background-size:13px auto; display:block; width:13px; height:13px; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); opacity:1;}
+.my.home .myinfo .zzim .tag {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: 20px;
+    padding: 0 10px;
+    border-radius: 6px 0 6px 0;
+    background: rgba(0, 0, 0, 0.5);
+    display:block; 
+    width:22px;
+    height:22px;
+}
+
+.my.home .myinfo .zzim .img {
+  position: relative;
+  display: block;
+  width:98px;
+  height:98px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  background-color: gray;
+  background-repeat: no-repeat;
+}
+.my.home .myinfo .zzim-list {display:flex; border-radius:6px; background:#f8f9fa; height:69px;}
+.my.home .myinfo .zzim-list li {position:relative; padding:13px 0; flex:1; align-items:center;  text-align:center; background:#f8f9fa; height:69px;}
+.my.home .myinfo .zzim-list li:first-of-type { border-radius:6px 0 0 6px; }
+.my.home .myinfo .zzim-list li:last-of-type { border-radius:0 6px 6px 0; }
+.my.home .myinfo .zzim-list li:after {content:""; display:inline-block; width:1px; height:43px; background:#4b5261; opacity:0.1; position:absolute; right:0; top:13px;}
+.my.home .myinfo .zzim-list li:last-child:after {content:unset;}
+.my.home .myinfo .zzim-list li > a > b{display:block; font-size:15rem; font-weight:400; color:#000;}
+.my.home .myinfo .zzim-list li > a {display: block; font-weight: 700; font-size:15rem; color:#669aff;}
+
+
+.my.home .myinfo .invite {position:relative; display:flex; align-items:center; text-align:center; height:84px; border-radius:6px; background:#669aff; padding:0 13px 0 24px;}
+.my.home .myinfo .invite:before {
+    position: absolute;
+    top: 0;
+    right: 186px;
+    content: "";
+    display: block;
+    width: 92px;
+    height: 84px;
+    background: url(https://aboutpet.co.kr/_images/my/img-benner-invite@2x.png) no-repeat 0 0;
+    background-size: 100%;
+}
+.my.home .myinfo .invite .ex {width:100%; font-size:15rem; font-weight:400; color:#fff;}
+.my.home .myinfo .invite .ex .block {display:block;}
+.my.home .myinfo .invite .ex > em {color:#ffe86e;}
+
+.agree-box {}
+.agree-box .agree-btn {display: flex; justify-content: space-between; align-items:center ; border-bottom: 1px solid #ecedef; padding-bottom: 20px; margin-top: 0px;}
+.agree-box .agree-btn .txt {font-size: 15px; color:#333}
+.agree-box .agree-btn .btn {width: 75px;}
+
+.agree-box .agree-btn + .select {margin-top: 20px}
+
+
+
+/* 입점제휴문의 ---------------------------------------------------------------------- */
+.popInqry {}
+.popInqry.a .pbd {max-width: 562px;}
+.popInqry>.pbd>.phd {height: 53px;}
+.popInqry>.pbd>.phd .tit {letter-spacing: normal;}
+.popInqry>.pbd .btnPopClose {width: 24px; height: 24px; top: 20px;}
+.popInqry.a .pct {height: 582px !important;}
+.popInqry .inqryBox {padding: 0 10px;}
+.popInqry .inqryBox .inqry_Contbox {padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid #ecedef;}
+.popInqry .inqryBox .inqry_Contbox:last-child {padding-bottom: 0; margin-bottom: 0; border-bottom: 0;}
+.popInqry .inqryBox .txt_date {font-size: 14rem; line-height: 17rem; color:#9a9a9a; margin-bottom: 10px;}
+.popInqry .inqryBox .attach_file {width: 100%; min-height: 48px; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px 12px 16px;}
+.popInqry .inqryBox .attach_file .atchFile {display: block; font-size: 14rem; line-height: 20rem; margin-bottom: 5px; position: relative; padding-left: 24px;color: #333; overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;}
+.popInqry .inqryBox .attach_file .atchFile:hover {text-decoration: underline;}
+.popInqry .inqryBox .attach_file .atchFile:last-child {margin-bottom: 0;}
+.popInqry .inqryBox .attach_file .atchFile:before {content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: url(https://aboutpet.co.kr/_images/common/icon-file@2x.png)no-repeat; background-size: contain;}
+.popInqry .inqryBox .inqry_textBox {}
+.popInqry .inqryBox .inqry_textBox > div {margin-bottom: 20px; line-height: 15rem;}
+.popInqry .inqryBox .inqry_textBox > div:last-child {margin-bottom: 0;}
+.popInqry .inqryBox .inqry_textBox > .notiTxt {margin-bottom: 30px;}
+.popInqry .inqryBox .inqry_textBox > .notiTxt > p {line-height: 17rem;}
+.popInqry .inqryBox .inqry_textBox > div > p {font-size: 14rem; line-height: 20rem; color: #333;}
+.popInqry .inqryBox .inqry_textBox > div > .tit {margin-bottom: 4px; line-height: 17rem;}
+.popInqry .inqryBox .inqry_textBox > div > p:last-child {margin-bottom: 0;}
+.popInqry .inqryBox .inqry_textBox > div > p > strong {font-weight: 700;}
