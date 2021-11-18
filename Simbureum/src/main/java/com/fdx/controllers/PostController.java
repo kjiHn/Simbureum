@@ -18,7 +18,7 @@ public class PostController {
 	@RequestMapping(value="/main/writePost", method=RequestMethod.GET)
 	public String write(Model model) {
 		model.addAttribute("post", new PostDto());
-		return "/main/writePost";
+		return "main/writePost";
 	}
 	
 	@RequestMapping(value="/main/writePost", method=RequestMethod.POST)
