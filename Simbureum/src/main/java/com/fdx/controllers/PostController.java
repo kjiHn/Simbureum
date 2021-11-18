@@ -1,4 +1,4 @@
-package com.fdx.simbureum;
+package com.fdx.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
