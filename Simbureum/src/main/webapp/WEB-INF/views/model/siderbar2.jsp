@@ -36,9 +36,9 @@
 	<!-- section class="blog_area section-padding">
 		<div class="container" style="margin-left: 10%;">
 			<div class="row"> -->
-				<div class="col-lg-2">
+				<div class="col-lg-2" style=" background-color: #e3c4ff; height: 600px">
 					<!-- <div class="blog_left_sidebar"> -->
-					<div class="blog_right_sidebar" style="margin-left: 10%; margin-top: 250px; margin-right: 0px;	">
+					<div class="blog_right_sidebar" >
 
 						<aside class="single_sidebar_widget post_category_widget"
 							style="margin-top: 40px; background-color: #e3c4ff;">
