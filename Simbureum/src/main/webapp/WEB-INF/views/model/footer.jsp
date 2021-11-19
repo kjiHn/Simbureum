@@ -34,14 +34,15 @@
      <!-- footer-bottom area -->
       <footer>
         <div class="footer-area footer-padding" style="padding-top: 0px;">
-            <div class="footer-bottom-area" style="background-color: #E3C4FF">
+            <div class="footer-bottom-area" style="background-color: #E3C4FF; height: 50px; position:fixed; bottom:0; width: 100%">
                 <div class="container">
-                    <div class="footer-border">
+                    <div class="footer-border" style="padding: 10px">
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="footer-copy-right text-center">
-                                    <p style="color: black;">
-                                      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
+                                    <p style="color: black; margin-bottom: 0px">
+                                      Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+                                      All rights reserved | This template is made with <em>Hakuna matata</em>
                                       
 
                                   </div>

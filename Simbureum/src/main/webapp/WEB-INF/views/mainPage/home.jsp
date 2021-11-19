@@ -34,7 +34,7 @@
 <body>
  
  <!-- Slider Area Start-->
-       <div class="slider-area slider-bg" style="overflow: hidden;">
+       <div class="slider-area slider-bg" style="overflow: hidden; height: 890px">
             <!-- Single Slider -->
             <div class="single-slider d-flex align-items-center slider-height2" style="height: 650px;">
                  <div class="container">
@@ -63,7 +63,7 @@
                             </div>
                             
                             <div class="card-bottom">
-                                <a href="#" class="borders-btn">게시글 작성</a>
+                                <a href="/main/writePost" class="borders-btn">게시글 작성</a>
                             </div>
                         </div>
                     </div>
