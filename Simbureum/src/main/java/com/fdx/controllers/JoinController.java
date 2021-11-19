@@ -12,4 +12,11 @@ public class JoinController {
 		
 		return "join/joineUs";
 	}
+	
+	
+	@RequestMapping(value = "join1")
+	public String join1() {
+		
+		return "join/firstJoin";
+	}
 }
