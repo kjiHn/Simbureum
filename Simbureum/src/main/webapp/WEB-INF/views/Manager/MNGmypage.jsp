@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../model/topBar1.jsp" %>
 
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -53,42 +52,42 @@
 <div class="col-lg-8 posts-list">
 	
 	 <div class="slider-shape d-none d-lg-block" >
-			<h2 class="mb-30"><b>리뷰 관리</b></h2>
+			<h2 class="mb-30"><b>신고된 게시글</b></h2>
 	 </div>
 	 
 <div id="div1">
 	<table width = "100%" height = "100%" >
 			<tr>
 				<td><b>작성자</b></td>
-				<td>해주랑</td>
+				<td>${report.get(0).getPost_num_pk()}</td>
 			</tr>
 			<tr>
 				<td><b>해당 게시글</b></td>
-				<td>도와주세요</td>
+				<td>${report.get(1)}</td>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
-				<td>2</td>
+				<td>${report.get(2)}</td>
 			</tr>
 			<tr>
 				<td><b>별점</b></td>
-				<td>2</td>
+				<td>${report.get(3)}</td>
 			</tr>
 			<tr>
 				<td><b>내용</b></td>
-				<td>2</td>
+				<td>${report.get(4)}</td>
 			</tr>
 			<tr>
 			<td><b>신고자</b></td>
-			<td>2</td>
+			<td>${report.get(5)}</td>
 		</tr>
 		<tr>
 			<td><b>신고일</b></td>
-			<td>2</td>
+			<td>${report.get(6)}</td>
 		</tr>
 		<tr>
 			<td><b>신고사유</b></td>
-			<td>2</td>
+			<td>${report.get(7)}</td>
 		</tr>
 	</table>
 </div>

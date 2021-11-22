@@ -13,6 +13,6 @@ public interface ManagerService {
 
 	boolean remove(Map<String, Object> map);
 
-	List<Map<String, Object>> list(Map<String, Object> map);
+	List<Object/* 내가만든 DTO명 */> selectList();
 
 }
