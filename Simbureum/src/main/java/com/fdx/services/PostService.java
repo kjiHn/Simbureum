@@ -1,5 +1,7 @@
 package com.fdx.services;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 import com.fdx.dao.PostDaoImpl;
@@ -8,6 +10,7 @@ import com.fdx.dto.PostDto;
 @Service
 public class PostService {
 
+	@Inject
 	private PostDaoImpl postDao;
 	
 	public PostService() {}

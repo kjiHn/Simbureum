@@ -1,7 +1,8 @@
 package com.fdx.dao;
 
+import javax.inject.Inject;
+
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fdx.dto.PostDto;
@@ -9,18 +10,21 @@ import com.fdx.dto.PostDto;
 @Repository
 public class PostDaoImpl implements PostDao{
 
-	@Autowired
+	@Inject
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	@Autowired
+	@Inject
 	public PostDaoImpl(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
+	
 
 	@Override
 	public void insert(PostDto post) {
 		sqlSessionTemplate.insert("insertPost", post);
 		
 	}
+
+	
 	
 }

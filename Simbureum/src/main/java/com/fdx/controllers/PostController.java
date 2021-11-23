@@ -1,6 +1,7 @@
 package com.fdx.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import com.fdx.services.PostService;
 @Controller
 public class PostController {
 
-	@Autowired
+	@Inject
 	private PostService postService;
 	
 	@RequestMapping(value="/main/writePost", method=RequestMethod.GET)

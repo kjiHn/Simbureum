@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <%@ include file="../model/topBar1.jsp" %>
 
 
-<!DOCTYPE>
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -64,41 +65,94 @@
 
 </head>
 <body>
-
 	<section class="blog_area single-post-area section-padding" id="centerBody">
 	<div class="container" style="width: 500px; height:500px">
 	
 	<div class="col-lg-11 posts-list" id="centerCon">
+	
 	<h2>심부름 작성</h2>
 	
-	<form:form commandName="post" method="POST" action="writePost">
+	<form method="POST" action="writePost">
 		<table>
 			<tr>
 				<th>제목 : </th>
-				<td ><form:input path="post_title" class="textinput" placeholder="제목을 입력해주세요" /></td>
+				<td ><input name="post_title" class="textinput" placeholder="제목을 입력해주세요" /></td>
 			</tr>
 			<tr>
 				<th>내용 : </th>
-				<td><form:textarea path="post_con" class="content" placeholder="내용을 입력해주세요"/></td>
+				<td><textarea name="post_con" class="content" placeholder="내용을 입력해주세요"></textarea></td>
 			</tr>
 			<tr>
-				<th>위치 : </th>
-				<td></td>
+			<!-- 수정 -->
+			<th>위치 : </th>
+				<td>
+					<select id="bigCategory" >
+						<option value="0">시/도</option>
+						<option value="1">서울</option>
+						<option value="2">경기도</option>
+					</select>
+					<select name="psmallc_pk" id="smallCategory">
+						<option value="0">시/군/구</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th>심부름 가격 : </th>
-				<td><form:input path="post_price" class="textinput" placeholder="심부름 가격을 입력해주세요"/></td>
+				<td><input name="post_price" class="textinput" placeholder="심부름 가격을 입력해주세요"/></td>
 			</tr>
 		</table>
 		
 		<input type="submit" class="button" value="완료">
 		
-	</form:form>
+	</form>
 	</div>
 	</div>
 	</section>
+	
+	
+	<script>
+		$(document).ready(function(){
+			$("#bigCategory").change(function(){
+				var seoul_category = ["강동구", "마포구", "영등포구", "서초구", "동작구"];
+				var seoul_category_val = [1, 2, 3, 4, 5];
+				var gyeonggi_category = ["화성시", "수원시", "오산시", "남양주시", "광주시"];
+				var gyeonggi_category_val = [6, 7, 8, 9, 10];
+				var target = document.getElementById("smallCategory");
+				
+				var category1 = $("#bigCategory").val(); 
+				
+				var val;
+				var text;
+				
+				if(category1 == 1){
+					text = seoul_category;
+					val = seoul_category_val;
+				}else if(category1 == 2){
+					text = gyeonggi_category;
+					val = gyeonggi_category_val;
+				}
+				
+				console.log(text);
+				console.log(val);
+				
+				$("#smallCategory").empty();
+				
+				for (x in val){
+					console.log("for문");
+					var opt = $("<option>"+text[x]+"</option>");
+					$("#smallCategory").append(opt);
+					console.log(opt);
+					//var opt = document.createElement("option");
+					//opt.value = val[x];
+					//opt.innerHTML = text[x];
+					//console.log("opt.value "+opt.value);
+					//console.log("opt.innerHTML "+opt.innerHTML);
+					//target.appendChild(opt);
+				}
+			});
+		});
+	</script>
 
 </body>
 
 </html>
-<%@ include file="../model/footer.jsp" %>

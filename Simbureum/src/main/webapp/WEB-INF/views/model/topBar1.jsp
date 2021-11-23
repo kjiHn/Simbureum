@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/resources/view/assets/img/favicon.ico">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="/resources/view/assets/css/total.css?ver=2" type="test/css" />
+    <link rel="stylesheet" href="/resources/view/assets/css/total.css?ver=2"/>
     
 </head>
 <body>
