@@ -4,53 +4,36 @@
 <%@include file="../model/topBar1.jsp" %>
 <html class="no-js" lang="zxx">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>해줘~ 할게</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+<style type="text/css">
+#submitButton{
+	background: #F067FF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-transform: capitalize;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 20px;
+    transition: .4s;
+    outline: none;
+    height: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="view/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="view/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="view/assets/css/slicknav.css">
-    <link rel="stylesheet" href="view/assets/css/flaticon.css">
-    <link rel="stylesheet" href="view/assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="view/assets/css/gijgo.css">
-    <link rel="stylesheet" href="view/assets/css/animate.min.css">
-    <link rel="stylesheet" href="view/assets/css/animated-headline.css">
-    <link rel="stylesheet" href="view/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="view/assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="view/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="view/assets/css/slick.css">
-    <link rel="stylesheet" href="view/assets/css/nice-select.css">
-    <link rel="stylesheet" href="view/assets/css/style.css">
-    
+}
+
+
+</style>
 </head>
 <body>
    
 <main class="login-body">
     <!-- Login Admin -->
-    <form class="form-default" action="login-bg.mp4" method="POST">
+    <form id = "testForm"class="form-default" action="" method="POST">
         <div class="login-form"> 
-            <h2>Login</h2>
-            
-            <!-- 추가  -->
-            <!--  <div style=" display: inline;  text-align: center;vertical-align: middle; ">
-            <input type="radio" name="bts" value="1" id="bts"  style="width:30px;height:30px;border:1px;" checked="checked">
-            <label for="bts">일반회원</label>
-            </div>
-            
-            <div style=" display: inline; margin-left: 150px; text-align: center;vertical-align: middle; ">
-            <input type="radio" name="bts" value="2" id="bts2" style="width:30px;height:30px;border:1px;" >
-            <label for="bts2" style="border: 1px solid black;">운영진</label>
-            </div> -->
-            <!-- 추가 끝  -->
-            
-            
-            
+            <h2>해줘~할게</h2> 
             
            <div> <!-- 일반, 관리자 체크 -->
                 <input type="radio" name="chk_info" value="1" checked="checked">일반 회원    &nbsp;&nbsp;&nbsp;       
@@ -58,74 +41,78 @@
            </div>
             
             <div class="form-input">
-                <label for="name">Email</label>
-                <input  type="email" name="email" placeholder="Email">
+                <label for="ID">ID</label>
+                <input id="Id"  type="text" name="ID" placeholder="아이디를 입력해주세여">
             </div>
             <div class="form-input">
-                <label for="name">Password</label>
-                <input type="password" name="password" placeholder="Password">
+                <label for="password">Password</label>
+                <input id="pswd" type="password" name="password" placeholder="Password">
+                <p id="login_error" class="validation-check"></p>
             </div>
             <div class="form-input pt-30">
-                <input type="submit" name="submit" value="login">
+                <!-- <input type="submit" name="submit" value="login" id ="submitButton"> -->
+                 <button id ="submitButton" class="borders-btn">login</button> 
             </div>
             
-            <!-- Forget Password -->
-            <a href="#" class="forget">비밀번호 찾기</a>
              <!-- Forget id -->
-            <a href="#" class="forget">아이디 찾기</a> <!-- 변경해야함 -->
+            <a href="/user/findIdPage" class="forget">아이디 찾기</a> <!-- 변경해야함 -->
+            <!-- Forget Password -->
+            <a href="/user/findPswdPage" class="registration">비밀번호 찾기</a>
             <!-- join -->
-            <a href="#" class="registration">회원가입</a>
+            <a href="/user/join1" class="registration">회원가입</a>
         </div>
     </form>
     <!-- /end login form -->
 </main>
 
-<script src="view/assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<!-- Jquery, Popper, Bootstrap -->
-<script src="view/assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="view/assets/js/popper.min.js"></script>
-<script src="view/assets/js/bootstrap.min.js"></script>
-<!-- Jquery Mobile Menu -->
-<script src="view/assets/js/jquery.slicknav.min.js"></script>
+<script type="text/javascript">
+		$("#submitButton").click(function() {
+			event.preventDefault();
+			$("#login_error").text("");
+			var id = $("#Id").val();
+			var psw = $("#pswd").val();
+			var inputValue = $("input[name='chk_info']:checked").val(); 
+			
+			$.ajax({
+				url : '/login/loginCheck',
+				type : 'post',
+				cache: false,
+				data: {
+			        ID:id,
+			        password:psw,
+			        chk_info:inputValue
+			    },
+			    dataType: 'text',
+			    success: function(data) {
+			   		if (data ==1) {
+			   			window.location.href = '/home';
+					}else if (data == 0){
+						$("#login_error").text("회원이 존재하지 않습니다");
+						$("#login_error").css("color","red");
+					}else if (data == -1){
+						$("#login_error").text("비밀번호가 일치하지 않습니다");
+						$("#login_error").css("color","red");
+						
+					}else if (data == 3){
+						window.location.href = '/board';
+					}
+			    },
+			    error: function(data) {
+			    	
+			    }
+				
+			});
+		});
+		
+	
+	
+	
 
-<!-- Jquery Slick , Owl-Carousel Plugins -->
-<script src="view/assets/js/owl.carousel.min.js"></script>
-<script src="view/assets/js/slick.min.js"></script>
-<!-- One Page, Animated-HeadLin -->
-<script src="view/assets/js/wow.min.js"></script>
-<script src="view/assets/js/animated.headline.js"></script>
-<script src="view/assets/js/jquery.magnific-popup.js"></script>
 
-<!-- Date Picker -->
-<script src="view/assets/js/gijgo.min.js"></script>
+</script>
 
-<!-- Video bg -->
-<script src="view/assets/js/jquery.vide.js"></script>
 
-<!-- Nice-select, sticky -->
-<script src="view/assets/js/jquery.nice-select.min.js"></script>
-<script src="view/assets/js/jquery.sticky.js"></script>
-<!-- Progress -->
-<script src="view/assets/js/jquery.barfiller.js"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="view/assets/js/jquery.counterup.min.js"></script>
-<script src="view/assets/js/waypoints.min.js"></script>
-<script src="view/assets/js/jquery.countdown.min.js"></script>
-<script src="view/assets/js/hover-direction-snake.min.js"></script>
-
-<!-- contact js -->
-<script src="view/assets/js/contact.js"></script>
-<script src="view/assets/js/jquery.form.js"></script>
-<script src="view/assets/js/jquery.validate.min.js"></script>
-<script src="view/assets/js/mail-script.js"></script>
-<script src="view/assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->	
-<script src="view/assets/js/plugins.js"></script>
-<script src="view/assets/js/main.js"></script>
-
+<%@include file="../model/footer.jsp" %>
 </body>
 </html>
 
-<%@include file="../model/footer.jsp" %>

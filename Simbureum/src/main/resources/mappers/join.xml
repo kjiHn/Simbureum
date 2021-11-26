@@ -3,8 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.fdx.dao.JoinDAO">
+<mapper namespace="mapper.mamber">
 
+	<select id="allMember" parameterType="String" resultType="com.fdx.dto.JoinDTO">
+		SELECT *
+		FROM MEMBER
+		WHERE mb_id = #{mb_id}
+	</select>
+
+	<select id="userIdCheck" resultType="int" parameterType="String">
+		SELECT count(*) FROM MEMBER WHERE mb_id = #{mb_id}
+	</select>
+	
+	<insert id="insertMember">
+		insert into MEMBER 
+			values(MEBER_SEQNUM.nextval,#{mb_id},#{mb_pswd},#{mb_name},#{mb_emaile},#{mb_pnb},sysdate)
+	
+	</insert>
+	
+	<select id="emailDuplCheck" resultType="int" parameterType="String">
+		SELECT count(*) FROM MEMBER WHERE mb_emaile = #{mb_emaile}
+	</select>
+	
+	<update id="updateMember"  parameterType="com.fdx.dto.JoinDTO" >
+		UPDATE MEMBER
+		SET mb_pswd = #{mb_pswd}
+		WHERE mb_id = #{mb_id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM MEMBER WHERE mb_id = #{mb_id} 
+	</delete>
+		
 
 
 </mapper>	

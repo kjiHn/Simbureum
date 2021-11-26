@@ -43,9 +43,44 @@
 		destroy-method="clearCache">
 		<constructor-arg  ref="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="bhojin167@gmail.com" />
+    <property name="password" value="s4857769" />
+    <property name="javaMailProperties">
+        <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.debug">true</prop>
+        </props>
+    </property>
+</bean>
+
+    <!-- 메일 -->
+<bean id="mailSender3" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.naver.com" />
+	<property name="port" value="465" />
+	<property name="username" value="username" />
+	<property name="password" value="password" />
+	<property name="defaultEncoding" value="utf-8" />
+	<property name="javaMailProperties">
+		<props>
+			<prop key="mail.debug">true</prop>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+			<prop key="mail.smtp.auth">true</prop>
+			<prop key="mail.smtps.ssl.trust">*</prop>
+			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		</props>
+	</property>
+</bean>
+	
    
 
-   <!-- <mybatis-spring:scan base-package="mappers"/> -->
+   <mybatis-spring:scan base-package="mappers"/>
     <context:component-scan base-package="com.fdx.dao" />
 	<context:component-scan base-package="com.fdx.services" />
      

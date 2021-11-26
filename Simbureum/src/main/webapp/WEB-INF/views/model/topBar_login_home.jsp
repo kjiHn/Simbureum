@@ -1,7 +1,6 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -41,9 +40,10 @@
                                         <nav>
                                             <ul id="navigation">       
                                                 <li><a href="#">공지 사항</a></li>
-                                                <li><a href="/user/join1">회원가입</a></li>                                        
-                                                <li>
-                                                	<a href="/login/main" class="btn">로그인</a>
+                                                <li><%=session.getAttribute("mid") %>님</li>                                        
+                                                <li>	
+                                                	<a href="/login/logout" class="btn">로그아웃</a>
+                                                	<a href="/login/main" class="btn">마이페이지</a>
                                                 </li>
                                             </ul>
                                         </nav>

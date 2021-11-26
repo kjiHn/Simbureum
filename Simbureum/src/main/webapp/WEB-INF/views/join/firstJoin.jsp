@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css5/style.css">
 <link rel="shortcut icon" type="image/x-icon"
 	href="/resources/view/assets/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 body {
 	background-color: #e3c4ff;
@@ -109,7 +110,7 @@ body {
 <body>
 	<div class="wrap" id="wrap">
 		<section id="mainHeader">
-		<h1>할게해줘</h1>
+		<h1><a href="/home">해줘~할게!</a></h1>
 		</section>
 		<!-- 바디 - 여기위로 템플릿 -->
 		<main class="container page login srch" id="container">
@@ -162,7 +163,7 @@ body {
 									</div>
 									<div id = "checkTest">
 									<input type="checkbox" name="mustCheck" value="mustCheck"
-										id="checkMust"> <span class = "checkspan">해당 약관을 모두 확인하였으며, 이에
+										id="checkMust" onclick="activeBtn(this)"> <span class = "checkspan">해당 약관을 모두 확인하였으며, 이에
 										동의합니다.</span>
 									</div>
 								</div>
@@ -171,12 +172,13 @@ body {
 						</div>
 					</div>
 					<div class="pbt pull">
-						<div class="bts" id="inactiveBtn">
+					
+						<div class="bts" id="inactiveBtn" style="display: ;">
 							<a href="javascript:;" id="nextBtn" class="btn lg gray"
 								data-content="" data-url="">다음</a>
 						</div>
-						<div class="bts" id="activeBtn" style="display: none;">
-							<a href="javascript:insertMember();" id="nextBtn"
+						<div class="bts" id="activeBtn" style="display:none ;">
+							<a href="javascript:goNextPage();" id="nextBtn"
 								class="btn lg a" data-content="" data-url="">다음</a>
 						</div>
 					</div>
@@ -186,6 +188,31 @@ body {
 		</div>
 		</main>
 	</div>
+	
+	<script type="text/javascript">
+	
+	
+	function activeBtn(checked) {
+		if ( $("#checkMust").prop("checked")) {
+			  $("#inactiveBtn").css("display","none"); 
+			  $("#activeBtn").css("display","");
+		}else{
+			  $("#inactiveBtn").css("display",""); 
+			  $("#activeBtn").css("display","none");
+		}
+	}
+	
+
+	
+	
+	$( document ).ready(function() {
+		$("#activeBtn").click(function() {
+			$(location).attr("href", "/user/join");
+		});
+	});
+	
+	
+	</script>
 
 </body>
 </html>

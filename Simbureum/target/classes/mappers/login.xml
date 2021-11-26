@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mappers.login">
+
+	<select id="loginCheck" parameterType="String" resultType="com.fdx.dto.JoinDTO" >
+		SELECT *
+		FROM Member
+		WHERE mb_id = #{mb_id}
+	</select>
+	
+	<select id="adminCheck" parameterType="String" resultType="com.fdx.dto.AdminDTO">
+		SELECT *
+		FROM Manager
+		WHERE mng_id_pk = #{mng_id_pk}
+	</select>
+
+
+
+</mapper>

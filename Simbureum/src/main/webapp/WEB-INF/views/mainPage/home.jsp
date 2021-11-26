@@ -1,9 +1,19 @@
-<!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../model/topBar1.jsp" %>
-<jsp:include page="../model/topBar1.jsp" flush="false"/>
-
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+ 
+<%
+	if(session.getAttribute("mid") != null) {
+%>
+	<%@ include file="../model/topBar_login_home.jsp" %>
+<%
+	}else{
+		
+%>
+	<%@ include file="../model/topBar1.jsp"%>
+<%
+	}
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -32,16 +42,18 @@
     
 </head>
 <body>
- 
+
  <!-- Slider Area Start-->
-       <div class="slider-area slider-bg" style="overflow: hidden; height: 890px">
+       <div class="slider-area slider-bg" style="overflow: hidden;">
             <!-- Single Slider -->
             <div class="single-slider d-flex align-items-center slider-height2" style="height: 650px;">
                  <div class="container">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-xl-8 col-lg-9 col-md-12 ">
                             <div class="hero__caption hero__caption2 text-center">
-                                <h1 data-animation="fadeInLeft" data-delay=".6" >해줘할게</h1>
+                                <h1 data-animation="fadeInLeft" data-delay=".6" >해줘할게
+                                <br>
+                                </h1>
                             </div>
                         </div>
                     </div>
@@ -63,7 +75,7 @@
                             </div>
                             
                             <div class="card-bottom">
-                                <a href="/main/writePost" class="borders-btn">게시글 작성</a>
+                                <a href="#" class="borders-btn">게시글 작성</a>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,18 @@
 package com.fdx.dao;
 
-public class JoinDAO {
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import com.fdx.dto.JoinDTO;
+
+public interface JoinDAO {
+	
+	int userIdCheck(String mb_id); // 아이디 체크
+	void insertMember(JoinDTO joinDTO);
+	int emailDuplCheck(String mb_emaile);
+	String findId(JoinDTO joinDTO);
+	String findPswd(JoinDTO joinDTO);
+	int updateMember(JoinDTO joinDTO);
+	int deleteMember(String mb_id);
 
 }
