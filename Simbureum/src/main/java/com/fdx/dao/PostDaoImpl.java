@@ -1,5 +1,7 @@
 package com.fdx.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,11 +20,19 @@ public class PostDaoImpl implements PostDao{
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
-
 	@Override
 	public void insert(PostDto post) {
 		sqlSessionTemplate.insert("insertPost", post);
-		
+	}
+
+	@Override
+	public List<PostDto> selectAll() {
+		return sqlSessionTemplate.selectList("selectAll");
+	}
+
+	@Override
+	public List<PostDto> selectByLoc(int psmallc) {
+		return sqlSessionTemplate.selectList("selectByLoc", psmallc);
 	}
 
 	

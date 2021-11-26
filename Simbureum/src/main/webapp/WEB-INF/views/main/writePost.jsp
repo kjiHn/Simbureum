@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <%@ include file="../model/topBar1.jsp" %>
 
@@ -8,8 +7,7 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>심부름 올리기</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style type="text/css">
 
@@ -49,19 +47,17 @@
 	height: 40px;
 	margin-bottom: 20px;
 	margin-top: 20px;
-	
-
 }
 
 .content{
 	width: 300px;
 	height: 200px;
 	margin-bottom: 20px;
-	margin-top: 20px;
-	
-
+	margin-top: 20px
 }
 </style>	
+
+<title>심부름 올리기</title>
 
 </head>
 <body>
@@ -76,15 +72,14 @@
 		<table>
 			<tr>
 				<th>제목 : </th>
-				<td ><input name="post_title" class="textinput" placeholder="제목을 입력해주세요" /></td>
+				<td><input name="post_title" class="textinput" placeholder="제목을 입력해주세요" /></td>
 			</tr>
 			<tr>
 				<th>내용 : </th>
 				<td><textarea name="post_con" class="content" placeholder="내용을 입력해주세요"></textarea></td>
 			</tr>
 			<tr>
-			<!-- 수정 -->
-			<th>위치 : </th>
+				<th>위치 : </th>
 				<td>
 					<select id="bigCategory" >
 						<option value="0">시/도</option>
@@ -95,6 +90,14 @@
 						<option value="0">시/군/구</option>
 					</select>
 				</td>
+			</tr>
+			<tr>
+				<th>마감일 : </th>
+				<td><input name="post_dline" class="textinput" placeholder="마감일을 입력해주세요" /></td>
+			</tr>
+			<tr>
+				<th>심부름꾼 수 : </th>
+				<td><input name="post_numof" class="textinput" placeholder="심부름꾼 수를 입력해주세요" /></td>
 			</tr>
 			<tr>
 				<th>심부름 가격 : </th>
@@ -118,6 +121,8 @@
 				var gyeonggi_category = ["화성시", "수원시", "오산시", "남양주시", "광주시"];
 				var gyeonggi_category_val = [6, 7, 8, 9, 10];
 				var target = document.getElementById("smallCategory");
+				var basic_category = "시/군/구";
+				var basic_category_val = 0;
 				
 				var category1 = $("#bigCategory").val(); 
 				
@@ -130,24 +135,25 @@
 				}else if(category1 == 2){
 					text = gyeonggi_category;
 					val = gyeonggi_category_val;
+				}else{
+					text = basic_category;
+					val = basic_category_val;
 				}
-				
-				console.log(text);
-				console.log(val);
 				
 				$("#smallCategory").empty();
 				
-				for (x in val){
-					console.log("for문");
-					var opt = $("<option>"+text[x]+"</option>");
-					$("#smallCategory").append(opt);
-					console.log(opt);
-					//var opt = document.createElement("option");
-					//opt.value = val[x];
-					//opt.innerHTML = text[x];
-					//console.log("opt.value "+opt.value);
-					//console.log("opt.innerHTML "+opt.innerHTML);
-					//target.appendChild(opt);
+				if(category1 >= 1){
+					for (x in val){
+						var opt = document.createElement("option");
+						opt.value = val[x];
+						opt.innerHTML = text[x];
+						target.appendChild(opt);
+					}
+				}else{
+					var opt = document.createElement("option");
+					opt.value = val;
+					opt.innerHTML = text;
+					target.appendChild(opt);
 				}
 			});
 		});

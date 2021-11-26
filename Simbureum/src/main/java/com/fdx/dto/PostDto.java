@@ -4,19 +4,28 @@ import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Alias("post")
 public class PostDto {
 
-	private int post_num_pk;	//게시글번호
-	private int mb_num_pk;		//회원번호
-	private String post_title;	//제목
-	private String post_con;	//내용
-	private Date post_dline;	//마감일
-	private int post_numof;		//심부름꾼수
-	private int psmallc_pk;		//위치 소분류번호
-	private int post_price;		//심부름 가격
-	private int post_views;		//조회수
-	private Date post_date;		//작성일
+	private int post_num_pk;		//게시글번호
+	private int mb_num_pk;			//작성자 회원번호
+	private String post_title;		//제목
+	private String post_con;		//내용
+	private Date post_dline;		//마감일
+	private int post_numof;			//심부름꾼 수
+	private int psmallc_pk;			//위치 소분류번호
+	private int post_price;			//심부름 가격
+	private int post_views;			//조회수
+	@JsonFormat(pattern = "yyyy-MM-dd") //Ajax에 날짜형 데이터로 주기 위해 
+	private Date post_date;			//작성일
+	private String sel_vr;			//선택된 심부름꾼 id
+	
+	private String mb_id;			//작성자 id
+	
+	private String pbigc_name;		//위치 대분류 이름
+	private String psmallc_name;	//위치 소분류 이름
 	
 	public int getPost_num_pk() {
 		return post_num_pk;
@@ -87,5 +96,35 @@ public class PostDto {
 	public void setPost_date(Date post_date) {
 		this.post_date = post_date;
 	}
+	
+	public String getSel_vr() {
+		return sel_vr;
+	}
+	public void setSel_vr(String sel_vr) {
+		this.sel_vr = sel_vr;
+	}
+	
+	public String getMb_id() {
+		return mb_id;
+	}
+	public void setMb_id(String mb_id) {
+		this.mb_id = mb_id;
+	}
+	
+	public String getPbigc_name() {
+		return pbigc_name;
+	}
+	public void setPbigc_name(String pbigc_name) {
+		this.pbigc_name = pbigc_name;
+	}
+	
+	public String getPsmallc_name() {
+		return psmallc_name;
+	}
+	public void setPsmallc_name(String psmallc_name) {
+		this.psmallc_name = psmallc_name;
+	}
+	
+	
 	
 }
