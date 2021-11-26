@@ -19,29 +19,39 @@ public class PostController {
 
 	@Inject
 	private PostService postService;
-	
-	@RequestMapping(value="/main/writePost", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/main/writePost", method = RequestMethod.GET)
 	public String write(Model model) {
 		model.addAttribute("post", new PostDto());
 		return "main/writePost";
 	}
-	
-	@RequestMapping(value="/main/writePost", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/main/writePost", method = RequestMethod.POST)
 	public String write(PostDto post) {
 		postService.write(post);
 		return "redirect:/main";
 	}
-	
-	@RequestMapping(value="/main/postPage")
+
+	@RequestMapping(value = "/main/postPage")
 	public String showPost(Model model) {
 		model.addAttribute("postList", postService.allPost());
 		return "main/postPage";
 	}
-	
-	//위치 필터링 Ajax
+
+	// 위치 필터링 Ajax
 	@ResponseBody
-	@RequestMapping(value="/main/locFilter", method =RequestMethod.GET)
-	public List<PostDto> locFilter(@RequestParam(value="catNum")int psmallc){
+	@RequestMapping(value = "/main/locFilter", method = RequestMethod.GET)
+	public List<PostDto> locFilter(@RequestParam(value = "catNum") int psmallc) {
 		List<PostDto> postList = postService.selByLoc(psmallc);
 		return postList;
-	}}
+	}
+	
+	// 검색 Ajax
+	@ResponseBody
+	@RequestMapping(value = "/main/searchFilter", method = RequestMethod.GET)
+	public List<PostDto> searchFilter(@RequestParam(value = "num") int num, @RequestParam(value = "search") String value) {
+		List<PostDto> postList = postService.selSearch(num, value);
+		return postList;
+	}
+		
+}

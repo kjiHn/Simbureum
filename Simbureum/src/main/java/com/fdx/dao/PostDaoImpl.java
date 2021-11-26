@@ -35,6 +35,21 @@ public class PostDaoImpl implements PostDao{
 		return sqlSessionTemplate.selectList("selectByLoc", psmallc);
 	}
 
+	@Override
+	public List<PostDto> selectBySearch1(int num, String value) {
+		return sqlSessionTemplate.selectList("selectBySearch1", value);
+	}
+
+	@Override
+	public List<PostDto> selectBySearch2(int num, String value) {
+		return sqlSessionTemplate.selectList("selectBySearch2", value);
+	}
+
+	@Override
+	public List<PostDto> selectBySearch3(int num, String value) {
+		return sqlSessionTemplate.selectList("selectBySearch3", value);
+	}
+
 	
 	
 }

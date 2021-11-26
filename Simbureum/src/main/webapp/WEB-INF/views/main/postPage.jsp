@@ -40,15 +40,19 @@ a {
 	border: 1px solid #e3c4ff;
 }
 
+#postTable tr {
+	border: 1px solid #e3c4ff;
+}
+
 .filter {
 	width: 1000px;
 }
 
-.search {
+.searchDiv {
 	float: right;
 }
 
-.textinput{
+.textinput {
 	width: 200px;
 	height: 30px;
 }
@@ -74,14 +78,14 @@ a {
 							</select>
 							<input type="button" class="button" id="changeLoc" value="조회">
 						
-							<div class="search">
+							<div class="searchDiv">
 								<select id="searchCategory">
 									<option value="1">제목</option>
 									<option value="2">제목+내용</option>
 									<option value="3">작성자</option>
 								</select>
 								<input id="searchInput" class="textinput" placeholder="심부름 검색" />
-								<input type="button" class="button" id="changeLoc" value="검색">
+								<input type="button" class="button" id="search" value="검색" />
 							</div>
 						</div>
 						
@@ -99,7 +103,7 @@ a {
 
 							<tbody>
 								<c:forEach var="post" items="${postList}" varStatus="loop">
-									<tr style="border: 1px solid #e3c4ff;">
+									<tr>
 										<td>${loop.count}</td>
 										<td><a href="<c:url value="/main/postDetail/${post.post_num_pk}" />">${post.post_title}</a></td>
 										<td>${post.mb_id}</td>
@@ -175,22 +179,61 @@ a {
 				type: "GET",
 				url : "/main/locFilter?catNum="+catNum,
 				success : function(data){
-					if(data.length >= 1){
-						$("#postTable > tbody").empty(); //테이블 초기화
-						$.each(data, function(index, item){
-							index += 1;
-							str = "<tr>"
-							str += "<td>"+index+"</td>";
-							str += "<td><a href = '/main/postDetail/" + item.post_num_pk + "'>" + item.post_title + "</a></td>";
-							str += "<td>"+item.mb_id+"</td>";
-							str += "<td>"+item.pbigc_name+" "+item.psmallc_name+"</td>";
-							str += "<td>"+item.post_views+"</td>";
-							str += "<td>"+item.post_date+ "</td>";
-							str += "</tr>"
-							$("#postTable").append(str);
-		        		});	
+					console.log(data);
+					if(catNum != 0){
+						if(data.length >= 1){
+							$("#postTable > tbody").empty(); //테이블 초기화
+							$.each(data, function(index, item){
+								index += 1;
+								str = "<tr>";
+								str += "<td>"+index+"</td>";
+								str += "<td><a href = '/main/postDetail/" + item.post_num_pk + "'>" + item.post_title + "</a></td>";
+								str += "<td>"+item.mb_id+"</td>";
+								str += "<td>"+item.pbigc_name+" "+item.psmallc_name+"</td>";
+								str += "<td>"+item.post_views+"</td>";
+								str += "<td>"+item.post_date+ "</td>";
+								str += "</tr>";
+								$("#postTable").append(str);
+			        		});	
+						}else{
+							alert("해당되는 심부름이 없습니다.");
+						}
 					}else{
 						alert("카테고리를 선택해주세요.");
+					}
+				}
+			});
+		});
+	</script>
+	
+	<script>	
+		$("#search").on('click', function(){
+			var num = $("#searchCategory").val();
+			var value = $("#searchInput").val();
+			$.ajax({
+				type: "GET",
+				url : "/main/searchFilter?num="+num+"&search="+value,
+				success : function(data){
+					if(value != ''){
+						if(data.length == 0){
+							alert("해당되는 심부름이 없습니다.");
+						}else{
+							$("#postTable > tbody").empty(); //테이블 초기화
+							$.each(data, function(index, item){
+								index += 1;
+								str = "<tr>";
+								str += "<td>"+index+"</td>";
+								str += "<td><a href = '/main/postDetail/" + item.post_num_pk + "'>" + item.post_title + "</a></td>";
+								str += "<td>"+item.mb_id+"</td>";
+								str += "<td>"+item.pbigc_name+" "+item.psmallc_name+"</td>";
+								str += "<td>"+item.post_views+"</td>";
+								str += "<td>"+item.post_date+ "</td>";
+								str += "</tr>";
+								$("#postTable").append(str);
+			        		});
+						}
+					}else{
+						alert("검색어를 입력해주세요.");
 					}
 				}
 			});

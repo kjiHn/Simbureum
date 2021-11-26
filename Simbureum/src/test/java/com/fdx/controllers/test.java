@@ -27,7 +27,7 @@ public class test {
 	@Test
 	public void inserTest() throws Exception{
 		PostDto dto = new PostDto();
-		//postDao.selectLoc();
+		postDao.selectBySearch3(1, "테스트");
 		
 		/*
 		 * testDTO tdto = new testDTO(); tdto.setNum1(1); tdto.setStr1("2");

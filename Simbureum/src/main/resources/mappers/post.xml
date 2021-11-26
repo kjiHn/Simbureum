@@ -27,4 +27,32 @@
 	order by POST_DATE desc
 </select>
 
+<select id="selectBySearch1" parameterType="String" resultType="post">
+	select p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+	where p.MB_NUM_PK = m.MB_NUM_PK
+	and p.PSMALLC_PK = s.PSMALLC_PK
+	and p.POST_TITLE like '%'||#{post_title}||'%'
+	order by POST_DATE desc
+</select>
+
+<select id="selectBySearch2" parameterType="String" resultType="post">
+	select p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+	where p.MB_NUM_PK = m.MB_NUM_PK
+	and p.PSMALLC_PK = s.PSMALLC_PK
+	and (p.POST_TITLE like '%'||#{post_title}||'%'
+	or p.POST_CON like '%'||#{post_con}||'%')
+	order by POST_DATE desc
+</select>
+
+<select id="selectBySearch3" parameterType="String" resultType="post">
+	select p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+	where p.MB_NUM_PK = m.MB_NUM_PK
+	and p.PSMALLC_PK = s.PSMALLC_PK
+	and m.MB_ID = #{mb_id}
+	order by POST_DATE desc
+</select>
+
 </mapper>

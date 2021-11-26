@@ -15,4 +15,13 @@ public interface PostDao {
 	//위치 필터링 select
 	public List<PostDto> selectByLoc(int psmallc);
 	
+	//검색어 필터1(제목) select
+	public List<PostDto> selectBySearch1(int num, String value);
+	
+	//검색어 필터2(제목+내용) select
+	public List<PostDto> selectBySearch2(int num, String value);
+	
+	//검색어 필터3(작성자) select
+	public List<PostDto> selectBySearch3(int num, String value);
+
 }

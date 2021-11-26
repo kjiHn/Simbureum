@@ -32,4 +32,16 @@ public class PostService {
 		return postDao.selectByLoc(smallc);
 	}
 	
+	//게시글 검색
+	public List<PostDto> selSearch(int num, String value) {
+		if(num == 1) {
+			return postDao.selectBySearch1(num, value);
+		}else if(num == 2) {
+			return postDao.selectBySearch2(num, value);
+		}else {
+			return postDao.selectBySearch3(num, value);
+		}
+	}
+	
+	
 }
