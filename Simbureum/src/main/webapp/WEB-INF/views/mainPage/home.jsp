@@ -75,7 +75,7 @@
                             </div>
                             
                             <div class="card-bottom">
-                                <a href="#" class="borders-btn">게시글 작성</a>
+                                <a href="/main/writePost" class="borders-btn">게시글 작성</a>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             </div>
                           
                             <div class="card-bottom">
-                                <a href="#" class="borders-btn">게시글 보기   </a>
+                                <a href="/main/postPage" class="borders-btn">게시글 보기   </a>
                             </div>
                         </div>
                     </div>

@@ -5,5 +5,26 @@
   
 <mapper namespace="com.fdx.dao.PostDao">
 
+<insert id="insertPost" parameterType="post">
+	insert into POST (POST_NUM_PK, MB_NUM_PK, POST_TITLE, POST_CON, POST_DLINE, POST_NUMOF, PSMALLC_PK, POST_PRICE, POST_DATE)
+	values(post_seqnum.nextval, #{mb_num_pk}, #{post_title},#{post_con}, #{post_dline}, #{post_numof}, #{psmallc_pk}, #{post_price}, sysdate)
+</insert>
+
+<select id="selectAll" resultType="post">
+	select p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+	where p.MB_NUM_PK = m.MB_NUM_PK
+	and p.PSMALLC_PK = s.PSMALLC_PK
+ 	order by POST_DATE desc
+</select>
+
+<select id="selectByLoc" parameterType="int" resultType="post">
+	select p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+	where p.MB_NUM_PK = m.MB_NUM_PK
+	and p.PSMALLC_PK = #{psmallc_pk}
+	and p.PSMALLC_PK = s.PSMALLC_PK
+	order by POST_DATE desc
+</select>
 
 </mapper>
