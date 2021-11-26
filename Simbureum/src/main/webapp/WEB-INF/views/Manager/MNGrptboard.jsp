@@ -1,6 +1,10 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"  %> --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <%@ include file="../model/topBar1.jsp" %>
 
 <html>
@@ -43,10 +47,10 @@
 
 
 
-	<section class="blog_area single-post-area section-padding">
-     <div class="container">
-      <div class="row">
-<jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
+<section class="blog_area single-post-area section-padding">
+	<div class="container">
+		<div class="row">
+			<jsp:include page="../model/siderbarMNG2.jsp" flush="false"/>
     
 
 <div class="col-lg-8 posts-list">
@@ -55,71 +59,54 @@
 			<h2 class="mb-30"><b>신고된 게시글</b></h2>
 	 </div>
 	 
-<div id="div1">
-	<table width = "100%" height = "100%" >
+	<div id="div1">
+		<table width = "100%" height = "100%" >
 			<tr>
-				<td><b>작성자</b></td>
-				<td>${report.get(0).getPost_num_pk()}</td>
+				<td><b>제목</b></td>
+				<td>${report.get(0).getPost_title()}</td>
 			</tr>
 			<tr>
-				<td><b>해당 게시글</b></td>
-				<td>${report.get(1)}</td>
+				<td><b>작성자</b></td>
+				<td>${report.get(0).getMb_name()}</td>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
-				<td>${report.get(2)}</td>
-			</tr>
-			<tr>
-				<td><b>별점</b></td>
-				<td>${report.get(3)}</td>
+				<td><fmt:formatDate value="${report.get(0).getPost_date()}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			<tr>
 				<td><b>내용</b></td>
-				<td>${report.get(4)}</td>
+				<td>${report.get(0).getPost_con()}</td>
 			</tr>
 			<tr>
-			<td><b>신고자</b></td>
-			<td>${report.get(5)}</td>
-		</tr>
-		<tr>
-			<td><b>신고일</b></td>
-			<td>${report.get(6)}</td>
-		</tr>
-		<tr>
-			<td><b>신고사유</b></td>
-			<td>${report.get(7)}</td>
-		</tr>
-	</table>
-</div>
-<!-- <div id="div2">
-	<table width = "500" height = "300" border="1">
-		<tr>
-			<td><b>신고자</b></td>
-			<td>2</td>
-		</tr>
-		<tr>
-			<td><b>신고일</b></td>
-			<td>2</td>
-		</tr>
-		<tr>
-			<td><b>신고사유</b></td>
-			<td>2</td>
-		</tr>
-	</table>
-</div> -->
-	 
-		
+				<td><b>위치</b></td>
+				<td>${report.get(0).getPbigc_name()}</td>
+			</tr>
+			<tr>
+			<td><b>심부름가격</b></td>
+			<td>${report.get(0).getPost_price()}</td>
+			</tr>
+			<tr>
+				<td><b>신고자</b></td>
+				<td>${report.get(0).getMb_name()}</td>
+			</tr>
+			<tr>
+				<td><b>신고일</b></td>
+				<td><fmt:formatDate value="${report.get(0).getRp_date()}" pattern="yyyy-MM-dd"/></td>
+			</tr>
+			<tr>
+				<td><b>신고사유</b></td>
+				<td>${report.get(0).getRp_content()}</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
-</div>
-</div>
+		</div>
+	</div>
 </section>
 
- 
-        
- 
-
 </body>
+
 <footer>
  <div class="container">
                 <div class="row justify-content-center" >                   

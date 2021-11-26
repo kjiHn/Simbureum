@@ -75,7 +75,7 @@
                             </div>
                           
                             <div class="card-bottom">
-                                <a href="#" class="borders-btn">게시글 보기   </a>
+                                <a href="MNGntcboard" class="borders-btn">게시글 보기   </a>
                             </div>
                         </div>
                     </div>
