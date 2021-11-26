@@ -31,7 +31,7 @@
 
 
 <!-- 작성한 리뷰 수정 -->
-<update id="update">
+<update id="wreUpdate">
 	update vlntr_rv set
 	vr_grd = #{vr_grd},
 	vr_rvc = #{vr_rvc},
@@ -41,11 +41,19 @@
 
 
 
-<!-- 심부름꾼이 작성하는 리뷰   -->
-<insert id="vlreinsert">
+
+
+
+<!-- 고용자가 심부름꾼에게  작성하는 리뷰   -->
+<insert id="vlInsert">
 		insert into post
 		values(POST_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{vr_rvc}, sysdate, #{vr_mbid})
+		where 
 </insert>
+
+
+
+
 
  
  <!--  자신이 심부름꾼일때 받은 리뷰 전체 조회 --> 

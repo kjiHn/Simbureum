@@ -19,7 +19,7 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 	
 	
 	@Override
-	public void vlreinsert(Vlntr_RvDTO vrdto) throws Exception {
+	public void vlInsert(Vlntr_RvDTO vrdto) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSessionTemplate.insert("vlreinsert",vrdto);
 		
@@ -41,9 +41,9 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 
 
 	@Override
-	public void update(Vlntr_RvDTO vrdto) throws Exception {
+	public void wreUpdate(Vlntr_RvDTO vrdto) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSessionTemplate.update("update", vrdto);
+		sqlSessionTemplate.update("wreUpdate", vrdto);
 		
 	}
 

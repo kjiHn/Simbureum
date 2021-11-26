@@ -57,10 +57,8 @@ table {
                <div class="slider-shape d-none d-lg-block">
                 <div class="col-lg-8 posts-list" style=" padding:  30px 50px; height:600px; border: 4px solid #e3c4ff; ">
                 
-                 <form method="get" role="form">
-                	<input type="hidden" name="post_num_pk" value="${vrdto.post_num_pk }">
-                </form>  
                 
+                <form action="/review/wreUpdate" method="POST" name="wreUpdate">
                <table style="text-align: center; width: 400px; align: center;" >
                      <thead>
                      	
@@ -99,10 +97,10 @@ table {
                   <br>
                   <br>
                  <div class="form-group mt-3" style="margin-left: 20px;">
-                 	<button  class="button button-contactForm boxed-btn" id="btn_up">수정하기</button>
+                 <a href="wreUpdate?mb_id_pk=${vrdto.mb_id_pk }"><button  class="button button-contactForm boxed-btn" id="btn_up">수정하기</button></a>
 					<button  class="button button-contactForm boxed-btn" id="btn_del">삭제하기</button>
 				</div>
-               
+               </form>
                </div>
                </div>
             </div>
@@ -110,6 +108,8 @@ table {
          </div>
       </div>
    </section>
+
+
 
 
 

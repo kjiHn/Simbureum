@@ -16,9 +16,9 @@ public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 	private Vlntr_RvDAO vrdao;
 
 	@Override
-	public void vlreinsert(Vlntr_RvDTO vrdto) throws Exception {
+	public void vlInsert(Vlntr_RvDTO vrdto) throws Exception {
 		// TODO Auto-generated method stub
-		vrdao.vlreinsert(vrdto);
+		vrdao.vlInsert(vrdto);
 		
 	}
 
@@ -36,9 +36,9 @@ public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 	}
 
 	@Override
-	public void update(Vlntr_RvDTO vrdto) throws Exception {
+	public void wreUpdate(Vlntr_RvDTO vrdto) throws Exception {
 		// TODO Auto-generated method stub
-		vrdao.update(vrdto);
+		vrdao.wreUpdate(vrdto);
 		
 	}
 

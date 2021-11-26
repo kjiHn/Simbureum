@@ -71,4 +71,15 @@ public class ReviewController {
 	}
 	
 	
+	
+	@RequestMapping(value = "/wreUpdate", method = RequestMethod.GET)
+	public void wreUpdate(Model model) throws Exception {
+		model.addAttribute("wreUpdate");
+	}
+	
+	@RequestMapping(value = "/wreUpdate", method = RequestMethod.POST)
+	public void wreUpdatePOST(Model model) throws Exception {
+		model.addAttribute("wreUpdate");
+	}
+	
 }
