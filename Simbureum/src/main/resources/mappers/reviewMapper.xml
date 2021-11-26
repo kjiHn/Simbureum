@@ -5,13 +5,68 @@
   
 <mapper namespace="com.fdx.dao.Vlntr_RvDAO">
 
-<insert id="select">
-		select * from 
-		Vlntr_Rv
-	
 
+
+
+ <select id="writeList" resultType="com.fdx.dto.Vlntr_RvDTO">  
+	 select * from Vlntr_Rv
+	 where mb_id_pk = 'test4'
+</select> 
+
+<select id="wrList" resultType="com.fdx.dto.PostRvDTO">
+	<![CDATA[
+      select rv.mb_id_pk, p.post_title, rv.vr_date,
+       rv.vr_grd, rv.vr_rvc
+	   from post p join Vlntr_Rv rv	   
+       on p.post_num_pk = rv.post_num_pk
+       where rv.post_num_pk = #{post_num_pk}
+       
+	]]>
+</select> 
+
+
+
+
+
+
+
+<!-- 작성한 리뷰 수정 -->
+<update id="update">
+	update vlntr_rv set
+	vr_grd = #{vr_grd},
+	vr_rvc = #{vr_rvc},
+	vr_date = sysdate
+	where mb_id_pk = 'test6'
+</update>
+
+
+
+<!-- 심부름꾼이 작성하는 리뷰   -->
+<insert id="vlreinsert">
+		insert into post
+		values(POST_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{vr_rvc}, sysdate, #{vr_mbid})
 </insert>
 
+ 
+ <!--  자신이 심부름꾼일때 받은 리뷰 전체 조회 --> 
+ <select id="receiveList" resultType="com.fdx.dto.Vlntr_RvDTO">  
+	 select * from Vlntr_Rv
+	  where vr_mbid = 'test3'
+	   
+</select> 
 
+
+
+<!-- 자신이 심부름꾼일때 받은 리뷰 자세히? -->
+ <select id="reList" resultType="com.fdx.dto.PostRvDTO">
+	<![CDATA[
+      select rv.mb_id_pk, p.post_title, rv.vr_date,
+       rv.vr_grd, rv.vr_rvc
+	   from post p join Vlntr_Rv rv	   
+       on p.post_num_pk = rv.post_num_pk
+       where rv.post_num_pk = #{post_num_pk}
+       
+	]]>
+</select> 
 
 </mapper>
