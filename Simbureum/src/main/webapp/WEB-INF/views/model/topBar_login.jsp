@@ -20,7 +20,7 @@
     
     <header>
         <!-- Header Start -->
-        <div class="header-area header-transparent" style="background-color: #E3C4FF">
+        <div class="header-area header-transparent" style="background-color: #E3C4FF; height: 80px">
             <div class="main-header ">
                 <div class="header-bottom">
                     <div class="container-fluid">
@@ -28,13 +28,13 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="#">
-	                                    <a href="/home"> <img src="/resources/view/assets/img/logo/3.png" style="width: 100px; height: 100px;" >
+	                                    <a href="/"> <img src="/resources/view/assets/img/logo/3.png" style="width: 80px; height: 80px;" >
 	                                    
 	                                    </a>
                                 </div>
                             </div>
-                            <div class="col-xl-10 col-lg-10">
-                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                            <div class="col-xl-10 col-lg-10" style="height: 80px">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end" style="height: 80px">
                                     <!-- Main-menu -->
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
