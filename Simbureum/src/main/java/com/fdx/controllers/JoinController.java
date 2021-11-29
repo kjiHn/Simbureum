@@ -7,13 +7,16 @@ import java.util.Random;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fdx.dto.JoinDTO;
 import com.fdx.services.JoinService;
+import com.fdx.services.LoginService;
 
 @RequestMapping(value = "/user/*")
 @Controller
@@ -33,6 +37,8 @@ public class JoinController {
 	private JoinService joinservice;
 	@Autowired
     private JavaMailSender mailSender;
+	@Autowired
+	private LoginService loginService;
 
 	@RequestMapping(value = "join")
 	public String join() {
@@ -301,7 +307,67 @@ public class JoinController {
          return "redirect:/";
 	}
  	
+ 	
+ 	
+ 	@RequestMapping(value = "my_Info" ,method = RequestMethod.GET)
+	public String info(@RequestParam(value = "mb_name") String mb_name,Model model) {
+ 		
+ 		JoinDTO dto = new JoinDTO();
+ 		dto = joinservice.myInfo(mb_name);
+ 		
+ 		model.addAttribute("mb_info", dto);
+		return "mypage/myInfo";
+	}
+	
+ 	
+ 	
+ 	@RequestMapping(value = "mbDelete" ,method = RequestMethod.GET)
+	public String goDeletePageS(@RequestParam(value = "mb_id") String mb_id,Model model) {
+ 		model.addAttribute("mb_id", mb_id);
+		return "mypage/deletePage";
+	}
 	 	
+ 	@RequestMapping(value = "mbDelete" ,method = RequestMethod.POST)
+ 	@ResponseBody
+ 	public int deleteMb(@RequestParam(value = "mb_id") String mb_id,
+ 			@RequestParam(value = "mb_pswd") String mb_pswd,
+ 			Model model,
+ 			HttpServletRequest request, HttpServletResponse response) {
+ 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+ 		JoinDTO joinDTO = new JoinDTO();
+ 		joinDTO = loginService.memberCheck(mb_id);
+ 		HttpSession session = request.getSession();	
+ 		int num = 0;
+ 		if (encoder.matches(mb_pswd, joinDTO.getMb_pswd())) {
+ 			num = joinservice.deleteMember(mb_id);
+ 			session.removeAttribute("mid");
+		}else {
+			if (mb_pswd.equals(joinDTO.getMb_pswd())) {
+				num = joinservice.deleteMember(mb_id);
+				session.removeAttribute("mid");
+			}
+		}
+ 		return num;
+ 	}
+ 	
+ 	
+ 	
+ 	@RequestMapping(value = "mbUpdate" ,method = RequestMethod.GET)
+	public String goUpdatePage(@RequestParam(value = "mb_id") String mb_id,Model model) {
+ 		JoinDTO joinDTO = new JoinDTO();
+ 		joinDTO = loginService.memberCheck(mb_id);
+ 		model.addAttribute("mb_id", mb_id);
+ 		model.addAttribute("myInfo", joinDTO);
+		return "mypage/updatePage";
+	}
 	 	
+ 	@RequestMapping(value = "mbUpdate" ,method = RequestMethod.POST)
+ 	public String updateMb(JoinDTO joinDTO,Model model) {
+ 		int num = 0 ;
+ 		num = joinservice.updateMember(joinDTO);
+ 		model.addAttribute("num", num);
+ 		return "redirect:/";
+ 	}
+ 	
 	 	
 }

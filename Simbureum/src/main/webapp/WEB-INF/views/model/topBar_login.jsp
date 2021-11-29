@@ -45,7 +45,7 @@
                                                 <li><%=session.getAttribute("mid") %>님</li>                                        
                                                 <li>	
                                                 	<a href="/login/logout" class="btn">로그아웃</a>
-                                                	<a href="/login/main" class="btn">마이페이지</a>
+                                                	<a href="/user/my_Info?mb_name=<%=session.getAttribute("mid") %>" class="btn">마이페이지</a>
                                                 </li>
                                             </ul>
                                         </nav>

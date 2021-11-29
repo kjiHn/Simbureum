@@ -61,4 +61,8 @@ public class JoinService {
 	public int idCheck(JoinDTO joinDTO) {
 		return joinDao.idCheck(joinDTO);
 	}
+	
+	public JoinDTO myInfo(String mb_name) {
+		return joinDao.myInfo(mb_name);
+	}
 }

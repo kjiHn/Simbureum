@@ -15,5 +15,6 @@ public interface JoinDAO {
 	int deleteMember(String mb_id);
 	int pswdCheck(JoinDTO joinDTO);
 	public int idCheck(JoinDTO joinDTO);
+	public JoinDTO myInfo(String mb_name);
 
 }

@@ -48,7 +48,7 @@
 	
 	<update id="updateMember"  parameterType="com.fdx.dto.JoinDTO" >
 		UPDATE MEMBER
-		SET mb_pswd = #{mb_pswd}
+		SET mb_pswd = #{mb_pswd} , mb_emaile=${mb_emaile}
 		WHERE mb_id = #{mb_id}
 	</update>
 	

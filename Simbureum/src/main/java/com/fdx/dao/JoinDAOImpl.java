@@ -61,6 +61,12 @@ public class JoinDAOImpl implements JoinDAO{
 		
 		return sqlSessionTemplate.selectOne("mapper.mamber.allMember3", joinDTO);
 	}
+
+	@Override
+	public JoinDTO myInfo(String mb_name) {
+		
+		return sqlSessionTemplate.selectOne("mapper.mamber.allMember", mb_name);
+	}
 	
 	
 	

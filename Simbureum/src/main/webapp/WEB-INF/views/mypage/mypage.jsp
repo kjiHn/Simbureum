@@ -1,7 +1,18 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../model/topBar1.jsp" %>
+<%
+	if(session.getAttribute("mid") != null) {
+%>
+	<%@ include file="../model/topBar_login.jsp" %>
+<%
+	}else{
+		
+%>
+	<%@ include file="../model/topBar1.jsp"%>
+<%
+	}
+%>
 
 
 <html>

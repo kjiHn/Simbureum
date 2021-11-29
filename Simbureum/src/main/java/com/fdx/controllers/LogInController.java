@@ -65,7 +65,13 @@ public class LogInController {
 					session.setAttribute("mid", id);
 
 				}else {
-					num = -1;
+					if (pswd.equals(joinDTO.getMb_pswd())) {
+						num = 1;
+						request.setAttribute("joinDTO", joinDTO); 
+						session.setAttribute("mid", id);
+					}else {						
+						num = -1;
+					}
 				}
 			}	
 			
@@ -76,6 +82,7 @@ public class LogInController {
 				num = 0;
 			}else {
 				if (encoder.matches(pswd, adminDTO.getMng_pswd())) {
+					
 					num = 3;
 					request.setAttribute("adminDTO", adminDTO); 
 					session.setAttribute("mid", id);
