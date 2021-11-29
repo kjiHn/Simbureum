@@ -6,11 +6,13 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 import com.fdx.services.PostService;
 
@@ -20,18 +22,21 @@ public class PostController {
 	@Inject
 	private PostService postService;
 
+	// 게시글 작성 페이지
 	@RequestMapping(value = "/main/writePost", method = RequestMethod.GET)
 	public String write(Model model) {
 		model.addAttribute("post", new PostDto());
 		return "main/writePost";
 	}
 
+	// 게시글 작성 후
 	@RequestMapping(value = "/main/writePost", method = RequestMethod.POST)
 	public String write(PostDto post) {
 		postService.write(post);
 		return "redirect:/main";
 	}
 
+	// 전체 게시글 보기
 	@RequestMapping(value = "/main/postPage")
 	public String showPost(Model model) {
 		model.addAttribute("postList", postService.allPost());
@@ -53,5 +58,26 @@ public class PostController {
 		List<PostDto> postList = postService.selSearch(num, value);
 		return postList;
 	}
+	
+	// 게시글 상세보기
+	@RequestMapping(value = "/main/postDetail/{post_num_pk}", method = RequestMethod.GET)
+	public String postDetail(Model model, @PathVariable("post_num_pk") int postNum) {
+		model.addAttribute("post", postService.postDetail(postNum));
+		return "main/postDetail";
+	}
 		
+	// 게시글 신고 작성 페이지
+	@RequestMapping(value = "/main/writeReport/{post_num_pk}", method = RequestMethod.GET)
+	public String writeReport(Model model, @PathVariable("post_num_pk") int postNum) {
+		model.addAttribute("report", new PoReportDto());
+		return "main/writeReport";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

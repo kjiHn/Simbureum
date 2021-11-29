@@ -50,7 +50,7 @@
 }
 
 .content{
-	width: 300px;
+	width: 500px;
 	height: 200px;
 	margin-bottom: 20px;
 	margin-top: 20px

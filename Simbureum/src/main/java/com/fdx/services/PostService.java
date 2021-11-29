@@ -43,5 +43,17 @@ public class PostService {
 		}
 	}
 	
+	//게시글 상세보기
+	public PostDto postDetail(int postNum) {
+		return postDao.selectOne(postNum);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

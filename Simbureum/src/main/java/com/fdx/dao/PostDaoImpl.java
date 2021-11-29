@@ -50,6 +50,11 @@ public class PostDaoImpl implements PostDao{
 		return sqlSessionTemplate.selectList("selectBySearch3", value);
 	}
 
+	@Override
+	public PostDto selectOne(int postNum) {
+		return sqlSessionTemplate.selectOne("selectOnePost", postNum);
+	}
+
 	
 	
 }

@@ -23,5 +23,8 @@ public interface PostDao {
 	
 	//검색어 필터3(작성자) select
 	public List<PostDto> selectBySearch3(int num, String value);
+	
+	//게시글 하나 select
+	public PostDto selectOne(int postNum);
 
 }
