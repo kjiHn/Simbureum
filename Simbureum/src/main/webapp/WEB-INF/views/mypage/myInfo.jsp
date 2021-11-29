@@ -92,7 +92,7 @@ th {
 
 
 
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" id = "sec">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
@@ -147,6 +147,8 @@ th {
 				<p class="validation-check" id="join_pswd_error"></p>
 			<button id="goUpdate" class="button  boxed-btn"
 				style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">확인</button>
+			<button id="close" class="button  boxed-btn"
+				style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">닫기</button>
 		</div>
 	</div>
 
@@ -155,6 +157,11 @@ th {
 $("#btn_up").click(function() {
 	$("#modal").fadeIn();	
 });
+
+$("#close").click(function() {
+	$("#modal").fadeOut();	
+});
+
 
 $("#goUpdate").click(function() {
 	var pswd = $("#inputPswd").val();

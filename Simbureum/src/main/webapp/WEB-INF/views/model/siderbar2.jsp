@@ -27,11 +27,11 @@
 
 						<aside class="single_sidebar_widget post_category_widget"
 							style="margin-top: 40px; background-color: #e3c4ff;">
-							<h4 class="widget_title" style="color: #2d2d2d;">내 정보</h4>
+							<h4 class="widget_title" style="color: #2d2d2d;">마이페이지</h4>
 							<!-- 제목 -->
 							<ul class="list cat-list">
-								<li><a href="#" class="d-flex">
-										<p>짜짜짠</p> <!-- 마이페이지 내용 적어요 -->
+								<li><a href="/user/my_Info?mb_name=<%=session.getAttribute("mid") %>" class="d-flex">
+										<p id = "myInfo">내정보</p> <!-- 마이페이지 내용 적어요 -->
 										<!--  소제목? -->
 
 								</a></li>
@@ -40,19 +40,19 @@
 
 								</a></li>
 								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>Modern technology</p>
+										<p>심부름꾼 지원</p>
 
 								</a></li>
 								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>Product</p>
+										<p>심부름 한 내역</p>
 
 								</a></li>
 								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>Inspiration</p>
+										<p>작성한 리뷰</p>
 
 								</a></li>
 								<li><a href="#" class="d-flex">
-										<p>Health Care (21)</p>
+										<p style="font-weight: ">받은리뷰</p>
 
 								</a></li>
 							</ul>
@@ -64,6 +64,18 @@
 		</div>
 	</section>
  -->
+ 
+ <script type="text/javascript">
+ var link = window.location.pathname;
+ 
+ if (link =='/user/my_Info') {
+	$("#myInfo").css("font-weight", "bold");
+	$("#myInfo").css("text-decoration", "underline");
+	
+}
+ console.log(link);
+
+ </script>
 
 
 </body>
