@@ -364,14 +364,17 @@ public class JoinController {
 	}
 	 	
  	@RequestMapping(value = "mbUpdate" ,method = RequestMethod.POST)
- 	public String updateMb(JoinDTO joinDTO) {
+ 	public String updateMb(JoinDTO joinDTO
+ 			,HttpServletRequest request, HttpServletResponse response) {
  		int num = 0 ;
- 		
+ 		HttpSession session = request.getSession();	
  		System.out.println(joinDTO.getMb_emaile());
  		System.out.println(joinDTO.getMb_pswd());
  		System.out.println(joinDTO.getMb_id());
  		System.out.println(joinDTO.getMb_name());
  		num = joinservice.updateMember(joinDTO);
+ 		session.removeAttribute("mid");
+		session.removeAttribute("mNum");
  		return "redirect:/";
  	}
  	
