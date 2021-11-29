@@ -63,12 +63,14 @@ public class LogInController {
 					num = 1;
 					request.setAttribute("joinDTO", joinDTO); 
 					session.setAttribute("mid", id);
+					session.setAttribute("mNum", joinDTO.getMb_num_pk());
 
 				}else {
 					if (pswd.equals(joinDTO.getMb_pswd())) {
 						num = 1;
 						request.setAttribute("joinDTO", joinDTO); 
 						session.setAttribute("mid", id);
+						session.setAttribute("mNum", joinDTO.getMb_num_pk());
 					}else {						
 						num = -1;
 					}
@@ -101,6 +103,7 @@ public class LogInController {
 	public String logOut(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();	
 		session.removeAttribute("mid");
+		session.removeAttribute("mNum");
 		
 		
 		return "redirect:/";

@@ -341,10 +341,12 @@ public class JoinController {
  		if (encoder.matches(mb_pswd, joinDTO.getMb_pswd())) {
  			num = joinservice.deleteMember(mb_id);
  			session.removeAttribute("mid");
+ 			session.removeAttribute("mNum");
 		}else {
 			if (mb_pswd.equals(joinDTO.getMb_pswd())) {
 				num = joinservice.deleteMember(mb_id);
 				session.removeAttribute("mid");
+				session.removeAttribute("mNum");
 			}
 		}
  		return num;
