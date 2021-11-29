@@ -46,10 +46,11 @@
 	</select>
 	
 	
-	<update id="updateMember"  parameterType="com.fdx.dto.JoinDTO" >
+	<update id="updateMember" parameterType="com.fdx.dto.JoinDTO" >
 		UPDATE MEMBER
-		SET mb_pswd = #{mb_pswd} , mb_emaile=${mb_emaile}
-		WHERE mb_id = #{mb_id}
+		SET mb_pswd = #{mb_pswd ,jdbcType=VARCHAR} 
+		,mb_emaile= #{mb_emaile,jdbcType=VARCHAR}
+		WHERE mb_id = #{mb_id,jdbcType=VARCHAR}
 	</update>
 	
 	<delete id="deleteMember" parameterType="String">

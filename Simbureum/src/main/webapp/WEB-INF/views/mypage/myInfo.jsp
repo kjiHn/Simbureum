@@ -158,13 +158,26 @@ $("#btn_up").click(function() {
 
 $("#goUpdate").click(function() {
 	var pswd = $("#inputPswd").val();
-	if ( pswd == "${mb_info.mb_pswd }") {
-	$(location).attr("href", "/user/mbUpdate?mb_id=${mb_info.mb_id }");		
-	}else {
-		$("#join_pswd_error").text("비밀번호가 맞지 않습니다.");
-		$("#join_pswd_error").css("color","red");
-		
-	}
+	var mb_id = "${mb_info.mb_id}";
+	var allData = {"mb_pswd":pswd , "mb_id":mb_id};
+	$.ajax({
+		type: "POST", //요청 메소드 방식
+		url:"/user/mbmatching",
+		data:allData,
+		dataType:"text", //서버가 요청 URL을 통해서 응답하는 내용의 타입
+		success : function(data){
+			if (data == 1) {
+				$(location).attr("href", "/user/mbUpdate?mb_id=${mb_info.mb_id }");		
+			}else if(data == 0) {
+				$("#join_pswd_error").text("비밀번호가 맞지 않습니다.");
+				$("#join_pswd_error").css("color","red");
+			}
+		},
+		error : function(data){
+			alert(data);
+		}
+	});
+	
 });
 
 

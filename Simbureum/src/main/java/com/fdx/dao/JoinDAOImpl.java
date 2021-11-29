@@ -40,7 +40,10 @@ public class JoinDAOImpl implements JoinDAO{
 
 	@Override
 	public int updateMember(JoinDTO joinDTO) {
-		return sqlSessionTemplate.update("mapper.mamber.updateMember", joinDTO);
+		int num  = 0 ;
+		num = sqlSessionTemplate.update("mapper.mamber.updateMember", joinDTO);
+		System.out.println(num);
+		return num;
 		
 	}
 

@@ -6,5 +6,5 @@
 	<typeAliases>
 		<package name="com.fdx.dto"/>
 	</typeAliases>
-
+	
 </configuration>

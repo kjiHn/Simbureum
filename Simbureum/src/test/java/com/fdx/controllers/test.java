@@ -9,8 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fdx.dao.JoinDAO;
 import com.fdx.dao.PostDao;
+import com.fdx.dto.JoinDTO;
 import com.fdx.dto.PostDto;
+import com.fdx.services.JoinService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -20,21 +23,21 @@ import lombok.extern.log4j.Log4j;
 public class test {
 	
 	@Inject
-	private PostDao postDao;
+	private JoinService joinService;
 	private static Logger logger = LoggerFactory.getLogger(test.class);
 	
 	
 	@Test
 	public void inserTest() throws Exception{
-		PostDto dto = new PostDto();
-		postDao.selectBySearch3(1, "테스트");
+		JoinDTO joinDTO = new JoinDTO();
+		joinDTO.setMb_id("test");
+		joinDTO.setMb_pswd("test");
+		joinDTO.setMb_emaile("test");
+		int num = 0;
+		num = joinService.updateMember(joinDTO);
 		
-		/*
-		 * testDTO tdto = new testDTO(); tdto.setNum1(1); tdto.setStr1("2");
-		 * 
-		 * 
-		 * udao.insertTest(tdto);
-		 */
+		System.out.println(num);
+		
 		
 	}
 	

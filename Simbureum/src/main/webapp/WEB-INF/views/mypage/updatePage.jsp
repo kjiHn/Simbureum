@@ -73,19 +73,18 @@ body {
 				<div class="pc-tit">
 					<h2>회원정보 수정</h2>
 				</div>
+		<form id="join_form" action="/user/mbUpdate" method="post" >
 				<div class="fake-pop">
 					<div class="pct">
 						<div class="poptents">
-							<form id="join_form"
-								action="/user/mbUpdate" method="post">
 								<!-- 회원 정보 입력 -->
 								<div class="member-input">
 									<ul class="list">
 										<li><strong class="tit">이름</strong>
 											<div class="input del">
 												<input type="text" class="cleanValMsg" id="join_mbr_nm"
-													name="mb_name" value="<c:out value="${myInfo.mb_name }" />" maxlength="10"
-													placeholder="이름을 입력해주세요." disabled="disabled">
+													 value="${myInfo.mb_name }" maxlength="10" name="mb_name"
+													placeholder="이름을 입력해주세요." readonly="readonly">
 											</div>
 											<p class="validation-check" id="join_mbr_nm_error"></p></li>
 										<li><strong class="tit">아이디</strong>
@@ -93,7 +92,7 @@ body {
 												<input type="text" id="join_login_id"
 													class="required_join_input cleanValMsg" name="mb_id"
 													placeholder="영어 숫자 4자 이상 입력해주세요." maxlength="40" value="<c:out value="${myInfo.mb_id}" />"
-													style="ime-mode: disabled;"disabled="disabled">
+													style="ime-mode: disabled;"readonly="readonly">
 											</div>
 											<p class="validation-check" id="join_login_id_error"></p></li>
 										<li><strong class="tit">비밀번호</strong>
@@ -116,8 +115,8 @@ body {
 											<div class="input del">
 												<input type="text" id="join_email_id" name="mb_emaile"
 													class="required_join_input cleanValMsg"
-													placeholder="이메일을 입력해주세요." maxlength="40" value="<c:out value="${myInfo.mb_emaile}" />"
-													disabled="disabled"
+													placeholder="이메일을 입력해주세요." maxlength="40" value="${myInfo.mb_emaile}"
+													readonly="readonly"
 													>
 											<p class="validation-check" id="join_email_error"></p></li>
 											<button id = "updateEmial" class ="emailButton">이메일 수정</button>
@@ -135,10 +134,10 @@ body {
 										<li>
 											<strong class="tit">휴대폰 번호</strong>
 											<div class="input del">
-												<input type="number" class="cleanValMsg" id="join_mobile" name="mb_pnb" 
+												<input type="number" class="cleanValMsg" id="join_mobile"
 												title="휴대폰번호" value="<c:out value="${myInfo.mb_pnb }" />" maxlength="20" 
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												 placeholder="-없이 번호만 입력해주세요" disabled="disabled">
+												 placeholder="-없이 번호만 입력해주세요" readonly="readonly">
 											</div>
 											<p class="validation-check" id="join_mobile_error"></p>
 										</li>
@@ -329,7 +328,7 @@ body {
 		
 		$("#updateEmial").click(function() {
 			event.preventDefault();
-			$("#join_email_id").attr("disabled",false);
+			$("#join_email_id").attr("readonly",false);
 			$("#updateEmial").text("인증번호 보내기");
 			$("#updateEmial").attr("id","emailButton");
 			

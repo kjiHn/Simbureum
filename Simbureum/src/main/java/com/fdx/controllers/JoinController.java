@@ -362,11 +362,33 @@ public class JoinController {
 	}
 	 	
  	@RequestMapping(value = "mbUpdate" ,method = RequestMethod.POST)
- 	public String updateMb(JoinDTO joinDTO,Model model) {
+ 	public String updateMb(JoinDTO joinDTO) {
  		int num = 0 ;
+ 		
+ 		System.out.println(joinDTO.getMb_emaile());
+ 		System.out.println(joinDTO.getMb_pswd());
+ 		System.out.println(joinDTO.getMb_id());
+ 		System.out.println(joinDTO.getMb_name());
  		num = joinservice.updateMember(joinDTO);
- 		model.addAttribute("num", num);
  		return "redirect:/";
+ 	}
+ 	
+ 	
+ 	
+	@RequestMapping(value = "mbmatching" ,method = RequestMethod.POST)
+	@ResponseBody
+ 	public int modalPswd(@RequestParam(value = "mb_id") String mb_id,
+ 			@RequestParam(value = "mb_pswd") String mb_pswd) {
+ 		
+ 		int num = 0;
+ 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+ 		JoinDTO joinDTO = new JoinDTO();
+ 		joinDTO = loginService.memberCheck(mb_id);
+ 		if (encoder.matches(mb_pswd, joinDTO.getMb_pswd())) {
+			num = 1;
+		}
+ 		
+ 		return num;
  	}
  	
 	 	
