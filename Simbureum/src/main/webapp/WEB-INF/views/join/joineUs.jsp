@@ -106,7 +106,6 @@ body {
 													class="required_join_input cleanValMsg"
 													placeholder="이메일을 입력해주세요." maxlength="40" value="">
 											<p class="validation-check" id="join_email_error"></p></li>
-												<br>
 											<button id = "emailButton" class ="emailButton">인증번호보내기</button>
 											</div>
 										<li><strong class="tit requied">인증번호확인</strong>
@@ -199,9 +198,13 @@ body {
 		}
 	var code = ""; 
 	var idJ = /^[a-zA-Z0-9]{4,16}$/;
-	var idJ2 = /^[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
 	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	var phoneExp = /^\d{3}-\d{3,4}-\d{4}$/;
+	
+/* 	function psConditionAlert() {
+	    checkConditionValue("#join_login_id", psCondition) ;
+	}
+	document.querySelector("#join_login_id").addEventListener('blur', psConditionAlert); */
 	
 	$( document ).ready(function() {
 		$("#join_login_id").blur(function() {
@@ -237,7 +240,7 @@ body {
 								
 							} else {
 								
-								$('#join_login_id_error').text("아이디는 소문자와 숫자 6자리이상 20자 이하 가능합니다 :) :)");
+								$('#join_login_id_error').text("아이디는 소문자와 숫자 4자리이상 16자 이하 가능합니다 :) :)");
 								$('#join_login_id_error').css('color', 'red');
 								$("#reg_submit").attr("disabled", true);
 							}
@@ -310,6 +313,8 @@ body {
 			
 		});
 		
+
+		
 		$("#emailButton").click(function() {
 			event.preventDefault();
 			var cehckBox  = $("#join_emailCheck");
@@ -320,8 +325,10 @@ body {
 				url:"/user/mailDupleCheck?mb_emaile=" + email,
 				success:function(data){
 					if (data == "1") {
-						$("#join_email_error").text("사용중인 이메일입니다");
-						$("#join_email_error").css("color","red");
+						alert("사용중인 이메일 입니다 다시 한번 입력해 주세여");
+						$("#join_email_id").val("");
+						$("#join_email_id").focus();
+						
 					}else{
 						
 						 $.ajax({

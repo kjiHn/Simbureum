@@ -54,35 +54,31 @@
 
 .input_p {
 	margin-right: 20px;
-	
-}
-.input_box{
-margin-bottom: 20px;
-padding: 10px;
 }
 
-.input_box_all{
+.input_box {
+	margin-bottom: 20px;
+	padding: 10px;
+}
 
+.input_box_all {
 	padding: 20px;
 	margin-left: 40px;
-
-
 }
 
-#name{
+#name {
 	margin-right: 40px;
-
 }
 
-#btn{
-text-align: center;
-
+#btn {
+	text-align: center;
 }
-.myBut{
+
+.myBut {
 	padding: 0 40px;
-    line-height: 50px;
-    color: #fff;
-    background: #1f2b7b;
+	line-height: 50px;
+	color: #fff;
+	background: #1f2b7b;
 }
 
 .myBut:hover {
@@ -102,35 +98,34 @@ text-align: center;
 						<div class="subTitle_box">
 							<p class="fontcolor subTitle">비밀번호 찾기</p>
 						</div>
-						<form id = "submitForm" action="" method="post">
-						<div class = "input_box_all">
-							<div class="input_name_box input_box">
-								<span class="fontcolor input_p" id="name">이름 :</span>
-								<div class="input_detail">
-									<input type="text" name="mb_name" id="nameFind" class="input_main"
-										placeholder=" 이름을 입력해주세여">
+						<form id="submitForm" action="" method="post">
+							<div class="input_box_all">
+								<div class="input_name_box input_box">
+									<span class="fontcolor input_p" id="name">이름 :</span>
+									<div class="input_detail">
+										<input type="text" name="mb_name" id="name_Find"
+											class="input_main" placeholder=" 이름을 입력해주세여">
+									</div>
+								</div>
+								<div class="input_name_box input_box">
+									<span class="fontcolor input_p" id="ID">아이디 :</span>
+									<div class="input_detail">
+										<input type="text" name="mb_id" id="idFind" class="input_main"
+											placeholder=" 아이디를 입력해주세여">
+									</div>
+								</div>
+								<div class="input_email_box input_box">
+									<span class="fontcolor input_p">이메일 :</span>
+									<div class="input_detail">
+										<input type="text" name="mb_emaile" id="emailFind"
+											class="input_main" placeholder=" 이메일을 입력해 주세여">
+									</div>
 								</div>
 							</div>
-							<div class="input_name_box input_box">
-								<span class="fontcolor input_p" id="ID">아이디 :</span>
-								<div class="input_detail">
-									<input type="text" name="mb_id" id="idFind" class="input_main"
-										placeholder=" 아이디를 입력해주세여">
-								</div>
-							</div>							
-							<div class="input_email_box input_box">
-								<span class="fontcolor input_p">이메일 :</span>
-								<div class="input_detail">
-									<input type="text" name="mb_emaile" id="emailFind" class="input_main"
-										placeholder=" 이메일을 입력해 주세여">
-								</div>
-							</div>
-						</div>
 						</form>
 						<div>
 							<div id="btn">
-								<button id="nextBtn"
-									class="myBut">비밀번호찾기</button>
+								<button id="nextBtn" class="myBut">비밀번호찾기</button>
 							</div>
 						</div>
 
@@ -139,14 +134,33 @@ text-align: center;
 			</div>
 		</div>
 	</section>
-	
+
 	<script type="text/javascript">
 	 $("#nextBtn").click(function() {
-		 alert("이메일로 비밀번호를 전송하였습니다."+
-		 "확인하여 로그인 해주세요.");
-		 $("#submitForm").attr("action","/user/findPswdPage");
-		$("#submitForm").submit();
-	});
+		 event.preventDefault();
+		 
+		 var mb_name = $("#name_Find").val();
+		 var mb_id = $("#idFind").val();
+		 var mb_emaile = $("#emailFind").val();
+		 var allData = {"mb_name":mb_name , "mb_emaile":mb_emaile , "mb_id":mb_id};
+		 $.ajax({
+				url :'/user/checkEmail',
+				type : 'post',
+				data:allData,
+				success : function(data) {
+					console.log("1 = 중복o / 0 = 중복x : "+ data);							
+					if (data == 1) {
+						 alert("이메일로 비밀번호를 전송하였습니다."+
+						 "확인하여 로그인 해주세요.");
+						$("#submitForm").submit();							
+						} else {
+						alert("존재하지 않습니다");			
+						}
+					}, error : function() {
+							console.log("실패");
+					}	 
+		 }); 
+	 });
 	</script>
 
 

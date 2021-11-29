@@ -11,8 +11,9 @@ public interface JoinDAO {
 	void insertMember(JoinDTO joinDTO);
 	int emailDuplCheck(String mb_emaile);
 	String findId(JoinDTO joinDTO);
-	String findPswd(JoinDTO joinDTO);
 	int updateMember(JoinDTO joinDTO);
 	int deleteMember(String mb_id);
+	int pswdCheck(JoinDTO joinDTO);
+	public int idCheck(JoinDTO joinDTO);
 
 }

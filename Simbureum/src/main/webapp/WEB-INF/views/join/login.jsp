@@ -85,7 +85,7 @@
 			    dataType: 'text',
 			    success: function(data) {
 			   		if (data ==1) {
-			   			window.location.href = '/home';
+			   			window.location.href = '/';
 					}else if (data == 0){
 						$("#login_error").text("회원이 존재하지 않습니다");
 						$("#login_error").css("color","red");

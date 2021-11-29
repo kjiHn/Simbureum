@@ -1,8 +1,12 @@
 package com.fdx.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,9 +89,7 @@ public class JoinController {
         		+ checkNum
         		+"</strong> 입니다.</p>" + 
         		"			<br />" + 
-        		"			<button style='padding: 10px; background-color: #e3c4ff; border: 1px gray solid'>" + 
-        		"			<a href='/home' style=' text-decoration:none'> 홈으로 이동 </a>" + 
-        		"			</button>\r\n" + 
+        		"			<br />" + 
         		"		</div>" + 
         		"	</div>";   
         
@@ -121,7 +124,7 @@ public class JoinController {
 		
 		LOG.info("join Service 성공");
 		
-		return "redirect:/home";
+		return "redirect:/";
 	}
  	
  	
@@ -138,11 +141,26 @@ public class JoinController {
  		return "join/findPswdPage";
 	}
  	
+ 	@RequestMapping(value = "checkIdEmail", method = RequestMethod.GET)
+ 	@ResponseBody
+ 	public int emailIDCheck(@RequestParam(value = "mb_name",required=true) String mb_name
+ 			,@RequestParam(value = "mb_emaile",required=true) String mb_emaile){
+ 		int num;
+ 		JoinDTO joinDTO = new JoinDTO();
+ 		System.out.println(mb_name);
+ 		System.out.println(mb_emaile);
+ 		
+ 		joinDTO.setMb_emaile(mb_emaile);
+ 		joinDTO.setMb_name(mb_name);
+ 		
+ 		num = joinservice.idCheck(joinDTO);
+ 		return num;
+ 	}
  	
  	
  	@RequestMapping(value = "findIdPage", method = RequestMethod.POST)
-	public String PostfindID(@RequestParam(value = "mb_emaile",required=true) String mb_emaile,
-			@RequestParam(value = "mb_name",required=true) String mb_name) {
+	public String PostfindID(@RequestParam(value = "mb_emaile",required=false) String mb_emaile,
+			@RequestParam(value = "mb_name",required=false) String mb_name) {
  		
  		String myId = "";
  		JoinDTO dto = new JoinDTO();
@@ -166,7 +184,7 @@ public class JoinController {
  			myId+
  			"</strong> 입니다.</p>"+
  			"<button style='padding: 10px; background-color: #e3c4ff; border: 1px gray solid'>" + 
- 			"			<a href='http://home' style=' text-decoration:none'> 홈으로 이동 </a>" + 
+ 			"			<a href='http://www.localhost:9081/' style=' text-decoration:none'> 홈으로 이동 </a>" + 
  			"			</button>"+
  			
  		"</div>"+
@@ -187,8 +205,23 @@ public class JoinController {
  		
  		
  		
-         return "redirect:/home";
+         return "redirect:/";
 	}
+ 	
+ 	
+ 	@RequestMapping(value = "checkEmail", method = RequestMethod.POST)
+ 	@ResponseBody
+ 	public int emailCheck(@RequestParam(value = "mb_emaile",required=true) String mb_emaile,
+ 			@RequestParam(value = "mb_name",required=true) String mb_name
+ 			,@RequestParam(value = "mb_id",required=true) String mb_id) {
+ 		int num = 0;
+ 		JoinDTO joinDTO = new JoinDTO();
+ 		joinDTO.setMb_emaile(mb_emaile);
+ 		joinDTO.setMb_id(mb_id);
+ 		joinDTO.setMb_name(mb_name);
+ 		num = joinservice.pswdCheck(joinDTO);
+ 		return num;
+ 	}
  	
  	
  	
@@ -198,52 +231,74 @@ public class JoinController {
 			,@RequestParam(value = "mb_id",required=true) String mb_id) {
  		
  		String pswd = "";
- 		JoinDTO dto = new JoinDTO();
- 		dto.setMb_name(mb_name);
- 		dto.setMb_emaile(mb_emaile);
- 		dto.setMb_id(mb_id);
  		
- 		LOG.info("이메일 데이터 전송 확인");
- 		LOG.info("인증번호 : " + mb_emaile);
+ 		Random rnd = new Random();
+ 		StringBuffer buf =new StringBuffer();
+
+ 		for(int i=0;i<10;i++){
+ 		    // rnd.nextBoolean() 는 랜덤으로 true, false 를 리턴. true일 시 랜덤 한 소문자를, false 일 시 랜덤 한 숫자를 StringBuffer 에 append 한다.
+ 		    if(rnd.nextBoolean()){
+ 		        buf.append((char)((int)(rnd.nextInt(26))+97));
+ 		    }else{
+ 		        buf.append((rnd.nextInt(10)));
+ 		    }
+ 		}
+ 		pswd = buf.toString();
  		
  		
- 		pswd = joinservice.findPswd(dto);
- 		
- 		String setFrom = "haejohalge@fdx.com";
-         String toMail = mb_emaile;
-         String title = "찾으셨던 회원님의 비밀번호입니다.";
-         String content = 
-        		 "<div style='text-align: center;'>"+
- 		"<div style='border: 1px solid black; display: inline-block; width: 500px; line-height: 30px; height: 250px; text-align: center;'>"+
- 			"<h1>비밀번호 	찾기</h1>"+
- 			"<p>회원가입 시 사용한 비밀번호는 <strong>"+
- 			pswd+
- 			"</strong> 입니다.</p>"+
- 			"<p>빠른시일내에 변경해 주세여</p>" + 
- 			"<button style='padding: 10px; background-color: #e3c4ff; border: 1px gray solid'>" + 
- 			"			<a href='http://home' style=' text-decoration:none'> 홈으로 이동 </a>" + 
- 			"			</button>"+
+ 		JoinDTO joindto = new JoinDTO();
+ 		joindto.setMb_pswd(pswd);
+ 		joindto.setMb_id(mb_id);
+ 		int num = joinservice.updateMember(joindto);
+ 		System.out.println(num);
+ 		if (num == 1) {
  			
- 		"</div>"+
- 	"</div>";
-        		 
-         try {
-             
-             MimeMessage message = mailSender.createMimeMessage();
-             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-             helper.setFrom(setFrom);
-             helper.setTo(toMail);
-             helper.setSubject(title);
-             helper.setText(content,true);
-             mailSender.send(message);
-             
-         }catch(Exception e) {
-             e.printStackTrace();
-         }
+ 			JoinDTO dto = new JoinDTO();
+ 			dto.setMb_id(mb_id);
+ 			dto.setMb_name(mb_name);
+ 	 		dto.setMb_emaile(mb_emaile);
+ 	 		
+ 	 		LOG.info("이메일 데이터 전송 확인");
+ 	 		LOG.info("인증번호 : " + mb_emaile);
+ 	 			 		
+ 	 		
+ 	 		String setFrom = "haejohalge@fdx.com";
+ 	         String toMail = mb_emaile;
+ 	         String title = "새로 발급한 임시 비밀번호 입니다.";
+ 	         String content = 
+ 	        		 "<div style='text-align: center;'>"+
+ 	 		"<div style='border: 1px solid black; display: inline-block; width: 500px; line-height: 30px; height: 250px; text-align: center;'>"+
+ 	 			"<h1>비밀번호 	찾기</h1>"+
+ 	 			"<p>새로발급한 패스워드는 <strong>"+
+ 	 			pswd+
+ 	 			"</strong> 입니다.</p>"+
+ 	 			"<p>빠른시일내에 변경해 주세여</p>" + 
+ 	 			"<button style='padding: 10px; background-color: #e3c4ff; border: 1px gray solid'>" + 
+ 	 			"			<a href='http://home' style=' text-decoration:none'> 홈으로 이동 </a>" + 
+ 	 			"			</button>"+
+ 	 			
+ 	 		"</div>"+
+ 	 	"</div>";
+ 	        		 
+ 	         try {
+ 	             
+ 	             MimeMessage message = mailSender.createMimeMessage();
+ 	             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+ 	             helper.setFrom(setFrom);
+ 	             helper.setTo(toMail);
+ 	             helper.setSubject(title);
+ 	             helper.setText(content,true);
+ 	             mailSender.send(message);
+ 	             
+ 	         }catch(Exception e) {
+ 	             e.printStackTrace();
+ 	         }
+		}
  		
  		
  		
-         return "redirect:/home";
+ 		
+         return "redirect:/";
 	}
  	
 	 	

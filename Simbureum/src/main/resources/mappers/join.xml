@@ -10,6 +10,19 @@
 		FROM MEMBER
 		WHERE mb_id = #{mb_id}
 	</select>
+	<select id="allMember2" parameterType="com.fdx.dto.JoinDTO" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE mb_name = #{mb_name}
+		AND mb_emaile = #{mb_emaile}
+		AND mb_id = #{mb_id}
+	</select>
+	<select id="allMember3" parameterType="com.fdx.dto.JoinDTO" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE mb_name = #{mb_name}
+		AND mb_emaile = #{mb_emaile}
+	</select>
 
 	<select id="userIdCheck" resultType="int" parameterType="String">
 		SELECT count(*) FROM MEMBER WHERE mb_id = #{mb_id}
@@ -18,12 +31,20 @@
 	<insert id="insertMember">
 		insert into MEMBER 
 			values(MEBER_SEQNUM.nextval,#{mb_id},#{mb_pswd},#{mb_name},#{mb_emaile},#{mb_pnb},sysdate)
-	
 	</insert>
 	
 	<select id="emailDuplCheck" resultType="int" parameterType="String">
 		SELECT count(*) FROM MEMBER WHERE mb_emaile = #{mb_emaile}
 	</select>
+	
+	
+	<select id="findIdCheck" parameterType="com.fdx.dto.JoinDTO" resultType="String">
+		SELECT mb_id
+		FROM MEMBER
+		WHERE mb_emaile = #{mb_emaile}
+		AND mb_name = #{mb_name}
+	</select>
+	
 	
 	<update id="updateMember"  parameterType="com.fdx.dto.JoinDTO" >
 		UPDATE MEMBER

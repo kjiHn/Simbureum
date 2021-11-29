@@ -37,12 +37,6 @@ public class JoinDAOImpl implements JoinDAO{
 		return id;
 	}
 	
-	@Override
-	public String findPswd(JoinDTO joinDTO) {
-		String id = "";
-		id = sqlSessionTemplate.selectOne("mapper.mamber.findPswdCheck", joinDTO);
-		return id;
-	}
 
 	@Override
 	public int updateMember(JoinDTO joinDTO) {
@@ -55,6 +49,17 @@ public class JoinDAOImpl implements JoinDAO{
 		
 		return sqlSessionTemplate.delete("mapper.mamber.deleteMember", mb_id);
 		
+	}
+
+	@Override
+	public int pswdCheck(JoinDTO joinDTO) {
+		
+		return sqlSessionTemplate.selectOne("mapper.mamber.allMember2", joinDTO);
+	}
+	@Override
+	public int idCheck(JoinDTO joinDTO) {
+		
+		return sqlSessionTemplate.selectOne("mapper.mamber.allMember3", joinDTO);
 	}
 	
 	

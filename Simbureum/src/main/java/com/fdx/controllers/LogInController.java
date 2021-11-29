@@ -96,7 +96,7 @@ public class LogInController {
 		session.removeAttribute("mid");
 		
 		
-		return "redirect:/home";
+		return "redirect:/";
 	}
 
 }

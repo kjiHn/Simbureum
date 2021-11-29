@@ -107,12 +107,10 @@ text-align: center;
 							<div class="input_name_box input_box">
 								<span class="fontcolor input_p" id="name">이름 :</span>
 								<div class="input_detail">
-									<input type="text" name="mb_name" id="nameFind" class="input_main"
+									<input type="text" name="mb_name" id="name_Find" class="input_main"
 										placeholder=" 이름을 입력해주세여">
 								</div>
 							</div>
-
-
 							<div class="input_email_box input_box">
 								<span class="fontcolor input_p">이메일 :</span>
 								<div class="input_detail">
@@ -136,14 +134,34 @@ text-align: center;
 	</section>
 	
 	<script type="text/javascript">
-	 $("#nextBtn").click(function() {
-		 alert("이메일로 아이디를 전송하였습니다."+
-				 "확인하여 로그인 해주세요.");
-		 
-		 $("#submitForm").attr("action","/user/findIdPage");
-		$("#submitForm").submit();
-	});
 	
+	 
+	 
+	 $("#nextBtn").click(function() {
+		 event.preventDefault();
+		 
+		 var mb_name = $("#name_Find").val();
+		 var mb_emaile = $("#emailFind").val();
+		 var allData = {"mb_name":mb_name , "mb_emaile":mb_emaile};
+		 $.ajax({
+				url :'/user/checkIdEmail',
+				type : 'get',
+				data:allData,
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				success : function(data) {
+					console.log("1 = 중복o / 0 = 중복x : "+ data);							
+					if (data == 1) {		
+						 alert("이메일로 아이디를 전송하였습니다."+
+						 "확인하여 로그인 해주세요.");
+						$("#submitForm").submit();							
+						} else {
+							alert("이메일이 존재하지 않거나 틀리셨습니다");	
+						}
+					}, error : function() {
+							console.log("실패");
+					}	 
+		 }); 
+	 });
 	</script>
 
 
