@@ -158,7 +158,7 @@ $("#btn_up").click(function() {
 
 $("#goUpdate").click(function() {
 	var pswd = $("#inputPswd").val();
-	if ( pswd == "${mb_info.mb_id }") {
+	if ( pswd == "${mb_info.mb_pswd }") {
 	$(location).attr("href", "/user/mbUpdate?mb_id=${mb_info.mb_id }");		
 	}else {
 		$("#join_pswd_error").text("비밀번호가 맞지 않습니다.");
