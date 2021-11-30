@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<%@ include file="../model/topBar1.jsp" %>
+<%@ include file="../model/topBar_login.jsp" %>
 
 
 
@@ -50,7 +50,7 @@
 }
 
 .content{
-	width: 500px;
+	width: 300px;
 	height: 200px;
 	margin-bottom: 20px;
 	margin-top: 20px
@@ -72,11 +72,11 @@
 		<table>
 			<tr>
 				<th>제목 : </th>
-				<td><input name="post_title" class="textinput" placeholder="제목을 입력해주세요" /></td>
+				<td><input name="post_title" class="textinput" placeholder="제목 입력" /></td>
 			</tr>
 			<tr>
 				<th>내용 : </th>
-				<td><textarea name="post_con" class="content" placeholder="내용을 입력해주세요"></textarea></td>
+				<td><textarea name="post_con" class="content" placeholder="내용 입력"></textarea></td>
 			</tr>
 			<tr>
 				<th>위치 : </th>
@@ -93,15 +93,15 @@
 			</tr>
 			<tr>
 				<th>마감일 : </th>
-				<td><input name="post_dline" class="textinput" placeholder="마감일을 입력해주세요" /></td>
+				<td><input name="post_dline" class="textinput" placeholder="마감일 입력(ex.2021/01/01)" /></td>
 			</tr>
 			<tr>
 				<th>심부름꾼 수 : </th>
-				<td><input name="post_numof" class="textinput" placeholder="심부름꾼 수를 입력해주세요" /></td>
+				<td><input name="post_numof" class="textinput" placeholder="심부름꾼 수 입력" /></td>
 			</tr>
 			<tr>
 				<th>심부름 가격 : </th>
-				<td><input name="post_price" class="textinput" placeholder="심부름 가격을 입력해주세요"/></td>
+				<td><input name="post_price" class="textinput" placeholder="심부름 가격 입력"/></td>
 			</tr>
 		</table>
 		

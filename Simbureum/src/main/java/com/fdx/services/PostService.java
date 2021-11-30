@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.fdx.dao.PostDaoImpl;
+import com.fdx.dto.ApPostDto;
+import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
 @Service
@@ -18,7 +20,8 @@ public class PostService {
 	public PostService() {}
 	
 	//게시글 작성
-	public void write(PostDto post) {
+	public void write(PostDto post, int idNum) {
+		post.setMb_num_pk(idNum);
 		postDao.insert(post);
 	}
 	
@@ -48,11 +51,28 @@ public class PostService {
 		return postDao.selectOne(postNum);
 	}
 	
+	//게시글 신고 접수
+	public void writeReport(int postNum, int idNum, PoReportDto poReport) {
+		poReport.setPorp_lnb(postNum);
+		poReport.setPorp_mbn(idNum);
+		postDao.insertReport(poReport);
+	}
 	
+	//심부름꾼 지원 여부
+	public ApPostDto selectApPost(int postNum, int idNum) {
+		ApPostDto apPost = new ApPostDto();
+		apPost.setPost_num_pk(postNum);
+		apPost.setMb_num_pk(idNum);
+		return postDao.selectApPost(apPost);
+	}
 	
-	
-	
-	
+	//심부름꾼 지원하기
+	public void insertApPost(int postNum, int idNum) {
+		ApPostDto apPost = new ApPostDto();
+		apPost.setPost_num_pk(postNum);
+		apPost.setMb_num_pk(idNum);
+		postDao.insertApPost(apPost);
+	}
 	
 	
 	

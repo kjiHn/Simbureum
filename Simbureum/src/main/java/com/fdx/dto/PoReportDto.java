@@ -2,9 +2,13 @@ package com.fdx.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("poReport")
 public class PoReportDto {
 	
 	private int porp_num_pk;		//신고번호
+	private int porp_target_mbn;	//신고당한 회원번호
 	private int porp_mbn;			//신고한 회원번호
 	private int porp_lnb;			//해당 게시글 번호
 	private String porp_con;		//내용
@@ -15,6 +19,13 @@ public class PoReportDto {
 	}
 	public void setPorp_num_pk(int porp_num_pk) {
 		this.porp_num_pk = porp_num_pk;
+	}
+	
+	public int getPorp_target_mbn() {
+		return porp_target_mbn;
+	}
+	public void setPorp_target_mbn(int porp_target_mbn) {
+		this.porp_target_mbn = porp_target_mbn;
 	}
 	
 	public int getPorp_mbn() {

@@ -2,6 +2,8 @@ package com.fdx.dao;
 
 import java.util.List;
 
+import com.fdx.dto.ApPostDto;
+import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
 public interface PostDao {
@@ -26,5 +28,14 @@ public interface PostDao {
 	
 	//게시글 하나 select
 	public PostDto selectOne(int postNum);
+	
+	//게시글 신고하기
+	public void insertReport(PoReportDto poReport);
+	
+	//심부름꾼 지원 여부
+	public ApPostDto selectApPost(ApPostDto apPost);
+	
+	//심부름꾼 지원하기
+	public void insertApPost(ApPostDto apPost);
 
 }

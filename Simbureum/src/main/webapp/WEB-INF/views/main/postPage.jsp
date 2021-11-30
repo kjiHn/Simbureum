@@ -3,7 +3,19 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../model/topBar1.jsp" %>
+
+<%
+	if(session.getAttribute("mid") != null) {
+%>
+	<%@ include file="../model/topBar_login.jsp" %>
+<%
+	}else{
+		
+%>
+	<%@ include file="../model/topBar1.jsp"%>
+<%
+	}
+%>
 
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,6 +73,7 @@ a {
 <title>게시글 보기</title>
 </head>
 <body>
+	
 
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -105,12 +118,23 @@ a {
 								<c:forEach var="post" items="${postList}" varStatus="loop">
 									<tr>
 										<td>${loop.count}</td>
-										<td><a href="<c:url value="/main/postDetail/${post.post_num_pk}" />">${post.post_title}</a></td>
+										<td><a href="javascript:checkLogin();">${post.post_title}</a></td>
 										<td>${post.mb_id}</td>
 										<td>${post.pbigc_name} ${post.psmallc_name}</td>
 										<td>${post.post_views}</td>
 										<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
 									</tr>
+									<script type="text/javascript">
+									function checkLogin(){
+										var postNum = ${post.post_num_pk};
+										var id = '<%=session.getAttribute("mid")%>';
+										if(id == "null"){
+											alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+										}else{
+											location.replace("/main/postDetail/"+postNum);
+										}
+									}
+									</script>
 								</c:forEach>
 
 							</tbody>
@@ -239,7 +263,7 @@ a {
 			});
 		});
 	</script>
-
+	
 
 </body>
 </html>

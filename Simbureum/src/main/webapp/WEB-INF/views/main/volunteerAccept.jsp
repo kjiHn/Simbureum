@@ -31,19 +31,12 @@
 }
 </style>
 
-<title>게시글 신고</title>
+<title>심부름꾼 지원 완료</title>
 </head>
 <body>
-	<h2>게시글 신고</h2>
 	
-	<h3>신고 사유 :</h3>
-	<div>
-	<form method="POST" action="/main/writeReport/${post_num_pk}">
-	<textarea name="porp_con" class="content" placeholder="내용을 입력해주세요"></textarea>
+	심부름꾼 지원이 완료되었습니다.<br><br>
+	<input type="button" class="button" value="확인" onclick="javascript:self.close()">
 	
-	<input type="submit" class="button" value="완료">
-	<input type="button" class="button" value="취소" onclick="javascript:self.close()">
-	</form>
-	</div>
 </body>
 </html>

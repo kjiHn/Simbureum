@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.fdx.dto.ApPostDto;
+import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
 @Repository
@@ -53,6 +55,21 @@ public class PostDaoImpl implements PostDao{
 	@Override
 	public PostDto selectOne(int postNum) {
 		return sqlSessionTemplate.selectOne("selectOnePost", postNum);
+	}
+
+	@Override
+	public void insertReport(PoReportDto poReport) {
+		sqlSessionTemplate.insert("insertPoReport", poReport);
+	}
+
+	@Override
+	public ApPostDto selectApPost(ApPostDto apPost) {
+		return sqlSessionTemplate.selectOne("selectApPost", apPost);
+	}
+
+	@Override
+	public void insertApPost(ApPostDto apPost) {
+		sqlSessionTemplate.insert("insertApPost", apPost);
 	}
 
 	

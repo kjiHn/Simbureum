@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../model/topBar1.jsp" %>
+<%@ include file="../model/topBar_login.jsp" %>
 
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -100,7 +100,7 @@ a {
 							</tr>
 						</table>
 						
-						<input type="button" class="button" id="volunteer" value="심부름꾼 지원하기">
+						<input type="button" class="button" onclick="openVol()" value="심부름꾼 지원하기">
 
 					</div>
 				</div>
@@ -108,6 +108,7 @@ a {
 		</div>
 	</section>
 	
+	<!-- 신고하기 창 열기 -->
 	<script type="text/javascript">
 		function openReport(){
 			var popWidth = 400;
@@ -120,6 +121,22 @@ a {
 			var popY = winY + (winHeight - popHeight)/2;
 			url="../writeReport/"+${post.post_num_pk};
 			var openWin = window.open(url, "writeReport", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
+		}
+	</script>
+	
+	<!-- 심부름꾼 지원하기 창 열기 -->
+	<script type="text/javascript">
+		function openVol(){
+			var popWidth = 400;
+			var popHeight = 200;
+			var winHeight = document.body.clientHeight;
+			var winWidth = document.body.clientWidth;
+			var winX = window.screenLeft;
+			var winY = window.screenTop;
+			var popX = winX + (winWidth - popWidth)/2;
+			var popY = winY + (winHeight - popHeight)/2;
+			url="../volunteer/"+${post.post_num_pk};
+			var openWin = window.open(url, "volunteer", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
 		}
 	</script>
 

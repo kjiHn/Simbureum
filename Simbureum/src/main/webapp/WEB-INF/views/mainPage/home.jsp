@@ -75,7 +75,7 @@
                             </div>
                             
                             <div class="card-bottom">
-                                <a href="/main/writePost" class="borders-btn">게시글 작성</a>
+                                <a href="javascript:checkLogin();" class="borders-btn">게시글 작성</a>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,16 @@
             </div>
         </section> -->
         
-        
+<script type="text/javascript">
+	function checkLogin(){
+		var id = '<%=session.getAttribute("mid")%>';
+		if(id == "null"){
+			alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+		}else{
+			location.replace("/main/writePost");
+		}
+	}
+</script>        
     
 <script src="view/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 <!-- Jquery, Popper, Bootstrap -->
