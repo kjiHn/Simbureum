@@ -35,23 +35,23 @@
 										<!--  소제목? -->
 
 								</a></li>
-								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>올린 심부름</p>
+								<li><a href="/mypage/upPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+										<p id = "uploadPost">올린 심부름</p>
 
 								</a></li>
-								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>심부름꾼 지원</p>
+								<li><a href="/mypage/supPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+										<p id = "supPost">심부름꾼 지원</p>
 
 								</a></li>
-								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>심부름 한 내역</p>
+								<li><a href="/mypage/endPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+										<p id = "endPost">심부름 한 내역</p>
 
 								</a></li>
 								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
 										<p>작성한 리뷰</p>
 
 								</a></li>
-								<li><a href="#" class="d-flex">
+								<li><a href="/review/receiveList" class="d-flex">
 										<p style="font-weight: ">받은리뷰</p>
 
 								</a></li>
@@ -71,6 +71,24 @@
  if (link =='/user/my_Info') {
 	$("#myInfo").css("font-weight", "bold");
 	$("#myInfo").css("text-decoration", "underline");
+	
+}else if(link =='/mypage/upPost'){
+	
+	$("#uploadPost").css("font-weight", "bold");
+	$("#uploadPost").css("text-decoration", "underline");
+	
+	
+}else if(link =='/mypage/supPost'){
+	
+	$("#supPost").css("font-weight", "bold");
+	$("#supPost").css("text-decoration", "underline");
+	
+	
+}else if(link =='/mypage/endPost'){
+	
+	$("#endPost").css("font-weight", "bold");
+	$("#endPost").css("text-decoration", "underline");
+	
 	
 }
  console.log(link);

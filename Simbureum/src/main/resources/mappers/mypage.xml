@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fdx.dao.MypageDAO">
+
+	<select id="myUploadPost" parameterType="int"
+		resultType="com.fdx.dto.MypageDTO">
+	<![CDATA[
+		SELECT p.*,nvl(vh_hsn_pk,0) vh_hsn_pk, nvl(ap_apn_pk,0) ap_apn_pk,pb.pbigc_name||' '||ps.psmallc_name as plant
+		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+            FULL OUTER JOIN  Ap_post ap ON p.post_num_pk = ap.post_num_pk
+            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		where p.mb_num_pk = #{mb_num_pk}
+		order by p.post_num_pk desc
+	]]>
+	</select>
+	
+	<select id="mySupPost" parameterType="int"
+		resultType="com.fdx.dto.MypageDTO">
+	<![CDATA[
+		SELECT P.*,pb.pbigc_name||' '||ps.psmallc_name as plant
+		FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
+		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		WHERE  ap.mb_num_pk = #{mb_num_pk}
+		order by p.post_num_pk desc
+	]]>
+	</select>
+	
+	<select id="myFinshPost" parameterType="int"
+		resultType="com.fdx.dto.MypageDTO">
+	<![CDATA[
+		SELECT p.post_title,pb.pbigc_name||' '||ps.psmallc_name as plant,vh_date
+		FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		where p.mb_num_pk = #{mb_num_pk}
+		order by p.post_num_pk desc
+	]]>
+	</select>
+
+	<update id="hitup">
+		update post
+		set post_views = post_views +1
+		Where post_num_pk = #{post_num_pk}
+	</update>
+
+</mapper>

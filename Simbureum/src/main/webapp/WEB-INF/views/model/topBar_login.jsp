@@ -1,6 +1,19 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% 
+
+response.setHeader("Cache-Control","no-store"); 
+
+response.setHeader("Pragma","no-cache"); 
+
+response.setDateHeader("Expires",0); 
+
+if (request.getProtocol().equals("HTTP/1.1"))
+
+        response.setHeader("Cache-Control", "no-cache");
+
+%> 
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -39,8 +52,8 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">       
-                                                <li><a href="/main/writePost">게시글 작성</a></li>
-                                                <li><a href="/main/postPage">게시글 보기</a></li>
+                                                <li><a href="#">게시글 작성</a></li>
+                                                <li><a href="#">게시글 보기</a></li>
                                                 <li><a href="#">공지 사항</a></li>
                                                 <li><%=session.getAttribute("mid") %>님</li>                                                                            
                                                 <li>	
