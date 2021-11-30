@@ -31,6 +31,10 @@ public class MypageService {
 			
 	}
 	
+	public int supDel(MypageDTO mypageDTO) {
+		return mypageDAO.supPostDel(mypageDTO);
+	}
+	
 	
 	
 	

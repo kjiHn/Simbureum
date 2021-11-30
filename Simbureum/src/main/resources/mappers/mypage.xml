@@ -47,5 +47,11 @@
 		set post_views = post_views +1
 		Where post_num_pk = #{post_num_pk}
 	</update>
+	
+	<delete id="supDel" parameterType="com.fdx.dto.MypageDTO">
+		DELETE Ap_post
+		WHERE mb_num_pk = #{mb_num_pk}
+		AND post_num_pk = #{post_num_pk}
+	</delete>
 
 </mapper>

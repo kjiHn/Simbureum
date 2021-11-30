@@ -110,13 +110,23 @@
 	   var mb_num = "<%=session.getAttribute("mNum")%>";
 	   alert(num);
 	   alert(mb_num);
-	   var allData = {'post_num_pk':'asd',"mb_num_pk":mb_num};
+	   var allData = {'post_num_pk':num,"mb_num_pk":mb_num};
 	   
-	   
-	   
+	   $.ajax({
+			type: "POST", //요청 메소드 방식
+			url:"/mypage/supPostDel",
+			data:allData,
+			success : function(data){
+				if (data == 1) {
+					alert("삭제 완료");
+					location.reload();
+				}
+			},
+			error : function(data){
+				alert(data);
+			}
+		});
 	}); 
-   
-   
    
    </script>
 

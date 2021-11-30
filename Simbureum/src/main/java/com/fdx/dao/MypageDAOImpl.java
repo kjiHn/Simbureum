@@ -45,4 +45,11 @@ public class MypageDAOImpl implements MypageDAO{
 		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.myFinshPost", mb_num_pk);
 	}
 
+
+	@Override
+	public int supPostDel(MypageDTO mypageDTO) {
+		return sqlSessionTemplate.delete("com.fdx.dao.MypageDAO.supDel", mypageDTO);
+		
+	}
+
 }
