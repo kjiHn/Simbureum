@@ -17,8 +17,8 @@ public class managerDTO {
 	private String mb_date;//회원가입한 일시
 	
 	//소도시
-	private int psmalllc_pk; //소분류 번호
-	private String psmalllc_name; //소분류 이름
+	private int psmallc_pk; //소분류 번호
+	private String psmallc_name; //소분류 이름
 	
 	//대도시
 	private int pbigc_pk; //대분류 번호
@@ -30,20 +30,135 @@ public class managerDTO {
 	private String post_con;	//내용
 	private Date post_dline;	//마감일
 	private int post_numof;		//심부름꾼수
-	private int psmallc_pk;		//위치 소분류번호
 	private int post_price;		//심부름 가격
 	private int post_views;		//조회수
 	private Date post_date;		//작성일
 	
-	//신고
-	private int rp_num_pk; //경고번호
-	private int rp_target_mbn;//신고당한회원번호
-	private int rp_mbn; //신고한회원번호
-	private int rp_lnb; //신고당한곳번호
-	private int rc_num_pk;//카테고리번호
-	private String rp_content;//내용
-	private Date rp_date;	//신고일
+	//게시글 신고
+	private int porp_num_pk;	//경고번호
+	private int porp_target_mbn;	//신고당한회원번호
+	private int porp_mbn;	//신고한회원번호
+	private int porp_lnb;	//해당 게시글 번호
+	private String porp_con;	//내용
+	private Date porp_date;	//신고일
 	
+	//리뷰 신고
+	private int rerp_num_pk;	//경고번호
+	private int rerp_target_mbn;	//신고당한회원번호
+	private int rerp_mbn;	//신고한회원번호
+	private int rerp_lnb;	//해당 리뷰 번호
+	private String rerp_con;	//내용
+	private Date rerp_date;	//신고일
+	
+	public int getPorp_num_pk() {
+		return porp_num_pk;
+	}
+	public void setPorp_num_pk(int porp_num_pk) {
+		this.porp_num_pk = porp_num_pk;
+	}
+	public int getPorp_target_mbn() {
+		return porp_target_mbn;
+	}
+	public void setPorp_target_mbn(int porp_target_mbn) {
+		this.porp_target_mbn = porp_target_mbn;
+	}
+	public int getPorp_mbn() {
+		return porp_mbn;
+	}
+	public void setPorp_mbn(int porp_mbn) {
+		this.porp_mbn = porp_mbn;
+	}
+	public int getPorp_lnb() {
+		return porp_lnb;
+	}
+	public void setPorp_lnb(int porp_lnb) {
+		this.porp_lnb = porp_lnb;
+	}
+	public String getPorp_con() {
+		return porp_con;
+	}
+	public void setPorp_con(String porp_con) {
+		this.porp_con = porp_con;
+	}
+	public Date getPorp_date() {
+		return porp_date;
+	}
+	public void setPorp_date(Date porp_date) {
+		this.porp_date = porp_date;
+	}
+	public int getRerp_num_pk() {
+		return rerp_num_pk;
+	}
+	public void setRerp_num_pk(int rerp_num_pk) {
+		this.rerp_num_pk = rerp_num_pk;
+	}
+	public int getRerp_target_mbn() {
+		return rerp_target_mbn;
+	}
+	public void setRerp_target_mbn(int rerp_target_mbn) {
+		this.rerp_target_mbn = rerp_target_mbn;
+	}
+	public int getRerp_mbn() {
+		return rerp_mbn;
+	}
+	public void setRerp_mbn(int rerp_mbn) {
+		this.rerp_mbn = rerp_mbn;
+	}
+	public int getRerp_lnb() {
+		return rerp_lnb;
+	}
+	public void setRerp_lnb(int rerp_lnb) {
+		this.rerp_lnb = rerp_lnb;
+	}
+	public String getRerp_con() {
+		return rerp_con;
+	}
+	public void setRerp_con(String rerp_con) {
+		this.rerp_con = rerp_con;
+	}
+	public Date getRerp_date() {
+		return rerp_date;
+	}
+	public void setRerp_date(Date rerp_date) {
+		this.rerp_date = rerp_date;
+	}
+	//공지
+	private int ntc_num_pk;
+	private String ntc_title;
+	private String ntc_con;
+	private Date ntc_date;
+	private int ntc_views;
+	
+	public int getNtc_views() {
+		return ntc_views;
+	}
+	public void setNtc_views(int ntc_views) {
+		this.ntc_views = ntc_views;
+	}
+	public int getNtc_num_pk() {
+		return ntc_num_pk;
+	}
+	public void setNtc_num_pk(int ntc_num_pk) {
+		this.ntc_num_pk = ntc_num_pk;
+	}
+	public String getNtc_title() {
+		return ntc_title;
+	}
+	public void setNtc_title(String ntc_title) {
+		this.ntc_title = ntc_title;
+	}
+	public String getNtc_con() {
+		return ntc_con;
+	}
+	public void setNtc_con(String ntc_con) {
+		this.ntc_con = ntc_con;
+	}
+	public Date getNtc_date() {
+		return ntc_date;
+	}
+	public void setNtc_date(Date ntc_date) {
+		this.ntc_date = ntc_date;
+	}
 	public int getMb_num_pk() {
 		return mb_num_pk;
 	}
@@ -86,23 +201,23 @@ public class managerDTO {
 	public void setMb_date(String mb_date) {
 		this.mb_date = mb_date;
 	}
-	public int getPsmalllc_pk() {
-		return psmalllc_pk;
+	public int getPsmallc_pk() {
+		return psmallc_pk;
 	}
-	public void setPsmalllc_pk(int psmalllc_pk) {
-		this.psmalllc_pk = psmalllc_pk;
+	public void setPsmallc_pk(int psmallc_pk) {
+		this.psmallc_pk = psmallc_pk;
+	}
+	public String getPsmallc_name() {
+		return psmallc_name;
+	}
+	public void setPsmallc_name(String psmallc_name) {
+		this.psmallc_name = psmallc_name;
 	}
 	public int getPbigc_pk() {
 		return pbigc_pk;
 	}
 	public void setPbigc_pk(int pbigc_pk) {
 		this.pbigc_pk = pbigc_pk;
-	}
-	public String getPsmalllc_name() {
-		return psmalllc_name;
-	}
-	public void setPsmalllc_name(String psmalllc_name) {
-		this.psmalllc_name = psmalllc_name;
 	}
 	public String getPbigc_name() {
 		return pbigc_name;
@@ -140,12 +255,6 @@ public class managerDTO {
 	public void setPost_numof(int post_numof) {
 		this.post_numof = post_numof;
 	}
-	public int getPsmallc_pk() {
-		return psmallc_pk;
-	}
-	public void setPsmallc_pk(int psmallc_pk) {
-		this.psmallc_pk = psmallc_pk;
-	}
 	public int getPost_price() {
 		return post_price;
 	}
@@ -164,48 +273,5 @@ public class managerDTO {
 	public void setPost_date(Date post_date) {
 		this.post_date = post_date;
 	}
-	public int getRp_num_pk() {
-		return rp_num_pk;
-	}
-	public void setRp_num_pk(int rp_num_pk) {
-		this.rp_num_pk = rp_num_pk;
-	}
-	public int getRp_target_mbn() {
-		return rp_target_mbn;
-	}
-	public void setRp_target_mbn(int rp_target_mbn) {
-		this.rp_target_mbn = rp_target_mbn;
-	}
-	public int getRp_mbn() {
-		return rp_mbn;
-	}
-	public void setRp_mbn(int rp_mbn) {
-		this.rp_mbn = rp_mbn;
-	}
-	public int getRp_lnb() {
-		return rp_lnb;
-	}
-	public void setRp_lnb(int rp_lnb) {
-		this.rp_lnb = rp_lnb;
-	}
-	public int getRc_num_pk() {
-		return rc_num_pk;
-	}
-	public void setRc_num_pk(int rc_num_pk) {
-		this.rc_num_pk = rc_num_pk;
-	}
-	public String getRp_content() {
-		return rp_content;
-	}
-	public void setRp_con(String rp_content) {
-		this.rp_content = rp_content;
-	}
-	public Date getRp_date() {
-		return rp_date;
-	}
-	public void setRp_date(Date rp_date) {
-		this.rp_date = rp_date;
-	}
-
 	
 }

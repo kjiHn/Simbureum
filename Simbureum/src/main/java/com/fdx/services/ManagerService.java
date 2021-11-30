@@ -20,6 +20,7 @@ public interface ManagerService {
 	boolean remove(Map<String, Object> map);
 
 	List<managerDTO> selectList(int post_num_pk);
+	List<managerDTO> selectList2(int ntc_num_pk);
 
 	String MNGmypage(Map<String, Object> map);
 

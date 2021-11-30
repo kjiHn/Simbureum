@@ -63,39 +63,40 @@
 		<table width = "100%" height = "100%" >
 			<tr>
 				<td><b>제목</b></td>
-				<td>${report.get(0).getPost_title()}</td>
+				<%-- <td>${reportpost.get(0).getPost_title()}</td> --%>
+				<%-- <td>${post.get(0).getPost_num_pk()}</td> --%>
 			</tr>
 			<tr>
 				<td><b>작성자</b></td>
-				<td>${report.get(0).getMb_name()}</td>
+				<%-- <td>${reportpost.get(0).getMb_id()}</td> --%>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
-				<td><fmt:formatDate value="${report.get(0).getPost_date()}" pattern="yyyy-MM-dd"/></td>
+				<%-- <td><fmt:formatDate value="${reportpost.get(0).getPost_date()}" pattern="yyyy-MM-dd"/></td> --%>
 			</tr>
 			<tr>
 				<td><b>내용</b></td>
-				<td>${report.get(0).getPost_con()}</td>
+				<%-- <td>${reportpost.get(0).getPost_con()}</td> --%>
 			</tr>
 			<tr>
 				<td><b>위치</b></td>
-				<td>${report.get(0).getPbigc_name()}</td>
+				<%-- <td>${post.get(0).getPbigc_name()}&nbsp;${post.get(0).getPsmallc_name()}</td> --%>
 			</tr>
 			<tr>
 			<td><b>심부름가격</b></td>
-			<td>${report.get(0).getPost_price()}</td>
+			<%-- <td>${reportpost.get(0).getPost_price()}</td> --%>
 			</tr>
 			<tr>
 				<td><b>신고자</b></td>
-				<td>${report.get(0).getMb_name()}</td>
+				<%-- <td>${reportpost.get(0).getMb_id()}</td> --%>
 			</tr>
 			<tr>
 				<td><b>신고일</b></td>
-				<td><fmt:formatDate value="${report.get(0).getRp_date()}" pattern="yyyy-MM-dd"/></td>
+				<%-- <td><fmt:formatDate value="${reportpost.get(0).getPorp_date()}" pattern="yyyy-MM-dd"/></td> --%>
 			</tr>
 			<tr>
 				<td><b>신고사유</b></td>
-				<td>${report.get(0).getRp_content()}</td>
+				<%-- <td>${reportpost.get(0).getPorp_con()}</td> --%>
 			</tr>
 		</table>
 	</div>

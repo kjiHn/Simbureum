@@ -4,17 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mappers.Manager">
-<select id="reportpost" parameterType="int" resultType="com.fdx.dto.managerDTO"> <!-- DTO폴더명(COM.FDX.DTO.MANAGERDTO(소문자)) -->
+	
+	<!--게시글 보기 -->
+	<select id="post" parameterType="int" resultType="com.fdx.dto.managerDTO"> <!-- DTO폴더명(COM.FDX.DTO.MANAGERDTO(소문자)) -->
+		
+		select a.post_num_pk, a.post_title, b.mb_id, c.pbigc_name, d.psmallc_name, a.post_views, a.post_date
+		from post a, member b , pbigc c, psmallc d
+		where a.mb_num_pk = b.mb_num_pk
+		and a.psmallc_pk = d.psmallc_pk
+		and d.pbigc_pk = c.pbigc_pk
+		and a.post_num_pk = #{post_num_pk}
+		
+	</select>
+	
+	<!--공지 보기  -->
+	<select id="announce" parameterType="int" resultType="com.fdx.dto.managerDTO"> <!-- DTO폴더명(COM.FDX.DTO.MANAGERDTO(소문자)) -->
+		
+		select ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
+		FROM NOTICE
+		where ntc_num_pk = #{ntc_num_pk}
+		
+	</select>
+	
+	<!-- 신고된 게시글 보기 -->
+	<select id="reportpost" parameterType="int" resultType="com.fdx.dto.managerDTO">
+	
+		select a.post_title, b.mb_id, a.post_date, a.post_con, c.pbigc_name, d.psmallc_name, a.post_price, b.mb_id,e.porp_date, e.porp_con
+		from post a, member b , pbigc c , psmallc d , po_report e
+		where a.mb_num_pk = b.mb_num_pk
+		and a.psmallc_pk = d.psmallc_pk
+		and d.pbigc_pk = c.pbigc_pk
+		and e.porp_mbn = b.mb_num_pk
+		AND a.post_num_pk = #{post_num_pk}
+	
+	</select>
+	
+	<!-- 신고된 리뷰 보기 -->
+	<select id="noticepost" parameterType="int" resultType="com.fdx.dto.managerDTO">
+	
+		select (SELECT MB_ID FROM member m WHERE m.mb_num_pk = pr.porp_mbn) porp_mbn
+    	,(SELECT MB_ID FROM member m WHERE m.mb_num_pk = pr.porp_lnb) porp_lnb
+		from po_report pr JOIN  Member m ON m.mb_num_pk = pr.porp_target_mbn
+		WHERE m.mb_num_pk =4 ;
+	
+	</select>
+	
+	
+	
 
-select a.post_title,b.mb_name,a.post_date,a.post_con,c.pbigc_name,d.psmallc_name,a.post_price,b.mb_name,e.rp_date,e.rp_content
-from post a, member b , pbigc c , psmallc d , report e
-where a.mb_num_pk = b.mb_num_pk
-and a.psmallc_pk = d.psmallc_pk
-and d.pbigc_pk = c.pbigc_pk
-and e.rp_mbn = b.mb_num_pk
-AND a.post_num_pk = #{post_num_pk}
-
-
-</select>
 
 </mapper>	

@@ -14,12 +14,6 @@
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
     
-    <style>
-    .button{
-    border-radius: 5px;
-    
-    }
-    </style>
 </head>
 <body>
 
@@ -28,11 +22,8 @@
    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
-            <jsp:include page="../model/siderbarMNG1.jsp" flush="false"/>
+            <%-- <jsp:include page="../model/siderbarMNG1.jsp" flush="false"/> --%>
             <div class="col-lg-10 posts-list">
-            	<div class="form-group mt-3" align = "right" >
-            		<a href="#"><button  class="button button-contactForm boxed-btn" class="button" id="btn_create">공지 작성</button></a>
-            	</div>
             	<h2 class="contact-title" align="center">공지 사항</h2><hr>
                		<div class="slider-shape d-none d-lg-block">
                		
@@ -50,22 +41,23 @@
 
                      <tbody>
                         <tr style="border: 1px solid #e3c4ff;">
+                           <!-- 테스트 코드 -->
                            <td>${announce.get(0).getNtc_num_pk()}</td>
-                           <td><a href="MNGannounce"><u>${announce.get(0).getNtc_title()}</u></a></td>
+                           <td>${announce.get(0).getNtc_title()}</td>
                            <td>관리자</td>
                            <td>${announce.get(0).getNtc_views()}</td>
                            <td><fmt:formatDate value="${announce.get(0).getNtc_date()}" pattern="yyyy-MM-dd"/></td>
                         </tr>
 
 
-                        <tr>
+                        <%-- <tr>
                            <!-- 테스트 코드 -->
-                           <td>1</td>
-                           <td><ins>공지사항</ins></td>
+                           <td>${ancbd.get(1).getNtc_num_pk()}</td>
+                           <td>${ancbd.get(1).getNtc_title()}</td>
                            <td>관리자</td>
-                           <td>11</td>
-                           <td>2022.22.22</td>
-                        </tr>
+                           <td>${ancbd.get(1).getNtc_views()}</td>
+                           <td>${ancbd.get(1).getNtc_date()}</td>
+                        </tr> --%>
 
                      </tbody>
                   </table>
