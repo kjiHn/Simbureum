@@ -120,7 +120,9 @@ body {
 										<li>
 											<strong class="tit requied">휴대폰 번호</strong>
 											<div class="input del">
-												<input type="number" class="cleanValMsg" id="join_mobile" name="mb_pnb" title="휴대폰번호" value="" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="-없이 번호만 입력해주세요">
+												<!--  -->
+												<input type="number" class="cleanValMsg" id="join_mobile" title="휴대폰번호" value="" maxlength="13"  placeholder="-없이 번호만 입력해주세요">
+												<input type="hidden"  id="join_mobile2" name="mb_pnb" title="휴대폰번호" value="">
 											</div>
 											<p class="validation-check" id="join_mobile_error"></p>
 										</li>
@@ -145,6 +147,45 @@ body {
 		</div>
 		</main>
 	</div>
+	<script type="text/javascript">
+		var autoHypenPhone = function(str) {
+			str = str.replace(/[^0-9.]/g, '');
+			var tem = '';
+			if (str.length < 4) {
+				return str;
+			}else if (str.length < 7) {
+				tem += str.substr(0,3);
+				tem += '-';
+				tem += str.substr(3);
+				return tem;
+			}else if (str.length < 11) {
+				tem += str.substr(0,3);
+				tem += '-';
+				tem +=str.substr(3,3);
+				tem += '-';
+				tem +=str.substr(6);
+				return tem;
+			}
+			else{
+				tem += str.substr(0,3);
+				tem += '-';
+				tem +=str.substr(3,4);
+				tem += '-';
+				tem +=str.substr(7);
+				return tem;
+			}
+			return str;
+		}
+		
+		var phoneNum = document.getElementById('join_mobile');
+		var phoneNum2 = document.getElementById('join_mobile2');
+		phoneNum.onkeyup = function() {
+			console.log(this.value);
+			phoneNum2.value = autoHypenPhone(this.value);
+		}
+	
+	
+	</script>
 	
 	<script type="text/javascript">
 	function Idcheck() {
