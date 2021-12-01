@@ -110,7 +110,7 @@ body {
 <body>
 	<div class="wrap" id="wrap">
 		<section id="mainHeader">
-		<h1><a href="/home">해줘~할게!</a></h1>
+		<h1><a href="/">해줘~할게!</a></h1>
 		</section>
 		<!-- 바디 - 여기위로 템플릿 -->
 		<main class="container page login srch" id="container">
@@ -125,7 +125,7 @@ body {
 					<div class="pct">
 						<div class="poptents">
 							<form id="join_form"
-								action="/AboutPet/Project/aboutPet/sign_up.do" method="post">
+								action="" method="post">
 								<!-- 회원 정보 입력 -->
 								<div class="member-input">
 									<div class="textBox">

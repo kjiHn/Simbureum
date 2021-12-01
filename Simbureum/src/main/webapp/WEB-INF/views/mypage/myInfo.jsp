@@ -182,7 +182,6 @@ $("#goUpdate").click(function() {
 	
 });
 
-alert("${sessionScope.mid}");
 
 
 </script>

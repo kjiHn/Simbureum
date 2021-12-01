@@ -139,7 +139,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 								}
 
 								else {
-									location.reload();
+									 alert("")
 								}
 							}
 						});
