@@ -12,10 +12,12 @@
 	padding: 20px;
 	width: 600px;
 	height: 500px;
-	background-color: #e3c4ff;
+	background: rgba(155, 89, 182, 0.2);
 	position: absolute;
-	left: 36%;
-	top: 100px;
+	top: 100%;
+	left: 35%;
+	box-shadow: 0 15px 20px rgb(0 0 0 / 20%);
+	border-radius: 5px;
 }
 
 .subTitle {
@@ -48,8 +50,15 @@
 
 .input_main {
 	width: 300px;
-	height: 40px;
-	border: 1px solid gray;
+	outline: none;
+    height: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: transparent;
+    font-size: 18px;
+    border: none;
+    color: #fff;
+    border-bottom: 1px solid #fff;
 }
 
 .input_p {
