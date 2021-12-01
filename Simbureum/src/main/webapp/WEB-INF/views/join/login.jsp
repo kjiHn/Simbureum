@@ -46,7 +46,7 @@
             </div>
             <div class="form-input">
                 <label for="password">Password</label>
-                <input id="pswd" type="password" name="password" placeholder="Password">
+                <input id="pswd" type="password" name="password" placeholder="Password" >
                 <p id="login_error" class="validation-check"></p>
             </div>
             <div class="form-input pt-30">

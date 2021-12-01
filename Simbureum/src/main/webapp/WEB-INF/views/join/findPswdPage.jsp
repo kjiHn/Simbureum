@@ -83,15 +83,12 @@
 	text-align: center;
 }
 
-.myBut {
-	padding: 0 40px;
-	line-height: 50px;
-	color: #fff;
-	background: #1f2b7b;
-}
 
-.myBut:hover {
+
+.borders-btn:hover {
 	cursor: pointer;
+	background-color: #da6bff;
+	color:#ffffff;
 }
 </style>
 </head>
@@ -134,7 +131,7 @@
 						</form>
 						<div>
 							<div id="btn">
-								<button id="nextBtn" class="myBut">비밀번호찾기</button>
+								<button id="nextBtn" class="borders-btn">비밀번호찾기</button>
 							</div>
 						</div>
 

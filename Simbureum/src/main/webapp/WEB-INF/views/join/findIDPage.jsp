@@ -87,15 +87,11 @@ padding: 10px;
 text-align: center;
 
 }
-.myBut{
-	padding: 0 40px;
-    line-height: 50px;
-    color: #fff;
-    background: #1f2b7b;
-}
 
-.myBut:hover {
+.borders-btn:hover {
 	cursor: pointer;
+	background-color: #da6bff;
+	color:#ffffff;
 }
 </style>
 </head>
@@ -132,7 +128,7 @@ text-align: center;
 						<div>
 							<div id="btn">
 								<button id="nextBtn"
-									class="myBut">아이디 찾기</button>
+									class="borders-btn">아이디 찾기</button>
 							</div>
 						</div>
 
