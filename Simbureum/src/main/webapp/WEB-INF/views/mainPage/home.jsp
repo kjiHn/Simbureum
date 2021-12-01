@@ -25,20 +25,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="view/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="view/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="view/assets/css/slicknav.css">
-    <link rel="stylesheet" href="view/assets/css/flaticon.css">
-    <link rel="stylesheet" href="view/assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="view/assets/css/gijgo.css">
-    <link rel="stylesheet" href="view/assets/css/animate.min.css">
-    <link rel="stylesheet" href="view/assets/css/animated-headline.css">
-    <link rel="stylesheet" href="view/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="view/assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="view/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="view/assets/css/slick.css">
-    <link rel="stylesheet" href="view/assets/css/nice-select.css">
-    <link rel="stylesheet" href="view/assets/css/style.css">
+	<link rel="stylesheet" href="/resources/view/assets/css/total.css">
     
 </head>
 <body>
@@ -137,53 +124,8 @@
 		}else{
 			location.replace("/main/writePost");
 		}
-	}
+	}	
 </script>        
-    
-<script src="view/assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<!-- Jquery, Popper, Bootstrap -->
-<script src="view/assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="view/assets/js/popper.min.js"></script>
-<script src="view/assets/js/bootstrap.min.js"></script>
-
-
-<!-- Jquery Slick , Owl-Carousel Plugins -->
-<script src="view/assets/js/owl.carousel.min.js"></script>
-<script src="view/assets/js/slick.min.js"></script>
-<!-- One Page, Animated-HeadLin -->
-<script src="view/assets/js/wow.min.js"></script>
-<script src="view/assets/js/animated.headline.js"></script>
-<script src="view/assets/js/jquery.magnific-popup.js"></script>
-
-<!-- Date Picker -->
-<script src="view/assets/js/gijgo.min.js"></script>
-
-<!-- Video bg -->
-<script src="view/assets/js/jquery.vide.js"></script>
-
-<!-- Nice-select, sticky -->
-<script src="view/assets/js/jquery.nice-select.min.js"></script>
-<script src="view/assets/js/jquery.sticky.js"></script>
-<!-- Progress -->
-<script src="view/assets/js/jquery.barfiller.js"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="view/assets/js/jquery.counterup.min.js"></script>
-<script src="view/assets/js/waypoints.min.js"></script>
-<script src="view/assets/js/jquery.countdown.min.js"></script>
-<script src="view/assets/js/hover-direction-snake.min.js"></script>
-
-<!-- contact js -->
-<script src="view/assets/js/contact.js"></script>
-<script src="view/assets/js/jquery.form.js"></script>
-<script src="view/assets/js/jquery.validate.min.js"></script>
-<script src="view/assets/js/mail-script.js"></script>
-<script src="view/assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->   
-<script src="view/assets/js/plugins.js"></script>
-<script src="view/assets/js/main.js"></script>
-
 </body>
 </html>
 <%@include file="../model/footer.jsp" %>

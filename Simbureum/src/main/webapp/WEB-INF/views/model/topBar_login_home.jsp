@@ -117,6 +117,5 @@ if (request.getProtocol().equals("HTTP/1.1"))
 <!-- Jquery Plugins, main Jquery -->	
 <script src="/resources/view/assets/js/plugins.js"></script>
 <script src="/resources/view/assets/js/main.js"></script>
-
 </body>
 </html>

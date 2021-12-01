@@ -3,18 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-	if(session.getAttribute("mid") != null) {
-%>
+
+<c:if test="${sessionScope.mid ne null }">
 <%@ include file="../model/topBar_login.jsp"%>
-<%
-	}else{
-		
-%>
+</c:if>
+<c:if test="${sessionScope.mid eq null }">
 <%@ include file="../model/topBar1.jsp"%>
-<%
-	}
-%>
+</c:if>
 
 
 <html>
@@ -186,6 +181,8 @@ $("#goUpdate").click(function() {
 	});
 	
 });
+
+alert("${sessionScope.mid}");
 
 
 </script>
