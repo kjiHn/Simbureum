@@ -47,11 +47,11 @@
 										<p id = "endPost">심부름 한 내역</p>
 
 								</a></li>
-								<li><a href="#" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+								<li><a href="/review/writeList?mb_id_pk=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
 										<p>작성한 리뷰</p>
 
 								</a></li>
-								<li><a href="/review/receiveList" class="d-flex">
+								<li><a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid") %>" class="d-flex">
 										<p style="font-weight: ">받은리뷰</p>
 
 								</a></li>

@@ -78,7 +78,7 @@ table {
 						<div class="modal-body">
 							<h3>신고 사유</h3>
 							
-                				<input type="text"  name="RERP_TARGET_MBN" value="<%=session.getAttribute("chk_info")%>">
+                				<input type="text"  name="RERP_TARGET_MBN" value="<%=session.getAttribute("nNum")%>">
                 				<input type="hidden"  name="RERP_MBN" value="${reList.mb_id_pk }">
                 				<input type="hidden"  name="RERP_LNB" value="${reList.vr_rvn_pk }">                				
                 				
