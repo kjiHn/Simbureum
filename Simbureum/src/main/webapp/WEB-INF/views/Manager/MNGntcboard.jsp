@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -59,27 +60,17 @@
                         </tr>
                      </thead>
 
-                     <tbody>
+                    <tbody>
+                      <c:forEach items="${post}" var="post">
                         <tr style="border: 1px solid #e3c4ff;">
-                           <td>${post.get(0).getPost_num_pk()}</td>
-						   <td><a href="#"><u>${post.get(0).getPost_title()}</u></a></td>
-                           <td>${post.get(0).getMb_id()}</td>
-                           <td>${post.get(0).getPbigc_name()}&nbsp;${post.get(0).getPsmallc_name()}</td>
-                           <td>${post.get(0).getPost_views()}</td>
-                           <td><fmt:formatDate value="${post.get(0).getPost_date()}" pattern="yyyy-MM-dd"/></td>
+                           <td>${post.post_num_pk}</td>
+						   <td><a href="/MNGntcboardDetail?post_num_pk=${post.post_num_pk }"><u>${post.post_title}</u></a></td>
+                           <td>${post.mb_id}</td>
+                           <td>${post.pbigc_name}&nbsp;${post.psmallc_name}</td>
+                           <td>${post.post_views}</td>
+                           <td><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></td>
                         </tr>
-
-
-                        <tr>
-                           <!-- 테스트 코드 -->
-                           <td>1</td>
-                           <td>벌레 잡아주세요ㅠㅠ</td>
-                           <td>벌레시러</td>
-                           <td>서울 서초구</td>
-                           <td>11</td>
-                           <td>2021.11.09</td>
-                        </tr>
-
+					   </c:forEach>
                      </tbody>
                   </table>
             

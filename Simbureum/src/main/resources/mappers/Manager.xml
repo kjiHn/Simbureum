@@ -6,9 +6,20 @@
 <mapper namespace="mappers.Manager">
 	
 	<!--게시글 보기 -->
-	<select id="post" parameterType="int" resultType="com.fdx.dto.managerDTO"> <!-- DTO폴더명(COM.FDX.DTO.MANAGERDTO(소문자)) -->
+	<select id="post" resultType="com.fdx.dto.managerDTO">
 		
 		select a.post_num_pk, a.post_title, b.mb_id, c.pbigc_name, d.psmallc_name, a.post_views, a.post_date
+		from post a, member b , pbigc c, psmallc d
+		where a.mb_num_pk = b.mb_num_pk
+		and a.psmallc_pk = d.psmallc_pk
+		and d.pbigc_pk = c.pbigc_pk
+		
+	</select>
+	
+	<!--게시글 상세 보기 -->
+	<select id="postDetail" parameterType="int" resultType="com.fdx.dto.managerDTO">
+		
+		select a.post_title, b.mb_id, a.post_date, a.post_views, a.post_con, c.pbigc_name, d.psmallc_name, a.post_price
 		from post a, member b , pbigc c, psmallc d
 		where a.mb_num_pk = b.mb_num_pk
 		and a.psmallc_pk = d.psmallc_pk
@@ -18,14 +29,21 @@
 	</select>
 	
 	<!--공지 보기  -->
-	<select id="announce" parameterType="int" resultType="com.fdx.dto.managerDTO"> <!-- DTO폴더명(COM.FDX.DTO.MANAGERDTO(소문자)) -->
+	<select id="announce" resultType="com.fdx.dto.managerDTO">
+		
+		select ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
+		FROM NOTICE
+		
+	</select>
+	
+	<!--공지 상세 보기  -->
+	<select id="announceDetail" parameterType="int" resultType="com.fdx.dto.managerDTO">
 		
 		select ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
 		FROM NOTICE
 		where ntc_num_pk = #{ntc_num_pk}
 		
 	</select>
-	
 	<!-- 신고된 게시글 보기 -->
 	<select id="reportpost" parameterType="int" resultType="com.fdx.dto.managerDTO">
 	

@@ -18,15 +18,9 @@
 			<div class="col-lg-10 posts-list" style="padding: 40px 100px;">
 				<h2 class="contact-title" align="center">공지 사항</h2><hr>
 	<div>
-	    <h3 align="center">${announce.get(0).getNtc_title()}</h3><br>
-	    <p align="right">작성자: 관리자&nbsp;&nbsp;조회수:${announce.get(0).getNtc_views()}&nbsp;&nbsp;작성일:<fmt:formatDate value="${announce.get(0).getNtc_date()}" pattern="yyyy-MM-dd"/></p><br><br>
-	    <p>안녕하세요, 해줘~할게 입니다.
-	
-	      11월 13일(토) 20시부터 11월 14일(일) 9시까지
-	
-	      사이트 점검 및 업데이트가 있을 예정입니다.
-	
-	      이용에 불편을 드려 죄송합니다.</p>
+	    <h3 align="center">${announceDetail.ntc_title}</h3><br>
+	    <p align="right">작성자: 관리자&nbsp;&nbsp;조회수:${announceDetail.ntc_views}&nbsp;&nbsp;작성일:<fmt:formatDate value="${announce.ntc_date}" pattern="yyyy-MM-dd"/></p><br><br>
+	    <p>${announceDetail.ntc_con}</p>
 	</div>
 	
 			</div>

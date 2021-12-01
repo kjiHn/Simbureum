@@ -17,16 +17,31 @@ public class ManagerDao {
 
 	
 	//게시글 보기
-	public List<managerDTO> selectList(int post_num_pk) {
-		List<managerDTO> post = this.sqlSessionTemplate.selectList("mappers.Manager.post",post_num_pk);
+	public List<managerDTO> selectList() {
+		List<managerDTO> post = this.sqlSessionTemplate.selectList("mappers.Manager.post");
 	    return post;
 	}
 	
+	//게시글 상세 보기
+		public managerDTO postDetail(int post_num_pk) throws Exception {
+			managerDTO postDetail = this.sqlSessionTemplate.selectOne("mappers.Manager.postDetail",post_num_pk);
+		    
+			return postDetail;
+		}
+	
 	//공지 보기
-	public List<managerDTO> selectList1(int ntc_num_pk) {
-		List<managerDTO> announce = this.sqlSessionTemplate.selectList("mappers.Manager.announce",ntc_num_pk);
+	public List<managerDTO> announce() {
+		List<managerDTO> announce = this.sqlSessionTemplate.selectList("mappers.Manager.announce");
 	    return announce;
 	}
+	
+	//공지 상세 보기
+		public managerDTO announceDetail(int ntc_num_pk) throws Exception {
+			managerDTO announceDetail = this.sqlSessionTemplate.selectOne("mappers.Manager.announceDetail",ntc_num_pk);
+			
+		    return announceDetail;
+		}
+	
 	
 	//신고된 게시글 보기
 	public List<managerDTO> selectList2(int post_num_pk) {

@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../model/topBar1.jsp" %>
@@ -49,23 +50,15 @@
                      </thead>
 
                      <tbody>
+                     <c:forEach items="${announce}" var="announce">
                         <tr style="border: 1px solid #e3c4ff;">
-                           <td>${announce.get(0).getNtc_num_pk()}</td>
-                           <td><a href="MNGannounce"><u>${announce.get(0).getNtc_title()}</u></a></td>
+                           <td>${announce.ntc_num_pk}</td>
+                           <td><a href="/MNGancboardDetail?ntc_num_pk=${announce.ntc_num_pk }"><u>${announce.ntc_title}</u></a></td>
                            <td>관리자</td>
-                           <td>${announce.get(0).getNtc_views()}</td>
-                           <td><fmt:formatDate value="${announce.get(0).getNtc_date()}" pattern="yyyy-MM-dd"/></td>
+                           <td>${announce.ntc_views}</td>
+                           <td><fmt:formatDate value="${announce.ntc_date}" pattern="yyyy-MM-dd"/></td>
                         </tr>
-
-
-                        <tr>
-                           <!-- 테스트 코드 -->
-                           <td>1</td>
-                           <td><ins>공지사항</ins></td>
-                           <td>관리자</td>
-                           <td>11</td>
-                           <td>2022.22.22</td>
-                        </tr>
+					 </c:forEach>
 
                      </tbody>
                   </table>

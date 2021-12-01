@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdx.dao.ManagerDao;
 import com.fdx.dto.managerDTO;
@@ -25,44 +27,48 @@ public class MNGController {
 		return "Manager/MNGhome";
 	}
 	//게시글 보는화면
-	@RequestMapping(value = "/MNGntcboard")
+	@RequestMapping(value = "/MNGntcboard", method = RequestMethod.GET)
 	public String MNGntcboard(Model model) {
-		int a = 1;
-		List<managerDTO> post = managerDao.selectList(a);
-		System.out.println(post);
+		
+		List<managerDTO> post = managerDao.selectList();
 		model.addAttribute("post", post);
 	
-		
-		return "Manager/MNGntcboard"; 
+		return "Manager/MNGntcboard";
 	}
 	
 	//게시글 클릭시 상세 화면
-	@RequestMapping(value = "/MNGntcboard2")
-	public String MNGntcboard3() {
+	@RequestMapping(value = "/MNGntcboardDetail", method = RequestMethod.GET)
+	public String MNGntcboardDetail(@RequestParam("post_num_pk") int post_num_pk, Model model) throws Exception {
 		
-		return "Manager/MNGntcboard2";
+		managerDTO postDetail = managerDao.postDetail(post_num_pk);
+		
+		model.addAttribute("postDetail", postDetail);
+		
+		return "Manager/MNGntcboardDetail";
 	}
 	
 	//공지 보기
-	@RequestMapping(value = "/MNGancboard")
+	@RequestMapping(value = "/MNGancboard", method = RequestMethod.GET)
 	public String MNGancboard(Model model) {
-		int a = 1;
-		List<managerDTO> announce = managerDao.selectList1(a);
-		System.out.println(announce);
+		
+		List<managerDTO> announce = managerDao.announce();
 		model.addAttribute("announce", announce);
 		
 		return "Manager/MNGancboard";
 	}
-	//공지 상세 보기
-	@RequestMapping(value = "/MNGannounce")
-	public String MNGannounce(Model model) {
-		int a = 1;
-		List<managerDTO> announce = managerDao.selectList1(a);
-		System.out.println(announce);
-		model.addAttribute("announce", announce);
-		
-		return "Manager/MNGannounce";
+
+	
+	// 공지 상세 보기
+	@RequestMapping(value = "/MNGancboardDetail", method = RequestMethod.GET)
+	public String MNGannounceDetail(@RequestParam("ntc_num_pk") int ntc_num_pk, Model model) throws Exception {
+
+		managerDTO announceDetail = managerDao.announceDetail(ntc_num_pk);
+		model.addAttribute("announceDetail", announceDetail);
+
+		return "Manager/MNGancboardDetail";
 	}
+ 
+	
 	//회원 관리 메인 페이지
 	@RequestMapping(value = "/MNGuserboard")
 	public String MNGuserboard() {
