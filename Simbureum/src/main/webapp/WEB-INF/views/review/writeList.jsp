@@ -3,7 +3,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../model/topBar1.jsp" %>
+<%
+	if(session.getAttribute("mid") != null) {
+%>
+<%@ include file="../model/topBar_login.jsp"%>
+<%
+	}else{
+		
+%>
+<%@ include file="../model/topBar1.jsp"%>
+<%
+	}
+%>
 
 
 <html>
@@ -14,10 +25,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
-    
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">    
 </head>
 <body>
+
 
 
 
@@ -33,7 +44,7 @@
               
                
             	<h3>TO.<a href="#">고용자</a> | <a href="#">심부름꾼</a></h3>
-            	<form method="post">
+            	
                   <table style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
@@ -44,26 +55,60 @@
                            <th>작성일</th>                           
                         </tr>
                      </thead>
-					<c:forEach items="${writeList }" var="vrdto">
+                     
+					<c:forEach items="${writeList }" var="wrdto">
 					
                      <tbody>                     
                          <tr style="border: 1px solid #e3c4ff;">
-                           <td style="padding: 10px;">${vrdto.vr_rvn_pk}</td>
-                           <td><a href="wrList?post_num_pk=${vrdto.post_num_pk }" style="color: black">${vrdto.vr_rvc}</a></td>
-                           <td>${vrdto.vr_mbid }</td>
+                           <td style="padding: 10px;">${wrdto.vr_rvn_pk}</td>
+                           <td><a href="wrList?mb_id_pk=${wrdto.mb_id_pk }" style="color: black">${wrdto.vr_rvc}</a></td>
+                           <td>${wrdto.mb_id_pk }</td>
                            <td style="color: #ffc107;"> 
-	                            <c:if test="${vrdto.vr_grd == 1}">★☆☆☆☆</c:if>
-	                            <c:if test="${vrdto.vr_grd == 2}">★★☆☆☆</c:if>
-	                            <c:if test="${vrdto.vr_grd == 3}">★★★☆☆</c:if>
-                           		<c:if test="${vrdto.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${vrdto.vr_grd == 5}">★★★★★</c:if>
+	                            <c:if test="${wrdto.vr_grd == 1}">★☆☆☆☆</c:if>
+	                            <c:if test="${wrdto.vr_grd == 2}">★★☆☆☆</c:if>
+	                            <c:if test="${wrdto.vr_grd == 3}">★★★☆☆</c:if>
+                           		<c:if test="${wrdto.vr_grd == 4}">★★★★☆</c:if>
+                           		<c:if test="${wrdto.vr_grd == 5}">★★★★★</c:if>
                             </td>
-                           <td>${vrdto.vr_date}</td>
+                           <td>${wrdto.vr_date}</td>
                         </tr>
                      </tbody>
                    </c:forEach>
                   </table>
-				</form>
+                  
+                  
+                  
+                  <nav class="blog-pagination justify-content-center d-flex">
+                                <ul class="pagination">
+                                 <c:if test="${pageMaker.prev}">
+	                                    <li class="page-item">
+	                                        <a href="writeList${pageMaker.makeQuery(pageMaker.startPage - 1)}&mb_id_pk=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Previous">
+	                                            <i class="ti-angle-left"></i>
+	                                        </a>
+	                                    </li>
+                                 </c:if> 
+                                   
+                                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                                    <li class="page-item">
+                                        <a href="writeList${pageMaker.makeQuery(idx)}&mb_id_pk=<%=session.getAttribute("mid") %>" class="page-link" id="page">${idx}</a>
+                                    </li>
+                                    </c:forEach>
+                                    
+                                   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                                    <li class="page-item">
+                                        <a href="writeList${pageMaker.makeQuery(pageMaker.endPage + 1)}&mb_id_pk=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Next">
+                                            <i class="ti-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    </c:if> 
+                                </ul>
+                            </nav>  
+				
+				
+				</div>
+				
+				<div>
+
            </div>
            
                </div>

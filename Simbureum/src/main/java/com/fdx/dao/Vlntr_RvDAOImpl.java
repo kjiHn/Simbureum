@@ -8,6 +8,7 @@ import org.apache.ibatis.jdbc.SQL;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.fdx.dto.CriteriaDTO;
 import com.fdx.dto.PostRvDTO;
 import com.fdx.dto.Vlntr_RvDTO;
 @Repository
@@ -27,16 +28,16 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 
 
 	@Override
-	public List<Vlntr_RvDTO> receiveList() throws Exception {
+	public List<Vlntr_RvDTO> receiveList(String vr_mbid) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("receiveList");
+		return sqlSessionTemplate.selectList("receiveList",vr_mbid);
 	}
 
 
 	@Override
-	public PostRvDTO reList(int post_num_pk) throws Exception {
+	public PostRvDTO reList(int vr_rvn_pk) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("reList",post_num_pk);
+		return sqlSessionTemplate.selectOne("reList",vr_rvn_pk);
 	}
 
 
@@ -49,17 +50,74 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 
 
 	@Override
-	public List<Vlntr_RvDTO> writeList() throws Exception {
+	public List<Vlntr_RvDTO> writeList(String mb_id_pk) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("writeList");
+		return sqlSessionTemplate.selectList("writeList", mb_id_pk);
 	}
 
 
 	@Override
-	public PostRvDTO wrList(int post_num_pk) throws Exception {
+	public PostRvDTO wrList(String mb_id_pk) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("wrList", post_num_pk);
+		return sqlSessionTemplate.selectOne("wrList", mb_id_pk);
 	}
+
+
+	@Override
+	public void wreDelete(String mb_id_pk) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.delete("wreDelete", mb_id_pk);
+		
+	}
+
+
+
+	@Override
+	public int listCount(String mb_id_pk) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("listCount",mb_id_pk);
+	}
+
+
+	@Override
+	public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("page",cri);
+	}
+
+
+	@Override
+	public void wreInsert(Vlntr_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.insert("wreInsert", vrdto);
+		
+	}
+
+
+	@Override
+	public int vrCount(String vr_mbid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("vrCount",vr_mbid);
+	}
+
+	//고용자의 평점
+	@Override
+	public Vlntr_RvDTO grdAvg(String vr_mbid) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return sqlSessionTemplate.selectOne("grdAvg", vr_mbid);
+		
+	}
+
+
+	@Override
+	public void Report(Vlntr_RvDTO vrdto) throws Exception {
+		sqlSessionTemplate.insert("Report", vrdto);
+		
+	}
+
+
+	
 
 
 

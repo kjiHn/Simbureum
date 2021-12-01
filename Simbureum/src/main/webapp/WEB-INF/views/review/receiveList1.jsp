@@ -43,7 +43,7 @@
               	
               
                
-            	<h3>TO.<a href="#">고용자</a> | <a href="#">심부름꾼</a></h3>
+            	<h3>TO.<a href="review/receiveList">고용자</a> | <a href="#">심부름꾼</a></h3>
             
                   <table style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
@@ -60,8 +60,8 @@
                      <tbody>                     
                          <tr style="border: 1px solid #e3c4ff;">
                            <td style="padding: 10px;">${vrdto.vr_rvn_pk}</td>
-                           <td><a href="reList?vr_rvn_pk=${vrdto.vr_rvn_pk }" style="color: black">${vrdto.vr_rvc}</a></td>
-                           <td>${vrdto.mb_id_pk }</td>
+                           <td><a href="reList?post_num_pk=${vrdto.post_num_pk }" style="color: black">${vrdto.vr_rvc}</a></td>
+                           <td>${vrdto.vr_mbid }</td>
                            <td style="color: #ffc107;"> 
 	                            <c:if test="${vrdto.vr_grd == 1}">★☆☆☆☆</c:if>
 	                            <c:if test="${vrdto.vr_grd == 2}">★★☆☆☆</c:if>
@@ -74,33 +74,6 @@
                      </tbody>
                    </c:forEach>
                   </table>
-			
-				<nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                 <c:if test="${pageMaker.prev}">
-                                 
-	                                    <li class="page-item">
-	                                        <a href="receiveList${pageMaker.makeQuery(pageMaker.startPage - 1)}&vr_mbid=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Previous">
-	                                            <i class="ti-angle-left"></i>
-	                                        </a>
-	                                    </li>
-                                 </c:if> 
-                                   
-                                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li class="page-item">
-                                        <a href="receiveList${pageMaker.makeQuery(idx)}&vr_mbid=<%=session.getAttribute("mid") %>" class="page-link" id="page">${idx}</a>
-                                    </li>
-                                    </c:forEach>
-                                    
-                                   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li class="page-item">
-                                        <a href="receiveList${pageMaker.makeQuery(pageMaker.endPage + 1)}&vr_mbid=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Next">
-                                            <i class="ti-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    </c:if> 
-                                </ul>
-                            </nav>  
 				
            </div>
            

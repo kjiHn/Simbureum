@@ -117,7 +117,7 @@ article {
 								
 							<br>
 							<div class="col-lg-12" > 
-								<form class="form-contact contact_form"	action="/review/test" method="post"  novalidate="novalidate">
+								<form class="form-contact contact_form"	action="/review/writeList" method="post"  novalidate="novalidate">
 								<h3>별점</h3>
 									<div class="star-num1" >
 									  <input type="radio" id="5-stars" name="num1" value="5" />
@@ -137,7 +137,7 @@ article {
 										<div class="col-12">
 											<div class="form-group">
 											<h3>내용</h3>
-												<textarea class="form-control w-100" name="str1"
+												<textarea class="form-control w-100" name="vr_rvc"
 													id="message" cols="30" rows="9"
 													onfocus="this.placeholder = ''"
 													onblur="this.placeholder = 'Enter Message'"

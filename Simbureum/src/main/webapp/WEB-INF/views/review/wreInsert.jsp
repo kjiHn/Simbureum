@@ -114,12 +114,10 @@ article {
 						<div class="col-lg-8 posts-list" style=" padding:  30px 50px; height:600px; border: 4px solid #e3c4ff; ">
 						
 					<form class="form-contact contact_form"	method="post"  role="form">	
+					<input type="hidden" value="${wrList.post_num_pk }">
+					<input type="hidden" value="${wrList.mb_id_pk }">
 				    <table style="text-align: center; width: 400px; align: center;" >
                      <thead>
-                        <tr>
-                           <th>TO.</th>
-                           <td >${wrList.vr_mbid }</td>                                                      
-                        </tr >
                         <tr>
                         	 <th >별점</th>
                              <td> 
@@ -142,7 +140,7 @@ article {
                            <td style="height: 200px;">
                            <div class="form-group"><textarea class="form-control w-100" name="vr_rvc"
 										 style="font-size: 20px;"
-										 id="message" cols="30" rows="9">${wrList.vr_rvc }</textarea>
+										 id="message" cols="30" rows="9"></textarea>
 								</div>
                            </td>                            
                         </tr>
