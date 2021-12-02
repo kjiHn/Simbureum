@@ -12,7 +12,7 @@ import com.fdx.dto.CriteriaDTO;
 import com.fdx.dto.PostRvDTO;
 import com.fdx.dto.Vlntr_RvDTO;
 
-@Service
+//@Service
 public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 	@Inject
 	private Vlntr_RvDAO vrdao;

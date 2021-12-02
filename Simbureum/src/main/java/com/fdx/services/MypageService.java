@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdx.dao.MypageDAO;
+import com.fdx.dto.Criteria;
 import com.fdx.dto.MypageDTO;
 
 @Service
@@ -15,19 +16,19 @@ public class MypageService {
 	private MypageDAO mypageDAO;
 	
 	
-	public List<MypageDTO> myUploadPost(int mb_num_pk){
+	public List<MypageDTO> myUploadPost(Criteria cri){
 		
-		return mypageDAO.myUploadPost(mb_num_pk);
-		
-	}
-	public List<MypageDTO> mySupPost(int mb_num_pk){
-		
-		return mypageDAO.mySupPost(mb_num_pk);
+		return mypageDAO.myUploadPost(cri);
 		
 	}
-	public List<MypageDTO> myFinshPost(int mb_num_pk){
+	public List<MypageDTO> mySupPost(Criteria cri){
+		
+		return mypageDAO.mySupPost(cri);
+		
+	}
+	public List<MypageDTO> myFinshPost(Criteria cri){
 			
-		return mypageDAO.myFinshPost(mb_num_pk);
+		return mypageDAO.myFinshPost(cri);
 			
 	}
 	
@@ -35,6 +36,16 @@ public class MypageService {
 		return mypageDAO.supPostDel(mypageDTO);
 	}
 	
+	public int uptotalPage(Criteria cri) {
+		return mypageDAO.uptotalPage(cri);
+	}
+	public int suptotalPage(Criteria cri) {
+		return mypageDAO.suptotalPage(cri);
+	}
+	
+	public int finshtotalPage(Criteria cri) {
+		return mypageDAO.finshtotalPage(cri);
+	}
 	
 	
 	

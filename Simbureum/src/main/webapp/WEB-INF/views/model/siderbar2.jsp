@@ -43,7 +43,7 @@
 										<p id = "supPost">심부름꾼 지원</p>
 
 								</a></li>
-								<li><a href="/mypage/endPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+								<li><a href="/mypage/endPost?mb_id=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
 										<p id = "endPost">심부름 한 내역</p>
 
 								</a></li>

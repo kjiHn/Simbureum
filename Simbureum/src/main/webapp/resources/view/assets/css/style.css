@@ -5182,10 +5182,15 @@ form.search-box .input-form .world-form i {
 }
 
 .blog-pagination .page-item.active .page-link {
-	background-color: #fbf9ff;
+	background-color: rgba(255,255,255);
 	border-color: #f0e9ff;
-	color: #888888
+	color:  rgba(240,103,255);
+	font-weight:bold;
+	cursor: text;
+	
 }
+
+
 
 .blog-pagination .page-item:last-child .page-link {
 	margin-right: 0

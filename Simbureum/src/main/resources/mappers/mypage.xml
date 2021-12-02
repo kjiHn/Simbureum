@@ -18,29 +18,7 @@
 	]]>
 	</select>
 	
-	<select id="mySupPost" parameterType="int"
-		resultType="com.fdx.dto.MypageDTO">
-	<![CDATA[
-		SELECT P.*,pb.pbigc_name||' '||ps.psmallc_name as plant
-		FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
-		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		WHERE  ap.mb_num_pk = #{mb_num_pk}
-		order by p.post_num_pk desc
-	]]>
-	</select>
 	
-	<select id="myFinshPost" parameterType="int"
-		resultType="com.fdx.dto.MypageDTO">
-	<![CDATA[
-		SELECT p.post_title,pb.pbigc_name||' '||ps.psmallc_name as plant,vh_date
-		FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
-            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		where p.mb_num_pk = #{mb_num_pk}
-		order by p.post_num_pk desc
-	]]>
-	</select>
 
 	<update id="hitup">
 		update post
@@ -53,5 +31,95 @@
 		WHERE mb_num_pk = #{mb_num_pk}
 		AND post_num_pk = #{post_num_pk}
 	</delete>
+	
+	
+	
+	<select id="getListWithPaging" resultType="com.fdx.dto.MypageDTO">
+<![CDATA[
+  select 
+    *
+  from 
+      (
+      SELECT /*+INDEX_DESC(post pk_post) */
+      rownum rn,p.post_num_pk,p.mb_num_pk,post_title,post_con,post_dline,post_numof,post_price,post_views,post_date
+      ,nvl(vh_hsn_pk,0) vh_hsn_pk, nvl(ap_apn_pk,0) ap_apn_pk,pb.pbigc_name||' '||ps.psmallc_name as plant
+		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+            FULL OUTER JOIN  Ap_post ap ON p.post_num_pk = ap.post_num_pk
+            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		where p.mb_num_pk = #{mb_num_pk}
+       	AND rownum <= #{pageNum} * #{amount}
+      )
+  where rn > (#{pageNum} -1) * #{amount}  
+  ]]>
+</select>
+
+<select id="uptotalPage" resultType="int">
+	 select COUNT(*)
+	 FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+            FULL OUTER JOIN  Ap_post ap ON p.post_num_pk = ap.post_num_pk
+            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+	 where p.mb_num_pk = #{mb_num_pk}
+	</select>
+	
+	
+	<select id="mySupPost"
+		resultType="com.fdx.dto.MypageDTO">
+	<![CDATA[
+	 select *
+  	 FROM 
+  	 	(
+		 SELECT rownum rn, p.post_num_pk, p.mb_num_pk, post_title
+         , post_con, post_dline, post_numof, post_price, post_views
+         , post_date, pb.pbigc_name||' '||ps.psmallc_name as plant
+		 FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
+		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		 WHERE ap.mb_num_pk = #{mb_num_pk}
+       	AND rownum <= #{pageNum} * #{amount}
+      )
+  where rn > (#{pageNum} -1) * #{amount}  
+	]]>
+	</select>
+	
+	<select id="myFinshPost"
+		resultType="com.fdx.dto.MypageDTO">
+	<![CDATA[
+	select *
+  	 FROM 
+  	 	(
+		SELECT rownum rn, p.post_num_pk, p.mb_num_pk, post_title
+         , post_con, post_dline, post_numof, post_price, post_views
+         , post_date, pb.pbigc_name||' '||ps.psmallc_name as plant
+         ,vh_date
+		FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		where sel_vr Like '%'||#{mb_id}||'%'
+		AND rownum <= #{pageNum} * #{amount}
+		 )
+  where rn > (#{pageNum} -1) * #{amount}  
+	]]>
+	</select>
+	
+	
+	
+	<select id="suptotalPage" resultType="int">
+	 select COUNT(*)
+	 FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
+		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+	 where ap.mb_num_pk = #{mb_num_pk}
+	</select>
+	
+	
+	<select id="finshtotalPage" resultType="int">
+	 select COUNT(*)
+	FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+	 where sel_vr Like '%'||#{mb_id}||'%'
+	</select>
 
 </mapper>

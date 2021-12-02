@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fdx.dao.PageMakerDAO">
+
+	<select id="totalPage" resultType="int">
+	 select COUNT(*) from post where mb_num_pk = #{mb_num_pk}
+	</select>
+	
+	
+<select id="getListWithPaging" resultType="com.fdx.dto.PostDto">
+<![CDATA[
+  select 
+    post_num_pk, post_title, post_con, mb_num_pk, post_date
+  from 
+      (
+      select /*+INDEX_DESC(post post_num_pk) */
+        rownum rn, post_num_pk, post_title, post_con, mb_num_pk, post_date 
+      from 
+        post
+      where 
+       rownum <= #{pageNum} * #{amount}
+      AND mb_num_pk = #{mb_num_pk}
+      )
+  where rn > (#{pageNum} -1) * #{amount}  
+   
+  ]]>
+</select>
+
+
+	<select id="getList" resultType="com.fdx.dto.PostDto">
+	<![CDATA[
+	select * from post where bno > 0
+	]]>
+
+</select>
+
+</mapper>

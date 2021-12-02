@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.fdx.dto.Criteria;
 import com.fdx.dto.MypageDTO;
 
 @Repository
@@ -18,9 +19,9 @@ public class MypageDAOImpl implements MypageDAO{
 	
 	
 	@Override
-	public List<MypageDTO> myUploadPost(int mb_num_pk) {	
+	public List<MypageDTO> myUploadPost(Criteria cri) {	
 		
-		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.myUploadPost", mb_num_pk);
+		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.getListWithPaging", cri);
 	}
 
 
@@ -33,16 +34,16 @@ public class MypageDAOImpl implements MypageDAO{
 
 
 	@Override
-	public List<MypageDTO> mySupPost(int mb_num_pk) {
+	public List<MypageDTO> mySupPost(Criteria cri) {
 		
-		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.mySupPost", mb_num_pk);
+		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.mySupPost", cri);
 	}
 
 
 	@Override
-	public List<MypageDTO> myFinshPost(int mb_num_pk) {
+	public List<MypageDTO> myFinshPost(Criteria cri) {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.myFinshPost", mb_num_pk);
+		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.myFinshPost", cri);
 	}
 
 
@@ -50,6 +51,28 @@ public class MypageDAOImpl implements MypageDAO{
 	public int supPostDel(MypageDTO mypageDTO) {
 		return sqlSessionTemplate.delete("com.fdx.dao.MypageDAO.supDel", mypageDTO);
 		
+	}
+
+
+	@Override
+	public int uptotalPage(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("com.fdx.dao.MypageDAO.uptotalPage", cri);
+	}
+
+
+
+	@Override
+	public int suptotalPage(Criteria cri) {
+		
+		return sqlSessionTemplate.selectOne("com.fdx.dao.MypageDAO.suptotalPage", cri);
+	}
+
+
+	@Override
+	public int finshtotalPage(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("com.fdx.dao.MypageDAO.finshtotalPage", cri);
 	}
 
 }

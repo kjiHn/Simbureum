@@ -27,7 +27,7 @@ import com.fdx.services.Vlntr_RvService;
 
 
 
-@Controller
+//@Controller
 @RequestMapping("/review/*")
 public class ReviewController {
 	
@@ -98,12 +98,12 @@ public class ReviewController {
 				List<Vlntr_RvDTO> wrdto = null;
 				wrdto = vlservice.page(cri);			
 				model.addAttribute("wrdto", wrdto);	
-				
-				PageMaker pageMaker = new PageMaker();
-				pageMaker.setCri(cri);
-				pageMaker.setTotalCount(vlservice.listCount(mb_id_pk));
-				System.out.println("listCount : " + vlservice.listCount(mb_id_pk));
-				model.addAttribute("pageMaker",pageMaker);
+//				
+//				PageMaker pageMaker = new PageMaker();
+//				pageMaker.setCri(cri);
+//				pageMaker.setTotalCount(vlservice.listCount(mb_id_pk));
+//				System.out.println("listCount : " + vlservice.listCount(mb_id_pk));
+//				model.addAttribute("pageMaker",pageMaker);
 		 
 		 }
 		
