@@ -65,4 +65,9 @@ public class JoinService {
 	public JoinDTO myInfo(String mb_name) {
 		return joinDao.myInfo(mb_name);
 	}
+
+	public int mailFrc_WthCheck(String mb_emaile) {
+		return joinDao.mailFrc_WthCheck(mb_emaile);
+		
+	}
 }

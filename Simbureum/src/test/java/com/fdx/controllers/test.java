@@ -23,21 +23,14 @@ import lombok.extern.log4j.Log4j;
 public class test {
 	
 	@Inject
-	private JoinService joinService;
-	private static Logger logger = LoggerFactory.getLogger(test.class);
-	
+	private JoinDAO dao;
 	
 	@Test
 	public void inserTest() throws Exception{
-		JoinDTO joinDTO = new JoinDTO();
-		joinDTO.setMb_id("test");
-		joinDTO.setMb_pswd("test");
-		joinDTO.setMb_emaile("test");
-		int num = 0;
-		num = joinService.updateMember(joinDTO);
+		String emaile = "test11@naver.com";
 		
+		int num = dao.mailFrc_WthCheck(emaile);
 		System.out.println(num);
-		
 		
 	}
 	

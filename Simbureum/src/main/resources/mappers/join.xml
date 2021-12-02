@@ -58,5 +58,10 @@
 	</delete>
 		
 
+	<select id="frc_WthCheck" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM Frc_Wth
+		WHERE fw_email = #{mb_emaile}
+	</select>
 
 </mapper>	

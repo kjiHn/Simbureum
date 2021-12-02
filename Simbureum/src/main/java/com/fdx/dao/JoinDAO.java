@@ -16,5 +16,6 @@ public interface JoinDAO {
 	int pswdCheck(JoinDTO joinDTO);
 	public int idCheck(JoinDTO joinDTO);
 	public JoinDTO myInfo(String mb_name);
+	int mailFrc_WthCheck(String mb_emaile);
 
 }

@@ -138,7 +138,7 @@ body {
 								data-content="" data-url="">다음</a>
 						</div>
 						<div class="bts" id="activeBtn" style="display: none;">
-							<a href="javascript:insertMember();" id="nextBtn"
+							<a href="javascript:test();" id="nextBtn"
 								class="btn lg a" data-content="" data-url="">다음</a>
 						</div>
 					</div> 
@@ -491,6 +491,24 @@ body {
 	    checkConditionValue("#join_pswd", psCondition) ;
 	}
 	document.querySelector("#join_pswd").addEventListener('blur', psConditionAlert);
+	
+	</script>
+	
+	<script type="text/javascript">
+		function test() {
+			 var email = $("#join_email_id").val(); //입력한 이메일
+			 $.ajax({
+					type:"GET",
+					url:"/user/mailFrc_WthCheck?mb_emaile=" + email,
+					success:function(data){
+						if (data == "1") {
+							alert("강제 탈퇴 당하셔서 가입을 하실수 없습니다");
+						}else{
+							 insertMember();
+						}			
+					} 
+				 });
+		}
 	
 	</script>
 

@@ -70,6 +70,12 @@ public class JoinDAOImpl implements JoinDAO{
 		
 		return sqlSessionTemplate.selectOne("mapper.mamber.allMember", mb_name);
 	}
+
+	@Override
+	public int mailFrc_WthCheck(String mb_emaile) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("mapper.mamber.frc_WthCheck", mb_emaile);
+	}
 	
 	
 	

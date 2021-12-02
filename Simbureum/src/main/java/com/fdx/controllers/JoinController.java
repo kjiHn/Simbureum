@@ -396,5 +396,12 @@ public class JoinController {
  		return num;
  	}
  	
+	@RequestMapping(value = "mailFrc_WthCheck" ,method = RequestMethod.GET)
+	@ResponseBody
+	public int mailFrc_WthCheck(@RequestParam(value = "mb_emaile") String mb_emaile) {
+		int num = joinservice.mailFrc_WthCheck(mb_emaile);
+		System.out.println(num);
+		return num;
+	}
 	 	
 }
