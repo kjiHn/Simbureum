@@ -121,5 +121,40 @@
             JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
 	 where sel_vr Like '%'||#{mb_id}||'%'
 	</select>
+	
+	<select id="selOneWrittenPost" parameterType="int" resultType="post">
+		select p.*, v.VH_DATE, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p left join vlntr_his v on v.POST_NUM_PK = p.POST_NUM_PK,
+		(PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.POST_NUM_PK = #{post_num_pk}
+		and p.PSMALLC_PK = s.PSMALLC_PK
+	</select>
+	
+	<select id="checkVol" parameterType="int" resultType="int">
+		select 0 from dual
+		where not exists (select * from ap_post where POST_NUM_PK = #{post_num_pk})
+		union
+		select 1 from dual
+		where exists (select * from ap_post where POST_NUM_PK = #{post_num_pk})
+	</select>
+	
+	<select id="checkNumOfVol" parameterType="int" resultType="int">
+		select POST_NUMOF from post
+		where POST_NUM_PK = #{post_num_pk}
+	</select>
+	
+	<select id="selVolRe" parameterType="int" resultType="volRe">
+		select m.MB_ID, nvl(count(v.VR_RVN_PK),0) as vrRe_count , nvl(avg(v.VR_GRD),0) as vrRe_avg
+		from ap_post a, (member m full join vlntr_rv v 
+		on v.VR_MBID = m.MB_ID)
+		where a.POST_NUM_PK = #{post_num_pk}
+		and m.MB_NUM_PK = a.MB_NUM_PK
+		group by m.MB_ID
+	</select>
+	
+	<update id="selectedVol" parameterType="postVol">
+		update post set SEL_VR = #{sel_vr}
+		where POST_NUM_PK = #{post_num_pk}
+	</update>
 
 </mapper>

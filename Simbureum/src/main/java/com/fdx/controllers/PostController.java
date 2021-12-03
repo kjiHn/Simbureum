@@ -33,8 +33,7 @@ public class PostController {
 	//게시글 작성 후
 	@RequestMapping(value = "/main/writePost", method = RequestMethod.POST)
 	public String write(PostDto post, HttpSession session) {
-		//int idNum = (int)session.getAttribute("mNum");
-		int idNum = 10;
+		int idNum = (int)session.getAttribute("mNum");
 		postService.write(post, idNum);
 		return "redirect:/main/postPage";
 	}

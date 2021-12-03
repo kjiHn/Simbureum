@@ -51,8 +51,8 @@ if (request.getProtocol().equals("HTTP/1.1"))
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">       
-                                                <li><a href="#">게시글 작성</a></li>
-                                                <li><a href="#">게시글 보기</a></li>
+                                                <li><a href="/main/writePost">게시글 작성</a></li>
+                                                <li><a href="/main/postPage">게시글 보기</a></li>
                                                 <li><a href="#">공지 사항</a></li>
                                                 <li><%=session.getAttribute("mid") %>님</li>                                                                            
                                                 <li>	

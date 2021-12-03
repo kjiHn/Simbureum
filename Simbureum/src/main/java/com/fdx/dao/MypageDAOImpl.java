@@ -5,11 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fdx.dto.Criteria;
 import com.fdx.dto.MypageDTO;
+import com.fdx.dto.PostDto;
+import com.fdx.dto.PostVolDto;
+import com.fdx.dto.VolReDto;
 
 @Repository
 public class MypageDAOImpl implements MypageDAO{
@@ -73,6 +75,31 @@ public class MypageDAOImpl implements MypageDAO{
 	public int finshtotalPage(Criteria cri) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("com.fdx.dao.MypageDAO.finshtotalPage", cri);
+	}
+	
+	@Override
+	public PostDto selOneWrittenPost(int postNum) {
+		return sqlSessionTemplate.selectOne("selOneWrittenPost", postNum);
+	}
+	
+	@Override
+	public int checkVol(int postNum) {
+		return sqlSessionTemplate.selectOne("checkVol", postNum);
+	}
+	
+	@Override
+	public int checkNumOfVol(int postNum) {
+		return sqlSessionTemplate.selectOne("checkNumOfVol", postNum);
+	}
+
+	@Override
+	public List<VolReDto> selVolRe(int postNum) {
+		return sqlSessionTemplate.selectList("selVolRe", postNum);
+	}
+
+	@Override
+	public void updateSelVol(PostVolDto postVolDto) {
+		sqlSessionTemplate.update("selectedVol", postVolDto);
 	}
 
 }
