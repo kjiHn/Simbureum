@@ -26,16 +26,19 @@ public interface PostDao {
 	//검색어 필터3(작성자) select
 	public List<PostDto> selectBySearch3(int num, String value);
 	
-	//게시글 하나 select
+	//게시글 상세보기 select
 	public PostDto selectOne(int postNum);
 	
-	//게시글 신고하기
+	//게시글 신고하기 insert
 	public void insertReport(PoReportDto poReport);
 	
-	//심부름꾼 지원 여부
+	//심부름꾼 지원 여부 select
 	public ApPostDto selectApPost(ApPostDto apPost);
 	
-	//심부름꾼 지원하기
+	//심부름꾼 지원하기 insert
 	public void insertApPost(ApPostDto apPost);
+	
+	
+	
 
 }

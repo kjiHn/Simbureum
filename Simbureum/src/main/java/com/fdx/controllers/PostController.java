@@ -79,8 +79,7 @@ public class PostController {
 	//게시글 신고 작성 후
 	@RequestMapping(value = "/main/writeReport/{post_num_pk}", method = RequestMethod.POST)
 	public String writeReport(@PathVariable("post_num_pk") int postNum, PoReportDto poReport, HttpSession session) {
-		//int idNum = (int)session.getAttribute("mNum");
-		int idNum = 10;
+		int idNum = (int)session.getAttribute("mNum");
 		postService.writeReport(postNum, idNum, poReport);
 		return "main/reportAccept";
 	}
@@ -88,8 +87,7 @@ public class PostController {
 	//심부름꾼 지원 여부
 	@RequestMapping(value = "/main/volunteer/{post_num_pk}", method = RequestMethod.GET)
 	public String checkVolunteer(@PathVariable("post_num_pk") int postNum, Model model, HttpSession session) {
-		//int idNum = (int)session.getAttribute("mNum");
-		int idNum = 10;
+		int idNum = (int)session.getAttribute("mNum");
 		model.addAttribute("apPost", postService.selectApPost(postNum, idNum));
 		return "main/volunteer";
 	}
@@ -97,10 +95,12 @@ public class PostController {
 	//심부름꾼 지원하기
 	@RequestMapping(value = "/main/volunteer/{post_num_pk}", method = RequestMethod.POST)
 	public String volunteer(@PathVariable("post_num_pk") int postNum, HttpSession session) {
-		//int idNum = (int)session.getAttribute("mNum");
-		int idNum = 10;
+		int idNum = (int)session.getAttribute("mNum");
 		postService.insertApPost(postNum, idNum);
 		return "main/volunteerAccept";
 	}
+	
+	
+	
 	
 }

@@ -25,10 +25,6 @@
   color: white;
 }
 
-.content{
-	width: 300px;
-	height: 100px;
-}
 </style>
 
 <title>심부름꾼 지원 완료</title>

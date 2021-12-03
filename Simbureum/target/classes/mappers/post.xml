@@ -5,84 +5,81 @@
   
 <mapper namespace="com.fdx.dao.PostDao">
 
-<insert id="insertPost" parameterType="post">
-	insert into POST (POST_NUM_PK, MB_NUM_PK, POST_TITLE, POST_CON, POST_DLINE, POST_NUMOF, PSMALLC_PK, POST_PRICE, POST_DATE)
-	values(post_seqnum.nextval, #{mb_num_pk}, #{post_title}, #{post_con}, #{post_dline}, #{post_numof}, #{psmallc_pk}, #{post_price}, sysdate)
-</insert>
-
-<select id="selectAll" resultType="post">
-	select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
-	where p.MB_NUM_PK = m.MB_NUM_PK
-	and p.PSMALLC_PK = s.PSMALLC_PK
- 	order by POST_DATE desc
-</select>
-
-<select id="selectByLoc" parameterType="int" resultType="post">
-	select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
-	where p.MB_NUM_PK = m.MB_NUM_PK
-	and p.PSMALLC_PK = #{psmallc_pk}
-	and p.PSMALLC_PK = s.PSMALLC_PK
-	order by POST_DATE desc
-</select>
-
-<select id="selectBySearch1" parameterType="String" resultType="post">
-	select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
-	where p.MB_NUM_PK = m.MB_NUM_PK
-	and p.PSMALLC_PK = s.PSMALLC_PK
-	and p.POST_TITLE like '%'||#{post_title}||'%'
-	order by POST_DATE desc
-</select>
-
-<select id="selectBySearch2" parameterType="String" resultType="post">
-	select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
-	where p.MB_NUM_PK = m.MB_NUM_PK
-	and p.PSMALLC_PK = s.PSMALLC_PK
-	and (p.POST_TITLE like '%'||#{post_title}||'%'
-	or p.POST_CON like '%'||#{post_con}||'%')
-	order by POST_DATE desc
-</select>
-
-<select id="selectBySearch3" parameterType="String" resultType="post">
-	select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
-	where p.MB_NUM_PK = m.MB_NUM_PK
-	and p.PSMALLC_PK = s.PSMALLC_PK
-	and m.MB_ID = #{mb_id}
-	order by POST_DATE desc
-</select>
-
-<select id="selectOnePost" parameterType="int" resultType="post">
-	select p.POST_NUM_PK, p.POST_TITLE, p.POST_CON, p.POST_DLINE, p.POST_PRICE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-	from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
-	where p.MB_NUM_PK = m.MB_NUM_PK
-	and p.PSMALLC_PK = s.PSMALLC_PK
-    and p.POST_NUM_PK = #{post_num_pk}
-	order by POST_DATE desc
-</select>
-
-<insert id="insertPoReport" parameterType="poReport">
-	insert into PO_REPORT (PORP_NUM_PK, PORP_TARGET_MBN, PORP_MBN, PORP_LNB, PORP_CON, PORP_DATE) 
-	values(porp_seqnum.nextval, (select MB_NUM_PK from post where POST_NUM_PK = #{porp_lnb}),
-	#{porp_mbn}, #{porp_lnb}, #{porp_con}, sysdate)
-</insert>
-
-<select id="selectApPost" parameterType="apPost" resultType="apPost">
-	select * from ap_post
-	where POST_NUM_PK = #{post_num_pk}
-	and MB_NUM_PK = #{mb_num_pk}
-</select>
-
-<insert id="insertApPost" parameterType="apPost">
-	insert into ap_post (AP_APN_PK, POST_NUM_PK, MB_NUM_PK)
-	values(ap_seqnum.nextval, #{post_num_pk}, #{mb_num_pk})
-</insert>
-
-
-
+	<insert id="insertPost" parameterType="post">
+		insert into POST (POST_NUM_PK, MB_NUM_PK, POST_TITLE, POST_CON, POST_DLINE, POST_NUMOF, PSMALLC_PK, POST_PRICE, POST_DATE)
+		values(post_seqnum.nextval, #{mb_num_pk}, #{post_title}, #{post_con}, #{post_dline}, #{post_numof}, #{psmallc_pk}, #{post_price}, sysdate)
+	</insert>
+	
+	<select id="selectAll" resultType="post">
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.MB_NUM_PK = m.MB_NUM_PK
+		and p.PSMALLC_PK = s.PSMALLC_PK
+	 	order by POST_DATE desc
+	</select>
+	
+	<select id="selectByLoc" parameterType="int" resultType="post">
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.MB_NUM_PK = m.MB_NUM_PK
+		and p.PSMALLC_PK = #{psmallc_pk}
+		and p.PSMALLC_PK = s.PSMALLC_PK
+		order by POST_DATE desc
+	</select>
+	
+	<select id="selectBySearch1" parameterType="String" resultType="post">
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.MB_NUM_PK = m.MB_NUM_PK
+		and p.PSMALLC_PK = s.PSMALLC_PK
+		and p.POST_TITLE like '%'||#{post_title}||'%'
+		order by POST_DATE desc
+	</select>
+	
+	<select id="selectBySearch2" parameterType="String" resultType="post">
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.MB_NUM_PK = m.MB_NUM_PK
+		and p.PSMALLC_PK = s.PSMALLC_PK
+		and (p.POST_TITLE like '%'||#{post_title}||'%'
+		or p.POST_CON like '%'||#{post_con}||'%')
+		order by POST_DATE desc
+	</select>
+	
+	<select id="selectBySearch3" parameterType="String" resultType="post">
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.MB_NUM_PK = m.MB_NUM_PK
+		and p.PSMALLC_PK = s.PSMALLC_PK
+		and m.MB_ID = #{mb_id}
+		order by POST_DATE desc
+	</select>
+	
+	<select id="selectOnePost" parameterType="int" resultType="post">
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_CON, p.POST_DLINE, p.POST_PRICE, p.POST_NUMOF, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		where p.MB_NUM_PK = m.MB_NUM_PK
+		and p.PSMALLC_PK = s.PSMALLC_PK
+	    and p.POST_NUM_PK = #{post_num_pk}
+		order by POST_DATE desc
+	</select>
+	
+	<insert id="insertPoReport" parameterType="poReport">
+		insert into PO_REPORT (PORP_NUM_PK, PORP_TARGET_MBN, PORP_MBN, PORP_LNB, PORP_CON, PORP_DATE) 
+		values(porp_seqnum.nextval, (select MB_NUM_PK from post where POST_NUM_PK = #{porp_lnb}),
+		#{porp_mbn}, #{porp_lnb}, #{porp_con}, sysdate)
+	</insert>
+	
+	<select id="selectApPost" parameterType="apPost" resultType="apPost">
+		select * from ap_post
+		where POST_NUM_PK = #{post_num_pk}
+		and MB_NUM_PK = #{mb_num_pk}
+	</select>
+	
+	<insert id="insertApPost" parameterType="apPost">
+		insert into ap_post (AP_APN_PK, POST_NUM_PK, MB_NUM_PK)
+		values(ap_seqnum.nextval, #{post_num_pk}, #{mb_num_pk})
+	</insert>
 
 
 

@@ -24,13 +24,13 @@ public class MypageDTO {
 	private String pbigc_name;		//위치 대분류 이름
 	private String psmallc_name;	//위치 소분류 이름
 	
-	private int vh_hsn_pk;
-	private int ap_apn_pk;
+	private int vh_hsn_pk;			//심부름꾼 한 내역 번호
+	private int ap_apn_pk;			//지원한 게시글 테이블 고유 번호
 	
-	private String plant;
+	private String plant;			//위치 대분류, 소분류 이름 병합
 	
 	@JsonFormat(pattern = "yyyy-MM-dd") //Ajax에 날짜형 데이터로 주기 위해 
-	private Date vh_date;
+	private Date vh_date;			//심부름 완료일
 	
 	
 	

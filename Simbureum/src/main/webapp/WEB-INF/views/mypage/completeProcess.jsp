@@ -25,25 +25,17 @@
   color: white;
 }
 
-.content{
-	width: 300px;
-	height: 100px;
-}
 </style>
 
-<title>게시글 신고</title>
+<title>심부름 완료</title>
 </head>
 <body>
-	<h2>게시글 신고</h2>
-	
-	<h3>신고 사유 :</h3>
-	<div>
-	<form method="POST" action="/main/writeReport/${post_num_pk}">
-		<textarea name="porp_con" class="content" placeholder="내용을 입력해주세요"></textarea>
-	
-		<input type="submit" class="button" value="완료">
+	<form method="POST" action="/mypage/completeProcess/${post_num_pk}">
+		심부름을 완료 하시겠습니까?<br>
+		* 심부름 한 비용을 주신 후에 확인을 눌러주셔야 합니다.
+		<br><br>
+		<input type="submit" class="button" value="확인">
 		<input type="button" class="button" value="취소" onclick="javascript:self.close()">
 	</form>
-	</div>
 </body>
 </html>

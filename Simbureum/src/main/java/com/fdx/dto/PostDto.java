@@ -27,6 +27,8 @@ public class PostDto {
 	private String pbigc_name;		//위치 대분류 이름
 	private String psmallc_name;	//위치 소분류 이름
 	
+	private Date vh_date;			//완료일
+	
 	public int getPost_num_pk() {
 		return post_num_pk;
 	}
@@ -123,6 +125,13 @@ public class PostDto {
 	}
 	public void setPsmallc_name(String psmallc_name) {
 		this.psmallc_name = psmallc_name;
+	}
+	
+	public Date getVh_date() {
+		return vh_date;
+	}
+	public void setVh_date(Date vh_date) {
+		this.vh_date = vh_date;
 	}
 	
 	

@@ -118,15 +118,14 @@ a {
 								<c:forEach var="post" items="${postList}" varStatus="loop">
 									<tr>
 										<td>${loop.count}</td>
-										<td><a href="javascript:checkLogin();">${post.post_title}</a></td>
+										<td><a href="javascript:checkLogin(${post.post_num_pk});">${post.post_title}</a></td>
 										<td>${post.mb_id}</td>
 										<td>${post.pbigc_name} ${post.psmallc_name}</td>
 										<td>${post.post_views}</td>
 										<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
 									</tr>
 									<script type="text/javascript">
-									function checkLogin(){
-										var postNum = ${post.post_num_pk};
+									function checkLogin(postNum){
 										var id = '<%=session.getAttribute("mid")%>';
 										if(id == "null"){
 											alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");

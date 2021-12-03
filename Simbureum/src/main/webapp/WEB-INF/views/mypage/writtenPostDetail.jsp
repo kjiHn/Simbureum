@@ -17,7 +17,6 @@
 	text-align: center;
 	display: inline-block;
 	font-size: 16px;
-	margin: 4px 2px;
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
 	cursor: pointer;
@@ -41,6 +40,10 @@ a {
 	border: 1px solid #e3c4ff;
 }
 
+#postTable td{
+	height: 30px;
+}
+
 .searchDiv {
 	float: right;
 }
@@ -51,24 +54,21 @@ a {
 }
 </style>	
 
-<title>게시글 보기</title>
+<title>올린 심부름</title>
 </head>
 <body>
 
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
 			<div class="row">
+				<jsp:include page="../model/siderbar2.jsp" flush="false" />
 				<div class="col-lg-8 posts-list">
 					<div class="slider-shape d-none d-lg-block">
-						
+						<h3>올린 심부름</h3>
 						<table id="postTable">
 							<tr>
 								<th>제목</th>
 								<td>${post.post_title}</td>
-							</tr>
-							<tr>
-								<th>작성자</th>
-								<td><a href="<c:url value="#" />">${post.mb_id}</a></td>
 							</tr>
 							<tr>
 								<th>작성일</th>
@@ -77,6 +77,22 @@ a {
 							<tr>
 								<th>조회수</th>
 								<td>${post.post_views}</td>
+							</tr>
+							<tr>
+								<th>상태</th>
+								<td>
+									<c:if test="${empty post.sel_vr}">
+										모집중
+										<input type="button" class="button" onclick="openVol()" value="심부름꾼 보기">
+									</c:if>
+									<c:if test="${!empty post.sel_vr && empty post.vh_date}">진행중</c:if>
+									<c:if test="${!empty post.sel_vr && !empty post.vh_date}">완료</c:if>
+									<br>
+									<c:if test="${!empty post.sel_vr}">
+										(심부름꾼 : ${post.sel_vr})
+									</c:if>
+								</td>
+							
 							</tr>
 							<tr>
 								<th>내용</th>
@@ -98,13 +114,18 @@ a {
 								<th>심부름 가격</th>
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
-							<tr>
-								<td></td>
-								<td><input type="button" class="button" onclick="openReport()" value="신고하기"></td>
-							</tr>
 						</table>
-						
-						<input type="button" class="button" onclick="openVol()" value="심부름꾼 지원하기">
+						<br><br>
+						<c:if test="${empty post.sel_vr}">
+							<input type="button" class="button" onclick="openVol()" value="게시글 수정">
+							<input type="button" class="button" onclick="openVol()" value="게시글 삭제">
+						</c:if>
+						<c:if test="${!empty post.sel_vr && empty post.vh_date}">
+							<input type="button" class="button" onclick="location:href='/mypage/completeProcess/${post.post_num_pk}'" value="심부름 완료">
+						</c:if>
+						<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
+							<input type="button" class="button" onclick="openVol()" value="심부름꾼에게 리뷰 작성">
+						</c:if>
 
 					</div>
 				</div>
@@ -112,35 +133,19 @@ a {
 		</div>
 	</section>
 	
-	<!-- 신고하기 창 열기 -->
-	<script type="text/javascript">
-		function openReport(){
-			var popWidth = 400;
-			var popHeight = 400;
-			var winHeight = document.body.clientHeight;
-			var winWidth = document.body.clientWidth;
-			var winX = window.screenLeft;
-			var winY = window.screenTop;
-			var popX = winX + (winWidth - popWidth)/2;
-			var popY = winY + (winHeight - popHeight)/2;
-			url="../writeReport/"+${post.post_num_pk};
-			var openWin = window.open(url, "writeReport", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
-		}
-	</script>
-	
-	<!-- 심부름꾼 지원하기 창 열기 -->
+	<!-- 지원한 심부름꾼 보는 창 열기 -->
 	<script type="text/javascript">
 		function openVol(){
-			var popWidth = 400;
-			var popHeight = 200;
+			var popWidth = 460;
+			var popHeight = 300;
 			var winHeight = document.body.clientHeight;
 			var winWidth = document.body.clientWidth;
 			var winX = window.screenLeft;
 			var winY = window.screenTop;
 			var popX = winX + (winWidth - popWidth)/2;
 			var popY = winY + (winHeight - popHeight)/2;
-			url="../volunteer/"+${post.post_num_pk};
-			var openWin = window.open(url, "volunteer", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
+			url="../volunteerList/"+${post.post_num_pk};
+			var openWin = window.open(url, "volunteerList", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
 		}
 	</script>
 
