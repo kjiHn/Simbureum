@@ -439,15 +439,14 @@ body {
 	    // 알림메세지에 넣을 조건들을 넣을 배열
 	    let conditionAlert = [];
 	  
-	  	// input value의 표현식이 너무 길어서 변수로 할당해주었다.
+	  	// input value의 표현식이 너무 길어서 변수로 할당
 	    let idInput = document.querySelector(inputCssSelector).value;
 	  
-	  	// 만약 minLength보다 작으면 -> 해당 숫자와 조건 메세지를 같이 묶어서
-	  	// conditionAlert 배열에 push
+	  	
 	    if (!(idInput.length >= conditionObj.minLength)) {
 	        conditionAlert.push(`${conditionObj.minLength}` + conditionMessage.minLength);
 	    } 
-	  	// 이제부턴 주석 생략! 추측해보시라
+	  	
 	    if (!(idInput.length <= conditionObj.maxLength)) {
 	        conditionAlert.push(`${conditionObj.maxLength}` + conditionMessage.maxLength);
 	    }
@@ -470,6 +469,13 @@ body {
 	            conditionAlert.push(conditionMessage.withKor);
 	        } else {
 	            conditionAlert.push(conditionMessage.withNoKor);
+	        }
+	    }
+	    if (letterCheck.checkEnga.test(idInput) !== conditionObj.withEnga) {
+	        if (conditionObj.withEnga) {
+	            conditionAlert.push(conditionMessage.withEnga);
+	        } else {
+	            conditionAlert.push(conditionMessage.withEnga);
 	        }
 	    }
 	  	// conditionAlert에 아무 것도 들어가 있지 않는다면 모든 조건이 충족한 것!
