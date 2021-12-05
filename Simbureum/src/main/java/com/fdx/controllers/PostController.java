@@ -64,6 +64,7 @@ public class PostController {
 	//게시글 상세보기
 	@RequestMapping(value = "/main/postDetail/{post_num_pk}", method = RequestMethod.GET)
 	public String postDetail(Model model, @PathVariable("post_num_pk") int postNum) {
+		postService.increaseHits(postNum);
 		model.addAttribute("post", postService.postDetail(postNum));
 		return "main/postDetail";
 	}

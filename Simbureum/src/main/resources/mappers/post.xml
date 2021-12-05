@@ -81,6 +81,10 @@
 		values(ap_seqnum.nextval, #{post_num_pk}, #{mb_num_pk})
 	</insert>
 
+	<update id="updatePostViews" parameterType="int">
+		update post set POST_VIEWS = POST_VIEWS + 1
+		where POST_NUM_PK = #{post_num_pk}
+	</update>
 
 
 </mapper>

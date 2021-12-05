@@ -124,6 +124,7 @@ public class MypageController {
 	//심부름 완료
 	@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.POST)
 	public String completeAccept(@PathVariable("post_num_pk") int postNum) {
+		//심부름 완료 시 심부름꾼 지원 삭제
 		mypageService.insertVolHis(postNum);
 		return "mypage/completeAccept";
 	}

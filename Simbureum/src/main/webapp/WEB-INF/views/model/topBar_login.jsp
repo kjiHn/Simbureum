@@ -20,7 +20,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
     <title>해줘~ 할게</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="#">
+    <link rel="manifest" href="/">
     <link rel="shortcut icon" type="image/x-icon" href="/resources/view/assets/img/favicon.ico">
 
     <!-- CSS here -->
@@ -53,7 +53,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                                             <ul id="navigation">       
                                                 <li><a href="/main/writePost">게시글 작성</a></li>
                                                 <li><a href="/main/postPage">게시글 보기</a></li>
-                                                <li><a href="#">공지 사항</a></li>
+                                                <li><a href="/">공지 사항</a></li>
                                                 <li><%=session.getAttribute("mid") %>님</li>                                                                            
                                                 <li>	
                                                 	<a href="/login/logout" class="btn">로그아웃</a>

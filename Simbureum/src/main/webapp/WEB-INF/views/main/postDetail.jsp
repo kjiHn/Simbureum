@@ -68,7 +68,7 @@ a {
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td><a href="<c:url value="#" />">${post.mb_id}</a></td>
+								<td><a href="/">${post.mb_id}</a></td>
 							</tr>
 							<tr>
 								<th>작성일</th>

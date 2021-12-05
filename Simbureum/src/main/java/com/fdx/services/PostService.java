@@ -74,6 +74,9 @@ public class PostService {
 		postDao.insertApPost(apPost);
 	}
 	
-	
+	//게시글 조회수 증가
+	public void increaseHits(int postNum) {
+		postDao.updatePostViews(postNum);
+	}
 	
 }

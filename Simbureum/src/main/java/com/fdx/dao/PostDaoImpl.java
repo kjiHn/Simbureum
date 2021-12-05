@@ -72,6 +72,11 @@ public class PostDaoImpl implements PostDao{
 		sqlSessionTemplate.insert("insertApPost", apPost);
 	}
 
+	@Override
+	public void updatePostViews(int postNum) {
+		sqlSessionTemplate.update("updatePostViews", postNum);
+	}
+
 	
 
 	

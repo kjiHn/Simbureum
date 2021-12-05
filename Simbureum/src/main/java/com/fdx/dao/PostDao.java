@@ -38,7 +38,8 @@ public interface PostDao {
 	//심부름꾼 지원하기 insert
 	public void insertApPost(ApPostDto apPost);
 	
-	
+	//게시글 조회수 증가 update
+	public void updatePostViews(int postNum);
 	
 
 }
