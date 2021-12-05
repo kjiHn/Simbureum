@@ -72,10 +72,10 @@ public class MypageService {
 	
 	//심부름꾼 선택
 	public void selectedVol(int postNum, String sel_vr) {
-		PostVolDto postVolDto = new PostVolDto();
-		postVolDto.setPost_num_pk(postNum);
-		postVolDto.setSel_vr(sel_vr);
-		mypageDAO.updateSelVol(postVolDto);
+		PostVolDto postVol = new PostVolDto();
+		postVol.setPost_num_pk(postNum);
+		postVol.setSel_vr(sel_vr);
+		mypageDAO.updateSelVol(postVol);
 	}
 	
 	//심부름 완료
@@ -93,7 +93,13 @@ public class MypageService {
 		mypageDAO.updatePost(post);
 	}
 	
-	
+	//심부름꾼 지원 취소
+	public void deleteSupportPost(int postNum, int mNum) {
+		PostVolDto postVol = new PostVolDto();
+		postVol.setPost_num_pk(postNum);
+		postVol.setMb_num_pk(mNum);
+		mypageDAO.deleteSupportPost(postVol);
+	}
 	
 	
 }

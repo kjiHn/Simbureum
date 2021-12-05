@@ -82,7 +82,7 @@
 									<tbody>
 										<tr style="border: 1px solid #e3c4ff;">
 											<td style="padding: 10px;">${status.index +1}</td>
-											<td><a href="/mypage/uploadedPostDetail/${postdto.post_num_pk}"
+											<td><a href="/mypage/supportPostDetail/${postdto.post_num_pk}"
 												style="color: black">${postdto.post_title}</a></td>
 											<td>${postdto.plant }</td>
 											<td>모집중</td>

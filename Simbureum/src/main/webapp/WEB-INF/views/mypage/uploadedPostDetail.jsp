@@ -47,7 +47,6 @@
 </head>
 <body>
 
-
 	<!-- Modal -->
 	<div class="col-md-auto">
 		<!-- Button trigger modal -->
@@ -66,8 +65,8 @@
 					</div>
 					<div class="modal-body">게시물을 삭제하시겠습니까?</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="clickDel" >삭제하기</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+						<button type="button" class="btn btn-primary" id="clickDel" >삭제</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 					</div>
 				</div>
 			</div>
@@ -83,7 +82,6 @@
 		</script>
 	</div>
 	
-
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
 			<div class="row">
@@ -159,7 +157,6 @@
 							<input type="hidden"  name="post_num_pk" value="${post.post_num_pk}">
 						</form>
 						
-
 					</div>
 				</div>
 			</div>

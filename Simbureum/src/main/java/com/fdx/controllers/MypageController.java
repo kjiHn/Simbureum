@@ -54,7 +54,7 @@ public class MypageController {
 		System.out.println(total);
 		model.addAttribute("pageMaker",new PageMaker(cri, total));
 		
-		return "mypage/supportErrand";
+		return "mypage/supportPost";
 		
 	}
 	@RequestMapping(value ="/endPost")
@@ -129,7 +129,7 @@ public class MypageController {
 		return "mypage/completeAccept";
 	}
 	
-	//게시글 삭제
+	//게시글 삭제 Modal
 	@RequestMapping(value = "postDelete", method = RequestMethod.POST)
 	public String deletePost(@RequestParam("post_num_pk") int postNum, HttpSession session) {
 		mypageService.deletePost(postNum);
@@ -159,6 +159,20 @@ public class MypageController {
 		return "mypage/finishedPostDetail";
 	}
 	
+	//지원한 게시글 상세보기
+	@RequestMapping(value="supportPostDetail/{post_num_pk}", method = RequestMethod.GET)
+	public String supportPost(@PathVariable("post_num_pk") int postNum, Model model){
+		PostDto post = mypageService.oneWrittenPost(postNum);
+		model.addAttribute("post", post);
+		return "mypage/supportPostDetail";
+	}
 	
+	//심부름꾼 지원 취소 Modal
+	@RequestMapping(value = "supportPostDelete", method = RequestMethod.POST)
+	public String deleteSupportPost(@RequestParam("post_num_pk") int postNum, HttpSession session) {
+		int mNum = (int)session.getAttribute("mNum");
+		mypageService.deleteSupportPost(postNum, mNum);
+		return "redirect:/mypage/supPost?mb_num_pk="+mNum;
+	}
 
 }

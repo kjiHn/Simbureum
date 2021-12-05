@@ -173,5 +173,8 @@
 		where POST_NUM_PK = #{post_num_pk}
 	</update>
 	
+	<delete id="deleteSupportPost" parameterType="postVol">
+		delete from ap_post where POST_NUM_PK = #{post_num_pk} and MB_NUM_PK = #{mb_num_pk}
+	</delete>
 
 </mapper>

@@ -95,8 +95,8 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 	@Override
-	public void updateSelVol(PostVolDto postVolDto) {
-		sqlSessionTemplate.update("selectedVol", postVolDto);
+	public void updateSelVol(PostVolDto postVol) {
+		sqlSessionTemplate.update("selectedVol", postVol);
 	}
 
 	@Override
@@ -113,6 +113,12 @@ public class MypageDAOImpl implements MypageDAO{
 	@Override
 	public void updatePost(PostDto post) {
 		sqlSessionTemplate.update("updatePost", post);
+	}
+
+
+	@Override
+	public void deleteSupportPost(PostVolDto postVol) {
+		sqlSessionTemplate.delete("deleteSupportPost", postVol);
 	}
 
 }

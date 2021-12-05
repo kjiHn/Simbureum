@@ -44,7 +44,7 @@ public interface MypageDAO {
 	public List<VolReDto> selVolRe(int postNum);
 	
 	//심부름꾼 선택
-	public void updateSelVol(PostVolDto postVolDto);
+	public void updateSelVol(PostVolDto postVol);
 	
 	//심부름 완료
 	public void insertVolHis(int postNum);
@@ -55,7 +55,8 @@ public interface MypageDAO {
 	//게시글 수정
 	public void updatePost(PostDto post);
 	
-	
+	//심부름꾼 지원 취소
+	public void deleteSupportPost(PostVolDto postVol);
 	
 	
 	
