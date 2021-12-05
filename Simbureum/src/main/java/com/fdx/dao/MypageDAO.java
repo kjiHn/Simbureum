@@ -46,6 +46,15 @@ public interface MypageDAO {
 	//심부름꾼 선택
 	public void updateSelVol(PostVolDto postVolDto);
 	
+	//심부름 완료
+	public void insertVolHis(int postNum);
+	
+	//게시글 삭제
+	public void deletePost(int postNum);
+	
+	//게시글 수정
+	public void updatePost(PostDto post);
+	
 	
 	
 	

@@ -2,6 +2,8 @@ package com.fdx.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,43 +88,71 @@ public class MypageController {
 	}
 	
 	//올린 심부름 상세보기
-		@RequestMapping(value = "writtenPostDetail/{post_num_pk}", method = RequestMethod.GET)
-		public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) {
-			PostDto post = mypageService.oneWrittenPost(postNum);
-			model.addAttribute("post", post);
-			return "mypage/writtenPostDetail";
+	@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)
+	public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) {
+		PostDto post = mypageService.oneWrittenPost(postNum);
+		model.addAttribute("post", post);
+		return "mypage/uploadedPostDetail";
+	}
+	
+	//지원한 심부름꾼 보기
+	@RequestMapping(value = "volunteerList/{post_num_pk}", method = RequestMethod.GET)
+	public String showVol(@PathVariable("post_num_pk") int postNum, Model model) {
+		int check = mypageService.checkVol(postNum);
+		model.addAttribute("checkVol", check);
+		if(check == 1) {
+			model.addAttribute("postNum", postNum);
+			model.addAttribute("numOfVol", mypageService.checkNumOfVol(postNum));
+			model.addAttribute("volRe", mypageService.volRe(postNum));
 		}
-		
-		//지원한 심부름꾼 보기
-		@RequestMapping(value = "volunteerList/{post_num_pk}", method = RequestMethod.GET)
-		public String showVol(@PathVariable("post_num_pk") int postNum, Model model) {
-			int check = mypageService.checkVol(postNum);
-			model.addAttribute("checkVol", check);
-			if(check == 1) {
-				model.addAttribute("postNum", postNum);
-				model.addAttribute("numOfVol", mypageService.checkNumOfVol(postNum));
-				model.addAttribute("volRe", mypageService.volRe(postNum));
-			}
-			return "mypage/volunteerList";
-		}
-		
-		//심부름꾼 선택 Ajax
-		@RequestMapping(value="selectedVolunteer", method = RequestMethod.POST)
-		public String selectedVolunteer(@RequestParam("postNum") int postNum, @RequestParam("sel_vol") String sel_vr) {
-			mypageService.selectedVol(postNum, sel_vr);
-			return "mypage/selectedVolunteer";
-		}
-		
-		//심부름 완료 확인
-		@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.GET)
-		public String completeProcess(@PathVariable("post_num_pk") int postNum) {
-			return "mypage/completeProcess";
-		}
-		
-		//게시글 신고 작성 후 -> Ajax로 변경하기!!!!
-		@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.POST)
-		public String completeAccept(@PathVariable("post_num_pk") int postNum) {
-			return "redirect:/mypage/writtenPostDetail";
-		}
+		return "mypage/volunteerList";
+	}
+	
+	//심부름꾼 선택 Ajax
+	@RequestMapping(value = "selectedVolunteer", method = RequestMethod.POST)
+	public String selectedVolunteer(@RequestParam("postNum") int postNum, @RequestParam("sel_vol") String sel_vr) {
+		mypageService.selectedVol(postNum, sel_vr);
+		return "mypage/selectedVolunteer";
+	}
+	
+	//심부름 완료 확인
+	@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.GET)
+	public String completeProcess(@PathVariable("post_num_pk") int postNum) {
+		return "mypage/completeProcess";
+	}
+	
+	//심부름 완료
+	@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.POST)
+	public String completeAccept(@PathVariable("post_num_pk") int postNum) {
+		mypageService.insertVolHis(postNum);
+		return "mypage/completeAccept";
+	}
+	
+	//게시글 삭제
+	@RequestMapping(value = "postDelete", method = RequestMethod.POST)
+	public String deletePost(@RequestParam("post_num_pk") int postNum, HttpSession session) {
+		mypageService.deletePost(postNum);
+		int mNum = (int)session.getAttribute("mNum");
+		return "redirect:/mypage/upPost?mb_num_pk="+mNum;
+	}
+	
+	//게시글 수정 페이지
+	@RequestMapping(value="updatePost/{post_num_pk}", method = RequestMethod.GET)
+	public String updatePost(@PathVariable("post_num_pk") int postNum, Model model) {
+		model.addAttribute("post", mypageService.oneWrittenPost(postNum));
+		return "mypage/updatePost";
+	}
+	
+	//게시글 수정
+	@RequestMapping(value="updatePost/{post_num_pk}", method = RequestMethod.POST)
+	public String updatePost(@PathVariable("post_num_pk") int postNum, PostDto post) {
+		mypageService.updatePost(post);
+		return "redirect:/mypage/uploadedPostDetail/"+postNum;
+	}
+	
+	
+	
+	
+	
 
 }

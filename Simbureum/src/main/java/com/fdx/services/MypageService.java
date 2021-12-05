@@ -78,6 +78,21 @@ public class MypageService {
 		mypageDAO.updateSelVol(postVolDto);
 	}
 	
+	//심부름 완료
+	public void insertVolHis(int postNum) {
+		mypageDAO.insertVolHis(postNum);
+	}
+	
+	//게시글 삭제
+	public void deletePost(int postNum) {
+		mypageDAO.deletePost(postNum);
+	}
+	
+	//게시글 수정
+	public void updatePost(PostDto post) {
+		mypageDAO.updatePost(post);
+	}
+	
 	
 	
 	

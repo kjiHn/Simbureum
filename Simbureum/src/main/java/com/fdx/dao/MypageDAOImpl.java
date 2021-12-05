@@ -44,7 +44,6 @@ public class MypageDAOImpl implements MypageDAO{
 
 	@Override
 	public List<MypageDTO> myFinshPost(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("com.fdx.dao.MypageDAO.myFinshPost", cri);
 	}
 
@@ -58,7 +57,6 @@ public class MypageDAOImpl implements MypageDAO{
 
 	@Override
 	public int uptotalPage(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("com.fdx.dao.MypageDAO.uptotalPage", cri);
 	}
 
@@ -73,7 +71,6 @@ public class MypageDAOImpl implements MypageDAO{
 
 	@Override
 	public int finshtotalPage(Criteria cri) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("com.fdx.dao.MypageDAO.finshtotalPage", cri);
 	}
 	
@@ -100,6 +97,22 @@ public class MypageDAOImpl implements MypageDAO{
 	@Override
 	public void updateSelVol(PostVolDto postVolDto) {
 		sqlSessionTemplate.update("selectedVol", postVolDto);
+	}
+
+	@Override
+	public void insertVolHis(int postNum) {
+		sqlSessionTemplate.insert("insertVolHis", postNum);
+	}
+
+	@Override
+	public void deletePost(int postNum) {
+		sqlSessionTemplate.delete("deletePost", postNum);
+	}
+
+
+	@Override
+	public void updatePost(PostDto post) {
+		sqlSessionTemplate.update("updatePost", post);
 	}
 
 }

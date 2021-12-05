@@ -71,7 +71,7 @@ table {
 						</div>
 						<div class="modal-body">게시물을 삭제하시겠습니까?</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" onclick="clickDel(Delete)">삭제하기</button>
+							<button type="button" class="btn btn-primary" onclick="clickDel(delete)">삭제하기</button>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
 						</div>
 					</div>

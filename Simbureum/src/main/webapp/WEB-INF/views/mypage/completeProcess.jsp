@@ -32,7 +32,7 @@
 <body>
 	<form method="POST" action="/mypage/completeProcess/${post_num_pk}">
 		심부름을 완료 하시겠습니까?<br>
-		* 심부름 한 비용을 주신 후에 확인을 눌러주셔야 합니다.
+		* 심부름꾼에게 심부름 한 비용을 지불하신 후<br>확인을 눌러주셔야 합니다.
 		<br><br>
 		<input type="submit" class="button" value="확인">
 		<input type="button" class="button" value="취소" onclick="javascript:self.close()">

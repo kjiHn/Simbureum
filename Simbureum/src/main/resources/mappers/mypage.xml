@@ -156,5 +156,21 @@
 		update post set SEL_VR = #{sel_vr}
 		where POST_NUM_PK = #{post_num_pk}
 	</update>
+	
+	<insert id="insertVolHis" parameterType="int">
+		insert into vlntr_his (VH_HSN_PK, POST_NUM_PK, VH_DATE)
+		values(vh_seqnum.nextval, #{post_num_pk}, sysdate)
+	</insert>
+	
+	<delete id="deletePost" parameterType="int">
+		delete from post where POST_NUM_PK = #{post_num_pk}
+	</delete>
+	
+	<update id="updatePost" parameterType="post">
+		update post set POST_TITLE = #{post_title}, POST_CON = #{post_con}, POST_DLINE = #{post_dline},
+		 POST_NUMOF = #{post_numof}, PSMALLC_PK = #{psmallc_pk}, POST_PRICE = #{post_price}, POST_DATE = sysdate
+		where POST_NUM_PK = #{post_num_pk}
+	</update>
+	
 
 </mapper>
