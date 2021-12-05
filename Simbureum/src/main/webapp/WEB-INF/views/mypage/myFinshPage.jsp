@@ -81,7 +81,7 @@
 									<tbody>
 										<tr style="border: 1px solid #e3c4ff;">
 											<td style="padding: 10px;">${status.index +1}</td>
-											<td><a href="/main/postDetail/${postdto.post_num_pk}"
+											<td><a href="/mypage/finishedPostDetail/${postdto.post_num_pk}"
 												style="color: black">${postdto.post_title}</a></td>
 											<td>${postdto.plant }</td>
 											<td><fmt:formatDate value="${postdto.vh_date }"

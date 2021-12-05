@@ -30,10 +30,6 @@
 	color: white;
 }
 
-a {
-	color: black;
-}
-
 #postTable {
 	text-align: center;
 	width: 1000px;
@@ -44,11 +40,6 @@ a {
 #postTable td{
 	height: 30px;
 }
-
-.searchDiv {
-	float: right;
-}
-
 
 </style>	
 

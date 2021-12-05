@@ -123,11 +123,12 @@
 	</select>
 	
 	<select id="selOneWrittenPost" parameterType="int" resultType="post">
-		select p.*, v.VH_DATE, s.PSMALLC_NAME, b.PBIGC_NAME
-		from post p left join vlntr_his v on v.POST_NUM_PK = p.POST_NUM_PK,
+		select p.*, v.VH_DATE, s.PSMALLC_NAME, b.PBIGC_NAME, m.MB_ID
+		from member m, post p left join vlntr_his v on v.POST_NUM_PK = p.POST_NUM_PK,
 		(PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
 		where p.POST_NUM_PK = #{post_num_pk}
 		and p.PSMALLC_PK = s.PSMALLC_PK
+		and p.MB_NUM_PK = m.MB_NUM_PK
 	</select>
 	
 	<select id="checkVol" parameterType="int" resultType="int">

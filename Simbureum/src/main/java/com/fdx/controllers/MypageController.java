@@ -150,8 +150,13 @@ public class MypageController {
 		return "redirect:/mypage/uploadedPostDetail/"+postNum;
 	}
 	
-	
-	
+	//심부름 한 게시글 상세보기
+	@RequestMapping(value="finishedPostDetail/{post_num_pk}", method = RequestMethod.GET)
+	public String finishedPost(@PathVariable("post_num_pk") int postNum, Model model){
+		PostDto post = mypageService.oneWrittenPost(postNum);
+		model.addAttribute("post", post);
+		return "mypage/finishedPostDetail";
+	}
 	
 	
 
