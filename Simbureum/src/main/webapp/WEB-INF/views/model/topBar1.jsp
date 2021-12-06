@@ -56,7 +56,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 									<div class="main-menu d-none d-lg-block">
 										<nav>
 											<ul id="navigation">
-												<li><a href="#">공지 사항</a></li>
+												<li><a href="userancboard">공지 사항</a></li>
 												<li><a href="/user/join1">회원가입</a></li>
 												<li><a href="/login/main" class="btn">로그인</a></li>
 											</ul>

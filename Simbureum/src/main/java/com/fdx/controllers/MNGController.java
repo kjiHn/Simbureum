@@ -65,6 +65,25 @@ public class MNGController {
 		return "Manager/MNGancboard";
 	}
 
+	//회원 공지 보기
+	@RequestMapping(value = "/userancboard", method = RequestMethod.GET)
+	public String userancboard(Model model) {
+
+		List<managerDTO> userancboard = managerDao.announce();
+		model.addAttribute("userancboard", userancboard);
+
+		return "Manager/userancboard";
+	}
+	
+	// 회원 공지 상세 보기
+		@RequestMapping(value = "/userancboardDetail", method = RequestMethod.GET)
+		public String userancboardDetail(@RequestParam("ntc_num_pk") int ntc_num_pk, Model model) throws Exception {
+
+			managerDTO userancboardDetail = managerDao.announceDetail(ntc_num_pk);
+			model.addAttribute("userancboardDetail",userancboardDetail);
+
+			return "Manager/userancboardDetail";
+		}
 
 	// 공지 작성(버튼 클릭)
 	

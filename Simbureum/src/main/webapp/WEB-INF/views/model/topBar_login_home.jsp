@@ -51,7 +51,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">       
-                                                <li><a href="#">공지 사항</a></li>
+                                                <li><a href="userancboard">공지 사항</a></li>
                                                 <li><%=session.getAttribute("mid") %>님</li>                                        
                                                 <li>	
                                                 	<a href="/login/logout" class="btn">로그아웃</a>

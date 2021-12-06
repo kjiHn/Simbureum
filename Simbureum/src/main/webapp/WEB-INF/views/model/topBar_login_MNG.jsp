@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <% 
 
-response.setHeader("Cache-Control","no-store"); 
-
-response.setHeader("Pragma","no-cache"); 
-
-response.setDateHeader("Expires",0); 
-
-if (request.getProtocol().equals("HTTP/1.1"))
-
-        response.setHeader("Cache-Control", "no-cache");
-
-%> 
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -39,7 +27,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                         <div class="row align-items-center">
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
-                                <div class="#">
+                                <div class="/MNGhome">
 	                                    <a href="/"> <img src="/resources/view/assets/img/logo/3.png" style="width: 80px; height: 80px;" >
 	                                    
 	                                    </a>
@@ -51,8 +39,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">       
-                                                <li><a href="#">공지 사항</a></li>
-                                                <li><%=session.getAttribute("mid") %>님</li>                                        
+                                                <li>관리자님</li>                                        
                                                 <li>	
                                                 	<a href="/login/logout" class="btn">로그아웃</a>
                                                 	<a href="MNGancboard" class="btn">마이페이지</a>
