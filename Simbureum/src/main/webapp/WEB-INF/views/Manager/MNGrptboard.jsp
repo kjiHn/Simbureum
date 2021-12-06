@@ -1,11 +1,10 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"  %> --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<%@ include file="../model/topBar1.jsp" %>
+<%@ include file="../model/topBar_login_homeMNG.jsp" %>
 
 <html>
 <head>
@@ -63,40 +62,39 @@
 		<table width = "100%" height = "100%" >
 			<tr>
 				<td><b>제목</b></td>
-				<%-- <td>${reportpost.get(0).getPost_title()}</td> --%>
-				<%-- <td>${post.get(0).getPost_num_pk()}</td> --%>
+				<td>${reportpost.post_title}</td>
 			</tr>
 			<tr>
 				<td><b>작성자</b></td>
-				<%-- <td>${reportpost.get(0).getMb_id()}</td> --%>
+				<td>${reportpost.mb_id}</td>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
-				<%-- <td><fmt:formatDate value="${reportpost.get(0).getPost_date()}" pattern="yyyy-MM-dd"/></td> --%>
+				<td><fmt:formatDate value="${reportpost.post_date}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			<tr>
 				<td><b>내용</b></td>
-				<%-- <td>${reportpost.get(0).getPost_con()}</td> --%>
+				<td>${reportpost.post_con}</td>
 			</tr>
 			<tr>
 				<td><b>위치</b></td>
-				<%-- <td>${post.get(0).getPbigc_name()}&nbsp;${post.get(0).getPsmallc_name()}</td> --%>
+				<td>${reportpost.pbigc_name}&nbsp;${reportpost.psmallc_name}</td>
 			</tr>
 			<tr>
 			<td><b>심부름가격</b></td>
-			<%-- <td>${reportpost.get(0).getPost_price()}</td> --%>
+			<td>${reportpost.post_price}</td>
 			</tr>
 			<tr>
 				<td><b>신고자</b></td>
-				<%-- <td>${reportpost.get(0).getMb_id()}</td> --%>
+				<td>${reportpost.porping_mbn}</td>
 			</tr>
 			<tr>
 				<td><b>신고일</b></td>
-				<%-- <td><fmt:formatDate value="${reportpost.get(0).getPorp_date()}" pattern="yyyy-MM-dd"/></td> --%>
+				<td><fmt:formatDate value="${reportpost.porp_date}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			<tr>
 				<td><b>신고사유</b></td>
-				<%-- <td>${reportpost.get(0).getPorp_con()}</td> --%>
+				<td>${reportpost.porp_con}</td>
 			</tr>
 		</table>
 	</div>

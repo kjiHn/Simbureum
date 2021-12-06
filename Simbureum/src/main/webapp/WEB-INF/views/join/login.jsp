@@ -94,7 +94,7 @@
 						$("#login_error").css("color","red");
 						
 					}else if (data == 3){
-						window.location.href = '/board';
+						window.location.href = '/MNGhome';
 					}
 			    },
 			    error: function(data) {

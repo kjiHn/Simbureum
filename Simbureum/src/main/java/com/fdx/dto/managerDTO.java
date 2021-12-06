@@ -41,7 +41,29 @@ public class managerDTO {
 	private int porp_lnb;	//해당 게시글 번호
 	private String porp_con;	//내용
 	private Date porp_date;	//신고일
+	private int report;//게시글신고당한횟수
+	private String mbn_id; //신고한 회원
+    private String porping_mbn; //게시글 신고한 회원
+	private String rerping_mbn; //리뷰 신고한 회원
 	
+	public String getRerping_mbn() {
+		return rerping_mbn;
+	}
+	public void setRerping_mbn(String rerping_mbn) {
+		this.rerping_mbn = rerping_mbn;
+	}
+	public String getPorping_mbn() {
+		return porping_mbn;
+	}
+	public void setPorping_mbn(String porping_mbn) {
+		this.porping_mbn = porping_mbn;
+	}
+	public String getMbn_id() {
+		return mbn_id;
+	}
+	public void setMbn_id(String mbn_id) {
+		this.mbn_id = mbn_id;
+	}
 	//리뷰 신고
 	private int rerp_num_pk;	//경고번호
 	private int rerp_target_mbn;	//신고당한회원번호
@@ -49,7 +71,46 @@ public class managerDTO {
 	private int rerp_lnb;	//해당 리뷰 번호
 	private String rerp_con;	//내용
 	private Date rerp_date;	//신고일
+	private int review;//리뷰신고당한횟수
+	private String rembn_id; //리뷰신고한회원
 	
+	public String getRembn_id() {
+		return rembn_id;
+	}
+	public void setRembn_id(String rembn_id) {
+		this.rembn_id = rembn_id;
+	}
+	//심부름꾼 리뷰
+	private int vr_rvn_pk; //리뷰번호
+	private String vr_rvc; //리뷰내용
+	private String vr_mbid; //리뷰받은사람
+	private Date vr_date; //리뷰작성일
+	
+	
+	public Date getVr_date() {
+		return vr_date;
+	}
+	public void setVr_date(Date vr_date) {
+		this.vr_date = vr_date;
+	}
+	public int getVr_rvn_pk() {
+		return vr_rvn_pk;
+	}
+	public void setVr_rvn_pk(int vr_rvn_pk) {
+		this.vr_rvn_pk = vr_rvn_pk;
+	}
+	public String getVr_rvc() {
+		return vr_rvc;
+	}
+	public void setVr_rvc(String vr_rvc) {
+		this.vr_rvc = vr_rvc;
+	}
+	public String getVr_mbid() {
+		return vr_mbid;
+	}
+	public void setVr_mbid(String vr_mbid) {
+		this.vr_mbid = vr_mbid;
+	}
 	public int getPorp_num_pk() {
 		return porp_num_pk;
 	}
@@ -70,6 +131,18 @@ public class managerDTO {
 	}
 	public int getPorp_lnb() {
 		return porp_lnb;
+	}
+	public int getReport() {
+		return report;
+	}
+	public void setReport(int report) {
+		this.report = report;
+	}
+	public int getReview() {
+		return review;
+	}
+	public void setReview(int review) {
+		this.review = review;
 	}
 	public void setPorp_lnb(int porp_lnb) {
 		this.porp_lnb = porp_lnb;

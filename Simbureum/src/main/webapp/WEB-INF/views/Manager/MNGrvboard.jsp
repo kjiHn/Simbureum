@@ -1,7 +1,8 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../model/topBar1.jsp" %>
+<%@ include file="../model/topBar_login_homeMNG.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -59,36 +60,36 @@
 	<table width = "100%" height = "100%" >
 			<tr>
 				<td><b>작성자</b></td>
-				<td>${report.get(0).getPost_title()}</td>
+				<td>${reportreview.mb_id}</td>
 			</tr>
 			<tr>
 				<td><b>해당 게시글</b></td>
-				<td>${list.get(0).getPost_title()}</td>
+				<td>${reportreview.post_title}</td>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
-				<td>${report.get(2)}</td>
+				<td><fmt:formatDate value="${reportreview.vr_date}" pattern="yyyy-MM-dd"/></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td><b>별점</b></td>
 				<td>${report.get(3)}</td>
-			</tr>
+			</tr> --%>
 			<tr>
 				<td><b>내용</b></td>
-				<td>${report.get(4)}</td>
+				<td>${reportreview.vr_rvc}</td>
 			</tr>
 			<tr>
-			<td><b>신고자</b></td>
-			<td>${report.get(5)}</td>
-		</tr>
-		<tr>
-			<td><b>신고일</b></td>
-			<td>${report.get(6)}</td>
-		</tr>
-		<tr>
-			<td><b>신고사유</b></td>
-			<td>${report.get(7)}</td>
-		</tr>
+				<td><b>신고자</b></td>
+				<td>${reportreview.rerping_mbn}</td>
+			</tr>
+			<tr>
+				<td><b>신고일</b></td>
+				<td><fmt:formatDate value="${reportreview.rerp_date}" pattern="yyyy-MM-dd"/></td>
+			</tr>
+			<tr>
+				<td><b>신고사유</b></td>
+				<td>${reportreview.rerp_con}</td>
+			</tr>
 	</table>
 </div>
 	 

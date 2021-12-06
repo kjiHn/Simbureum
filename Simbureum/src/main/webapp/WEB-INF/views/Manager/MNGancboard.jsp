@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../model/topBar1.jsp" %>
+<%@ include file="../model/topBar_login_homeMNG.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
@@ -31,8 +31,13 @@
          <div class="row">
             <jsp:include page="../model/siderbarMNG1.jsp" flush="false"/>
             <div class="col-lg-10 posts-list">
-            	<div class="form-group mt-3" align = "right" >
-            		<a href="#"><button  class="button button-contactForm boxed-btn" class="button" id="btn_create">공지 작성</button></a>
+            	<div class="form-group mt-3" align = "right">
+          <!--   	<a href="MNGwriteanc"><button  class="button button-contactForm boxed-btn" class="button" id="btn_create">공지 작성</button></a> -->
+            	<form action="MNGwriteanc" method="post">
+            	<input type="submit" class="button button-contactForm boxed-btn" value="공지작성">
+            	</form>
+            	
+            	
             	</div>
             	<h2 class="contact-title" align="center">공지 사항</h2><hr>
                		<div class="slider-shape d-none d-lg-block">
@@ -62,6 +67,7 @@
 
                      </tbody>
                   </table>
+        
             
                </div>
             </div>

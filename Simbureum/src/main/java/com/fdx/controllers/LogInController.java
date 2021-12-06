@@ -83,7 +83,7 @@ public class LogInController {
 			if (adminDTO==null) {
 				num = 0;
 			}else {
-				if (encoder.matches(pswd, adminDTO.getMng_pswd())) {
+				if (pswd.equals(adminDTO.getMng_pswd())) {
 					
 					num = 3;
 					request.setAttribute("adminDTO", adminDTO); 

@@ -1,8 +1,8 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../model/topBar1.jsp" %>
-<jsp:include page="../model/topBar1.jsp" flush="false"/>
+<%@ include file="../model/topBar_login_homeMNG.jsp" %>
+<%-- <jsp:include page="../model/topBar1.jsp" flush="false"/> --%>
 
 <html>
 <head>

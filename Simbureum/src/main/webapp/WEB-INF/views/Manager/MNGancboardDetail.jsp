@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../model/topBar1.jsp" %>
+<%@ include file="../model/topBar_login_homeMNG.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
@@ -27,7 +27,18 @@
 		</div>
 	</div>
 </section>
+	<div class="form-group mt-3" align="center">
+		
+	<a href="/MNGancmodify?ntc_num_pk=${announceDetail.ntc_num_pk }">
+		<input type="submit" class="button button-contactForm boxed-btn"value="공지 수정"/>
+	</a>
 	
-	
+
+			<form action="MNGancdelete" method="post">
+				<input type="hidden" name="ntc_num_pk" value="${announceDetail.ntc_num_pk}"/>
+				<input type="submit" class="button button-contactForm boxed-btn"
+					value="공지 삭제">
+			</form>
+	</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../model/topBar_login.jsp" %>
+<%@ include file="../model/topBar_login_homeMNG.jsp" %>
 
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -91,9 +91,11 @@ a {
 								<td>${postDetail.post_price}</td>
 							</tr>
 						</table>
-						
-						<input type="button" class="button"  value="게시글 삭제">
-
+						<form action="/postdelete" method="get"> 
+						<input type="hidden" name="post_num_pk" value="${postDetail.post_num_pk}"/>
+						<input class ="button" type="submit" value="게시글삭제"/>
+						</form>
+						<%-- <input type="button" class="button"  value="게시글 삭제" onclick = "location.href = 'MNGpostdelete?post_num_pk=${postDetail.post_num_pk}'"> --%>
 					</div>
 				</div>
 			</div>
