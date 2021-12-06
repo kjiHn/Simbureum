@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.fdx.dao.Ern_RvDAO">
+ <!--  자신이 고용자일때 받은 리뷰 전체 조회 --> 
+ <select id="EreceiveList" resultType="com.fdx.dto.Ern_RvDTO">  
+	 select * from Ern_Rv
+	  where er_mbid = #{er_mbid}	   
+</select> 
+
+
+
+ <select id="EreList" resultType="com.fdx.dto.PostRvDTO">
+	<![CDATA[
+       select *
+	   from post p, Ern_Rv er, member m	   
+       where p.post_num_pk = er.post_num_pk
+       and er.mb_id_pk = m.mb_id
+       and er.er_num_pk = #{er_num_pk}       
+	]]>
+</select>
+
+<!-- 신고중복확인 -->
+<select id="EReportCheck" resultType="int">
+<![CDATA[
+select count(*) from RE_REPORT
+where RERP_LNB = #{RERP_LNB}
+]]>
+</select>
+
+
+
+<!-- 신고하기 -->
+<insert id="EReport">
+insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CONTENT,RERP_DATE)  
+				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CONTENT},sysdate)				
+</insert>
+
+<!-- 고용자가 심부름꾼에게 작성한 리뷰 전체조회 -->
+<select id="EwriteList" resultType="com.fdx.dto.Ern_RvDTO" >  
+	 select * from Ern_Rv
+	  where mb_id_pk = #{mb_id_pk}
+</select> 
+
+
+<select id="EwrList" resultType="com.fdx.dto.PostRvDTO">
+	<![CDATA[
+      select *
+	   from post p join Ern_Rv er	   
+       on p.post_num_pk = er.post_num_pk
+       where er.er_num_pk = #{er_num_pk}
+       
+	]]>
+</select> 
+
+<delete id="EwreDelete">
+	delete from Ern_Rv
+	where er_num_pk = #{er_num_pk}
+
+</delete>
+
+
+<!-- 작성한 리뷰 수정 -->
+<update id="EwreUpdate">
+	update Ern_Rv set
+	er_grd = #{er_grd},
+	er_rvc = #{er_rvc},
+	er_date = sysdate
+	where er_num_pk = #{er_num_pk}
+</update>
+
+
+
+                                 
+
+
+ 
+
+</mapper>

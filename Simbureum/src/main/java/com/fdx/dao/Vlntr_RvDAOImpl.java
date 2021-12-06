@@ -8,7 +8,6 @@ import org.apache.ibatis.jdbc.SQL;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.fdx.dto.CriteriaDTO;
 import com.fdx.dto.PostRvDTO;
 import com.fdx.dto.Vlntr_RvDTO;
 @Repository
@@ -57,16 +56,16 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 
 
 	@Override
-	public PostRvDTO wrList(String mb_id_pk) throws Exception {
+	public PostRvDTO wrList(int vr_rvn_pk) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("wrList", mb_id_pk);
+		return sqlSessionTemplate.selectOne("wrList", vr_rvn_pk);
 	}
 
 
 	@Override
-	public void wreDelete(String mb_id_pk) throws Exception {
+	public void wreDelete(int vr_rvn_pk) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSessionTemplate.delete("wreDelete", mb_id_pk);
+		sqlSessionTemplate.delete("wreDelete", vr_rvn_pk);
 		
 	}
 
@@ -79,11 +78,11 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 	}
 
 
-	@Override
-	public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectList("page",cri);
-	}
+//	@Override
+//	public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception {
+//		// TODO Auto-generated method stub
+//		return sqlSessionTemplate.selectList("page",cri);
+//	}
 
 
 	@Override
@@ -114,6 +113,13 @@ public class Vlntr_RvDAOImpl implements Vlntr_RvDAO{
 	public void Report(Vlntr_RvDTO vrdto) throws Exception {
 		sqlSessionTemplate.insert("Report", vrdto);
 		
+	}
+
+
+	@Override
+	public int ReportCheck(Vlntr_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("ReportCheck", vrdto);
 	}
 
 

@@ -16,6 +16,7 @@
 	}
 %>
 
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,16 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
-
-
-<style type="text/css">
-a:visited {
-	background-color: pink;
-}
-</style>
-
-
-
+    
 </head>
 <body>
 
@@ -51,7 +43,7 @@ a:visited {
               	
               
                
-            	<h3>TO.<a href="#">고용자</a> | <a href="/Ereview/EreceiveList?er_mbid=<%=session.getAttribute("mid")%>">심부름꾼</a></h3>
+            	<h3>TO.<a href="#">고용자</a> | <a href="#">심부름꾼</a></h3>
             
                   <table style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
@@ -63,27 +55,27 @@ a:visited {
                            <th>작성일</th>                           
                         </tr>
                      </thead>
-					<c:forEach items="${receiveList }" var="vrdto">
+					<c:forEach items="${EreceiveList }" var="erdto">
 					
                      <tbody>                     
                          <tr style="border: 1px solid #e3c4ff;">
-                           <td style="padding: 10px;">${vrdto.vr_rvn_pk}</td>
-                           <td><a href="reList?vr_rvn_pk=${vrdto.vr_rvn_pk }" style="color: black">${vrdto.vr_rvc}</a></td>
-                           <td>${vrdto.mb_id_pk }</td>
+                           <td style="padding: 10px;">${erdto.er_num_pk}</td>
+                           <td><a href="EreList?er_num_pk=${erdto.er_num_pk }" style="color: black">${erdto.er_rvc}</a></td>
+                           <td>${erdto.mb_id_pk }</td>
                            <td style="color: #ffc107;"> 
-	                            <c:if test="${vrdto.vr_grd == 1}">★☆☆☆☆</c:if>
-	                            <c:if test="${vrdto.vr_grd == 2}">★★☆☆☆</c:if>
-	                            <c:if test="${vrdto.vr_grd == 3}">★★★☆☆</c:if>
-                           		<c:if test="${vrdto.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${vrdto.vr_grd == 5}">★★★★★</c:if>
+	                            <c:if test="${erdto.er_grd == 1}">★☆☆☆☆</c:if>
+	                            <c:if test="${erdto.er_grd == 2}">★★☆☆☆</c:if>
+	                            <c:if test="${erdto.er_grd == 3}">★★★☆☆</c:if>
+                           		<c:if test="${erdto.er_grd == 4}">★★★★☆</c:if>
+                           		<c:if test="${erdto.er_grd == 5}">★★★★★</c:if>
                             </td>
-                           <td>${vrdto.vr_date}</td>
+                           <td>${erdto.er_date}</td>
                         </tr>
                      </tbody>
                    </c:forEach>
                   </table>
 			
-				<nav class="blog-pagination justify-content-center d-flex">
+				<%-- <nav class="blog-pagination justify-content-center d-flex">
                                 <ul class="pagination">
                                  <c:if test="${pageMaker.prev}">
                                  
@@ -108,7 +100,7 @@ a:visited {
                                     </li>
                                     </c:if> 
                                 </ul>
-                            </nav>  
+                            </nav>   --%>
 				
            </div>
            
@@ -119,11 +111,7 @@ a:visited {
      
    </section>
    
-   <script type="text/javascript">
-  
-   
-   
-   </script>
+   <script type="text/javascript"></script>
 
 
 

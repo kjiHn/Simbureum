@@ -24,7 +24,7 @@
 	// 수정 버튼 클릭
 	$("#updateOk").click(function(){
 	 
-	 formObj.attr("action", "/review/wreUpdate");
+	 formObj.attr("action", "/Ereview/EwreUpdate");
 	 formObj.attr("method", "get");  
 	 formObj.submit(); 
 	 
@@ -114,27 +114,27 @@ article {
 						<div class="col-lg-8 posts-list" style=" padding:  30px 50px; height:600px; border: 4px solid #e3c4ff; ">
 						
 					<form class="form-contact contact_form"	method="post"  role="form">	
-					<input type="hidden" name="mb_id_pk" value="${wrList.mb_id_pk }">
-					<input type="hidden" name="vr_rvn_pk" value="${wrList.vr_rvn_pk }">
+					<input type="hidden" name="mb_id_pk" value="${EwrList.mb_id_pk }">
+					<input type="hidden" name="er_num_pk" value="${EwrList.er_num_pk }">
 				    <table style="text-align: center; width: 400px; align: center;" >
                      <thead>
                         <tr>
                            <th>TO.</th>
-                           <td >${wrList.vr_mbid }</td>                                                      
+                           <td >${EwrList.er_mbid }</td>                                                      
                         </tr >
                         <tr>
                         	 <th >별점</th>
                              <td> 
                              	<div class="star-vr_grd" >									
-								  <input type="radio" id="5-stars" name="vr_grd" value="5"/>
+								  <input type="radio" id="5-stars" name="er_grd" value="5"/>
 								  <label for="5-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="4-stars" name="vr_grd" value="4" />
+								  <input type="radio" id="4-stars" name="er_grd" value="4" />
 								  <label for="4-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="3-stars" name="vr_grd" value="3" />
+								  <input type="radio" id="3-stars" name="er_grd" value="3" />
 								  <label for="3-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="2-stars" name="vr_grd" value="2" />
+								  <input type="radio" id="2-stars" name="er_grd" value="2" />
 								  <label for="2-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="1-star" name="vr_grd" value="1" />
+								  <input type="radio" id="1-star" name="er_grd" value="1" />
 								  <label for="1-star" class="star" style="font-size: 25px;">★</label>									  
 							    </div>
                            	</td>
@@ -142,9 +142,9 @@ article {
                         <tr style="border-top: 2px solid  #eceff8; ">
                            <th>내용</th>
                            <td style="height: 200px;">
-                           <div class="form-group"><textarea class="form-control w-100" name="vr_rvc"
+                           <div class="form-group"><textarea class="form-control w-100" name="er_rvc"
 										 style="font-size: 20px;"
-										 id="message" cols="30" rows="9">${wrList.vr_rvc }</textarea>
+										 id="message" cols="30" rows="9">${EwrList.er_rvc }</textarea>
 								</div>
                            </td>                            
                         </tr>

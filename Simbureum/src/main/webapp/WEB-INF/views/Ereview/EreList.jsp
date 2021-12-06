@@ -76,17 +76,17 @@ table {
 						</div>
 						<form name="Report" >
 						<div class="modal-body">
-							<h3 id="v">신고 사유</h3>
-								<input type="hidden" name = "vr_mbid" value="<%=session.getAttribute("mid")%>">
-                				<input type="hidden" id="RERP_TARGET_MBN" name="RERP_TARGET_MBN" value="${reList.mb_num_pk }">
+							<h3>신고 사유</h3>
+								<input type="hidden" name = "er_mbid" value="<%=session.getAttribute("mid")%>">
+                				<input type="hidden" id="RERP_TARGET_MBN" name="RERP_TARGET_MBN" value="${EreList.mb_num_pk }">
                 				<input type="hidden" id="RERP_MBN" name="RERP_MBN" value="<%=session.getAttribute("mNum")%>">
-                				<input type="text" id="RERP_LNB" name="RERP_LNB" value="${reList.vr_rvn_pk }">    
-                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RRERP_CONTENT" name="RRERP_CONTENT"></textarea>            				
+                				<input type="hidden" id="RERP_LNB" name="RERP_LNB" value="${EreList.er_num_pk }">    
+                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RERP_CONTENT" name="RERP_CONTENT"></textarea>            				
 					
 						</div>
 						</form>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" onclick="clickDel(Report)" >신고하기</button>
+							<button type="button" class="button button-contactForm boxed-btn"  onclick="clickDel(Report)">신고하기</button>
 							<button type="button" class="button button-contactForm boxed-btn" data-dismiss="modal">취소하기</button>
 						</div>
 						
@@ -96,74 +96,43 @@ table {
 				</div>
 			</div>
 			
-			<!--  -->
+			
 		
 	</div>
-	<script src="<c:url value="/js/egovframework/mbl/cmm/jquery-1.11.2.min.js" />"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
-
-		 <script>
-				 function clickDel(formName) {
-					  var RERP_LNB = $("#RERP_LNB").val();
+		<script>
+		 function clickDel(formName) {
+			  var RERP_LNB = $("#RERP_LNB").val();
+			  
+			  
+			  $.ajax({
+				  url : "/Ereview/EReportCheck",
+				  type : "POST",
+				  dataType : "json",
+				  data : {"RERP_LNB" : RERP_LNB},
+				  success : function(data){
+					  if(data==1){
+						alert("이미 신고가 완료된 리뷰입니다.");
+						console.log(data);
+						  
+					  }else if(data==0){
+						  alert("신고가 완료되었습니다.");
+						 formName.action = "/Ereview/EReport";
+						formName.method = "post";
+						formName.submit();  
+						 
+					  }
 					  
-					  
-					  $.ajax({
-						  url : "/review/ReportCheck",
-						  type : "POST",
-						  dataType : "json",
-						  data : {"RERP_LNB" : RERP_LNB},
-						  success : function(data){
-							  if(data==1){
-								alert("이미 신고가 완료된 리뷰입니다.");
-								console.log(data);
-								  
-							  }else if(data==0){
-								  alert("신고가 완료되었습니다.");
-								 formName.action = "/review/Report";
-								formName.method = "post";
-								formName.submit();  
-								 
-							  }
-							  
-						  }
-						  
-						  
-					  });
-					  
-					
-				} 
-				
-				
-				/* $('#btn1').on('click', function() {
-					var RERP_LNB = $("#RERP_LNB").val();
-					  $.ajax({
-						  url : "/review/ReportCheck",
-						  type : "POST",
-						  dataType : "json",
-						  data : RERP_LNB,
-						  success : function(data){
-							  if(data==1){
-								alert("이미 공감한 게시물입니다.");
-								console.log(data);
-								  
-							  }else if(data==0){
-								  alert("게시물입니다.");
-								 
-							  }
-							  
-						  }
-						  
-						  
-					  });
-					
-				}); */
-				
-			</script> 
+				  }
+				  
+				  
+			  });
+			  
 			
-		
-			
-
+		} 
+				
+			</script>
 
 
     <section class="blog_area single-post-area section-padding">
@@ -175,7 +144,7 @@ table {
                 <div class="col-lg-8 posts-list" style=" padding:  30px 50px; height:600px; border: 4px solid #e3c4ff; ">
                 
                 <form name="Delete">
-                	<input type="hidden"  name="mb_id_pk" value="${reList.vr_mbid }">
+                	<input type="hidden"  name="mb_id_pk" value="${EreList.er_mbid }">
                 </form>
              
                 
@@ -184,36 +153,36 @@ table {
                      	
                         <tr>
                            <th>From.</th>
-                           <td ><c:out value=" ${reList.mb_id_pk }"></c:out></td>                                                      
+                           <td ><c:out value=" ${EreList.mb_id_pk }"></c:out></td>                                                      
                         </tr > 
                         <tr>
                         	<th>해당 게시글</th>
-                            <td><c:out value=" ${reList.post_title}"></c:out></td>
+                            <td><c:out value=" ${EreList.post_title}"></c:out></td>
                         </tr>
                         
                         <tr>
                         	<th >작성일</th>                           
-                           <td><fmt:formatDate value="${reList.vr_date }" pattern="yyyy.MM.dd"/></td>
+                           <td><fmt:formatDate value="${EreList.er_date }" pattern="yyyy.MM.dd"/></td>
                         </tr>
                          <tr>
                         	 <th >별점</th>
-                             <td style="color: #ffc107"><c:if test="${reList.vr_grd == 1}">★☆☆☆☆</c:if>
-	                            <c:if test="${reList.vr_grd == 2}">★★☆☆☆</c:if>
-	                            <c:if test="${reList.vr_grd == 3}">★★★☆☆</c:if>
-                           		<c:if test="${reList.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${reList.vr_grd == 5}">★★★★★</c:if>
+                             <td style="color: #ffc107"><c:if test="${reList.er_grd == 1}">★☆☆☆☆</c:if>
+	                            <c:if test="${EreList.er_grd == 2}">★★☆☆☆</c:if>
+	                            <c:if test="${EreList.er_grd == 3}">★★★☆☆</c:if>
+                           		<c:if test="${EreList.er_grd == 4}">★★★★☆</c:if>
+                           		<c:if test="${EreList.er_grd == 5}">★★★★★</c:if>
                            	</td>
                         </tr>
                         <tr style="border-top: 2px solid  #eceff8;">
                            <th >내용</th>
-                           <td style="height: 200px;"><c:out value=" ${reList.vr_rvc}"></c:out></td> 
+                           <td style="height: 200px;"><c:out value=" ${EreList.er_rvc}"></c:out></td> 
                         </tr>
                      </thead>
                   </table>
                   <br>
                   <br>
                  <div class="form-group mt-3" >
-					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="Report" id="Report" >신고하기</button>
+					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" id="Report">신고하기</button>
 				</div>
              
                </div>
@@ -223,35 +192,7 @@ table {
          </div>
       </div>
    </section>
-   
-     <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
 
-/* $("#Report").click(function(){
-	console.log(click);
-	console.log("click");
-	
-	var RERP_LNB = $("#RERP_LNB").val();
-	
-	$.ajax({
-		url : "/review/ReportCheck",
-		type : "post",
-		dataType : "json",
-		data : { "RERP_LNB" : $("#RERP_LNB").val()},
-		success : function(data){
-			if(data ==0)
-				$("#Report").css("disabled","disabled");
-				
-		}else if(data==2){
-			$("#Report").css("disabled","disabled");
-			
-		}
-	});
-	
-}); */
-
-
-</script>
    
    
 

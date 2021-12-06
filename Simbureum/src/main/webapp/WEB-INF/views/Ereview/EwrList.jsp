@@ -79,7 +79,7 @@ table {
 			</div>
 			<script>
 				function clickDel(formName) {
-					formName.action = "/review/wreDelete";
+					formName.action = "/Ereview/EwreDelete";
 					formName.method = "post";
 					formName.submit();
 				}
@@ -99,8 +99,8 @@ table {
                 <div class="col-lg-8 posts-list" style=" padding:  30px 50px; height:600px; border: 4px solid #e3c4ff; ">
                 
                 <form name="Delete">
-                	<input type="hidden"  name="mb_id_pk" value="${wrList.mb_id_pk }">
-                	<input type="hidden"  name="vr_rvn_pk" value="${wrList.vr_rvn_pk }">
+                	<input type="hidden"  name="er_num_pk" value="${EwrList.er_num_pk }">
+                	<input type="hidden"  name="mb_id_pk" value="<%=session.getAttribute("mid")%>">                	
                 </form>
              
                 
@@ -109,30 +109,30 @@ table {
                      	
                         <tr>
                            <th>From.</th>
-                           <td ><c:out value=" ${wrList.mb_id_pk }"></c:out></td>                                                      
+                           <td ><c:out value=" ${EwrList.mb_id_pk }"></c:out></td>                                                      
                         </tr > 
                         <tr>
                         	<th>해당 게시글</th>
-                            <td><c:out value=" ${wrList.post_title}"></c:out></td>
+                            <td><c:out value=" ${EwrList.post_title}"></c:out></td>
                         </tr>
                         
                         <tr>
                         	<th >작성일</th>                           
-                           <td><fmt:formatDate value="${wrList.vr_date }" pattern="yyyy.MM.dd"/></td>
+                           <td><fmt:formatDate value="${EwrList.er_date }" pattern="yyyy.MM.dd"/></td>
                         </tr>
                          <tr>
                         	 <th >별점</th>
-                             <td style="color: #ffc107"><c:if test="${wrList.vr_grd == 1}">★☆☆☆☆</c:if>
-	                            <c:if test="${wrList.vr_grd == 2}">★★☆☆☆</c:if>
-	                            <c:if test="${wrList.vr_grd == 3}">★★★☆☆</c:if>
-                           		<c:if test="${wrList.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${wrList.vr_grd == 5}">★★★★★</c:if>
+                             <td style="color: #ffc107"><c:if test="${EwrList.er_grd == 1}">★☆☆☆☆</c:if>
+	                            <c:if test="${EwrList.er_grd == 2}">★★☆☆☆</c:if>
+	                            <c:if test="${EwrList.er_grd == 3}">★★★☆☆</c:if>
+                           		<c:if test="${EwrList.er_grd == 4}">★★★★☆</c:if>
+                           		<c:if test="${EwrList.er_grd == 5}">★★★★★</c:if>
                            	</td>
                         </tr>
                         <tr style="border-top: 2px solid  #eceff8;">
                            <th >내용</th>
                            
-                           <td style="height: 200px;"><c:out value=" ${wrList.vr_rvc}"></c:out></td> 
+                           <td style="height: 200px;"><c:out value=" ${EwrList.er_rvc}"></c:out></td> 
                         </tr>
                      </thead>
                   </table>
@@ -140,7 +140,7 @@ table {
                   <br>
                  <div class="form-group mt-3" style="margin-left: 20px;">
                  
-             <a href="wreUpdate?vr_rvn_pk=${wrList.vr_rvn_pk  }"><button  class="button button-contactForm boxed-btn" id="btn_up">수정하기</button></a> 
+             <a href="EwreUpdate?er_num_pk=${EwrList.er_num_pk  }"><button  class="button button-contactForm boxed-btn" id="btn_up">수정하기</button></a> 
 					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" id="btn_del">삭제하기</button>
 				</div>
              
@@ -152,10 +152,16 @@ table {
       </div>
    </section>
 
+<script type="text/javascript">
 
 
+	$("#updateOk").click(function(){
+	 
+	 formObj.attr("action", "/review/wreUpdate");
+	 formObj.attr("method", "get");  
+	 formObj.submit(); 
 
-
+	 </script>
 
 
 </body>

@@ -56,55 +56,26 @@
                         </tr>
                      </thead>
                      
-					<c:forEach items="${writeList }" var="wrdto">
+					<c:forEach items="${EwriteList }" var="erdto">
 					
                      <tbody>                     
                          <tr style="border: 1px solid #e3c4ff;">
-                           <td style="padding: 10px;">${wrdto.vr_rvn_pk}</td>
-                           <td><a href="wrList?vr_rvn_pk=${wrdto.vr_rvn_pk }" style="color: black">${wrdto.vr_rvc}</a></td>
-                           <td>${wrdto.vr_mbid }</td>
+                           <td style="padding: 10px;">${erdto.er_num_pk}</td>
+                           <td><a href="EwrList?er_num_pk=${erdto.er_num_pk }" style="color: black">${erdto.er_rvc}</a></td>
+                           <td>${erdto.er_mbid }</td>
                            <td style="color: #ffc107;"> 
-	                            <c:if test="${wrdto.vr_grd == 1}">★☆☆☆☆</c:if>
-	                            <c:if test="${wrdto.vr_grd == 2}">★★☆☆☆</c:if>
-	                            <c:if test="${wrdto.vr_grd == 3}">★★★☆☆</c:if>
-                           		<c:if test="${wrdto.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${wrdto.vr_grd == 5}">★★★★★</c:if>
+	                            <c:if test="${erdto.er_grd == 1}">★☆☆☆☆</c:if>
+	                            <c:if test="${erdto.er_grd == 2}">★★☆☆☆</c:if>
+	                            <c:if test="${erdto.er_grd == 3}">★★★☆☆</c:if>
+                           		<c:if test="${erdto.er_grd == 4}">★★★★☆</c:if>
+                           		<c:if test="${erdto.er_grd == 5}">★★★★★</c:if>
                             </td>
-                           <td>${wrdto.vr_date}</td>
+                           <td>${erdto.er_date}</td>
                         </tr>
                      </tbody>
                    </c:forEach>
                   </table>
                   
-                  
-                  
-                  <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                 <c:if test="${pageMaker.prev}">
-	                                    <li class="page-item">
-	                                        <a href="writeList${pageMaker.makeQuery(pageMaker.startPage - 1)}&mb_id_pk=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Previous">
-	                                            <i class="ti-angle-left"></i>
-	                                        </a>
-	                                    </li>
-                                 </c:if> 
-                                   
-                                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li class="page-item">
-                                        <a href="writeList${pageMaker.makeQuery(idx)}&mb_id_pk=<%=session.getAttribute("mid") %>" class="page-link" id="page">${idx}</a>
-                                    </li>
-                                    </c:forEach>
-                                    
-                                   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li class="page-item">
-                                        <a href="writeList${pageMaker.makeQuery(pageMaker.endPage + 1)}&mb_id_pk=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Next">
-                                            <i class="ti-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    </c:if> 
-                                </ul>
-                            </nav>  
-				
-				
 				</div>
 				
 				<div>

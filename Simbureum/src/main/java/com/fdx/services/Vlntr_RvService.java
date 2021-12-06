@@ -3,7 +3,7 @@ package com.fdx.services;
 import java.util.List;
 
 import com.fdx.dao.Vlntr_RvDAO;
-import com.fdx.dto.CriteriaDTO;
+
 import com.fdx.dto.PostRvDTO;
 import com.fdx.dto.Vlntr_RvDTO;
 
@@ -15,9 +15,9 @@ public interface Vlntr_RvService {
 	
 	public List<Vlntr_RvDTO> writeList(String mb_id_pk) throws Exception;//자신이 심부름꾼일때 작성한 리뷰 조회(전체)
 	
-	public PostRvDTO wrList(String mb_id_pk) throws Exception;
+	public PostRvDTO wrList(int vr_rvn_pk) throws Exception;
 	public void wreUpdate(Vlntr_RvDTO vrdto)throws Exception; //작성한 리뷰 수정하기
-	public void wreDelete(String mb_id_pk) throws Exception;//작성한 리뷰 삭제하기
+	public void wreDelete(int vr_rvn_pk) throws Exception;//작성한 리뷰 삭제하기
 	public void wreInsert(Vlntr_RvDTO vrdto) throws Exception; //고용자에게 리뷰작성하기
 	
 	
@@ -33,8 +33,9 @@ public interface Vlntr_RvService {
 	
 	public int vrCount(String vr_mbid)throws Exception;
 	public int listCount(String mb_id_pk)throws Exception;
-	public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception; 
+	//public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception; 
 	
+	public int ReportCheck(Vlntr_RvDTO vrdto) throws Exception; //리뷰 신고 중복체크 
 	
 	
 	

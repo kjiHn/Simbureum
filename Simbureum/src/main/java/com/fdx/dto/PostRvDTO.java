@@ -25,6 +25,14 @@ public class PostRvDTO {
 	
 	
 	
+	private int er_num_pk;     //리뷰 번호 
+    private int er_grd;        //별점
+    private String er_rvc;     //리뷰내용
+    private Date er_date;      //작성일
+    private String er_mbid;    //받은사람
+	
+	
+	
 	public PostRvDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -130,6 +138,46 @@ public class PostRvDTO {
 	}
 	public void setVr_mbid(String vr_mbid) {
 		this.vr_mbid = vr_mbid;
+	}
+
+	public int getEr_num_pk() {
+		return er_num_pk;
+	}
+
+	public void setEr_num_pk(int er_num_pk) {
+		this.er_num_pk = er_num_pk;
+	}
+
+	public int getEr_grd() {
+		return er_grd;
+	}
+
+	public void setEr_grd(int er_grd) {
+		this.er_grd = er_grd;
+	}
+
+	public String getEr_rvc() {
+		return er_rvc;
+	}
+
+	public void setEr_rvc(String er_rvc) {
+		this.er_rvc = er_rvc;
+	}
+
+	public Date getEr_date() {
+		return er_date;
+	}
+
+	public void setEr_date(Date er_date) {
+		this.er_date = er_date;
+	}
+
+	public String getEr_mbid() {
+		return er_mbid;
+	}
+
+	public void setEr_mbid(String er_mbid) {
+		this.er_mbid = er_mbid;
 	}
 	
 	

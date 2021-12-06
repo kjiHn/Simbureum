@@ -8,11 +8,11 @@ import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Service;
 
 import com.fdx.dao.Vlntr_RvDAO;
-import com.fdx.dto.CriteriaDTO;
+
 import com.fdx.dto.PostRvDTO;
 import com.fdx.dto.Vlntr_RvDTO;
 
-//@Service
+@Service
 public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 	@Inject
 	private Vlntr_RvDAO vrdao;
@@ -51,15 +51,15 @@ public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 	}
 
 	@Override
-	public PostRvDTO wrList(String mb_id_pk) throws Exception {
+	public PostRvDTO wrList(int mb_id_pk) throws Exception {
 		// TODO Auto-generated method stub
 		return vrdao.wrList(mb_id_pk);
 	}
 
 	@Override
-	public void wreDelete(String mb_id_pk) throws Exception {
+	public void wreDelete(int vr_rvn_pk) throws Exception {
 		// TODO Auto-generated method stub
-		vrdao.wreDelete(mb_id_pk);
+		vrdao.wreDelete(vr_rvn_pk);
 		
 	}
 
@@ -69,11 +69,11 @@ public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 		return vrdao.listCount(mb_id_pk);
 	}
 
-	@Override
-	public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception {
-		// TODO Auto-generated method stub
-		return vrdao.page(cri);
-	}
+//	@Override
+//	public List<Vlntr_RvDTO> page(CriteriaDTO cri) throws Exception {
+//		// TODO Auto-generated method stub
+//		return vrdao.page(cri);
+//	}
 
 	@Override
 	public void wreInsert(Vlntr_RvDTO vrdto) throws Exception {
@@ -101,6 +101,12 @@ public class Vlntr_RvServiceImpl implements Vlntr_RvService{
 		// TODO Auto-generated method stub
 		vrdao.Report(vrdto);
 		
+	}
+
+	@Override
+	public int ReportCheck(Vlntr_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		return vrdao.ReportCheck(vrdto);
 	}
 
 	

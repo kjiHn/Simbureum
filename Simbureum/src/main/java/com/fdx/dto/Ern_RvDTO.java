@@ -12,6 +12,13 @@ public class Ern_RvDTO {
     private String er_mbid;    //받은사람
     
     
+  //신고
+  	private int RERP_NUM_PK;
+  	private int RERP_TARGET_MBN;
+  	private int RERP_MBN;
+  	private int RERP_LNB;
+  	private String RERP_CONTENT;
+  	private Date RERP_DATE;
     
     public Ern_RvDTO() {}
 
@@ -101,11 +108,88 @@ public class Ern_RvDTO {
 
 
 
+	public int getRERP_NUM_PK() {
+		return RERP_NUM_PK;
+	}
+
+
+
+	public void setRERP_NUM_PK(int rERP_NUM_PK) {
+		RERP_NUM_PK = rERP_NUM_PK;
+	}
+
+
+
+	public int getRERP_TARGET_MBN() {
+		return RERP_TARGET_MBN;
+	}
+
+
+
+	public void setRERP_TARGET_MBN(int rERP_TARGET_MBN) {
+		RERP_TARGET_MBN = rERP_TARGET_MBN;
+	}
+
+
+
+	public int getRERP_MBN() {
+		return RERP_MBN;
+	}
+
+
+
+	public void setRERP_MBN(int rERP_MBN) {
+		RERP_MBN = rERP_MBN;
+	}
+
+
+
+	public int getRERP_LNB() {
+		return RERP_LNB;
+	}
+
+
+
+	public void setRERP_LNB(int rERP_LNB) {
+		RERP_LNB = rERP_LNB;
+	}
+
+
+
+	public String getRERP_CONTENT() {
+		return RERP_CONTENT;
+	}
+
+
+
+	public void setRERP_CONTENT(String rERP_CONTENT) {
+		RERP_CONTENT = rERP_CONTENT;
+	}
+
+
+
+	public Date getRERP_DATE() {
+		return RERP_DATE;
+	}
+
+
+
+	public void setRERP_DATE(Date rERP_DATE) {
+		RERP_DATE = rERP_DATE;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Ern_RvDTO [er_num_pk=" + er_num_pk + ", post_num_pk=" + post_num_pk + ", mb_id_pk=" + mb_id_pk
-				+ ", er_grd=" + er_grd + ", er_rvc=" + er_rvc + ", er_date=" + er_date + ", er_mbid=" + er_mbid + "]";
+				+ ", er_grd=" + er_grd + ", er_rvc=" + er_rvc + ", er_date=" + er_date + ", er_mbid=" + er_mbid
+				+ ", RERP_NUM_PK=" + RERP_NUM_PK + ", RERP_TARGET_MBN=" + RERP_TARGET_MBN + ", RERP_MBN=" + RERP_MBN
+				+ ", RERP_LNB=" + RERP_LNB + ", RERP_CONTENT=" + RERP_CONTENT + ", RERP_DATE=" + RERP_DATE + "]";
 	}
-    
+
+
+
+
     
 }
