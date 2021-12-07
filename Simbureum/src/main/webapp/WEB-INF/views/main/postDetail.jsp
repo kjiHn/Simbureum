@@ -4,7 +4,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../model/topBar_login.jsp" %>
-
+<%
+	pageContext.setAttribute("mNum", session.getAttribute("mNum"));
+%>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -98,13 +100,17 @@ a {
 								<th>심부름 가격</th>
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
+							<c:if test="${post.mb_num_pk != mNum}">
 							<tr>
 								<td></td>
 								<td><input type="button" class="button" onclick="openReport()" value="신고하기"></td>
 							</tr>
+							</c:if>
 						</table>
 						
-						<input type="button" class="button" onclick="openVol()" value="심부름꾼 지원하기">
+						<c:if test="${post.mb_num_pk != mNum}">
+							<input type="button" class="button" onclick="openVol()" value="심부름꾼 지원하기">
+						</c:if>
 
 					</div>
 				</div>

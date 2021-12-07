@@ -67,7 +67,7 @@
 	</select>
 	
 	<select id="selectOnePost" parameterType="int" resultType="post">
-		select p.POST_NUM_PK, p.POST_TITLE, p.POST_CON, p.POST_DLINE, p.POST_PRICE, p.POST_NUMOF, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
+		select p.POST_NUM_PK, p.POST_TITLE, p.POST_CON, p.POST_DLINE, p.POST_PRICE, p.POST_NUMOF, p.POST_VIEWS, p.POST_DATE, p.MB_NUM_PK, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
 		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
 		where p.MB_NUM_PK = m.MB_NUM_PK
 		and p.PSMALLC_PK = s.PSMALLC_PK
