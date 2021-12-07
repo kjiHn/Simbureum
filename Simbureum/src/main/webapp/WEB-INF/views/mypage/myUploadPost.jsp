@@ -76,12 +76,10 @@ background-color: black;
 											<td style="color: #ffc107;">${postdto.post_views}</td>
 											<td><fmt:formatDate value="${postdto.post_date }"
 													pattern="yyyy.MM.dd" /></td>
-											<td><c:if
-													test="${postdto.vh_hsn_pk != 0 && postdto.ap_apn_pk == 0}">완료</c:if>
-												<c:if
-													test="${postdto.ap_apn_pk != 0 && postdto.vh_hsn_pk == 0}">진행중</c:if>
-												<c:if
-													test="${postdto.ap_apn_pk == 0 && postdto.vh_hsn_pk == 0}">모집중</c:if>
+											<td>
+												<c:if test="${empty postdto.sel_vr}">모집중</c:if>
+												<c:if test="${!empty postdto.sel_vr && empty postdto.vh_date}">진행중</c:if>
+												<c:if test="${!empty postdto.sel_vr && !empty postdto.vh_date}">완료</c:if>
 											</td>
 										</tr>
 									</tbody>
@@ -122,7 +120,7 @@ background-color: black;
 
 	<script type="text/javascript"></script>
 
-</section>
+
 	  <form id='actionForm' action="/mypage/upPost" method='get'> 
       	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
      	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />

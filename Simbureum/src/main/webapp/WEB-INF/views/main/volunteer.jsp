@@ -48,7 +48,7 @@
 		이미 지원한 심부름 입니다.<br>
 		마이페이지로 이동하여 확인하시겠습니까?<br>
 		<input type="button" class="button" value="취소" onclick="javascript:self.close()">
-		<input type="button" class="button" value="마이페이지로 이동" onclick="javascript:opener.location.href='/mypage/mypage';self.close()">
+		<input type="button" class="button" value="마이페이지로 이동" onclick="javascript:opener.location.href='/mypage/supPost?mb_num_pk=<%=session.getAttribute("mNum") %>';self.close()">
 	</c:if>
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

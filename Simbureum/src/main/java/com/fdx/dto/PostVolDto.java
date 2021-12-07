@@ -31,7 +31,6 @@ public class PostVolDto {
 	public void setMb_num_pk(int mb_num_pk) {
 		this.mb_num_pk = mb_num_pk;
 	}
-
 	
 	
 	

@@ -21,7 +21,7 @@ public interface MypageDAO {
 	public List<MypageDTO> myFinshPost(Criteria cri);
 	
 	//게시글 조회수 증가
-	public void hitup(int post_num_pk);
+	public void hitsup(int postNum);
 	
 	public int supPostDel(MypageDTO mypageDTO);
 	
@@ -58,7 +58,11 @@ public interface MypageDAO {
 	//심부름꾼 지원 취소
 	public void deleteSupportPost(PostVolDto postVol);
 	
+	//심부름 완료시 ap_post테이블에서 해당 게시글에 지원한 심부름꾼 모두 삭제
+	public void deleteVol(int postNum);
 	
+	//선택한 심부름꾼 전화번호 가져오기
+	public String selectPhoneNum(String id);
 	
 	
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fdx.dao.PostDaoImpl;
 import com.fdx.dto.ApPostDto;
+import com.fdx.dto.Criteria;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
@@ -26,8 +27,14 @@ public class PostService {
 	}
 	
 	//모든 게시글 보기
-	public List<PostDto> allPost() {
-		return postDao.selectAll();
+	public List<PostDto> allPost(Criteria cri) {
+		List<PostDto> dto = postDao.selectAll(cri);
+		return dto;
+	}
+	
+	//총 게시글 개수
+	public int countAllPost() {
+		return postDao.countAllPost();
 	}
 	
 	//위치 필터링

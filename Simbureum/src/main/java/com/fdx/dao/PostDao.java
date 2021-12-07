@@ -3,6 +3,7 @@ package com.fdx.dao;
 import java.util.List;
 
 import com.fdx.dto.ApPostDto;
+import com.fdx.dto.Criteria;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
@@ -12,7 +13,10 @@ public interface PostDao {
 	public void insert(PostDto post);
 	
 	//모든 게시글 select
-	public List<PostDto> selectAll();
+	public List<PostDto> selectAll(Criteria cri);
+	
+	//총 게시글 개수
+	public int countAllPost();
 	
 	//위치 필터링 select
 	public List<PostDto> selectByLoc(int psmallc);

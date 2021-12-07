@@ -116,7 +116,6 @@
 										(심부름꾼 : ${post.sel_vr})
 									</c:if>
 								</td>
-							
 							</tr>
 							<tr>
 								<th>내용</th>

@@ -46,9 +46,17 @@ public class MypageController {
 	@RequestMapping(value ="/supPost")
 	public String mySupportPage(@RequestParam(value = "mb_num_pk") int mb_num_pk 
 			,@ModelAttribute Criteria cri, 
-			Model model) {
+			Model model, HttpSession session) {
 		cri.setMb_num_pk(mb_num_pk);
 		List<MypageDTO> list = mypageService.mySupPost(cri);
+		//지원한 심부름 중 심부름꾼으로 선택되지 않은 진행중인 심부름 골라내기
+		String id = (String)session.getAttribute("mid");
+		for(int i = 0; i<list.size(); i++) {
+			String sel_vr = list.get(i).getSel_vr();
+			if(sel_vr != null && !sel_vr.contains(id)) {
+				list.remove(i);
+			}
+		}
 		model.addAttribute("myList", list);
 		int total = mypageService.suptotalPage(cri);
 		System.out.println(total);
@@ -109,10 +117,20 @@ public class MypageController {
 	}
 	
 	//심부름꾼 선택 Ajax
-	@RequestMapping(value = "selectedVolunteer", method = RequestMethod.POST)
-	public String selectedVolunteer(@RequestParam("postNum") int postNum, @RequestParam("sel_vol") String sel_vr) {
+	@ResponseBody
+	@RequestMapping(value = "volunteerList", method = RequestMethod.POST)
+	public String selectedVolunteer(@RequestParam("postNum") int postNum, @RequestParam("sel_vol") String sel_vr, Model model) {
 		mypageService.selectedVol(postNum, sel_vr);
-		return "mypage/selectedVolunteer";
+		//선택된 심부름꾼 전화번호 가져오기
+		String[] vol = sel_vr.split(", ");
+		String phoneNum = "";
+		for(int i = 0; i < vol.length; i++) {
+			phoneNum += "'"+mypageService.selectPhoneNum(vol[i])+"'";
+			if(vol.length > 1) {
+				phoneNum += ", ";
+			}
+		}
+		return phoneNum;
 	}
 	
 	//심부름 완료 확인
@@ -124,7 +142,7 @@ public class MypageController {
 	//심부름 완료
 	@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.POST)
 	public String completeAccept(@PathVariable("post_num_pk") int postNum) {
-		//심부름 완료 시 심부름꾼 지원 삭제
+		mypageService.deleteVol(postNum);
 		mypageService.insertVolHis(postNum);
 		return "mypage/completeAccept";
 	}
@@ -162,6 +180,7 @@ public class MypageController {
 	//지원한 게시글 상세보기
 	@RequestMapping(value="supportPostDetail/{post_num_pk}", method = RequestMethod.GET)
 	public String supportPost(@PathVariable("post_num_pk") int postNum, Model model){
+		mypageService.hitsup(postNum);
 		PostDto post = mypageService.oneWrittenPost(postNum);
 		model.addAttribute("post", post);
 		return "mypage/supportPostDetail";

@@ -20,19 +20,20 @@ public class MypageService {
 	
 	
 	public List<MypageDTO> myUploadPost(Criteria cri){
-		
 		return mypageDAO.myUploadPost(cri);
-		
 	}
+	
+	//게시글 조회수 증가
+	public void hitsup(int postNum) {
+		mypageDAO.hitsup(postNum);
+	}
+		
 	public List<MypageDTO> mySupPost(Criteria cri){
-		
 		return mypageDAO.mySupPost(cri);
-		
 	}
+	
 	public List<MypageDTO> myFinshPost(Criteria cri){
-			
 		return mypageDAO.myFinshPost(cri);
-			
 	}
 	
 	public int supDel(MypageDTO mypageDTO) {
@@ -42,6 +43,7 @@ public class MypageService {
 	public int uptotalPage(Criteria cri) {
 		return mypageDAO.uptotalPage(cri);
 	}
+	
 	public int suptotalPage(Criteria cri) {
 		return mypageDAO.suptotalPage(cri);
 	}
@@ -100,6 +102,17 @@ public class MypageService {
 		postVol.setMb_num_pk(mNum);
 		mypageDAO.deleteSupportPost(postVol);
 	}
+	
+	//심부름 완료시 ap_post테이블에서 해당 게시글에 지원한 심부름꾼 모두 삭제
+	public void deleteVol(int postNum) {
+		mypageDAO.deleteVol(postNum);
+	}
+	
+	//선택한 심부름꾼 전화번호 가져오기
+	public String selectPhoneNum(String id) {
+		return mypageDAO.selectPhoneNum(id);
+	}
+	
 	
 	
 }

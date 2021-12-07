@@ -85,7 +85,10 @@
 											<td><a href="/mypage/supportPostDetail/${postdto.post_num_pk}"
 												style="color: black">${postdto.post_title}</a></td>
 											<td>${postdto.plant }</td>
-											<td>모집중</td>
+											<td>
+											<c:if test="${empty postdto.sel_vr}">모집중</c:if>
+											<c:if test="${!empty postdto.sel_vr}">진행중</c:if>
+											</td>
 											<td style="text-align: center;"><input type="button"
 												class="button" value="취소" name="${postdto.post_num_pk}">
 											</td>

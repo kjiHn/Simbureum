@@ -95,13 +95,18 @@ a {
 				});
 				$.ajax({
 					type: "POST",
-					url: "../selectedVolunteer?postNum="+${postNum}+"&sel_vol="+sel_vol,
-					success: function(){
-						alert(sel_vol+"님이 심부름꾼으로 선택되었습니다.\n * 심부름 하면서 문제가 발생할 경우 저희가 책임지지 않습니다.\n * 심부름이 완료될 경우 \'심부름 완료\' 버튼을 눌러주세요.");
+					url: "../volunteerList?postNum="+${postNum}+"&sel_vol="+sel_vol,
+					success: function(data){
+						if(selected == 1){
+							alert(sel_vol+"님이 심부름꾼으로 선택되었습니다.\n"+sel_vol+"님의 전화번호는 "+data+"입니다.");
+						}else{
+							alert(sel_vol+"님이 심부름꾼으로 선택되었습니다.\n"+sel_vol+"님의 전화번호는 각각 "+data+"입니다.");	
+						}
+						alert("* 심부름 하면서 문제가 발생할 경우 저희가 책임지지 않습니다.\n* 심부름이 완료될 경우 \'심부름 완료\' 버튼을 눌러주세요.");
 						opener.location.reload();
 						window.close();
 					}
-				})
+				});
 				
 			}else if(selected > ${numOfVol}){
 				alert("필요한 심부름꾼 수보다 많이 선택하셨습니다.\n"+sentence);

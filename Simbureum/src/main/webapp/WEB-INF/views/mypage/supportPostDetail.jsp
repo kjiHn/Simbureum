@@ -108,16 +108,24 @@
 								<td>${post.post_views}</td>
 							</tr>
 							<tr>
+								<th>상태</th>
+								<td>
+									<c:if test="${empty post.sel_vr}">모집중</c:if>
+									<c:if test="${!empty post.sel_vr && empty post.vh_date}">진행중</c:if>
+									<c:if test="${!empty post.sel_vr && !empty post.vh_date}">완료</c:if>
+									<br>
+									<c:if test="${!empty post.sel_vr}">
+										(심부름꾼 : ${post.sel_vr})
+									</c:if>
+								</td>
+							</tr>
+							<tr>
 								<th>내용</th>
 								<td>${post.post_con}</td>
 							</tr>
 							<tr>
 								<th>위치</th>
 								<td>${post.pbigc_name} ${post.psmallc_name}</td>
-							</tr>
-							<tr>
-								<th>완료일</th>
-								<td><fmt:formatDate value="${post.vh_date}" pattern="yyyy.MM.dd" /></td>
 							</tr>
 							<tr>
 								<th>심부름꾼 수</th>
@@ -130,7 +138,9 @@
 						</table>
 						<br><br>
 						
+						<c:if test="${empty post.sel_vr}">
 						<button class="button"  data-toggle="modal" data-target="#exampleModal">심부름꾼 지원 취소</button>
+						</c:if>
 						
 						<!-- Modal에서 사용하는 form -->
 						<form id="deleteSupportPost">

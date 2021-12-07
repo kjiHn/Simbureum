@@ -5,20 +5,6 @@
 
 <mapper namespace="com.fdx.dao.MypageDAO">
 
-	<select id="myUploadPost" parameterType="int"
-		resultType="com.fdx.dto.MypageDTO">
-	<![CDATA[
-		SELECT p.*,nvl(vh_hsn_pk,0) vh_hsn_pk, nvl(ap_apn_pk,0) ap_apn_pk,pb.pbigc_name||' '||ps.psmallc_name as plant
-		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
-            FULL OUTER JOIN  Ap_post ap ON p.post_num_pk = ap.post_num_pk
-            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		where p.mb_num_pk = #{mb_num_pk}
-		order by p.post_num_pk desc
-	]]>
-	</select>
-	
-	
 
 	<update id="hitup">
 		update post
@@ -32,78 +18,59 @@
 		AND post_num_pk = #{post_num_pk}
 	</delete>
 	
-	
-	
 	<select id="getListWithPaging" resultType="com.fdx.dto.MypageDTO">
-<![CDATA[
-  select 
-    *
-  from 
-      (
-      SELECT /*+INDEX_DESC(post pk_post) */
-      rownum rn,p.post_num_pk,p.mb_num_pk,post_title,post_con,post_dline,post_numof,post_price,post_views,post_date
-      ,nvl(vh_hsn_pk,0) vh_hsn_pk, nvl(ap_apn_pk,0) ap_apn_pk,pb.pbigc_name||' '||ps.psmallc_name as plant
-		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
-            FULL OUTER JOIN  Ap_post ap ON p.post_num_pk = ap.post_num_pk
-            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		where p.mb_num_pk = #{mb_num_pk}
-       	AND rownum <= #{pageNum} * #{amount}
-      )
-  where rn > (#{pageNum} -1) * #{amount}  
-  ]]>
-</select>
+	<![CDATA[
+		select * from(
+    		SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.*, vh_date, pb.pbigc_name||' '||ps.psmallc_name as plant
+    		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+    		JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
+    		JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+    		where p.mb_num_pk = 1)
+		where rn <= #{pageNum} * #{amount}
+		and rn > (#{pageNum} -1) * #{amount}
+	  ]]>
+	</select>
 
-<select id="uptotalPage" resultType="int">
+	<select id="uptotalPage" resultType="int">
 	 select COUNT(*)
 	 FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
-            FULL OUTER JOIN  Ap_post ap ON p.post_num_pk = ap.post_num_pk
             JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
             JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
 	 where p.mb_num_pk = #{mb_num_pk}
 	</select>
 	
-	
 	<select id="mySupPost"
 		resultType="com.fdx.dto.MypageDTO">
 	<![CDATA[
-	 select *
-  	 FROM 
-  	 	(
-		 SELECT rownum rn, p.post_num_pk, p.mb_num_pk, post_title
+	 select * FROM(
+		 SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.post_num_pk, p.mb_num_pk, post_title
          , post_con, post_dline, post_numof, post_price, post_views
-         , post_date, pb.pbigc_name||' '||ps.psmallc_name as plant
+         , post_date, sel_vr, pb.pbigc_name||' '||ps.psmallc_name as plant
 		 FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
 		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
 		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		 WHERE ap.mb_num_pk = #{mb_num_pk}
-       	AND rownum <= #{pageNum} * #{amount}
-      )
-  where rn > (#{pageNum} -1) * #{amount}  
+		 WHERE ap.mb_num_pk = #{mb_num_pk})
+  	where rn <= #{pageNum} * #{amount}
+  	and rn > (#{pageNum} -1) * #{amount}
 	]]>
 	</select>
 	
 	<select id="myFinshPost"
 		resultType="com.fdx.dto.MypageDTO">
 	<![CDATA[
-	select *
-  	 FROM 
-  	 	(
-		SELECT rownum rn, p.post_num_pk, p.mb_num_pk, post_title
+	select * FROM(
+		SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.post_num_pk, p.mb_num_pk, post_title
          , post_con, post_dline, post_numof, post_price, post_views
          , post_date, pb.pbigc_name||' '||ps.psmallc_name as plant
          ,vh_date
-		FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+		FROM post p JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
             JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
             JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		where sel_vr Like '%'||#{mb_id}||'%'
-		AND rownum <= #{pageNum} * #{amount}
-		 )
-  where rn > (#{pageNum} -1) * #{amount}  
+		where sel_vr Like '%'||#{mb_id}||'%')
+  	where rn <= #{pageNum} * #{amount}
+  	and rn > (#{pageNum} -1) * #{amount}  
 	]]>
 	</select>
-	
-	
 	
 	<select id="suptotalPage" resultType="int">
 	 select COUNT(*)
@@ -112,7 +79,6 @@
 		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
 	 where ap.mb_num_pk = #{mb_num_pk}
 	</select>
-	
 	
 	<select id="finshtotalPage" resultType="int">
 	 select COUNT(*)
@@ -176,5 +142,15 @@
 	<delete id="deleteSupportPost" parameterType="postVol">
 		delete from ap_post where POST_NUM_PK = #{post_num_pk} and MB_NUM_PK = #{mb_num_pk}
 	</delete>
+	
+	<delete id="deleteVol" parameterType="int">
+		delete from ap_post where POST_NUM_PK = #{post_num_pk}
+	</delete>
+	
+	<select id="selectPhoneNum" parameterType="String" resultType="String">
+		select MB_PNB from member where MB_ID =#{mb_id}
+	</select>
+	
+	
 
 </mapper>

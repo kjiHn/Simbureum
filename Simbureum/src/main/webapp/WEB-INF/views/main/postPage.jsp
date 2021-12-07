@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fun" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
 	if(session.getAttribute("mid") != null) {
@@ -115,9 +116,10 @@ a {
 							</thead>
 
 							<tbody>
-								<c:forEach var="post" items="${postList}" varStatus="loop">
+								<c:forEach items="${postList}" var="post" begin="0"
+									end="${fun:length(postList) }" step="1" varStatus="status">
 									<tr>
-										<td>${loop.count}</td>
+										<td>${status.index + 1}</td>
 										<td><a href="javascript:checkLogin(${post.post_num_pk});">${post.post_title}</a></td>
 										<td>${post.mb_id}</td>
 										<td>${post.pbigc_name} ${post.psmallc_name}</td>
@@ -138,6 +140,27 @@ a {
 
 							</tbody>
 						</table>
+						
+						<nav class="blog-pagination justify-content-center d-flex">
+							<ul class="pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item"><a
+										href="${pageMaker.startPage -1}" class="page-link">이전</a></li>
+								</c:if>
+
+								<c:forEach var="num" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}">
+									<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+										<a href="${num}" class="page-link">${num}</a>
+									</li>
+								</c:forEach>
+
+								<c:if test="${pageMaker.next}">
+									<li class="page-item "><a
+										href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
+								</c:if>
+							</ul>
+						</nav>
 
 					</div>
 				</div>
@@ -145,6 +168,26 @@ a {
 			</div>
 		</div>
 	</section>
+	
+	<form id='actionForm' action="/main/postPage" method='get'> 
+      	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+     	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+   	</form>
+   	  
+  	<script>
+  		//p 312
+		var actionForm = $("#actionForm");
+  		$(".page-item a").on("click", function (e){
+     		e.preventDefault();
+     		console.log("click");
+     		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+     		actionForm.submit();
+  		});
+  
+  		$(".active > a").click(function() {
+	  		event.preventDefault();
+		});
+	</script>
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 

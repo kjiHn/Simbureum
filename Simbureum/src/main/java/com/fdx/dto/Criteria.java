@@ -1,5 +1,8 @@
 package com.fdx.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("cri")
 public class Criteria {
 	
 	private int pageNum;

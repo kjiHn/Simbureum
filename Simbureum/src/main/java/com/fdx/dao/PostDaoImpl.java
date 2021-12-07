@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.fdx.dto.ApPostDto;
+import com.fdx.dto.Criteria;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
@@ -28,8 +29,13 @@ public class PostDaoImpl implements PostDao{
 	}
 
 	@Override
-	public List<PostDto> selectAll() {
-		return sqlSessionTemplate.selectList("selectAll");
+	public List<PostDto> selectAll(Criteria cri) {
+		return sqlSessionTemplate.selectList("selectAll", cri);
+	}
+	
+	@Override
+	public int countAllPost() {
+		return sqlSessionTemplate.selectOne("countAllPost");
 	}
 
 	@Override
@@ -76,6 +82,8 @@ public class PostDaoImpl implements PostDao{
 	public void updatePostViews(int postNum) {
 		sqlSessionTemplate.update("updatePostViews", postNum);
 	}
+
+	
 
 	
 

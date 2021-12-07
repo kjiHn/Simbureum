@@ -7,12 +7,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fdx.dto.Criteria;
+import com.fdx.dto.PageMaker;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 import com.fdx.services.PostService;
@@ -39,9 +42,11 @@ public class PostController {
 	}
 
 	//전체 게시글 보기
-	@RequestMapping(value = "/main/postPage")
-	public String showPost(Model model) {
-		model.addAttribute("postList", postService.allPost());
+	@RequestMapping(value = "/main/postPage", method = RequestMethod.GET)
+	public String showPost(Model model, @ModelAttribute Criteria cri) {
+		model.addAttribute("postList", postService.allPost(cri));
+		int total = postService.countAllPost();
+		model.addAttribute("pageMaker", new PageMaker(cri,total));
 		return "main/postPage";
 	}
 
