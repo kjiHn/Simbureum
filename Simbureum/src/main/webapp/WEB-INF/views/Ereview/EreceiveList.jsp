@@ -43,8 +43,13 @@
               	
               
                
-            	<h3>TO.<a href="#">고용자</a> | <a href="#">심부름꾼</a></h3>
-            
+            	<h3>TO.<a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid")%>">고용자</a> | <a href="/Ereview/EreceiveList?er_mbid=<%=session.getAttribute("mid")%>" style="font-weight: bold; font-size: 20px;">심부름꾼</a></h3>            	
+            	<c:if test="${EretotalPage == 0}">
+            	<br><br><br><br><br>
+            		<h2 style="text-align: center; font-weight: bold;"><%=session.getAttribute("mid")%>님은 받은 리뷰가 없습니다</h2>
+            	</c:if>  
+       			
+            	<c:if test="${EretotalPage != 0}">
                   <table style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
@@ -55,11 +60,11 @@
                            <th>작성일</th>                           
                         </tr>
                      </thead>
-					<c:forEach items="${EreceiveList }" var="erdto">
+					<c:forEach items="${EreceiveListPaging }" var="erdto" varStatus="status">
 					
                      <tbody>                     
                          <tr style="border: 1px solid #e3c4ff;">
-                           <td style="padding: 10px;">${erdto.er_num_pk}</td>
+                           <td style="padding: 10px;">${status.count}</td>
                            <td><a href="EreList?er_num_pk=${erdto.er_num_pk }" style="color: black">${erdto.er_rvc}</a></td>
                            <td>${erdto.mb_id_pk }</td>
                            <td style="color: #ffc107;"> 
@@ -74,33 +79,30 @@
                      </tbody>
                    </c:forEach>
                   </table>
+                  </c:if>
+                  <nav class="blog-pagination justify-content-center d-flex">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a
+											href="${pageMaker.startPage -1}" class="page-link">이전</a></li>
+									</c:if>
+
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+											<a href="${num}" class="page-link">${num}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next}">
+										<li class="page-item "><a
+											href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
+									</c:if>
+
+
+								</ul>
+							</nav>
 			
-				<%-- <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                 <c:if test="${pageMaker.prev}">
-                                 
-	                                    <li class="page-item">
-	                                        <a href="receiveList${pageMaker.makeQuery(pageMaker.startPage - 1)}&vr_mbid=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Previous">
-	                                            <i class="ti-angle-left"></i>
-	                                        </a>
-	                                    </li>
-                                 </c:if> 
-                                   
-                                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li class="page-item">
-                                        <a href="receiveList${pageMaker.makeQuery(idx)}&vr_mbid=<%=session.getAttribute("mid") %>" class="page-link" id="page">${idx}</a>
-                                    </li>
-                                    </c:forEach>
-                                    
-                                   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li class="page-item">
-                                        <a href="receiveList${pageMaker.makeQuery(pageMaker.endPage + 1)}&vr_mbid=<%=session.getAttribute("mid") %>" class="page-link" aria-label="Next">
-                                            <i class="ti-angle-right"></i>
-                                        </a>
-                                    </li>
-                                    </c:if> 
-                                </ul>
-                            </nav>   --%>
 				
            </div>
            
@@ -110,8 +112,28 @@
          </div>
      
    </section>
+    <form id='actionForm' action="/Ereview/EreceiveList" method='get'> 
+      	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+     	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+     	<input type='hidden' name='er_mbid' value='${sessionScope.mid}' />
+   	  </form>
    
-   <script type="text/javascript"></script>
+   <script>
+   var actionForm = $("#actionForm");
+   $(".page-item a").on("click", function (e){
+      e.preventDefault();
+      console.log("click");
+      actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+      actionForm.submit();
+   });
+   
+   
+   $(".active > a").click(function() {
+ 	  event.preventDefault();
+ });
+   
+   </script>
+  
 
 
 

@@ -5,14 +5,23 @@
   
 <mapper namespace="com.fdx.dao.Vlntr_RvDAO">
 
+ <select id="reInsertCheck" resultType="int">
+<![CDATA[
+select count(*)
+from vlntr_rv
+where post_num_pk = #{post_num_pk}
+and mb_id_pk = #{mb_id_pk}
+and vr_mbid = #{vr_mbid}
+]]> 
+</select>
 
 
 
-<insert id="wreInsert">
+<!-- 고용자에게 리뷰작성하기 -->
+<insert id="reInsert">
 		insert into Vlntr_Rv
-		values(POST_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{vr_grd}, #{vr_rvc}, sysdate, #{vr_mbid})		
+		values(VR_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{vr_grd}, #{vr_rvc}, sysdate, #{vr_mbid})		
 </insert>
-
 
  <select id="writeList" resultType="com.fdx.dto.Vlntr_RvDTO" >  
 	 select * from Vlntr_Rv
@@ -50,7 +59,7 @@
 <!-- 심부름꾼일떼 고용자에게  작성하는 리뷰   -->
 <insert id="vlInsert">
 		insert into post
-		values(POST_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{vr_rvc}, sysdate, #{vr_mbid})
+		values(VR_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{vr_rvc}, sysdate, #{vr_mbid})
 		where 
 </insert>
 
@@ -77,8 +86,19 @@
 </select>
 <!-- ============================================================================================================================================ -->
 
+
+<select id="reviewList" resultType="com.fdx.dto.Vlntr_RvDTO">
+	   select vr_mbid, vr_date, vr_grd, vr_rvc 
+       from vlntr_rv
+       where vr_mbid = #{vr_mbid}
+
+</select>
+
+
+
+
 <select id="grdAvg" resultType="com.fdx.dto.Vlntr_RvDTO">
-	  select vr_mbid, round(avg(vr_grd),3),count(vr_rvn_pk)
+	  select vr_mbid, round(avg(vr_grd),3) vr_grd ,count(vr_rvn_pk) vr_rvn_pk
 	   from Vlntr_Rv 
        where vr_mbid = #{vr_mbid}
        group by vr_mbid
@@ -109,53 +129,57 @@ where RERP_LNB = #{RERP_LNB}
 </select>
 
 
-
-
-
-
-
-
-
-
-
-
 <!-- ============================================================================================================================================ -->
+<!-- 고용자가 작성한리뷰 페이징 처리 -->
+<select id="writeListPaging"  resultType="com.fdx.dto.Vlntr_RvDTO">
+<![CDATA[
+select 
+   vr_rvn_pk, post_num_pk, mb_id_pk, vr_grd, SUBSTR(vr_rvc,0,10) vr_rvc, vr_date, vr_mbid
+  from 
+      (
+      select 
+        row_number() over(order by vr_date desc) rn, vr_rvn_pk, post_num_pk, mb_id_pk, vr_grd, vr_rvc, vr_date, vr_mbid 
+      from 
+        Vlntr_Rv
+      where 
+      mb_id_pk = #{mb_id_pk}
+      )
+   where rn <= #{pageNum} * #{amount} 
+  and rn  > (#{pageNum} -1) * #{amount}  
+]]>
+</select>
 
-
-
-
-
-<select id="vrCount" resultType="int">
-	select count(vr_rvn_pk)
-	from Vlntr_Rv	
-	where vr_rvn_pk > 0
-	and vr_mbid = #{vr_mbid}
+<select id="wrtotalPage" resultType="int">
+	select COUNT(*)
+	 FROM Vlntr_Rv
+	 where mb_id_pk = #{mb_id_pk}
 </select>
 
 
-<!-- <select id="listCount" resultType="int">
-	select count(vr_rvn_pk)
-	from Vlntr_Rv	
-	where vr_rvn_pk > 0
-	and mb_id_pk = #{mb_id_pk}
-</select> -->
+<select id="receiveListPaging"  resultType="com.fdx.dto.Vlntr_RvDTO">
+<![CDATA[
+select 
+   vr_rvn_pk, post_num_pk, mb_id_pk, vr_grd, SUBSTR(vr_rvc,0,10) vr_rvc, vr_date, vr_mbid 
+  from 
+      (
+      select 
+        row_number() over(order by vr_date desc) rn, vr_rvn_pk, post_num_pk, mb_id_pk, vr_grd, vr_rvc, vr_date, vr_mbid 
+      from 
+        Vlntr_Rv
+      where 
+      vr_mbid = #{vr_mbid}
+      )
+   where rn <= #{pageNum} * #{amount} 
+  and rn  > (#{pageNum} -1) * #{amount}  
+]]>
+</select>
 
-<!-- 페이징 테스트 -->
- <!-- <select id="page" resultType="com.fdx.dto.Vlntr_RvDTO" parameterType="com.fdx.dto.CriteriaDTO" >
+<select id="retotalPage" resultType="int">
+	select COUNT(*)
+	 FROM Vlntr_Rv
+	 where vr_mbid = #{vr_mbid}
+</select>
 
-select vr_rvn_pk, vr_rvc, vr_mbid, vr_grd, vr_date, mb_id_pk
-       from ( 
-           select vr_rvn_pk, vr_rvc, vr_mbid, vr_grd, vr_date, mb_id_pk,
-               row_number() over(order by vr_rvn_pk desc) as rNum
-           from Vlntr_Rv
-           where vr_mbid = 'wl960407'
-            
-     ) mb
-    where rNum between #{rowStart} and #{rowEnd}
-    
-        order by vr_rvn_pk desc
-    
-</select> -->
- 
+
 
 </mapper>

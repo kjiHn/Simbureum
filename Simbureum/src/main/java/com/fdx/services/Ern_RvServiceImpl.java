@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.fdx.dao.Ern_RvDAO;
+import com.fdx.dto.Criteria;
 import com.fdx.dto.Ern_RvDTO;
 import com.fdx.dto.PostRvDTO;
 @Service
@@ -64,5 +65,43 @@ public class Ern_RvServiceImpl implements Ern_RvService{
 		// TODO Auto-generated method stub
 		return erdao.EReportCheck(erdto);
 	}
+
+	@Override
+	public void EreInsert(Ern_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		erdao.EreInsert(vrdto);
+		
+	}
+
+	@Override
+	public int EreInsertCheck(Ern_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		return erdao.EreInsertCheck(vrdto);
+	}
+
+	@Override
+	public List<Ern_RvDTO> EwriteListPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return erdao.EwriteListPaging(cri);
+	}
+
+	@Override
+	public int EwrtotalPage(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return erdao.EwrtotalPage(cri);
+	}
+
+	@Override
+	public List<Ern_RvDTO> EreceiveListPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return erdao.EreceiveListPaging(cri);
+	}
+
+	@Override
+	public int EretotalPage(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return erdao.EretotalPage(cri);
+	}
+
 
 }

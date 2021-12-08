@@ -50,6 +50,10 @@ table {
 	padding: 10px 44px; position: absolute; 
 	margin-left: 120px;
 }
+#btn1{
+	padding: 10px 44px;
+}
+
 
 
 </style>
@@ -86,8 +90,8 @@ table {
 						</div>
 						</form>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn"  onclick="clickDel(Report)">신고하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" data-dismiss="modal">취소하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1" onclick="clickDel(Report)">신고하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 						
 						 
@@ -153,7 +157,7 @@ table {
                      	
                         <tr>
                            <th>From.</th>
-                           <td ><c:out value=" ${EreList.mb_id_pk }"></c:out></td>                                                      
+                           <td><c:out value=" ${EreList.mb_id_pk }"></c:out></td>                                                      
                         </tr > 
                         <tr>
                         	<th>해당 게시글</th>

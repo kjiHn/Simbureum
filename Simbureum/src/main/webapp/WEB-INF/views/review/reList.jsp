@@ -51,6 +51,10 @@ table {
 	margin-left: 120px;
 }
 
+#btn1{
+	padding: 10px 44px;
+}
+
 
 </style>
 
@@ -70,9 +74,6 @@ table {
 					<div class="modal-content">
 						<div class="modal-header">
 							<h2 class="modal-title" id="exampleModalLabel">리뷰 신고하기</h2>
-							<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button> -->
 						</div>
 						<form name="Report" >
 						<div class="modal-body">
@@ -80,14 +81,14 @@ table {
 								<input type="hidden" name = "vr_mbid" value="<%=session.getAttribute("mid")%>">
                 				<input type="hidden" id="RERP_TARGET_MBN" name="RERP_TARGET_MBN" value="${reList.mb_num_pk }">
                 				<input type="hidden" id="RERP_MBN" name="RERP_MBN" value="<%=session.getAttribute("mNum")%>">
-                				<input type="text" id="RERP_LNB" name="RERP_LNB" value="${reList.vr_rvn_pk }">    
+                				<input type="hidden" id="RERP_LNB" name="RERP_LNB" value="${reList.vr_rvn_pk }">    
                 				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RRERP_CONTENT" name="RRERP_CONTENT"></textarea>            				
 					
 						</div>
 						</form>
 						<div class="modal-footer">
 							<button type="button" class="button button-contactForm boxed-btn" id="btn1" onclick="clickDel(Report)" >신고하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" data-dismiss="modal">취소하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 						
 						 
@@ -133,32 +134,6 @@ table {
 					  
 					
 				} 
-				
-				
-				/* $('#btn1').on('click', function() {
-					var RERP_LNB = $("#RERP_LNB").val();
-					  $.ajax({
-						  url : "/review/ReportCheck",
-						  type : "POST",
-						  dataType : "json",
-						  data : RERP_LNB,
-						  success : function(data){
-							  if(data==1){
-								alert("이미 공감한 게시물입니다.");
-								console.log(data);
-								  
-							  }else if(data==0){
-								  alert("게시물입니다.");
-								 
-							  }
-							  
-						  }
-						  
-						  
-					  });
-					
-				}); */
-				
 			</script> 
 			
 		
@@ -224,42 +199,6 @@ table {
       </div>
    </section>
    
-     <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-
-/* $("#Report").click(function(){
-	console.log(click);
-	console.log("click");
-	
-	var RERP_LNB = $("#RERP_LNB").val();
-	
-	$.ajax({
-		url : "/review/ReportCheck",
-		type : "post",
-		dataType : "json",
-		data : { "RERP_LNB" : $("#RERP_LNB").val()},
-		success : function(data){
-			if(data ==0)
-				$("#Report").css("disabled","disabled");
-				
-		}else if(data==2){
-			$("#Report").css("disabled","disabled");
-			
-		}
-	});
-	
-}); */
-
-
-</script>
-   
-   
-
-
-
-
-
-
 </body>
 </html>
 <%-- <%@include file="../model/footer.jsp" %> --%>

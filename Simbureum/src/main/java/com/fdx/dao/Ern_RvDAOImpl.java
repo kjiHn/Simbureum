@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.fdx.dto.Criteria;
 import com.fdx.dto.Ern_RvDTO;
 import com.fdx.dto.PostRvDTO;
 
@@ -66,6 +67,44 @@ public class Ern_RvDAOImpl implements Ern_RvDAO{
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("EReportCheck",erdto);
 	}
+
+	@Override
+	public void EreInsert(Ern_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSessionTemplate.insert("EreInsert",vrdto);
+		
+	}
+
+	@Override
+	public int EreInsertCheck(Ern_RvDTO vrdto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("EreInsertCheck", vrdto);
+	}
+
+	@Override
+	public List<Ern_RvDTO> EwriteListPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("EwriteListPaging", cri);
+	}
+
+	@Override
+	public int EwrtotalPage(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("EwrtotalPage", cri);
+	}
+
+	@Override
+	public List<Ern_RvDTO> EreceiveListPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("EreceiveListPaging",cri);
+	}
+
+	@Override
+	public int EretotalPage(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("EretotalPage",cri);
+	}
+
 	
 	
 	

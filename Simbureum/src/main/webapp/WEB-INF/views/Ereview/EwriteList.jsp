@@ -43,8 +43,13 @@
               	
               
                
-            	<h3>TO.<a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid")%>">고용자</a> | <a href="/review/writeList?mb_id_pk=<%=session.getAttribute("mid")%>">심부름꾼</a></h3>
-            	
+            	<h3>TO.<a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid")%>" style="font-weight: bold; font-size: 20px;">고용자</a> | <a href="/review/writeList?mb_id_pk=<%=session.getAttribute("mid")%>" >심부름꾼</a></h3>
+            	<c:if test="${EwrtotalPage == 0}">
+            	<br><br><br><br><br>
+            		<h2 style="text-align: center; font-weight: bold;"><%=session.getAttribute("mid")%>님은 받은 리뷰가 없습니다</h2>
+            	</c:if>  
+       			
+            	<c:if test="${EwrtotalPage != 0}">
                   <table style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
@@ -56,11 +61,11 @@
                         </tr>
                      </thead>
                      
-					<c:forEach items="${EwriteList }" var="erdto">
+					<c:forEach items="${EwriteListPaging }" var="erdto" varStatus="status">
 					
                      <tbody>                     
                          <tr style="border: 1px solid #e3c4ff;">
-                           <td style="padding: 10px;">${erdto.er_num_pk}</td>
+                           <td style="padding: 10px;">${status.count}</td>
                            <td><a href="EwrList?er_num_pk=${erdto.er_num_pk }" style="color: black">${erdto.er_rvc}</a></td>
                            <td>${erdto.er_mbid }</td>
                            <td style="color: #ffc107;"> 
@@ -75,6 +80,29 @@
                      </tbody>
                    </c:forEach>
                   </table>
+                  </c:if>
+                  <nav class="blog-pagination justify-content-center d-flex">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a
+											href="${pageMaker.startPage -1}" class="page-link">이전</a></li>
+									</c:if>
+
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+											<a href="${num}" class="page-link">${num}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next}">
+										<li class="page-item "><a
+											href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
+									</c:if>
+
+
+								</ul>
+							</nav>
                   
 				</div>
 				
@@ -89,7 +117,27 @@
      
    </section>
    
-   <script type="text/javascript"></script>
+    <form id='actionForm' action="/Ereview/EwriteList" method='get'> 
+      	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+     	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+     	<input type='hidden' name='mb_id_pk' value='${sessionScope.mid}' />
+   	  </form>
+   
+   <script>
+   var actionForm = $("#actionForm");
+   $(".page-item a").on("click", function (e){
+      e.preventDefault();
+      console.log("click");
+      actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+      actionForm.submit();
+   });
+   
+   
+   $(".active > a").click(function() {
+ 	  event.preventDefault();
+ });
+   
+   </script>
 
 
 

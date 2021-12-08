@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+     <script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
     
 <script type="text/javascript">
 	//폼을 변수에 저장
@@ -141,6 +142,7 @@ article {
                            <div class="form-group"><textarea class="form-control w-100" name="vr_rvc"
 										 style="font-size: 20px;"
 										 id="message" cols="30" rows="9"></textarea>
+								<div id="text_cnt">(0/300)</div>
 								</div>
                            </td>                            
                         </tr>
@@ -153,66 +155,26 @@ article {
 				</div>
                  </form>
 				</div> 
-						
-						
-						
-						
-						
-						
-						
-						
-<%-- 							<div class="col-12">				
-								
-							</div>
-								
-							<br>
-							<div class="col-lg-12" > 
-								<form class="form-contact contact_form"	method="post"  role="form">
-								<h3>TO.</h3>${wrList.vr_mbid }
-								<h3>해당게시글</h3>${wrList.post_title }
-								
-								<h3>별점</h3>
-									<div class="star-vr_grd" >
-									
-									  <input type="radio" id="5-stars" name="vr_grd" value="5"/>
-									  <label for="5-stars" class="star" style="font-size: 25px;">★</label>
-									  <input type="radio" id="4-stars" name="vr_grd" value="4" />
-									  <label for="4-stars" class="star" style="font-size: 25px;">★</label>
-									  <input type="radio" id="3-stars" name="vr_grd" value="3" />
-									  <label for="3-stars" class="star" style="font-size: 25px;">★</label>
-									  <input type="radio" id="2-stars" name="vr_grd" value="2" />
-									  <label for="2-stars" class="star" style="font-size: 25px;">★</label>
-									  <input type="radio" id="1-star" name="vr_grd" value="1" />
-									  <label for="1-star" class="star" style="font-size: 25px;">★</label>
-									  
-									  </div>	
-									  <br>						
-																		
-									<div class="row">
-										<div class="col-12">
-											<div class="form-group">
-											<h3>내용</h3>
-												<textarea class="form-control w-100" name="vr_rvc"
-												style="font-size: 25px;"
-													id="message" cols="30" rows="9"
-													>${wrList.vr_rvc }</textarea>
-											</div>
-										</div>
-									</div>
-									<div class="form-group mt-3">
-										<button class="button button-contactForm boxed-btn" id="updateOk" style="padding: 10px 44px; ">완료</button>
-									</div>
-								</form>
-							</div> --%>
-
-					
-
 					</div>
 				</div>
 
 			</div>
 		</div>
 	</section>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+        $('#message').on('keyup', function() {
+            $('#text_cnt').html("("+$(this).val().length+" / 300)");
+ 
+            if($(this).val().length > 300) {
+                $(this).val($(this).val().substring(0, 100));
+                $('#text_cnt').html("(300 / 300)");
+            }
+        });
+    });
+	
+	</script>
 
 
 

@@ -9,6 +9,9 @@ public class Criteria {
 	private int amount;
 	private int mb_num_pk;
 	private String mb_id;
+	private String mb_id_pk;
+	private String er_mbid;
+	private String vr_mbid;
 	
 	public Criteria() {
 		this(1, 5);
@@ -23,11 +26,36 @@ public class Criteria {
 		this.amount = amount;
 		this.mb_num_pk = mb_num_pk;
 	}
-	public Criteria(int pageNum, int amount,String mb_id) {
+	public Criteria(int pageNum, int amount, String mb_id) {
 		this.pageNum = pageNum;
 		this.amount = amount;
 		this.mb_id = mb_id;
 	}
+	public Criteria(int pageNum, int amount, String mb_id, String mb_id_pk) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.mb_id = mb_id;
+		this.mb_id_pk = mb_id_pk;
+	}
+	
+	public Criteria(int pageNum, int amount, String mb_id, String mb_id_pk, String er_mbid) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.mb_id = mb_id;
+		this.mb_id_pk = mb_id_pk;
+		this.er_mbid = er_mbid;
+	}
+	
+	public Criteria(int pageNum, int amount, String mb_id, String mb_id_pk, String er_mbid, String vr_mbid) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+		this.mb_id = mb_id;
+		this.mb_id_pk = mb_id_pk;
+		this.er_mbid = er_mbid;
+		this.vr_mbid = vr_mbid;
+	}
+	
+	
 
 	public int getPageNum() {
 		return pageNum;
@@ -59,6 +87,30 @@ public class Criteria {
 
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
+	}
+
+	public String getMb_id_pk() {
+		return mb_id_pk;
+	}
+
+	public void setMb_id_pk(String mb_id_pk) {
+		this.mb_id_pk = mb_id_pk;
+	}
+
+	public String getEr_mbid() {
+		return er_mbid;
+	}
+
+	public void setEr_mbid(String er_mbid) {
+		this.er_mbid = er_mbid;
+	}
+
+	public String getVr_mbid() {
+		return vr_mbid;
+	}
+
+	public void setVr_mbid(String vr_mbid) {
+		this.vr_mbid = vr_mbid;
 	}
 
 	

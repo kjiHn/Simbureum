@@ -25,7 +25,7 @@
     		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
     		JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
     		JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-    		where p.mb_num_pk = 1)
+    		where p.mb_num_pk = #{mb_num_pk})
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} -1) * #{amount}
 	  ]]>

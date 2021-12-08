@@ -70,7 +70,7 @@ a {
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td><a href="/">${post.mb_id}</a></td>
+								<td><a onclick="openReview()" href="" style="color: black; font-weight: bold;">${post.mb_id}</a></td>
 							</tr>
 							<tr>
 								<th>작성일</th>
@@ -147,6 +147,22 @@ a {
 			var popY = winY + (winHeight - popHeight)/2;
 			url="../volunteer/"+${post.post_num_pk};
 			var openWin = window.open(url, "volunteer", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
+		}
+	</script>
+	
+	<!-- 고용자의 리뷰, 평점 보기 -->
+	<script type="text/javascript">
+		function openReview(){
+			var popWidth = 400;
+			var popHeight = 200;
+			var winHeight = document.body.clientHeight;
+			var winWidth = document.body.clientWidth;
+			var winX = window.screenLeft;
+			var winY = window.screenTop;
+			var popX = winX + (winWidth - popWidth)/2;
+			var popY = winY + (winHeight - popHeight)/2;
+			url="/review/grdAvg?vr_mbid=${post.mb_id}";
+			var openWin = window.open(url, "grdAvg", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
 		}
 	</script>
 

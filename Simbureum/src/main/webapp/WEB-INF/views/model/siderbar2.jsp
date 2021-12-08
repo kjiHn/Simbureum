@@ -47,12 +47,12 @@
 										<p id = "endPost">심부름 한 내역</p>
 
 								</a></li>
-								<li><a href="/review/writeList?mb_id_pk=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p>작성한 리뷰</p>
+								<li><a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+										<p id="Ereview">작성한 리뷰</p>
 
 								</a></li>
 								<li><a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid") %>" class="d-flex">
-										<p style="font-weight: ">받은리뷰</p>
+										<p id="review">받은리뷰</p>
 
 								</a></li>
 							</ul>
@@ -89,6 +89,36 @@
 	$("#endPost").css("font-weight", "bold");
 	$("#endPost").css("text-decoration", "underline");
 	
+	
+}else if(link =='/Ereview/EwriteList'){
+	$("#Ereview").css("font-weight", "bold");
+	$("#Ereview").css("text-decoration", "underline");
+	
+}else if(link == '/review/receiveList' ){
+	$("#review").css("font-weight", "bold");
+	$("#review").css("text-decoration", "underline");
+	
+	
+}else if(link == '/Ereview/EreceiveList' ){
+	$("#review").css("font-weight", "bold");
+	$("#review").css("text-decoration", "underline");
+	
+}else if(link == '/review/writeList' ){
+	$("#Ereview").css("font-weight", "bold");
+	$("#Ereview").css("text-decoration", "underline");
+	
+}else if(link == '/review/reList' ){
+	$("#review").css("font-weight", "bold");
+	$("#review").css("text-decoration", "underline");
+	
+}else if(link == '/Ereview/EwrList' ){
+	$("#Ereview").css("font-weight", "bold");
+	$("#Ereview").css("text-decoration", "underline");
+	
+}
+else if(link == '/review/wrList' ){
+	$("#Ereview").css("font-weight", "bold");
+	$("#Ereview").css("text-decoration", "underline");
 	
 }
  console.log(link);

@@ -41,12 +41,155 @@
 	height: 30px;
 }
 
+.star-er_grd {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:6em;
+}
+
+.star-er_grd input {
+  display:none;
+}
+
+.star-er_grd label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-er_grd :checked ~ label {
+  color:#f90;
+}
+
+.star-er_grd label:hover,
+.star-er_grd label:hover ~ label {
+  color:#fc0;
+}
+
+#btn1{
+	padding: 10px 44px;
+}
+
 </style>	
 
 <title>올린 심부름</title>
 </head>
 <body>
+<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
+<div class="col-md-auto">
+	
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
 
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true"
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title" id="exampleModalLabel">리뷰 작성</h2>
+						</div>
+						<form name="EreInsert" >
+						<div class="modal-body">
+							<input type="hidden" id="post_num_pk" name = "post_num_pk" value="${post.post_num_pk }">
+							<input type="hidden" id="mb_id_pk" name = "mb_id_pk" value="<%=session.getAttribute("mid")%>">
+							<input type="hidden" id=er_mbid name = "er_mbid" value="${post.sel_vr }">
+							<input type="hidden" id=mb_num_pk name = "mb_num_pk" value="${post.mb_num_pk }">
+													
+							<table style="text-align: center; width: 400px; align: center;" >
+                     <thead>
+                        <tr>
+                        	 <th >별점</th>
+                             <td> 
+                             	<div class="star-er_grd" >									
+								  <input type="radio" id="5-stars" id="er_grd" name="er_grd" value="5"/>
+								  <label for="5-stars" class="star"  style="font-size: 25px;">★</label>
+								  <input type="radio" id="4-stars" id="er_grd" name="er_grd" value="4" />
+								  <label for="4-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="3-stars" id="er_grd" name="er_grd" value="3" />
+								  <label for="3-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="2-stars" id="er_grd" name="er_grd" value="2" />
+								  <label for="2-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="1-star" id="er_grd" name="er_grd" value="1" />
+								  <label for="1-star" class="star" style="font-size: 25px;">★</label>									  
+							    </div>
+                           	</td>
+                        </tr>
+                        <tr style="border-top: 2px solid  #eceff8; ">
+                           <th>내용</th>
+                           <td style="height: 200px;">
+                           <div class="form-group">
+                           <textarea class="form-control w-100" style="resize: none; font-size: 15px;" name="er_rvc"
+													id="message" cols="30" rows="9"
+													onfocus="this.placeholder = ''"
+													onblur="this.placeholder = '리뷰를 작성해 주세요'"
+													placeholder="리뷰를 작성해 주세요"></textarea>
+								</div>
+                           </td>                            
+                        </tr>
+                        
+                     </thead>
+                  </table>
+					
+						</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickDel(EreInsert)" >작성하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+						</div>
+						
+						 
+						 
+					</div>
+				</div>
+			</div>
+			<script>
+			 function clickDel(formName) {
+				  var post_num_pk = $("#post_num_pk").val();
+				  var mb_id_pk = $("#mb_id_pk").val();
+				  var er_mbid = $("#er_mbid").val();
+				  var mb_num_pk = $("#mb_num_pk").val();
+				 
+				  $.ajax({
+					  url : "/Ereview/EreInsertCheck",
+					  type : "POST",
+					  dataType : "json",
+					  data : {"post_num_pk" : post_num_pk, "mb_id_pk" : mb_id_pk, "er_mbid" : er_mbid, "mb_num_pk" : mb_num_pk},	
+					  success : function(data){
+						  if(data==0){
+							    alert("리뷰작성이 완료되었습니다.");
+							    formName.action = "/Ereview/EreInsert";
+								formName.method = "post";
+								formName.submit();  
+							  
+						  }else{
+							alert("이미 작성된 리뷰입니다.");
+							
+							 
+						  }
+						  
+					  }
+					  
+					  
+				  }); 
+				  
+				
+			} 
+			 
+				
+			</script>
+			
+			
+			</div>
+			</c:if>
+
+
+<c:if test="${empty post.sel_vr}">
 	<!-- Modal -->
 	<div class="col-md-auto">
 		<!-- Button trigger modal -->
@@ -81,6 +224,7 @@
 		});
 		</script>
 	</div>
+	</c:if>
 	
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -116,6 +260,7 @@
 										(심부름꾼 : ${post.sel_vr})
 									</c:if>
 								</td>
+							
 							</tr>
 							<tr>
 								<th>내용</th>
@@ -148,7 +293,7 @@
 							<input type="button" class="button" onclick="openComplete()" value="심부름 완료">
 						</c:if>
 						<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
-							<input type="button" class="button" value="심부름꾼에게 리뷰 작성">
+							<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="EreInsert" id="EreInsert" >심부름꾼에게 리뷰 작성</button>
 						</c:if>
 						
 						<!-- Modal에서 사용하는 form -->

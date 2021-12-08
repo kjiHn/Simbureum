@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     
     
 
@@ -44,7 +45,53 @@ table {
 #btn_del{
 	padding: 10px 44px; margin-left:  200px; position: absolute;
 }
+#btn1{
+	padding: 10px 44px;
+}
 
+.star-vr_grd {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:6em;
+}
+
+.star-vr_grd input {
+  display:none;
+}
+
+.star-vr_grd label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-vr_grd :checked ~ label {
+  color:#f90;
+}
+
+.star-vr_grd label:hover,
+.star-vr_grd label:hover ~ label {
+  color:#fc0;
+}
+
+
+
+/* explanation */
+
+article {
+  background-color:#ffe;
+  box-shadow:0 0 1em 1px rgba(0,0,0,.25);
+  color:#006;
+  font-family:cursive;
+  font-style:italic;
+  margin:4em;
+  max-width:30em;
+  padding:2em;
+}
 </style>
 
 </head>
@@ -65,14 +112,12 @@ table {
 					<div class="modal-content">
 						<div class="modal-header">
 							<h2 class="modal-title" id="exampleModalLabel">게시물 삭제</h2>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+							
 						</div>
 						<div class="modal-body">게시물을 삭제하시겠습니까?</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" onclick="clickDel(Delete)">삭제하기</button>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1" onclick="clickDel(Delete)">삭제하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  data-dismiss="modal">취소하기</button>
 						</div>
 					</div>
 				</div>
@@ -87,6 +132,104 @@ table {
 			</script>
 		
 	</div>
+	
+	
+
+	
+	<div class="col-md-auto">
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true"
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title" id="exampleModalLabel">리뷰 수정</h2>
+						</div>
+						<form name="updateOk" >
+						<div class="modal-body">
+							<input type="hidden" name="mb_id_pk" value="${EwrList.mb_id_pk }">
+							<input type="hidden" name="er_num_pk" value="${EwrList.er_num_pk }">
+							<input type="hidden" id="er_grd" value="${EwrList.er_grd }">
+													
+							<table style="text-align: center; width: 400px; align: center;" >
+                      <thead>
+                        <tr>
+                           <th>TO.</th>
+                           <td>${EwrList.er_mbid }</td>                                                      
+                        </tr >
+                        <tr>
+                        	 <th >별점</th>
+                             <td> 
+                             	<div class="star-vr_grd" >									
+								  <input type="radio" id="5-stars" name="er_grd" value="5"/>
+								  <label for="5-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="4-stars" name="er_grd" value="4" />
+								  <label for="4-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="3-stars" name="er_grd" value="3" />
+								  <label for="3-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="2-stars" name="er_grd" value="2" />
+								  <label for="2-stars" class="star" style="font-size: 25px;">★</label>
+								  <input type="radio" id="1-star" name="er_grd" value="1" />
+								  <label for="1-star" class="star" style="font-size: 25px;">★</label>									  
+							    </div>
+                           	</td>
+                        </tr>
+                        <tr style="border-top: 2px solid  #eceff8; ">
+                           <th>내용</th>
+                           <td style="height: 200px;">
+                           <div class="form-group">
+                           <textarea class="form-control w-100" name="er_rvc" style="font-size: 20px;" id="message" cols="30" rows="9">${EwrList.er_rvc }</textarea>
+								</div>
+                           </td>                            
+                        </tr>
+                        
+                     </thead>
+                  </table>
+					
+						</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickDel(updateOk)" >수정하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+						</div>
+						
+						 
+						 
+					</div>
+				</div>
+			</div>
+			<script>
+			 function clickDel(formName) {
+		
+			    alert("리뷰수정이 완료되었습니다.");
+			    formName.action = "/Ereview/EwreUpdate";
+				formName.method = "post";
+				formName.submit();  
+			} 
+			 
+			 
+			 var checked = 'checked';
+			 var grd = $("#er_grd").val();
+		
+			 
+			  if(grd == 5){				 
+			 	$('input[id=5-stars]').attr('checked',checked);
+			 }else if(grd==4){
+				$('input[id=4-stars]').attr('checked',checked);
+			 }else if(grd==3){
+				$('input[id=3-stars]').attr('checked',checked);
+			 }else if(grd==2){
+				$('input[id=2-stars]').attr('checked',checked);
+			 }else if(grd==1){
+				$('input[id=1-stars]').attr('checked',checked);
+			 } 
+			</script>
+			</div>
+			
+	
+	
+	
 
 
 
@@ -140,7 +283,7 @@ table {
                   <br>
                  <div class="form-group mt-3" style="margin-left: 20px;">
                  
-             <a href="EwreUpdate?er_num_pk=${EwrList.er_num_pk  }"><button  class="button button-contactForm boxed-btn" id="btn_up">수정하기</button></a> 
+            		<button  class="button button-contactForm boxed-btn" data-toggle="modal" data-target="#exampleModal1" id="btn_up">수정하기</button>
 					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" id="btn_del">삭제하기</button>
 				</div>
              
@@ -151,19 +294,7 @@ table {
          </div>
       </div>
    </section>
-
-<script type="text/javascript">
-
-
-	$("#updateOk").click(function(){
-	 
-	 formObj.attr("action", "/review/wreUpdate");
-	 formObj.attr("method", "get");  
-	 formObj.submit(); 
-
-	 </script>
-
-
+  
 </body>
 </html>
 <%@include file="../model/footer.jsp" %>

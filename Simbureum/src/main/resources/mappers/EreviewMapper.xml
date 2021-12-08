@@ -4,6 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.fdx.dao.Ern_RvDAO">
+
+<select id="EreInsertCheck" resultType="int">
+	select count(*)
+	from ern_rv
+	where post_num_pk = #{post_num_pk}
+	and mb_id_pk = #{mb_id_pk}
+	and er_mbid = #{er_mbid}
+</select>
+
+ 
+<!-- 고용자가 리뷰 작성 -->
+<insert id="EreInsert">
+	insert into Ern_Rv(er_num_pk, post_num_pk, mb_id_pk, er_grd, er_rvc, er_date, er_mbid)
+	values(Em_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{er_grd}, #{er_rvc}, sysdate, #{er_mbid})
+</insert>
+
  <!--  자신이 고용자일때 받은 리뷰 전체 조회 --> 
  <select id="EreceiveList" resultType="com.fdx.dto.Ern_RvDTO">  
 	 select * from Ern_Rv
@@ -71,11 +87,59 @@ insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CO
 	where er_num_pk = #{er_num_pk}
 </update>
 
+<!-- =================================================================================== -->
 
 
-                                 
+<!-- 고용자가 작성한리뷰 페이징 처리 -->
+<select id="EwriteListPaging"   resultType="com.fdx.dto.Ern_RvDTO">
+<![CDATA[
+select 
+    er_num_pk, post_num_pk, mb_id_pk, er_grd, SUBSTR(er_rvc,0,10) er_rvc, er_date, er_mbid
+  from 
+      (
+      select 
+        row_number() over(order by er_date desc) rn, er_num_pk, post_num_pk, mb_id_pk, er_grd, er_rvc, er_date, er_mbid 
+      from 
+        ern_rv
+      where 
+      mb_id_pk = #{mb_id_pk}
+      )
+   where rn <= #{pageNum} * #{amount} 
+  and rn  > (#{pageNum} -1) * #{amount}  
+]]>
+</select>
+
+<select id="EwrtotalPage" resultType="int">
+	select COUNT(*)
+	 FROM ern_rv
+	 where mb_id_pk = #{mb_id_pk}
+</select>
 
 
- 
+<!-- 심부름꾼이 받은 리뷰 페이징 처리 -->
+<select id="EreceiveListPaging"   resultType="com.fdx.dto.Ern_RvDTO">
+<![CDATA[
+select 
+   er_num_pk, post_num_pk, mb_id_pk, er_grd, SUBSTR(er_rvc,0,10) er_rvc, er_date, er_mbid
+  from 
+      (
+      select 
+        row_number() over(order by er_date desc) rn, er_num_pk, post_num_pk, mb_id_pk, er_grd, er_rvc, er_date, er_mbid 
+      from 
+        ern_rv
+      where 
+      er_mbid = #{er_mbid}
+      )
+   where rn <= #{pageNum} * #{amount} 
+  and rn  > (#{pageNum} -1) * #{amount}  
+]]>
+</select>
+
+<select id="EretotalPage" resultType="int">
+	select COUNT(*)
+	 FROM ern_rv
+	 where er_mbid = #{er_mbid}
+</select>
+
 
 </mapper>
