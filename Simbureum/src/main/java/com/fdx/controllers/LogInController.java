@@ -32,12 +32,14 @@ public class LogInController {
 	private LoginService loginService;
 
 	@GetMapping(value = "main")
-	public String logIn() {
-
+	public String logIn(
+			HttpServletRequest request, HttpServletResponse response) {
+		String url = request.getHeader("referer");
+		request.setAttribute("url", url);
 		return "join/login";
 	}
 
-	@RequestMapping(value = "loginCheck" ,  method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "loginCheck" ,  method =  RequestMethod.POST)
 	@ResponseBody
 	private int login(@RequestParam(value = "ID", required = false) String id,
 			@RequestParam(value = "password", required = false) String pswd,

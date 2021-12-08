@@ -140,8 +140,6 @@
 	   event.preventDefault();
 	   var num = $(this).attr("name");
 	   var mb_num = "<%=session.getAttribute("mNum")%>";
-	   alert(num);
-	   alert(mb_num);
 	   var allData = {'post_num_pk':num,"mb_num_pk":mb_num};
 	   
 	   $.ajax({

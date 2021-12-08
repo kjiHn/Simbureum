@@ -42,7 +42,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							<div class="col-xl-2 col-lg-2">
 								<div class="#">
 									<a href="/"> <img
-										src="/resources/view/assets/img/logo/3.png"
+										src="/resources/view/assets/img/logo/2-removebg.png"
 										style="width: 80px; height: 80px;">
 
 									</a>

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Random;
 
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,24 +88,34 @@ public class JoinController {
         String setFrom = "haejohalge@fdx.com";
         String toMail = email;
         String title = "회원가입 인증 이메일 입니다.";
-        String content = "	<div style='text-align: center;'>\r\n" + 
-        		"		<div style='border: 1px solid black; display: inline-block; width: 500px; line-height: 30px; height: 250px; text-align: center;'>" + 
-        		"			<h1>이메일인증</h1>" + 
-        		"			<p>홈페이지를 방문해주셔서 감사합니다.</p>" + 
-        		"			<p style='border: 1px solid black;display:inline-block; width: 300px'>이메일 인증번호는 <strong>"
+        String content ="<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid #e3c4ff; margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">\r\n" + 
+        		"	<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">\r\n" + 
+        		"		<span style=\"font-size: 15px; margin: 0 0 10px 3px;\">N:Source</span><br />\r\n" + 
+        		"		<span style=\"color: #e3c4ff;\">메일인증</span> 안내입니다.\r\n" + 
+        		"	</h1>\r\n" + 
+        		"	<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">\r\n" + 
+        		"		안녕하세요.<br />\r\n" + 
+        		"		해줘~할게!에 가입해 주셔서 진심으로 감사드립니다.<br />\r\n" + 
+        		"		아래 인증번호를 입력하여\r\n" + 
+        		"		<b style=\"color: #e3c4ff;\">"
         		+ checkNum
-        		+"</strong> 입니다.</p>" + 
-        		"			<br />" + 
-        		"			<br />" + 
-        		"		</div>" + 
-        		"	</div>";   
+        		+ "</b>\r\n" + 
+        		"		회원가입을 완료해 주세요.<br />\r\n" + 
+        		"		감사합니다.\r\n" + 
+        		"	</p>\r\n" + 
+        		"	<div style=\"border-top: 1px solid #DDD; padding: 5px;\">\r\n" + 
+        		"		<p style=\"font-size: 13px; line-height: 21px; color: #555;\">\r\n" + 
+        		"			만약 버튼이 정상적으로 클릭되지 않는다면, 아래 링크를 복사하여 접속해 주세요.<br />\r\n" + 
+        		"		</p>\r\n" + 
+        		"	</div>\r\n" + 
+        		"</div>";
         
         
         try {
             
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-            helper.setFrom(setFrom);
+            helper.setFrom(new InternetAddress("simbu@admin.admin", "admin"));
             helper.setTo(toMail);
             helper.setSubject(title);
             helper.setText(content,true);
@@ -179,27 +190,38 @@ public class JoinController {
  		
  		myId = joinservice.findID(dto);
  		
- 		String setFrom = "haejohalge@fdx.com";
+ 		String setFrom = "haejohalge";
          String toMail = mb_emaile;
          String title = "찾으실 이메일의 아이디입니다.";
-         String content = 
-        		 "<div style='text-align: center;'>"+
- 		"<div style='border: 1px solid black; display: inline-block; width: 500px; line-height: 50px; height: 250px; text-align: center;'>"+
- 			"<h1>아이디 	찾기</h1>"+
- 			"<p>회원가입 시 사용한 아이디는 <strong>"+
- 			myId+
- 			"</strong> 입니다.</p>"+
- 			"<button style='padding: 10px; background-color: #e3c4ff; border: 1px gray solid'>" + 
- 			"			<a href='http://www.localhost:9081/' style=' text-decoration:none'> 홈으로 이동 </a>" + 
- 			"			</button>"+
- 			
- 		"</div>"+
- 	"</div>";      
+         String  content = "<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid #e3c4ff; margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">\r\n" + 
+	         		"	<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">\r\n" + 
+	         		"		<span style=\"font-size: 15px; margin: 0 0 10px 3px;\">N:Source</span><br />\r\n" + 
+	         		"		<span style=\"color: #e3c4ff;\">회원님의 아이디</span> 안내입니다.\r\n" + 
+	         		"	</h1>\r\n" + 
+	         		"	<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">\r\n" + 
+	         		"		안녕하세요.<br />\r\n" + 
+	         		"		요청하신 아이디 입니다.<br />\r\n" + 
+	         		"		홈페이지로 돌아가서 로그인하세요.<br />\r\n" + 
+	         		"		감사합니다.\r\n" + 
+	         		"	</p>\r\n" + 
+	         		"\r\n" + 
+	         		"	<p style=\"font-size: 16px; margin: 40px 5px 20px; line-height: 28px;\">\r\n" + 
+	         		"		아이디: <br />\r\n" + 
+	         		"		<span style=\"font-size: 24px;\">"
+	         		+ myId
+	         		+ "</span>\r\n" + 
+	         		"	</p>\r\n" +  
+	         		"	<div style=\"border-top: 1px solid #DDD; padding: 5px;\">\r\n" + 
+	         		"		<p style=\"font-size: 13px; line-height: 21px; color: #555;\">\r\n" + 
+	         		"			만약 버튼이 정상적으로 클릭되지 않는다면, 아래 링크를 복사하여 접속해 주세요.<br />\r\n" + 
+	         		"		</p>\r\n" + 
+	         		"	</div>\r\n" + 
+	         		"</div>";
          try {
              
              MimeMessage message = mailSender.createMimeMessage();
              MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-             helper.setFrom(setFrom);
+             helper.setFrom(new InternetAddress("simbu@admin.admin", "admin"));
              helper.setTo(toMail);
              helper.setSubject(title);
              helper.setText(content,true);
@@ -255,6 +277,7 @@ public class JoinController {
  		JoinDTO joindto = new JoinDTO();
  		joindto.setMb_pswd(pswd);
  		joindto.setMb_id(mb_id);
+ 		joindto.setMb_emaile(mb_emaile);
  		int num = joinservice.updateMember(joindto);
  		System.out.println(num);
  		if (num == 1) {
@@ -268,29 +291,38 @@ public class JoinController {
  	 		LOG.info("인증번호 : " + mb_emaile);
  	 			 		
  	 		
- 	 		String setFrom = "haejohalge@fdx.com";
+ 	 		 String setFrom = "haejohalge@fdx.com";
  	         String toMail = mb_emaile;
  	         String title = "새로 발급한 임시 비밀번호 입니다.";
- 	         String content = 
- 	        		 "<div style='text-align: center;'>"+
- 	 		"<div style='border: 1px solid black; display: inline-block; width: 500px; line-height: 30px; height: 250px; text-align: center;'>"+
- 	 			"<h1>비밀번호 	찾기</h1>"+
- 	 			"<p>새로발급한 패스워드는 <strong>"+
- 	 			pswd+
- 	 			"</strong> 입니다.</p>"+
- 	 			"<p>빠른시일내에 변경해 주세여</p>" + 
- 	 			"<button style='padding: 10px; background-color: #e3c4ff; border: 1px gray solid'>" + 
- 	 			"			<a href='http://home' style=' text-decoration:none'> 홈으로 이동 </a>" + 
- 	 			"			</button>"+
- 	 			
- 	 		"</div>"+
- 	 	"</div>";
- 	        		 
+ 	         String content = "<div style=\"font-family: 'Apple SD Gothic Neo', 'sans-serif' !important; width: 540px; height: 600px; border-top: 4px solid #e3c4ff; margin: 100px auto; padding: 30px 0; box-sizing: border-box;\">\r\n" + 
+ 	         		"	<h1 style=\"margin: 0; padding: 0 5px; font-size: 28px; font-weight: 400;\">\r\n" + 
+ 	         		"		<span style=\"font-size: 15px; margin: 0 0 10px 3px;\">N:Source</span><br />\r\n" + 
+ 	         		"		<span style=\"color: #e3c4ff;\">임시 비밀번호</span> 안내입니다.\r\n" + 
+ 	         		"	</h1>\r\n" + 
+ 	         		"	<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">\r\n" + 
+ 	         		"		안녕하세요.<br />\r\n" + 
+ 	         		"		요청하신 임시 비밀번호가 생성되었습니다.<br />\r\n" + 
+ 	         		"		임시 비밀번호로 로그인하세요.<br />\r\n" + 
+ 	         		"		감사합니다.\r\n" + 
+ 	         		"	</p>\r\n" + 
+ 	         		"\r\n" + 
+ 	         		"	<p style=\"font-size: 16px; margin: 40px 5px 20px; line-height: 28px;\">\r\n" + 
+ 	         		"		임시 비밀번호: <br />\r\n" + 
+ 	         		"		<span style=\"font-size: 24px;\">"
+ 	         		+ pswd
+ 	         		+ "</span>\r\n" + 
+ 	         		"	</p>\r\n" + 
+ 	         		"	<div style=\"border-top: 1px solid #DDD; padding: 5px;\">\r\n" + 
+ 	         		"		<p style=\"font-size: 13px; line-height: 21px; color: #555;\">\r\n" + 
+ 	         		"			만약 버튼이 정상적으로 클릭되지 않는다면, 아래 링크를 복사하여 접속해 주세요.<br />\r\n" + 
+ 	         		"		</p>\r\n" + 
+ 	         		"	</div>\r\n" + 
+ 	         		"</div>";
  	         try {
  	             
  	             MimeMessage message = mailSender.createMimeMessage();
  	             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
- 	             helper.setFrom(setFrom);
+ 	            helper.setFrom(new InternetAddress("simbu@admin.admin", "admin"));
  	             helper.setTo(toMail);
  	             helper.setSubject(title);
  	             helper.setText(content,true);
@@ -331,7 +363,6 @@ public class JoinController {
  	@ResponseBody
  	public int deleteMb(@RequestParam(value = "mb_id") String mb_id,
  			@RequestParam(value = "mb_pswd") String mb_pswd,
- 			Model model,
  			HttpServletRequest request, HttpServletResponse response) {
  		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
  		JoinDTO joinDTO = new JoinDTO();
