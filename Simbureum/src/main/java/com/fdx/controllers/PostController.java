@@ -3,6 +3,7 @@ package com.fdx.controllers;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,13 +16,18 @@ import com.fdx.dto.Criteria2;
 import com.fdx.dto.PageMaker2;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
+import com.fdx.dto.Vlntr_RvDTO;
 import com.fdx.services.PostService;
+import com.fdx.services.Vlntr_RvServiceImpl;
 
 @Controller
 public class PostController {
 
 	@Inject
 	private PostService postService;
+	
+	@Autowired
+	public Vlntr_RvServiceImpl vlservice;
 
 	//게시글 작성 페이지
 	@RequestMapping(value = "/main/writePost", method = RequestMethod.GET)
@@ -76,9 +82,15 @@ public class PostController {
 	
 	//게시글 상세보기
 	@RequestMapping(value = "/main/postDetail/{post_num_pk}", method = RequestMethod.GET)
-	public String postDetail(Model model, @PathVariable("post_num_pk") int postNum) {
+	public String postDetail(Model model, @PathVariable("post_num_pk") int postNum) throws Exception {
 		postService.increaseHits(postNum);
-		model.addAttribute("post", postService.postDetail(postNum));
+		PostDto post = postService.postDetail(postNum);
+		model.addAttribute("post", post);
+		
+		String vr_mbid = post.getMb_id();
+		Vlntr_RvDTO grdAvg = vlservice.grdAvg(vr_mbid);
+		model.addAttribute("grdAvg",grdAvg);
+		model.addAttribute("reviewList",vlservice.receiveList(vr_mbid));
 		return "main/postDetail";
 	}
 		

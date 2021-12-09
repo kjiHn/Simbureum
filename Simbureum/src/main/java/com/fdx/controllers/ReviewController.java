@@ -162,7 +162,7 @@ public class ReviewController {
 		}
 	  
 	//고용자가 받은 리뷰 자세히 
-	@RequestMapping(value = "/grdAvg", method = RequestMethod.GET)
+	@RequestMapping(value = "/grdAvg", method = RequestMethod.POST)
 	public void grdAvg(Model model, @RequestParam(value = "vr_mbid") String vr_mbid) throws Exception {
 		
 		model.addAttribute("grdAvg",vlservice.grdAvg(vr_mbid));

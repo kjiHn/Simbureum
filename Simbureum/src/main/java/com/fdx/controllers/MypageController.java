@@ -18,7 +18,9 @@ import com.fdx.dto.Criteria;
 import com.fdx.dto.MypageDTO;
 import com.fdx.dto.PageMaker;
 import com.fdx.dto.PostDto;
+import com.fdx.dto.Vlntr_RvDTO;
 import com.fdx.services.MypageService;
+import com.fdx.services.Vlntr_RvServiceImpl;
 
 @Controller
 @RequestMapping(value = "/mypage/*")
@@ -27,6 +29,9 @@ public class MypageController {
 	
 	@Autowired
 	public MypageService mypageService;
+	
+	@Autowired
+	public Vlntr_RvServiceImpl vlservice;
 	
 	@RequestMapping(value ="/upPost")
 	public String myUploadPage(@RequestParam(value = "mb_num_pk") int mb_num_pk,
@@ -171,18 +176,26 @@ public class MypageController {
 	
 	//심부름 한 게시글 상세보기
 	@RequestMapping(value="finishedPostDetail/{post_num_pk}", method = RequestMethod.GET)
-	public String finishedPost(@PathVariable("post_num_pk") int postNum, Model model){
+	public String finishedPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception{
 		PostDto post = mypageService.oneWrittenPost(postNum);
 		model.addAttribute("post", post);
+		String vr_mbid = post.getMb_id();
+		Vlntr_RvDTO grdAvg = vlservice.grdAvg(vr_mbid);
+		model.addAttribute("grdAvg",grdAvg);
+		model.addAttribute("reviewList",vlservice.receiveList(vr_mbid));
 		return "mypage/finishedPostDetail";
 	}
 	
 	//지원한 게시글 상세보기
 	@RequestMapping(value="supportPostDetail/{post_num_pk}", method = RequestMethod.GET)
-	public String supportPost(@PathVariable("post_num_pk") int postNum, Model model){
+	public String supportPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception{
 		mypageService.hitsup(postNum);
 		PostDto post = mypageService.oneWrittenPost(postNum);
 		model.addAttribute("post", post);
+		String vr_mbid = post.getMb_id();
+		Vlntr_RvDTO grdAvg = vlservice.grdAvg(vr_mbid);
+		model.addAttribute("grdAvg",grdAvg);
+		model.addAttribute("reviewList",vlservice.receiveList(vr_mbid));
 		return "mypage/supportPostDetail";
 	}
 	

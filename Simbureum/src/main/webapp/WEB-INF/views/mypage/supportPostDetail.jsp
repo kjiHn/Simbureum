@@ -82,6 +82,78 @@
 		});
 		</script>
 	</div>
+	
+	
+	<div class="col-md-auto">
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true" 
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" style="width: 350px; margin: auto;">
+						<div class="modal-header">
+							<h2 class="modal-title" id="exampleModalLabel">고용자 리뷰 정보</h2>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <h1><span aria-hidden="true">&times;</span></h1> 
+					        </button>
+						</div>
+					
+						<div class="modal-body" style="overflow: auto; height: 300px; ">
+						<c:if test="${grdAvg.vr_grd ==null }">
+					<body style="text-align: center;" >
+					<div style="color: white;">
+					<br><br><br><br>
+					<h3>선택하신 고용자의 리뷰가 없습니다</h3>
+					<p>심부름을 완료하고 첫 리뷰를 작성해주세요</p>
+					</div>
+					
+					</body>	
+					</c:if>
+					
+					<c:if test="${grdAvg.vr_grd != null }">
+					 <table style="text-align: left; width: 330px;">
+                     <thead>
+                        <tr >
+                           <th>
+                           		<h2> <c:out value="${grdAvg.vr_mbid }"></c:out></h2>
+                           		<p>평점 <c:out value="${grdAvg.vr_grd }"></c:out> | 리뷰 수 <c:out value="${grdAvg.vr_rvn_pk }"></c:out></p> 
+                           		<h3>리뷰</h3>
+                           </th>
+                        </tr>
+                     </thead>
+					<c:forEach items="${reviewList }" var="vrdto">
+                         <tr>                 
+                           <td style="border-top: 1px solid gray;">ID : ${vrdto.vr_mbid}</td>
+                         </tr>
+                         <tr>
+                           <td>${vrdto.vr_date}</td>
+                           </tr>
+                           <tr>
+                           <td style="color: #ffc107;"> 
+	                            <c:if test="${vrdto.vr_grd == 1}">★☆☆☆☆</c:if>
+	                            <c:if test="${vrdto.vr_grd == 2}">★★☆☆☆</c:if>
+	                            <c:if test="${vrdto.vr_grd == 3}">★★★☆☆</c:if>
+                           		<c:if test="${vrdto.vr_grd == 4}">★★★★☆</c:if>
+                           		<c:if test="${vrdto.vr_grd == 5}">★★★★★</c:if>
+                            </td>
+                            </tr>
+                            
+                            <tr>
+                           <td>${vrdto.vr_rvc }</td>
+                    	</tr>
+                    
+                   </c:forEach>
+                  </table>
+                  </c:if>					
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+	
+	
+	
 
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -97,7 +169,7 @@
 							</tr>
 							<tr>
 								<th>작성자</th>
-								<td><a onclick="openReview()" href="" style="color: black; font-weight: bold;">${post.mb_id}</a></td>
+								<td><a  data-toggle="modal" data-target="#exampleModal1" href="" style="color: black; font-weight: bold;">${post.mb_id}</a></td>
 							</tr>
 							<tr>
 								<th>작성일</th>
@@ -141,7 +213,6 @@
 						<c:if test="${empty post.sel_vr}">
 						<button class="button"  data-toggle="modal" data-target="#exampleModal">심부름꾼 지원 취소</button>
 						</c:if>
-						
 						<!-- Modal에서 사용하는 form -->
 						<form id="deleteSupportPost">
 							<input type="hidden"  name="post_num_pk" value="${post.post_num_pk}">
@@ -154,21 +225,6 @@
 	</section>
 			
 		
-	<!-- 작성자  리뷰 정보 보기 창 열기 -->	
-	<script type="text/javascript">	
-		function openReview(){	
-			var popWidth = 400;	
-			var popHeight = 200;	
-			var winHeight = document.body.clientHeight;	
-			var winWidth = document.body.clientWidth;	
-			var winX = window.screenLeft;	
-			var winY = window.screenTop;	
-			var popX = winX + (winWidth - popWidth)/2;	
-			var popY = winY + (winHeight - popHeight)/2;	
-			url="/review/grdAvg?vr_mbid=${post.mb_id}";	
-			var openWin = window.open(url, "grdAvg", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);	
-		}	
-	</script>
 	
 </body>
 </html>

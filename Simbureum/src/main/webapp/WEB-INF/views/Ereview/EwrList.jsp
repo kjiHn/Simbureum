@@ -190,7 +190,7 @@ article {
 						</div>
 						</form>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickDel(updateOk)" >수정하기</button>
+							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickUpdate(updateOk)" >수정하기</button>
 							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 						
@@ -200,7 +200,7 @@ article {
 				</div>
 			</div>
 			<script>
-			 function clickDel(formName) {
+			 function clickUpdate(formName) {
 		
 			    alert("리뷰수정이 완료되었습니다.");
 			    formName.action = "/Ereview/EwreUpdate";
