@@ -50,8 +50,8 @@ where RERP_LNB = #{RERP_LNB}
 
 <!-- 신고하기 -->
 <insert id="EReport">
-insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CONTENT,RERP_DATE)  
-				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CONTENT},sysdate)				
+insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CON,RERP_DATE)  
+				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CON},sysdate)				
 </insert>
 
 <!-- 고용자가 심부름꾼에게 작성한 리뷰 전체조회 -->

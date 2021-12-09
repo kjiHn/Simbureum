@@ -116,8 +116,8 @@ where vr_mbid = #{vr_mbid}
 <!-- ============================================================================================================================================ -->
 
 <insert id="Report">
-insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CONTENT,RERP_DATE)  
-				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CONTENT},sysdate)				
+insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CON,RERP_DATE)  
+				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CON},sysdate)				
 </insert>
 
 

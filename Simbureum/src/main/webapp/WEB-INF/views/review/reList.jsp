@@ -82,7 +82,7 @@ table {
                 				<input type="hidden" id="RERP_TARGET_MBN" name="RERP_TARGET_MBN" value="${reList.mb_num_pk }">
                 				<input type="hidden" id="RERP_MBN" name="RERP_MBN" value="<%=session.getAttribute("mNum")%>">
                 				<input type="hidden" id="RERP_LNB" name="RERP_LNB" value="${reList.vr_rvn_pk }">    
-                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RRERP_CONTENT" name="RRERP_CONTENT"></textarea>            				
+                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RRERP_CON" name="RRERP_CON"></textarea>            				
 					
 						</div>
 						</form>

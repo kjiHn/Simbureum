@@ -174,9 +174,11 @@
 		</div>
 	</section>
 	
-	<form id="actionForm" action="/main/postPage" method="get"> 
+	<form id="actionForm" action="/main/postLocFilter" method="get"> 
       	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
      	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+     	<input type='hidden' name='pbigc' value='${pbigc}' />
+     	<input type='hidden' name='psmallc' value='${psmallc}' />
    	</form>
    	  
   	<script>
@@ -198,6 +200,8 @@
 			var form = $("#locFilter");
 			var catNum = $("#smallCategory").val();
 			if(catNum != 0){
+				$('input[name=psmallc]').attr('value', catNum);
+				form.action = "/main/postLocFilter?catNum="+catNum;
 				form.submit();
 			}else{
 				alert("카테고리를 선택해주세요.");
@@ -222,19 +226,51 @@
 
 	<script>
 		$(document).ready(function(){
+			var seoul_category = ["강동구", "마포구", "영등포구", "서초구", "동작구"];
+			var seoul_category_val = [1, 2, 3, 4, 5];
+			var gyeonggi_category = ["화성시", "수원시", "오산시", "남양주시", "광주시"];
+			var gyeonggi_category_val = [6, 7, 8, 9, 10];
+			var target = document.getElementById("smallCategory");
+			
+			var val;
+			var text;
+			
+			//이전에 위치 선택한 값 selected 주기
+			document.getElementById("bigCategory")[${pbigc}].selected = true;
+			if(${pbigc} == 1){
+				text = seoul_category;
+				val = seoul_category_val;
+			}else{
+				text = gyeonggi_category;
+				val = gyeonggi_category_val;
+			}
+			
+			$("#smallCategory").empty();
+			
+			for (x in val){
+				var opt = document.createElement("option");
+				opt.value = val[x];
+				opt.innerHTML = text[x];
+				target.appendChild(opt);
+			}
+			
+			//위치 작은 카테고리 값 설정
+			var smallCatVal;
+			if(${psmallc} < 5){
+				smallCatVal = ${psmallc} - 1;
+			}else{
+				smallCatVal = ${psmallc} % 5 -1;
+			}
+			
+			document.getElementById("smallCategory")[smallCatVal].selected = true;
+			
+			//위치 큰 카테고리 선택 시 
 			$("#bigCategory").change(function(){
-				var seoul_category = ["강동구", "마포구", "영등포구", "서초구", "동작구"];
-				var seoul_category_val = [1, 2, 3, 4, 5];
-				var gyeonggi_category = ["화성시", "수원시", "오산시", "남양주시", "광주시"];
-				var gyeonggi_category_val = [6, 7, 8, 9, 10];
-				var target = document.getElementById("smallCategory");
+				
 				var basic_category = "시/군/구";
 				var basic_category_val = 0;
 				
 				var category1 = $("#bigCategory").val(); 
-				
-				var val;
-				var text;
 				
 				if(category1 == 1){
 					text = seoul_category;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fdx.dao.PostDaoImpl;
 import com.fdx.dto.ApPostDto;
-import com.fdx.dto.Criteria;
+import com.fdx.dto.Criteria2;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 
@@ -27,29 +27,59 @@ public class PostService {
 	}
 	
 	//모든 게시글 보기
-	public List<PostDto> allPost(Criteria cri) {
+	public List<PostDto> allPost(Criteria2 cri) {
 		List<PostDto> dto = postDao.selectAll(cri);
 		return dto;
 	}
 	
-	//총 게시글 개수
+	//게시글 총 개수
 	public int countAllPost() {
 		return postDao.countAllPost();
 	}
 	
 	//위치 필터링
-	public List<PostDto> selByLoc(int smallc) {
-		return postDao.selectByLoc(smallc);
+	public List<PostDto> selByLoc(Criteria2 cri) {
+		return postDao.selectByLoc(cri);
 	}
 	
-	//게시글 검색
-	public List<PostDto> selSearch(int num, String value) {
+	//위치 필터링 total
+	public int countSelByLoc(Criteria2 cri) {
+		return postDao.countSelByLoc(cri);
+	}
+	
+	//게시글 검색 필터링
+	public List<PostDto> selSearch(Criteria2 cri) {
+		int num = cri.getSearch_num();
+		String value = cri.getSearch_value();
+		
 		if(num == 1) {
-			return postDao.selectBySearch1(num, value);
+			cri.setPost_title(value);
+			return postDao.selectBySearch1(cri);
 		}else if(num == 2) {
-			return postDao.selectBySearch2(num, value);
+			cri.setPost_title(value);
+			cri.setPost_con(value);
+			return postDao.selectBySearch2(cri);
 		}else {
-			return postDao.selectBySearch3(num, value);
+			cri.setMb_id(value);
+			return postDao.selectBySearch3(cri);
+		}
+	}
+	
+	//게시글 검색 필터링 total
+	public int countSelSearch(Criteria2 cri) {
+		int num = cri.getSearch_num();
+		String value = cri.getSearch_value();
+		
+		if(num == 1) {
+			cri.setPost_title(value);
+			return postDao.countSelBySearch1(cri);
+		}else if(num == 2) {
+			cri.setPost_title(value);
+			cri.setPost_con(value);
+			return postDao.countSelBySearch2(cri);
+		}else {
+			cri.setMb_id(value);
+			return postDao.countSelBySearch3(cri);
 		}
 	}
 	

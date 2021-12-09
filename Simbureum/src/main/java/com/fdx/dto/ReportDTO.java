@@ -7,7 +7,7 @@ public class ReportDTO {
 	private int RERP_TARGET_MBN;
 	private int RERP_MBN;
 	private int RERP_LNB;
-	private String RERP_CONTENT;
+	private String RERP_CON;
 	private Date RERP_DATE;
 	
 	
@@ -66,14 +66,14 @@ public class ReportDTO {
 
 
 
-	public String getRERP_CONTENT() {
-		return RERP_CONTENT;
+	public String getRERP_CON() {
+		return RERP_CON;
 	}
 
 
 
-	public void setRERP_CONTENT(String rERP_CONTENT) {
-		RERP_CONTENT = rERP_CONTENT;
+	public void setRERP_CON(String rERP_CON) {
+		RERP_CON = rERP_CON;
 	}
 
 

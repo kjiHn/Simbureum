@@ -17,7 +17,7 @@ public class Vlntr_RvDTO {
 	private int RERP_TARGET_MBN;
 	private int RERP_MBN;
 	private int RERP_LNB;
-	private String RERP_CONTENT;
+	private String RERP_CON;
 	private Date RERP_DATE;
 
 	
@@ -104,12 +104,12 @@ public class Vlntr_RvDTO {
 		RERP_LNB = rERP_LNB;
 	}
 
-	public String getRERP_CONTENT() {
-		return RERP_CONTENT;
+	public String getRERP_CON() {
+		return RERP_CON;
 	}
 
-	public void setRRERP_CONTENT(String rERP_CONTENT) {
-		RERP_CONTENT = rERP_CONTENT;
+	public void setRRERP_CON(String rERP_CON) {
+		RERP_CON = rERP_CON;
 	}
 
 	public Date getRERP_DATE() {
@@ -125,7 +125,7 @@ public class Vlntr_RvDTO {
 		return "Vlntr_RvDTO [vr_rvn_pk=" + vr_rvn_pk + ", post_num_pk=" + post_num_pk + ", mb_id_pk=" + mb_id_pk
 				+ ", vr_grd=" + vr_grd + ", vr_rvc=" + vr_rvc + ", vr_date=" + vr_date + ", vr_mbid=" + vr_mbid
 				+ ", RERP_NUM_PK=" + RERP_NUM_PK + ", RERP_TARGET_MBN=" + RERP_TARGET_MBN + ", RERP_MBN=" + RERP_MBN
-				+ ", RERP_LNB=" + RERP_LNB + ", RERP_CONTENT=" + RERP_CONTENT + ", RERP_DATE=" + RERP_DATE + "]";
+				+ ", RERP_LNB=" + RERP_LNB + ", RERP_CON=" + RERP_CON + ", RERP_DATE=" + RERP_DATE + "]";
 	}
 
 	

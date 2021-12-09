@@ -101,7 +101,7 @@
 										<option value="3">작성자</option>
 									</select>
 									
-									<input id="searchInput" name ="value" class="textinput" placeholder="심부름 검색" />
+									<input id="searchInput" name ="value" class="textinput" placeholder="심부름 검색" value="${value}" /> 
 									<input type="button" class="button" id="search" value="검색" />
 								</form>
 							</div>
@@ -174,9 +174,11 @@
 		</div>
 	</section>
 	
-	<form id="actionForm" action="/main/postPage" method="get"> 
+	<form id="actionForm" action="/main/postSearchFilter" method="get"> 
       	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
      	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+     	<input type='hidden' name='catNum' value='${catNum}' />
+     	<input type='hidden' name='value' value='${value}' />
    	</form>
    	  
   	<script>
@@ -198,6 +200,8 @@
 			var form = $("#locFilter");
 			var catNum = $("#smallCategory").val();
 			if(catNum != 0){
+				$('input[name=psmallc]').attr('value', catNum);
+				form.action = "/main/postLocFilter?catNum="+catNum;
 				form.submit();
 			}else{
 				alert("카테고리를 선택해주세요.");

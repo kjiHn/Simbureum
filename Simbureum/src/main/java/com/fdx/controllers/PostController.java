@@ -1,7 +1,5 @@
 package com.fdx.controllers;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -12,10 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fdx.dto.Criteria;
-import com.fdx.dto.PageMaker;
+import com.fdx.dto.Criteria2;
+import com.fdx.dto.PageMaker2;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 import com.fdx.services.PostService;
@@ -43,27 +40,38 @@ public class PostController {
 
 	//전체 게시글 보기
 	@RequestMapping(value = "/main/postPage", method = RequestMethod.GET)
-	public String showPost(Model model, @ModelAttribute Criteria cri) {
+	public String showPost(Model model, @ModelAttribute Criteria2 cri) {
 		model.addAttribute("postList", postService.allPost(cri));
 		int total = postService.countAllPost();
-		model.addAttribute("pageMaker", new PageMaker(cri,total));
+		model.addAttribute("pageMaker", new PageMaker2(cri,total));
 		return "main/postPage";
 	}
 
-	//위치 필터링 Ajax
-	@ResponseBody
-	@RequestMapping(value = "/main/locFilter", method = RequestMethod.GET)
-	public List<PostDto> locFilter(@RequestParam(value = "catNum") int psmallc) {
-		List<PostDto> postList = postService.selByLoc(psmallc);
-		return postList;
+	//위치 필터링
+	@RequestMapping(value = "/main/postLocFilter", method = RequestMethod.GET)
+	public String locFilter(@RequestParam(value = "psmallc") int psmallc, @RequestParam(value = "pbigc") int pbigc, 
+			@ModelAttribute Criteria2 cri, Model model) {
+		cri.setPsmallc_pk(psmallc);
+		model.addAttribute("postList", postService.selByLoc(cri));
+		int total = postService.countSelByLoc(cri);
+		model.addAttribute("pageMaker", new PageMaker2(cri,total));
+		model.addAttribute("pbigc", pbigc);
+		model.addAttribute("psmallc", psmallc);
+		return "main/postLocFilter";
 	}
 	
-	//검색 Ajax
-	@ResponseBody
-	@RequestMapping(value = "/main/searchFilter", method = RequestMethod.GET)
-	public List<PostDto> searchFilter(@RequestParam(value = "num") int num, @RequestParam(value = "search") String value) {
-		List<PostDto> postList = postService.selSearch(num, value);
-		return postList;
+	//게시글 검색
+	@RequestMapping(value = "/main/postSearchFilter", method = RequestMethod.GET)
+	public String searchFilter(@RequestParam(value = "catNum") int catNum, @RequestParam(value = "value") String value,
+			@ModelAttribute Criteria2 cri, Model model) {
+		cri.setSearch_num(catNum);
+		cri.setSearch_value(value);
+		model.addAttribute("postList", postService.selSearch(cri));
+		int total = postService.countSelSearch(cri);
+		model.addAttribute("pageMaker", new PageMaker2(cri,total));
+		model.addAttribute("catNum", catNum);
+		model.addAttribute("value", value);
+		return "main/postSearchFilter";
 	}
 	
 	//게시글 상세보기
