@@ -17,7 +17,7 @@
 <!-- 고용자가 리뷰 작성 -->
 <insert id="EreInsert">
 	insert into Ern_Rv(er_num_pk, post_num_pk, mb_id_pk, er_grd, er_rvc, er_date, er_mbid)
-	values(Em_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{er_grd}, #{er_rvc}, sysdate, #{er_mbid})
+	values(ERN_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{er_grd}, #{er_rvc}, sysdate, #{er_mbid})
 </insert>
 
  <!--  자신이 고용자일때 받은 리뷰 전체 조회 --> 

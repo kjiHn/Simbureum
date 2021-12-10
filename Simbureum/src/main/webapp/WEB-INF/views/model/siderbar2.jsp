@@ -67,58 +67,37 @@
  
  <script type="text/javascript">
  var link = window.location.pathname;
+
  
  if (link =='/user/my_Info') {
 	$("#myInfo").css("font-weight", "bold");
 	$("#myInfo").css("text-decoration", "underline");
 	
-}else if(link =='/mypage/upPost'){
+}else if(link == '/mypage/upPost' || link.includes('uploadedPostDetail')){
 	
 	$("#uploadPost").css("font-weight", "bold");
 	$("#uploadPost").css("text-decoration", "underline");
 	
 	
-}else if(link =='/mypage/supPost'){
+}else if(link == '/mypage/supPost' || link.includes('supportPostDetail')){
 	
 	$("#supPost").css("font-weight", "bold");
 	$("#supPost").css("text-decoration", "underline");
 	
 	
-}else if(link =='/mypage/endPost'){
+}else if(link.includes('endPost') || link.includes('finishedPostDetail')){
 	
 	$("#endPost").css("font-weight", "bold");
 	$("#endPost").css("text-decoration", "underline");
 	
 	
-}else if(link =='/Ereview/EwriteList'){
+}else if(link.includes('EwriteList') || link.includes('writeList') || link.includes('EwrList')){
 	$("#Ereview").css("font-weight", "bold");
 	$("#Ereview").css("text-decoration", "underline");
 	
-}else if(link == '/review/receiveList' ){
+}else if(link.includes('receiveList') || link.includes('EreceiveList') || link.includes('reList')){
 	$("#review").css("font-weight", "bold");
 	$("#review").css("text-decoration", "underline");
-	
-	
-}else if(link == '/Ereview/EreceiveList' ){
-	$("#review").css("font-weight", "bold");
-	$("#review").css("text-decoration", "underline");
-	
-}else if(link == '/review/writeList' ){
-	$("#Ereview").css("font-weight", "bold");
-	$("#Ereview").css("text-decoration", "underline");
-	
-}else if(link == '/review/reList' ){
-	$("#review").css("font-weight", "bold");
-	$("#review").css("text-decoration", "underline");
-	
-}else if(link == '/Ereview/EwrList' ){
-	$("#Ereview").css("font-weight", "bold");
-	$("#Ereview").css("text-decoration", "underline");
-	
-}
-else if(link == '/review/wrList' ){
-	$("#Ereview").css("font-weight", "bold");
-	$("#Ereview").css("text-decoration", "underline");
 	
 }
  console.log(link);

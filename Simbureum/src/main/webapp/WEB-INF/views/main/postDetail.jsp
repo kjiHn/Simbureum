@@ -56,12 +56,10 @@ a {
 <title>게시글 보기</title>
 </head>
 <body>
-
-<div class="col-md-auto">
-			<!-- Modal -->
+	<!-- 리뷰 보는 Modal -->
+	<div class="col-md-auto">
 			<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true" 
-			>
+				aria-labelledby="exampleModalLabel" aria-hidden="true" >
 				<div class="modal-dialog" role="document">
 					<div class="modal-content" style="width: 350px; margin: auto;">
 						<div class="modal-header">
@@ -121,12 +119,73 @@ a {
 						</div>
 					</div>
 				</div>
+			</div>		
+		</div>
+
+	<!-- 신고하기 Modal -->
+	<div class="col-md-auto">
+		<div class="modal fade" id="report" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" style="width: 450px; margin: auto;">
+					<div class="modal-header">
+						<h2 class="modal-title" id="exampleModalLabel">신고하기</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         					<h1><span aria-hidden="true">&times;</span></h1> 
+       					</button>
+					</div>
+
+					<div class="modal-body" style="overflow: auto; height: 300px; ">
+						<h3 style="float:left">신고 사유 :</h3>
+						<form id="writeReport" action="/main/postDetail/writeReport/${post_num_pk}" method="post">
+							<textarea name="porp_con" id="porp_con" class="content" placeholder="내용을 입력해주세요"></textarea>
+						
+							<button type="button" class="btn btn-primary" id="submitReport">완료</button>
+						</form>
+					</div>
+					
+				</div>
 			</div>
-			
+		</div>		
+	</div>
+	<script>
+		$("#submitReport").on("click", function(){
+			alert("신고가 접수되었습니다.");
+			document.getElementById('writeReport').submit();
+		});
+	</script>
+	
+	<!-- 심부름꾼 지원하기 Modal -->
+	<div class="col-md-auto">
+		<div class="modal fade" id="volunteer" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" style="width: 350px; margin: auto;">
+					<div class="modal-header">
+						<h2 class="modal-title" id="exampleModalLabel">심부름꾼 지원</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         					<h1><span aria-hidden="true">&times;</span></h1> 
+       					</button>
+					</div>
+
+					<div class="modal-body" style="overflow: auto; height: 300px; ">
+						<form id="volForm" action="/main/postDetail/volunteer/${post_num_pk}" method="POST">
+							심부름꾼 지원 하시겠습니까?<br>
+							* 심부름 하면서 문제가 발생하는 경우<br> 저희가 책임지지 않습니다.<br>
+							<button type="button" class="btn btn-primary" id="submitVol">확인</button>
+						</form>
+					</div>
+					
+				</div>
 			</div>
-
-
-
+		</div>		
+	</div>
+	<script>
+		$("#submitVol").on("click", function(){
+			alert("심부름꾼 지원이 완료되었습니다.");
+			document.getElementById('volForm').submit();
+		});
+	</script>
 
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -174,13 +233,13 @@ a {
 							<c:if test="${post.mb_num_pk != mNum}">
 							<tr>
 								<td></td>
-								<td><input type="button" class="button" onclick="openReport()" value="신고하기"></td>
+								<td><button class="button" onclick="checkReport()">신고하기</button></td>
 							</tr>
 							</c:if>
 						</table>
 						
 						<c:if test="${post.mb_num_pk != mNum}">
-							<input type="button" class="button" onclick="openVol()" value="심부름꾼 지원하기">
+							<button class="button" onclick="checkVol()">심부름꾼 지원</button>
 						</c:if>
 
 					</div>
@@ -189,51 +248,37 @@ a {
 		</div>
 	</section>
 	
-	<!-- 신고하기 창 열기 -->
-	<script type="text/javascript">
-		function openReport(){
-			var popWidth = 400;
-			var popHeight = 400;
-			var winHeight = document.body.clientHeight;
-			var winWidth = document.body.clientWidth;
-			var winX = window.screenLeft;
-			var winY = window.screenTop;
-			var popX = winX + (winWidth - popWidth)/2;
-			var popY = winY + (winHeight - popHeight)/2;
-			url="../writeReport/"+${post.post_num_pk};
-			var openWin = window.open(url, "writeReport", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
+	<!-- 이미 신고한 게시글인지 확인 후 모달창 띄우기 -->
+	<script>
+		function checkReport(){
+			$.ajax({
+				url : "/main/postDetail/checkReport/${post_num_pk}",
+				type : "POST",
+				success : function(data){
+					if(data == 0){
+				    	$("#report").modal();
+					}else{
+						alert("이미 신고한 게시글입니다.");
+					}
+				}
+			});
 		}
 	</script>
 	
-	<!-- 심부름꾼 지원하기 창 열기 -->
-	<script type="text/javascript">
-		function openVol(){
-			var popWidth = 400;
-			var popHeight = 200;
-			var winHeight = document.body.clientHeight;
-			var winWidth = document.body.clientWidth;
-			var winX = window.screenLeft;
-			var winY = window.screenTop;
-			var popX = winX + (winWidth - popWidth)/2;
-			var popY = winY + (winHeight - popHeight)/2;
-			url="../volunteer/"+${post.post_num_pk};
-			var openWin = window.open(url, "volunteer", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
-		}
-	</script>
-	
-	<!-- 고용자의 리뷰, 평점 보기 -->
-	<script type="text/javascript">
-		function openReview(){
-			var popWidth = 400;
-			var popHeight = 200;
-			var winHeight = document.body.clientHeight;
-			var winWidth = document.body.clientWidth;
-			var winX = window.screenLeft;
-			var winY = window.screenTop;
-			var popX = winX + (winWidth - popWidth)/2;
-			var popY = winY + (winHeight - popHeight)/2;
-			url="/review/grdAvg?vr_mbid=${post.mb_id}";
-			var openWin = window.open(url, "grdAvg", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
+	<!-- 이미 심부름꾼 지원한 게시글인지 확인 후 모달창 띄우기 -->
+	<script>
+		function checkVol(){
+			$.ajax({
+				url : "/main/postDetail/checkVolunteer/${post_num_pk}",
+				type : "POST",
+				success : function(data){
+					if(data == 0){
+				    	$("#volunteer").modal();
+					}else{
+						alert("이미 지원한 게시글입니다.");
+					}
+				}
+			});
 		}
 	</script>
 

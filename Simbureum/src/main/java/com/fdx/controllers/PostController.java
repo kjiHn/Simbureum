@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fdx.dto.Criteria2;
 import com.fdx.dto.PageMaker2;
@@ -93,36 +94,37 @@ public class PostController {
 		model.addAttribute("reviewList",vlservice.receiveList(vr_mbid));
 		return "main/postDetail";
 	}
-		
-	//게시글 신고 작성 페이지
-	@RequestMapping(value = "/main/writeReport/{post_num_pk}", method = RequestMethod.GET)
-	public String writeReport(Model model, @PathVariable("post_num_pk") int postNum) {
-		model.addAttribute("report", new PoReportDto());
-		return "main/writeReport";
+	
+	//이미 신고한 게시글인지 확인(신고 했으면 1, 안했으면 0) Ajax
+	@ResponseBody
+	@RequestMapping(value = "/main/postDetail/checkReport/{post_num_pk}", method = RequestMethod.POST)
+	public int checkReport(@PathVariable("post_num_pk") int postNum, HttpSession session) {
+		int idNum = (int)session.getAttribute("mNum");
+		return postService.checkReport(postNum, idNum);
 	}
 	
-	//게시글 신고 작성 후
-	@RequestMapping(value = "/main/writeReport/{post_num_pk}", method = RequestMethod.POST)
+	//게시글 신고 작성
+	@RequestMapping(value = "/main/postDetail/writeReport/{post_num_pk}", method = RequestMethod.POST)
 	public String writeReport(@PathVariable("post_num_pk") int postNum, PoReportDto poReport, HttpSession session) {
 		int idNum = (int)session.getAttribute("mNum");
 		postService.writeReport(postNum, idNum, poReport);
-		return "main/reportAccept";
+		return "redirect:/main/postDetail/"+postNum;
 	}
 	
 	//심부름꾼 지원 여부
-	@RequestMapping(value = "/main/volunteer/{post_num_pk}", method = RequestMethod.GET)
-	public String checkVolunteer(@PathVariable("post_num_pk") int postNum, Model model, HttpSession session) {
+	@ResponseBody
+	@RequestMapping(value = "/main/postDetail/checkVolunteer/{post_num_pk}", method = RequestMethod.POST)
+	public int checkVolunteer(@PathVariable("post_num_pk") int postNum, Model model, HttpSession session) {
 		int idNum = (int)session.getAttribute("mNum");
-		model.addAttribute("apPost", postService.selectApPost(postNum, idNum));
-		return "main/volunteer";
+		return postService.checkApPost(postNum, idNum);
 	}
 	
 	//심부름꾼 지원하기
-	@RequestMapping(value = "/main/volunteer/{post_num_pk}", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/postDetail/volunteer/{post_num_pk}", method = RequestMethod.POST)
 	public String volunteer(@PathVariable("post_num_pk") int postNum, HttpSession session) {
 		int idNum = (int)session.getAttribute("mNum");
 		postService.insertApPost(postNum, idNum);
-		return "main/volunteerAccept";
+		return "redirect:/main/postDetail/"+postNum;
 	}
 	
 	

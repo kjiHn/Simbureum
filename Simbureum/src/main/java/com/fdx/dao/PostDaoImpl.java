@@ -84,13 +84,18 @@ public class PostDaoImpl implements PostDao{
 	}
 
 	@Override
+	public int checkReport(PoReportDto poReport) {
+		return sqlSessionTemplate.selectOne("checkReport", poReport);
+	}
+
+	@Override
 	public void insertReport(PoReportDto poReport) {
 		sqlSessionTemplate.insert("insertPoReport", poReport);
 	}
 
 	@Override
-	public ApPostDto selectApPost(ApPostDto apPost) {
-		return sqlSessionTemplate.selectOne("selectApPost", apPost);
+	public int checkApPost(ApPostDto apPost) {
+		return sqlSessionTemplate.selectOne("checkApPost", apPost);
 	}
 
 	@Override

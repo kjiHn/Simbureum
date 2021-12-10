@@ -88,6 +88,14 @@ public class PostService {
 		return postDao.selectOne(postNum);
 	}
 	
+	//이미 신고한 게시글인지 확인
+	public int checkReport(int postNum, int idNum) {
+		PoReportDto poReport = new PoReportDto();
+		poReport.setPorp_lnb(postNum);
+		poReport.setPorp_mbn(idNum);
+		return postDao.checkReport(poReport);
+	}
+	
 	//게시글 신고 접수
 	public void writeReport(int postNum, int idNum, PoReportDto poReport) {
 		poReport.setPorp_lnb(postNum);
@@ -96,11 +104,11 @@ public class PostService {
 	}
 	
 	//심부름꾼 지원 여부
-	public ApPostDto selectApPost(int postNum, int idNum) {
+	public int checkApPost(int postNum, int idNum) {
 		ApPostDto apPost = new ApPostDto();
 		apPost.setPost_num_pk(postNum);
 		apPost.setMb_num_pk(idNum);
-		return postDao.selectApPost(apPost);
+		return postDao.checkApPost(apPost);
 	}
 	
 	//심부름꾼 지원하기

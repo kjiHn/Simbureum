@@ -45,11 +45,14 @@ public interface PostDao {
 	//게시글 상세보기 select
 	public PostDto selectOne(int postNum);
 	
+	//이미 신고한 게시글인지 확인 select
+	public int checkReport(PoReportDto poReport);
+	
 	//게시글 신고하기 insert
 	public void insertReport(PoReportDto poReport);
 	
 	//심부름꾼 지원 여부 select
-	public ApPostDto selectApPost(ApPostDto apPost);
+	public int checkApPost(ApPostDto apPost);
 	
 	//심부름꾼 지원하기 insert
 	public void insertApPost(ApPostDto apPost);

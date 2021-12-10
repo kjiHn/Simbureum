@@ -49,7 +49,8 @@
 		 FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
 		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
 		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		 WHERE ap.mb_num_pk = #{mb_num_pk})
+		 WHERE ap.mb_num_pk = #{mb_num_pk}
+		 and (p.sel_vr is null or p.sel_vr like '%'||#{mb_id}||'%'))
   	where rn <= #{pageNum} * #{amount}
   	and rn > (#{pageNum} -1) * #{amount}
 	]]>
@@ -78,6 +79,7 @@
 		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
 		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
 	 where ap.mb_num_pk = #{mb_num_pk}
+	 and (p.sel_vr is null or p.sel_vr like '%'||#{mb_id}||'%')
 	</select>
 	
 	<select id="finshtotalPage" resultType="int">

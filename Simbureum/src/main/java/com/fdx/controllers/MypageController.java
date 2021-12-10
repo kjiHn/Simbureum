@@ -53,15 +53,9 @@ public class MypageController {
 			,@ModelAttribute Criteria cri, 
 			Model model, HttpSession session) {
 		cri.setMb_num_pk(mb_num_pk);
-		List<MypageDTO> list = mypageService.mySupPost(cri);
-		//지원한 심부름 중 심부름꾼으로 선택되지 않은 진행중인 심부름 골라내기
 		String id = (String)session.getAttribute("mid");
-		for(int i = 0; i<list.size(); i++) {
-			String sel_vr = list.get(i).getSel_vr();
-			if(sel_vr != null && !sel_vr.contains(id)) {
-				list.remove(i);
-			}
-		}
+		cri.setMb_id(id);
+		List<MypageDTO> list = mypageService.mySupPost(cri);
 		model.addAttribute("myList", list);
 		int total = mypageService.suptotalPage(cri);
 		System.out.println(total);
@@ -70,6 +64,7 @@ public class MypageController {
 		return "mypage/supportPost";
 		
 	}
+	
 	@RequestMapping(value ="/endPost")
 	public String myFinshPage(@RequestParam(value = "mb_id") String mb_id
 			,@ModelAttribute Criteria cri, 
@@ -138,18 +133,12 @@ public class MypageController {
 		return phoneNum;
 	}
 	
-	//심부름 완료 확인
-	@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.GET)
-	public String completeProcess(@PathVariable("post_num_pk") int postNum) {
-		return "mypage/completeProcess";
-	}
-	
 	//심부름 완료
 	@RequestMapping(value = "completeProcess/{post_num_pk}", method = RequestMethod.POST)
 	public String completeAccept(@PathVariable("post_num_pk") int postNum) {
 		mypageService.deleteVol(postNum);
 		mypageService.insertVolHis(postNum);
-		return "mypage/completeAccept";
+		return "redirect:/mypage/uploadedPostDetail/"+postNum;
 	}
 	
 	//게시글 삭제 Modal

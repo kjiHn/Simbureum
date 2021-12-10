@@ -63,34 +63,38 @@
 					<h2 class="contact-title">심부름한 내역</h2>
 
 					<div class="slider-shape d-none d-lg-block">
-						<form method="post">
-							<table
-								style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
-								<thead>
-									<tr style="background-color: #e3c4ff;">
-										<th>No.</th>
-										<th>제목</th>
-										<th>위치</th>
-										<th>완료일</th>
+					<c:if test="${pageMaker.totalCount == 0}">
+						<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1000px">심부름 한 내역이 없습니다.</h2>
+					</c:if>
+					
+					<c:if test="${pageMaker.totalCount != 0}">
+						<table
+							style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
+							<thead>
+								<tr style="background-color: #e3c4ff;">
+									<th>No.</th>
+									<th>제목</th>
+									<th>위치</th>
+									<th>완료일</th>
+								</tr>
+							</thead>
+
+							<c:forEach items="${myList }" var="postdto" begin="0"
+								end="${fun:length(myList) }" step="1" varStatus="status">
+
+								<tbody>
+									<tr style="border: 1px solid #e3c4ff;">
+										<td style="padding: 10px;">${status.index +1}</td>
+										<td><a href="/mypage/finishedPostDetail/${postdto.post_num_pk}"
+											style="color: black">${postdto.post_title}</a></td>
+										<td>${postdto.plant }</td>
+										<td><fmt:formatDate value="${postdto.vh_date }"
+												pattern="yyyy.MM.dd" /></td>
 									</tr>
-								</thead>
-
-								<c:forEach items="${myList }" var="postdto" begin="0"
-									end="${fun:length(myList) }" step="1" varStatus="status">
-
-									<tbody>
-										<tr style="border: 1px solid #e3c4ff;">
-											<td style="padding: 10px;">${status.index +1}</td>
-											<td><a href="/mypage/finishedPostDetail/${postdto.post_num_pk}"
-												style="color: black">${postdto.post_title}</a></td>
-											<td>${postdto.plant }</td>
-											<td><fmt:formatDate value="${postdto.vh_date }"
-													pattern="yyyy.MM.dd" /></td>
-										</tr>
-									</tbody>
-								</c:forEach>
-							</table>
-						</form>
+								</tbody>
+							</c:forEach>
+						</table>
+							
 						<nav class="blog-pagination justify-content-center d-flex">
 							<ul class="pagination">
 								<c:if test="${pageMaker.prev}">
@@ -111,7 +115,8 @@
 
 							</ul>
 						</nav>
-					</div>
+					</c:if>
+				</div>
 
 				</div>
 			</div>

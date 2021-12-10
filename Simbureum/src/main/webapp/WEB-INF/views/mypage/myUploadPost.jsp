@@ -51,7 +51,11 @@ background-color: black;
 					<h2 class="contact-title">올린 심부름</h2>
 
 					<div class="slider-shape d-none d-lg-block">
-						<form method="post">
+						<c:if test="${pageMaker.totalCount == 0}">
+							<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1000px">올린 심부름이 없습니다.</h2>
+						</c:if>
+						
+						<c:if test="${pageMaker.totalCount != 0}">
 							<table
 								style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
 								<thead>
@@ -85,6 +89,7 @@ background-color: black;
 									</tbody>
 								</c:forEach>
 							</table>
+								
 							<nav class="blog-pagination justify-content-center d-flex">
 								<ul class="pagination">
 									<c:if test="${pageMaker.prev}">
@@ -104,10 +109,11 @@ background-color: black;
 											href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
 									</c:if>
 
-
 								</ul>
 							</nav>
-						</form>
+							
+						</c:if>
+						
 					</div>
 
 				</div>

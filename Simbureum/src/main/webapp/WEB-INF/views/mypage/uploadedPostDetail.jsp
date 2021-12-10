@@ -79,134 +79,116 @@
 <title>올린 심부름</title>
 </head>
 <body>
-<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
-<div class="col-md-auto">
-	
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
-
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true"
-			>
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h2 class="modal-title" id="exampleModalLabel">리뷰 작성</h2>
-						</div>
-						<form name="EreInsert" >
-						<div class="modal-body">
-							<input type="hidden" id="post_num_pk" name = "post_num_pk" value="${post.post_num_pk }">
-							<input type="hidden" id="mb_id_pk" name = "mb_id_pk" value="<%=session.getAttribute("mid")%>">
-							<input type="hidden" id=er_mbid name = "er_mbid" value="${post.sel_vr }">
-							<input type="hidden" id=mb_num_pk name = "mb_num_pk" value="${post.mb_num_pk }">
-													
-							<table style="text-align: center; width: 400px; align: center;" >
-                     <thead>
-                        <tr>
-                        	 <th >별점</th>
-                             <td> 
-                             	<div class="star-er_grd" >									
-								  <input type="radio" id="5-stars" id="er_grd" name="er_grd" value="5"/>
-								  <label for="5-stars" class="star"  style="font-size: 25px;">★</label>
-								  <input type="radio" id="4-stars" id="er_grd" name="er_grd" value="4" />
-								  <label for="4-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="3-stars" id="er_grd" name="er_grd" value="3" />
-								  <label for="3-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="2-stars" id="er_grd" name="er_grd" value="2" />
-								  <label for="2-stars" class="star" style="font-size: 25px;">★</label>
-								  <input type="radio" id="1-star" id="er_grd" name="er_grd" value="1" />
-								  <label for="1-star" class="star" style="font-size: 25px;">★</label>									  
-							    </div>
-                           	</td>
-                        </tr>
-                        <tr style="border-top: 2px solid  #eceff8; ">
-                           <th>내용</th>
-                           <td style="height: 200px;">
-                           <div class="form-group">
-                           <textarea class="form-control w-100" style="resize: none; font-size: 15px;" name="er_rvc"
-													id="message" cols="30" rows="9"
-													onfocus="this.placeholder = ''"
-													onblur="this.placeholder = '리뷰를 작성해 주세요'"
-													placeholder="리뷰를 작성해 주세요"></textarea>
-								</div>
-                           </td>                            
-                        </tr>
-                        
-                     </thead>
-                  </table>
-					
-						</div>
-						</form>
-						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickDel(EreInsert)" >작성하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
-						</div>
-						
-						 
-						 
-					</div>
-				</div>
-			</div>
-			<script>
-			 function clickDel(formName) {
-				  var post_num_pk = $("#post_num_pk").val();
-				  var mb_id_pk = $("#mb_id_pk").val();
-				  var er_mbid = $("#er_mbid").val();
-				  var mb_num_pk = $("#mb_num_pk").val();
-				 
-				  $.ajax({
-					  url : "/Ereview/EreInsertCheck",
-					  type : "POST",
-					  dataType : "json",
-					  data : {"post_num_pk" : post_num_pk, "mb_id_pk" : mb_id_pk, "er_mbid" : er_mbid, "mb_num_pk" : mb_num_pk},	
-					  success : function(data){
-						  if(data==0){
-							    alert("리뷰작성이 완료되었습니다.");
-							    formName.action = "/Ereview/EreInsert";
-								formName.method = "post";
-								formName.submit();  
-							  
-						  }else{
-							alert("이미 작성된 리뷰입니다.");
-							
-							 
-						  }
-						  
-					  }
-					  
-					  
-				  }); 
-				  
-				
-			} 
-			 
-				
-			</script>
-			
-			
-			</div>
-			</c:if>
-
-
-<c:if test="${empty post.sel_vr}">
-	<!-- Modal -->
+	<!-- 심부름꾼에게 리뷰 작성Modal -->
 	<div class="col-md-auto">
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">삭제</button>
+		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
 
-		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h2 class="modal-title" id="exampleModalLabel">게시물 삭제</h2>
+						<h2 class="modal-title" id="exampleModalLabel">리뷰 작성</h2>
+					</div>
+					<form name="EreInsert" >
+					<div class="modal-body">
+						<input type="hidden" id="post_num_pk" name = "post_num_pk" value="${post.post_num_pk }">
+						<input type="hidden" id="mb_id_pk" name = "mb_id_pk" value="<%=session.getAttribute("mid")%>">
+						<input type="hidden" id=er_mbid name = "er_mbid" value="${post.sel_vr }">
+						<input type="hidden" id=mb_num_pk name = "mb_num_pk" value="${post.mb_num_pk }">
+												
+						<table style="text-align: center; width: 400px; align: center;" >
+                    <thead>
+                       <tr>
+                       	 <th >별점</th>
+                            <td> 
+                            	<div class="star-er_grd" >									
+							  <input type="radio" id="5-stars" id="er_grd" name="er_grd" value="5"/>
+							  <label for="5-stars" class="star"  style="font-size: 25px;">★</label>
+							  <input type="radio" id="4-stars" id="er_grd" name="er_grd" value="4" />
+							  <label for="4-stars" class="star" style="font-size: 25px;">★</label>
+							  <input type="radio" id="3-stars" id="er_grd" name="er_grd" value="3" />
+							  <label for="3-stars" class="star" style="font-size: 25px;">★</label>
+							  <input type="radio" id="2-stars" id="er_grd" name="er_grd" value="2" />
+							  <label for="2-stars" class="star" style="font-size: 25px;">★</label>
+							  <input type="radio" id="1-star" id="er_grd" name="er_grd" value="1" />
+							  <label for="1-star" class="star" style="font-size: 25px;">★</label>									  
+						    </div>
+                          	</td>
+                       </tr>
+                       <tr style="border-top: 2px solid  #eceff8; ">
+                          <th>내용</th>
+                          <td style="height: 200px;">
+                          <div class="form-group">
+                          <textarea class="form-control w-100" style="resize: none; font-size: 15px;" name="er_rvc"
+												id="message" cols="30" rows="9"
+												onfocus="this.placeholder = ''"
+												onblur="this.placeholder = '리뷰를 작성해 주세요'"
+												placeholder="리뷰를 작성해 주세요"></textarea>
+							</div>
+                          </td>                            
+                       </tr>
+                       
+                    </thead>
+                 </table>
+				
+					</div>
+					</form>
+					<div class="modal-footer">
+						<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickRe(EreInsert)" >작성하기</button>
+						<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+					</div>
+					
+					 
+				</div>
+			</div>
+		</div>
+		<script>
+		 function clickRe(formName) {
+			  var post_num_pk = $("#post_num_pk").val();
+			  var mb_id_pk = $("#mb_id_pk").val();
+			  var er_mbid = $("#er_mbid").val();
+			  var mb_num_pk = $("#mb_num_pk").val();
+			 
+			  $.ajax({
+				  url : "/Ereview/EreInsertCheck",
+				  type : "POST",
+				  dataType : "json",
+				  data : {"post_num_pk" : post_num_pk, "mb_id_pk" : mb_id_pk, "er_mbid" : er_mbid, "mb_num_pk" : mb_num_pk},	
+				  success : function(data){
+					  if(data==0){
+						    alert("리뷰작성이 완료되었습니다.");
+						    formName.action = "/Ereview/EreInsert";
+							formName.method = "post";
+							formName.submit();  
+						  
+					  }else{
+						alert("이미 작성된 리뷰입니다.");
+						
+					  }
+				  }
+				  
+			  }); 
+			  
+		} 
+		</script>
+	</div>
+
+	<!-- 심부름 삭제 Modal -->
+	<div class="col-md-auto">
+		<div class="modal fade" id="delPost" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title" id="exampleModalLabel">심부름 삭제</h2>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">게시물을 삭제하시겠습니까?</div>
+					<div class="modal-body">심부름을 삭제하시겠습니까?</div>
+					<input type="hidden" name="post_num_pk" value="${post.post_num_pk}"/>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" id="clickDel" >삭제</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
@@ -214,7 +196,8 @@
 				</div>
 			</div>
 		</div>
-		<script>
+	</div>
+	<script>
 		$(document).ready(function(){
 			$("#clickDel").on("click", function(){
 				deletePost.action = "/mypage/postDelete";
@@ -222,9 +205,41 @@
 				deletePost.submit();
 			});
 		});
-		</script>
+	</script>
+
+	<!-- 심부름 완료 Modal -->
+	<div class="col-md-auto">
+		<div class="modal fade" id="complete" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title" id="exampleModalLabel">심부름 완료</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="completeForm" action="/mypage/completeProcess/${post_num_pk}" method="POST">
+							심부름을 완료 하시겠습니까?<br>
+							* 심부름꾼에게 심부름 한 비용을 지불하신 후<br>확인을 눌러주셔야 합니다.
+						</form>
+					</div>
+					<input type="hidden" name="post_num_pk" value="${post.post_num_pk}"/>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="clickComplete">확인</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	</c:if>
+	<script>
+		$("#clickComplete").on("click", function(){
+			alert("심부름이 완료되었습니다.");
+			document.getElementById('completeForm').submit();
+		});
+	</script>
 	
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
@@ -285,12 +300,12 @@
 						</table>
 						<br><br>
 						<c:if test="${empty post.sel_vr}">
-							<input type="button" class="button" onclick="location.href='/mypage/updatePost/${post.post_num_pk}'" value="게시글 수정">
-							<button class="button"  data-toggle="modal" data-target="#exampleModal">게시글 삭제</button>
+							<input type="button" class="button" onclick="location.href='/mypage/updatePost/${post.post_num_pk}'" value="수정">
+							<button class="button"  data-toggle="modal" data-target="#delPost">삭제</button>
 							
 						</c:if>
 						<c:if test="${!empty post.sel_vr && empty post.vh_date}">
-							<input type="button" class="button" onclick="openComplete()" value="심부름 완료">
+							<button class="button"  data-toggle="modal" data-target="#complete">심부름 완료</button>
 						</c:if>
 						<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
 							<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="EreInsert" id="EreInsert" >심부름꾼에게 리뷰 작성</button>
@@ -320,22 +335,6 @@
 			var popY = winY + (winHeight - popHeight)/2;
 			url="../volunteerList/"+${post.post_num_pk};
 			var openWin = window.open(url, "volunteerList", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
-		}
-	</script>
-	
-	<!-- 심부름 완료 창 열기 -->
-	<script type="text/javascript">
-		function openComplete(){
-			var popWidth = 400;
-			var popHeight = 200;
-			var winHeight = document.body.clientHeight;
-			var winWidth = document.body.clientWidth;
-			var winX = window.screenLeft;
-			var winY = window.screenTop;
-			var popX = winX + (winWidth - popWidth)/2;
-			var popY = winY + (winHeight - popHeight)/2;
-			url="../completeProcess/"+${post.post_num_pk};
-			var openWin = window.open(url, "completeProcess", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
 		}
 	</script>
 

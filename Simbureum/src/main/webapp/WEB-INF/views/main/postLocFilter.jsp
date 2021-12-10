@@ -107,65 +107,71 @@
 							</div>
 						</div>
 						
-						<table id="postTable">
-							<thead>
-								<tr style="background-color: #e3c4ff;">
-									<th>No.</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>위치</th>
-									<th>조회수</th>
-									<th>작성일</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<c:forEach items="${postList}" var="post" begin="0"
-									end="${fun:length(postList)}" step="1" varStatus="status">
-									<tr>
-										<td>${status.index + 1}</td>
-										<td><a href="javascript:checkLogin(${post.post_num_pk});" style="color: black">${post.post_title}</a></td>
-										<td>${post.mb_id}</td>
-										<td>${post.pbigc_name} ${post.psmallc_name}</td>
-										<td>${post.post_views}</td>
-										<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
+						<c:if test="${pageMaker.totalCount == 0}">
+							<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1000px">선택한 지역에 심부름이 없습니다.</h2>
+						</c:if>
+						
+						<c:if test="${pageMaker.totalCount != 0}">
+							<table id="postTable">
+								<thead>
+									<tr style="background-color: #e3c4ff;">
+										<th>No.</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>위치</th>
+										<th>조회수</th>
+										<th>작성일</th>
 									</tr>
-									<script type="text/javascript" >
-									function checkLogin(postNum){
-										var id = '<%=session.getAttribute("mid")%>';
-										if(id == "null"){
-											alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
-										}else{
-											location.replace("/main/postDetail/"+postNum);
+								</thead>
+	
+								<tbody>
+									<c:forEach items="${postList}" var="post" begin="0"
+										end="${fun:length(postList)}" step="1" varStatus="status">
+										<tr>
+											<td>${status.index + 1}</td>
+											<td><a href="javascript:checkLogin(${post.post_num_pk});" style="color: black">${post.post_title}</a></td>
+											<td>${post.mb_id}</td>
+											<td>${post.pbigc_name} ${post.psmallc_name}</td>
+											<td>${post.post_views}</td>
+											<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
+										</tr>
+										<script type="text/javascript" >
+										function checkLogin(postNum){
+											var id = '<%=session.getAttribute("mid")%>';
+											if(id == "null"){
+												alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+											}else{
+												location.replace("/main/postDetail/"+postNum);
+											}
 										}
-									}
-									</script>
-								</c:forEach>
-
-							</tbody>
-						</table>
-						<nav class="blog-pagination justify-content-center d-flex">
-							<ul class="pagination">
-								<c:if test="${pageMaker.prev}">
-									<li class="page-item">
-										<a href="${pageMaker.startPage -1}" class="page-link">이전</a>
-									</li>
-								</c:if>
-
-								<c:forEach var="num" begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}">
-									<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
-										<a href="${num}" class="page-link">${num}</a>
-									</li>
-								</c:forEach>
-
-								<c:if test="${pageMaker.next}">
-									<li class="page-item ">
-										<a href="${pageMaker.endPage +1 }" class="page-link">다음</a>
-									</li>
-								</c:if>
-							</ul>
-						</nav>
+										</script>
+									</c:forEach>
+	
+								</tbody>
+							</table>
+							<nav class="blog-pagination justify-content-center d-flex">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item">
+											<a href="${pageMaker.startPage -1}" class="page-link">이전</a>
+										</li>
+									</c:if>
+	
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+											<a href="${num}" class="page-link">${num}</a>
+										</li>
+									</c:forEach>
+	
+									<c:if test="${pageMaker.next}">
+										<li class="page-item ">
+											<a href="${pageMaker.endPage +1 }" class="page-link">다음</a>
+										</li>
+									</c:if>
+								</ul>
+							</nav>
+						</c:if>
 
 					</div>
 				</div>
