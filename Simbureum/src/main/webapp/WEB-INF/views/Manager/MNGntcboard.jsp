@@ -7,7 +7,7 @@
 <%@ include file="../model/topBar_login_MNG.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
-<%@ include file="../model/topBar1.jsp"%>
+<%@ include file="../model/topBar_MNG.jsp"%>
 </c:if>
 
 <style>

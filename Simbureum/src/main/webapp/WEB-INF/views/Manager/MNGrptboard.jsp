@@ -7,7 +7,7 @@
 <%@ include file="../model/topBar_login_MNG.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
-<%@ include file="../model/topBar1.jsp"%>
+<%@ include file="../model/topBar_MNG.jsp"%>
 </c:if>
 
 <html>
@@ -53,7 +53,7 @@
 <section class="blog_area single-post-area section-padding">
 	<div class="container">
 		<div class="row">
-			<jsp:include page="../model/siderbarMNG2.jsp" flush="false"/>
+			<jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
     
 
 <div class="col-lg-8 posts-list">
@@ -113,8 +113,14 @@
 <footer>
  <div class="container">
                 <div class="row justify-content-center" >                   
-                 	<button id="btn1">신고 취소</button>
-                 	<button id="btn1">신고 처리</button>
+                 	<form action="/repoertpostcancle" method="get"> 
+						<input  type="hidden" name="porp_num_pk" value="${reportpost.porp_num_pk}"/>
+						<input id="btn1" class ="button" type="submit" value="신고 취소"/>
+					</form>
+                 	<form action="/repoertpostdelete" method="get"> 
+						<input type="hidden" name="post_num_pk" value="${reportpost.post_num_pk}"/>
+						<input id="btn1" class ="button" type="submit" value="신고 처리"/>
+					</form>
                 </div>
             </div>
 </footer>

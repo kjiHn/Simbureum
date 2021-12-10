@@ -1,57 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-      
-<div class="test">
-  <div class="blog_right_sidebar">
-		  
-		<aside class="single_sidebar_widget post_category_widget" >
-		  <h4 class="widget_title" style="color: #2d2d2d;">마이페이지</h4>
-		  <ul class="list cat-list">
-			   <li>
-			    <a href="#" class="d-flex">
-			     <p>-공지</p>
-			    </a>
-			   </li>
-			   
-				<li>
-				  <a href="#" class="d-flex">
-				   <p>-회원 관리</p>
-				  </a>
-				</li>
-		  </ul>
-		</aside>
-   </div>
-</div>
- <!-- <div class="col-lg-8 posts-list">
- <form action="#">
-				<div class="input-group-icon mt-10">
-					<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-					<div class="form-select" id="default-select" "="">
-						<select style="display: none;">
-							<option value=" 1">City</option>
-							<option value="1">Dhaka</option>
-							<option value="1">Dilli</option>
-							<option value="1">Newyork</option>
-							<option value="1">Islamabad</option>
-						</select><div class="nice-select" tabindex="0"><span class="current">Dilli</span><ul class="list"><li data-value=" 1" class="option focus">City</li><li data-value="1" class="option">Dhaka</li><li data-value="1" class="option selected">Dilli</li><li data-value="1" class="option">Newyork</li><li data-value="1" class="option">Islamabad</li></ul></div>
-					</div>
-				</div>
-				<div class="input-group-icon mt-10">
-					<div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
-					<div class="form-select" id="default-select" "="">
-						<select style="display: none;">
-							<option value=" 1">Country</option>
-							<option value="1">Bangladesh</option>
-							<option value="1">India</option>
-							<option value="1">England</option>
-							<option value="1">Srilanka</option>
-						</select><div class="nice-select" tabindex="0"><span class="current">England</span><ul class="list"><li data-value=" 1" class="option focus">Country</li><li data-value="1" class="option">Bangladesh</li><li data-value="1" class="option">India</li><li data-value="1" class="option selected">England</li><li data-value="1" class="option">Srilanka</li></ul></div>
-					</div>
-				</div>
-			</form>
- 
-</div> -->
 
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>해줘~ 할게</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="#">
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/resources/view/assets/css/total.css?ver=2" />
+    <script src="/webjars/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+
+
+
+	<!-- section class="blog_area section-padding">
+		<div class="container" style="margin-left: 10%;">
+			<div class="row"> -->
+	<div class="col-lg-2" style="background-color: #e3c4ff; height: 600px">
+		<!-- <div class="blog_left_sidebar"> -->
+		<div class="blog_right_sidebar">
+
+			<aside class="single_sidebar_widget post_category_widget"
+				style="margin-top: 40px; background-color: #e3c4ff;">
+				<h4 class="widget_title" style="color: #2d2d2d;">마이페이지</h4>
+				<!-- 제목 -->
+				<ul class="list cat-list">
+					<li><a href="/MNGancboard" class="d-flex" >
+							<p id="notice">공지</p>
+					</a></li>
+					<li><a href="/MNGuserboard" class="d-flex">
+							<p id="manager">회원 관리</p>
+					</a></li>
+				</ul>
+			</aside>
+		</div>
+	</div>
+
+	<!-- 	</div>
+		</div>
+	</section>
+ -->
+ <script type="text/javascript">
+ var link = window.location.pathname;
+ 
+ if (link =='/MNGancboard') {
+	$("#notice").css("font-weight", "bold");
+	$("#notice").css("text-decoration", "underline");
 	
+}else if(link =='/MNGuserboard'){
+	
+	$("#manager").css("font-weight", "bold");
+	$("#manager").css("text-decoration", "underline");
+}
+
+ console.log(link);
+
+ </script> 
+
+
+
+</body>
+</html>
+
 

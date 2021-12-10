@@ -80,17 +80,21 @@
 	<!-- 회원 관리 -->
 	<select id="mnguser" resultType="com.fdx.dto.managerDTO">
 
-	select mb_id ,a.mb_num_pk,(select
-	count(*)
-	from po_report
-	where a.mb_num_pk = b.porp_target_mbn
-	) as report,
-	(select
-	count(*)
-	from re_report
-	where a.mb_num_pk = c.rerp_target_mbn
-	) as review
-	from member a,po_report b, re_report c
+		SELECT *
+		FROM (
+		select mb_id ,a.mb_num_pk,(select
+	   count(*)
+	   from po_report b
+	   where a.mb_num_pk = b.porp_target_mbn
+	   ) as report,
+	   (select
+	   count(*)
+	   from re_report c
+	   where a.mb_num_pk = c.rerp_target_mbn
+	   ) as review
+	   from member a
+		) t
+		WHERE t.report =1 OR t.review = 1
 	</select>
 	<!-- 회원 조회 -->
 	<select id="usersearch" resultType="com.fdx.dto.managerDTO">
@@ -110,7 +114,8 @@
 	<!-- 신고된 게시글 보기 -->
 	<select id="reportpost" parameterType="int" resultType="com.fdx.dto.managerDTO">
 	
-		select b.mb_num_pk,a.post_title, b.mb_id, a.post_date, a.post_con, d.pbigc_name, c.psmallc_name, a.post_price, e.porp_con, e.porp_date,(select b.mb_id
+		select b.mb_num_pk,a.post_title, b.mb_id, a.post_date, a.post_con, d.pbigc_name, c.psmallc_name, a.post_price, e.porp_con, e.porp_date,e.porp_num_pk
+		,(select b.mb_id
    		from member b, po_report e
    		where e.porp_mbn = b.mb_num_pk) porping_mbn
 		from post a, member b, psmallc c, pbigc d, po_report e
@@ -124,7 +129,7 @@
 	
 	<!-- 신고된 리뷰 보기 -->
 	<select id="reportreview" parameterType="int" resultType="com.fdx.dto.managerDTO">
-		select a.mb_id, c.post_title, d.vr_date,d.vr_rvc, b.rerp_date, b.rerp_con
+		select a.mb_id, c.post_title, d.vr_date,d.vr_rvc, b.rerp_date, b.rerp_con, b.rerp_num_pk, d.vr_rvn_pk
 		,(select a.mb_id
  	    from member a, re_report b
  	    where b.rerp_mbn = a.mb_num_pk) rerping_mbn
@@ -160,12 +165,24 @@
 	
 	<!--  신고된 게시글 삭제 -->
 	<delete id="reportpostdelete" parameterType="int">
-		delete from post where post_num_pk= #{post_num_pk}
-		delete from po_report where porp_num_pk = #{porp_num_pk}   
+		delete from post where post_num_pk = #{post_num_pk}
 	</delete>
 	
-	<!--  신고된 리뷰 삭제 -->
+	<!-- 신고된 게시글 취소 -->
+	<delete id="reportpostcancle" parameterType="int">
+		delete from po_report where porp_num_pk = #{porp_num_pk}
+	</delete>
+	 
 	
+	<!--  신고된 리뷰 삭제 -->
+	<delete id="reportreviewdelete" parameterType="int">
+		delete from vlntr_rv where vr_rvn_pk = #{vr_rvn_pk}
+	</delete>
+	
+	<!--  신고된 리뷰 취소 -->
+	<delete id="reportreviewcancle" parameterType="int">
+		delete from re_report where rerp_num_pk = #{rerp_num_pk}
+	</delete>
 
 
 </mapper>

@@ -7,7 +7,7 @@
 <%@ include file="../model/topBar_login_MNG.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
-<%@ include file="../model/topBar1.jsp"%>
+<%@ include file="../model/topBar_MNG.jsp"%>
 </c:if>
 
 <style>
@@ -31,6 +31,9 @@
 	background-color: #BFA0ED;
 	color: white;
 }
+
+
+
 </style>
 
 
@@ -44,6 +47,59 @@
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
     
+    <!-- Modal -->
+  <div class="modal fade" id="postModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <div><h4 class="modal-title">신고된 게시글</h4></div>
+          <div><button type="button" class="close" data-dismiss="modal">×</button></div>
+        </div>
+        <div class="modal-body">
+          <c:forEach items="${popuppost}" var="popuppost">
+		<div>
+			<p><b>신고자</b>&nbsp; ${ popuppost.mbn_id}</p>
+			<p><b>작성자</b>&nbsp; ${ popuppost.mb_id}</p>
+			<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk=${popuppost.mb_num_pk }"> ${ popuppost.post_title}</a></p>
+		</div>
+	</c:forEach>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+   <!-- Modal -->
+  <div class="modal fade" id="reviewModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <div><h4 class="modal-title">신고된 리뷰</h4></div>
+          <div><button type="button" class="close" data-dismiss="modal">×</button></div>
+        </div>
+        <div class="modal-body">
+          <c:forEach items="${popupreview}" var="popupreview">
+		<div>
+			<p><b>신고자</b>&nbsp; ${popupreview.rembn_id}</p>
+			<p><b>작성자</b>&nbsp; ${popupreview.mb_id}</p>
+			<p><b>내용</b>&nbsp; <a href="MNGrvboard?mb_num_pk=${popupreview.mb_num_pk }">${ popupreview.vr_rvc}</a></p>
+		</div>
+		</c:forEach>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </head>
 <body>
 
@@ -51,13 +107,18 @@
    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
-            <jsp:include page="../model/siderbarMNG2.jsp" flush="false"/>
+            <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
             <div class="col-lg-6 posts-list">
                <div class="slider-shape d-none d-lg-block">
-            
+              <!--  <br>
+               <br>
+               <br>
+               <br> -->
+               <h2 class="contact-title" align="center">&nbsp;</h2>
+               <br>
                   <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
-                        <tr style="background-color: #e3c4ff;">
+                        <tr  style="background-color: #e3c4ff;">
                            <th>No.</th>
                            <th>아이디</th>
                            <th>게시글 신고</th>
@@ -71,8 +132,10 @@
                         <tr style="border: 1px solid #e3c4ff;">
                            <td>${mnguser.mb_num_pk}</td>
                            <td>${mnguser.mb_id}</td>
-                           <td><a href='MNGPopupPost?mb_num_pk=${mnguser.mb_num_pk}' onclick="openPost()"><u>${mnguser.report}회</u></a></td>
-                           <td><a href='MNGPopupReview?mb_num_pk=${mnguser.mb_num_pk}' onclick="openReview()"><u>${mnguser.review}회</u></a></td>
+                          <%--  <td><a data-toggle="modal" href="#postModal?mb_num_pk=${mnguser.mb_num_pk}" ><u>${mnguser.report}회</u></a></td>
+                           <td><a data-toggle="modal" href="#reviewModal?mb_num_pk=${mnguser.mb_num_pk}" ><u>${mnguser.review}회</u></a></td> --%>
+                           <td><a href='MNGPopupPost?mb_num_pk=${mnguser.mb_num_pk}'><u>${mnguser.report}회</u></a></td>
+						   <td><a href='MNGPopupReview?mb_num_pk=${mnguser.mb_num_pk}'><u>${mnguser.review}회</u></a></td> 
                            <td>
                            <form action="userdelete" method="post">
 	                           <input  type="hidden" name="mb_num_pk" value="${mnguser.mb_num_pk}"/>
@@ -93,7 +156,7 @@
    </section>
    
    	<!-- 게시판 신고 창 열기 -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function openPost(){
 			var popWidth = 400;
 			var popHeight = 400;
@@ -105,11 +168,11 @@
 			var popY = winY + (winHeight - popHeight)/2;
 			/* url="../MNGPopupPost/"+${post.post_num_pk}; */
 			var openWin = window.open(url, "MNGPopupPost", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
-		}
+		} -->
 	</script>
 	
 	<!-- 리뷰 신고 창 열기 -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function openReview(){
 			var popWidth = 400;
 			var popHeight = 400;
@@ -122,7 +185,7 @@
 			/* url="../MNGPopupReview/"+${post.post_num_pk}; */
 			var openWin = window.open(url, "MNGPopupReview", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
 		}
-	</script>
+	</script> -->
 
 
 

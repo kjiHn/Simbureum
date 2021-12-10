@@ -35,13 +35,8 @@ public class ManagerDao {
 		    
 			return postdelete;
 		}
-	//게시글 삭제
-		public managerDTO reportpostdelete(int post_num_pk,int porp_num_pk) throws Exception {
-			managerDTO reportpostdelete = this.sqlSessionTemplate.selectOne("mappers.Manager.reportpostdelete",post_num_pk);
-			    
-			return reportpostdelete;
-				}
-		
+
+
 	//공지 보기
 	public List<managerDTO> announce() {
 		List<managerDTO> announce = this.sqlSessionTemplate.selectList("mappers.Manager.announce");
@@ -68,7 +63,7 @@ public class ManagerDao {
 		    return announceDetail;
 		}
 	//회원 관리 메인페이지
-		public List<managerDTO> selectList1() {
+		public List<managerDTO> selectList1() throws Exception{
 			List<managerDTO> mnguser = this.sqlSessionTemplate.selectList("mappers.Manager.mnguser");
 			return mnguser;
 		}
@@ -109,6 +104,31 @@ public class ManagerDao {
 			managerDTO reportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.reportreview", mb_num_pk);
 			
 			return reportreview;
+		}
+		
+		//신고된 게시글 처리
+		public managerDTO repoertpostdelete(int post_num_pk) throws Exception {
+			managerDTO reportpostdelete = this.sqlSessionTemplate.selectOne("mappers.Manager.reportpostdelete",post_num_pk);
+		    
+			return reportpostdelete;
+		}
+		//신고된 게시글 취소
+		public managerDTO repoertpostcancle(int porp_num_pk) throws Exception {
+			managerDTO reportpostcancle = this.sqlSessionTemplate.selectOne("mappers.Manager.reportpostcancle",porp_num_pk);
+				    
+			return reportpostcancle;
+		}
+		//신고된 리뷰 처리
+		public managerDTO repoertreviewdelete(int vr_rvn_pk) throws Exception {
+			managerDTO reportreviewdelete = this.sqlSessionTemplate.selectOne("mappers.Manager.reportreviewdelete",vr_rvn_pk);
+				    
+			return reportreviewdelete;
+		}
+		//신고된 리뷰 취소
+		public managerDTO repoertreviewcancle(int rerp_num_pk) throws Exception {
+			managerDTO reportreviewcancle = this.sqlSessionTemplate.selectOne("mappers.Manager.reportreviewcancle",rerp_num_pk);
+				    
+			return reportreviewcancle;
 				}
 
 }

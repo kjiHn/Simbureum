@@ -7,7 +7,7 @@
 <%@ include file="../model/topBar_login_MNG.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
-<%@ include file="../model/topBar1.jsp"%>
+<%@ include file="../model/topBar_MNG.jsp"%>
 </c:if>
 
 
@@ -35,7 +35,7 @@
    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
-            <jsp:include page="../model/siderbarMNG1.jsp" flush="false"/>
+            <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
             <div class="col-lg-10 posts-list">
             	<div class="form-group mt-3" align = "right">
           <!--   	<a href="MNGwriteanc"><button  class="button button-contactForm boxed-btn" class="button" id="btn_create">공지 작성</button></a> -->
@@ -46,9 +46,8 @@
             	
             	</div>
             	<h2 class="contact-title" align="center">공지 사항</h2><hr>
-               		<div class="slider-shape d-none d-lg-block">
+               <div class="slider-shape d-none d-lg-block">
                		
-            
                   <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">

@@ -76,13 +76,13 @@ public class MNGController {
 	}
 	
 	// 회원 공지 상세 보기
-		@RequestMapping(value = "/userancboardDetail", method = RequestMethod.GET)
+		@RequestMapping(value = "/userancboarddetail", method = RequestMethod.GET)
 		public String userancboardDetail(@RequestParam("ntc_num_pk") int ntc_num_pk, Model model) throws Exception {
 
-			managerDTO userancboardDetail = managerDao.announceDetail(ntc_num_pk);
-			model.addAttribute("userancboardDetail",userancboardDetail);
+			managerDTO userancboarddetail = managerDao.announceDetail(ntc_num_pk);
+			model.addAttribute("userancboarddetail",userancboarddetail);
 
-			return "Manager/userancboardDetail";
+			return "Manager/userancboarddetail";
 		}
 
 	// 공지 작성(버튼 클릭)
@@ -147,15 +147,15 @@ public class MNGController {
 			managerDao.ancdelete(ntc_num_pk);
 			return "redirect:/MNGancboard";
 		}
-	// 회원 관리 메인 페이지
-	@RequestMapping(value = "/MNGuserboard", method = RequestMethod.GET)
-	public String MNGuserboard(Model model) {
+		//회원 관리 페이지
+		@RequestMapping(value = "/MNGuserboard", method = RequestMethod.GET)
+		public String MNGuserboard(Model model) throws Exception {
 
-		List<managerDTO> mnguser = managerDao.selectList1();
-
-		model.addAttribute("mnguser", mnguser);
-		return "Manager/MNGuserboard";
-	}
+			List<managerDTO> mnguser = managerDao.selectList1();
+			model.addAttribute("mnguser", mnguser);
+			 
+			return "Manager/MNGuserboard";
+		}
 
 
 	// 회원 탈퇴
@@ -166,7 +166,7 @@ public class MNGController {
 			return "redirect:/MNGuserboard";
 		}
 		
-	// 신고된 게시글
+	// 신고된 게시글 보기
 		@RequestMapping(value = "/MNGrptboard", method = RequestMethod.GET)
 		public String MNGrptboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {
 			
@@ -174,7 +174,7 @@ public class MNGController {
 			model.addAttribute("reportpost", reportpost);
 			return "Manager/MNGrptboard";
 		}
-	//신고된 리뷰
+	//신고된 리뷰 보기
 	@RequestMapping(value = "/MNGrvboard", method = RequestMethod.GET)
 	public String MNGrvboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {
 
@@ -183,21 +183,55 @@ public class MNGController {
 		return "Manager/MNGrvboard";
 	}
 
-	// 신고된 게시글 팝업 보기
-	@RequestMapping(value = "/MNGPopupPost", method = RequestMethod.GET)
-	public String MNGPopupPost(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
-
-		List<managerDTO> popuppost = managerDao.popuppost(mb_num_pk);
-		model.addAttribute("popuppost", popuppost);
-		return "Manager/MNGPopupPost";
-	}
-
-	// 신고된 리뷰 팝업 보기
-		@RequestMapping(value = "/MNGPopupReview", method = RequestMethod.GET)
-		public String MNGPopupReview(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
-
-			List<managerDTO> popupreview = managerDao.popupreview(mb_num_pk);
-			model.addAttribute("popupreview", popupreview);
-			return "Manager/MNGPopupReview";
+	
+	  // 신고된 게시글 팝업 보기
+	  
+	  @RequestMapping( value = "/MNGPopupPost", method = RequestMethod.GET) 
+	  public String MNGPopupPost(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
+	  
+	  List<managerDTO> popuppost = managerDao.popuppost(mb_num_pk);
+	  model.addAttribute("popuppost", popuppost);
+	  
+	  return "Manager/MNGPopupPost"; }
+	  
+	  // 신고된 리뷰 팝업 보기
+	  
+	  @RequestMapping(value = "/MNGPopupReview", method = RequestMethod.GET)
+	  public String MNGPopupReview(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
+	  
+	  List<managerDTO> popupreview = managerDao.popupreview(mb_num_pk);
+	  model.addAttribute("popupreview", popupreview);
+	  
+	  return "Manager/MNGPopupReview"; }
+	 
+	 
+		
+		// 신고된 게시글 처리
+		@RequestMapping(value = "/repoertpostdelete", method = RequestMethod.GET)
+		public String repoertpostdelete(@RequestParam("post_num_pk") int post_num_pk, Model model) throws Exception {
+			managerDao.repoertpostdelete(post_num_pk);
+			return "redirect:/MNGuserboard";
+		} 
+		
+		// 신고된 게시글 취소
+		@RequestMapping(value = "/repoertpostcancle", method = RequestMethod.GET)
+		public String repoertpostcancle(@RequestParam("porp_num_pk") int porp_num_pk, Model model) throws Exception {
+			managerDao.repoertpostcancle(porp_num_pk);
+			return "redirect:/MNGuserboard";
 		}
+		
+		// 신고된 리뷰 처리
+		@RequestMapping(value = "/repoertreviewdelete", method = RequestMethod.GET)
+		public String repoertreviewdelete(@RequestParam("vr_rvn_pk") int vr_rvn_pk, Model model) throws Exception {
+			managerDao.repoertreviewdelete(vr_rvn_pk);
+			return "redirect:/MNGuserboard";
+		}
+		
+		// 신고된 리뷰 취소
+		@RequestMapping(value = "/repoertreviewcancle", method = RequestMethod.GET)
+		public String repoertreviewcancle(@RequestParam("rerp_num_pk") int rerp_num_pk, Model model) throws Exception {
+			managerDao.repoertreviewcancle(rerp_num_pk);
+			return "redirect:/MNGuserboard";
+		}
+
 }

@@ -7,7 +7,7 @@
 <%@ include file="../model/topBar_login_home.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
-<%@ include file="../model/topBar1.jsp"%>
+<%@ include file="../model/topBar_MNG.jsp"%>
 </c:if>
 
 
@@ -35,16 +35,8 @@
    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
-            <jsp:include page="../model/siderbar2.jsp" flush="false" />
             <div class="col-lg-10 posts-list">
-            	<div class="form-group mt-3" align = "right">
-          <!--   	<a href="MNGwriteanc"><button  class="button button-contactForm boxed-btn" class="button" id="btn_create">공지 작성</button></a> -->
-            	<form action="MNGwriteanc" method="post">
-            	<input type="submit" class="button button-contactForm boxed-btn" value="공지작성">
-            	</form>
-            	
-            	
-            	</div>
+     
             	<h2 class="contact-title" align="center">공지 사항</h2><hr>
                		<div class="slider-shape d-none d-lg-block">
                		
@@ -64,7 +56,7 @@
                      <c:forEach items="${userancboard}" var="userancboard">
                         <tr style="border: 1px solid #e3c4ff;">
                            <td>${userancboard.ntc_num_pk}</td>
-                           <td><a href="/MNGancboardDetail?ntc_num_pk=${userancboard.ntc_num_pk }"><u>${userancboard.ntc_title}</u></a></td>
+                           <td><a href="/userancboarddetail?ntc_num_pk=${userancboard.ntc_num_pk }"><u>${userancboard.ntc_title}</u></a></td>
                            <td>관리자</td>
                            <td>${userancboard.ntc_views}</td>
                            <td><fmt:formatDate value="${userancboard.ntc_date}" pattern="yyyy-MM-dd"/></td>

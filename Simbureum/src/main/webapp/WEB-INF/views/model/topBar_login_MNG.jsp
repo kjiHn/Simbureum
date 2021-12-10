@@ -28,7 +28,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="/MNGhome">
-	                                    <a href="/"> <img src="/resources/view/assets/img/logo/3.png" style="width: 80px; height: 80px;" >
+	                                    <a href="/MNGhome"> <img src="/resources/view/assets/img/logo/3.png" style="width: 80px; height: 80px;" >
 	                                    
 	                                    </a>
                                 </div>

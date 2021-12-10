@@ -6,7 +6,7 @@
 <%@ include file="../model/topBar_login_home.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
-<%@ include file="../model/topBar1.jsp"%>
+<%@ include file="../model/topBar_MNG.jsp"%>
 </c:if>
 
 <!DOCTYPE html>
@@ -24,9 +24,9 @@
 			<div class="col-lg-10 posts-list" style="padding: 40px 100px;">
 				<h2 class="contact-title" align="center">공지 사항</h2><hr>
 	<div>
-	    <h3 align="center">${userancboardDetail.ntc_title}</h3><br>
-	    <p align="right">작성자: 관리자&nbsp;&nbsp;조회수:${userancboardDetail.ntc_views}&nbsp;&nbsp;작성일:<fmt:formatDate value="${announce.ntc_date}" pattern="yyyy-MM-dd"/></p><br><br>
-	    <p>${userancboardDetail.ntc_con}</p>
+	    <h3 align="center">${userancboarddetail.ntc_title}</h3><br>
+	    <p align="right">작성자: 관리자&nbsp;&nbsp;조회수:${userancboarddetail.ntc_views}&nbsp;&nbsp;작성일:<fmt:formatDate value="${userancboarddetail.ntc_date}" pattern="yyyy-MM-dd"/></p><br><br>
+	    <p>${userancboarddetail.ntc_con}</p>
 	</div>
 	
 			</div>

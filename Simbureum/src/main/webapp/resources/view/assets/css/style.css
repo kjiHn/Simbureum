@@ -4968,7 +4968,7 @@ form.search-box .input-form .world-form i {
 
 .blog_right_sidebar .widget_title {
 	font-size: 20px;
-	margin-bottom: 40px
+	margin-bottom: 40px;
 }
 
 .blog_right_sidebar .widget_title::after {
@@ -5086,7 +5086,8 @@ form.search-box .input-form .world-form i {
 .blog_right_sidebar .popular_post_widget .post_item .media-body {
 	justify-content: center;
 	align-self: center;
-	padding-left: 20px
+	padding-left: 20px;
+	background-color: #e3c4ff;
 }
 
 .blog_right_sidebar .popular_post_widget .post_item .media-body h3 {
@@ -5098,7 +5099,8 @@ form.search-box .input-form .world-form i {
 
 .blog_right_sidebar .popular_post_widget .post_item .media-body a:hover
 	{
-	color: #fff
+	color: #fff;
+	
 }
 
 .blog_right_sidebar .popular_post_widget .post_item .media-body p {
