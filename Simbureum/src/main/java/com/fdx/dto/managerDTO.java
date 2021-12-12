@@ -16,6 +16,29 @@ public class managerDTO {
 	private String mb_pnb; //전화번호
 	private String mb_date;//회원가입한 일시
 	
+	//탈퇴한 유저 정보
+	private int fw_num_pk;	//탈퇴한 회원 번호
+	private String fw_name;	//탈퇴한 회원 일므
+	private String fw_email;	//탈퇴한 회원 이메일
+	
+	public int getFw_num_pk() {
+		return fw_num_pk;
+	}
+	public void setFw_num_pk(int fw_num_pk) {
+		this.fw_num_pk = fw_num_pk;
+	}
+	public String getFw_name() {
+		return fw_name;
+	}
+	public void setFw_name(String fw_name) {
+		this.fw_name = fw_name;
+	}
+	public String getFw_email() {
+		return fw_email;
+	}
+	public void setFw_email(String fw_email) {
+		this.fw_email = fw_email;
+	}
 	//소도시
 	private int psmallc_pk; //소분류 번호
 	private String psmallc_name; //소분류 이름

@@ -82,7 +82,7 @@
 
 		SELECT *
 		FROM (
-		select mb_id ,a.mb_num_pk,(select
+		select mb_id ,a.mb_num_pk,a.mb_name,a.mb_emaile,(select
 	   count(*)
 	   from po_report b
 	   where a.mb_num_pk = b.porp_target_mbn
@@ -110,6 +110,15 @@
 		delete from member where mb_num_pk =#{mb_num_pk}
 	
 	</delete>
+	
+	
+	<!-- 탈퇴회원정보추가 -->
+	
+	<insert id="userinsert" parameterType="java.util.HashMap">
+		
+		insert into Frc_Wth(fw_num_pk,fw_name,fw_email) values(FW_SEQNUM.nextval,#{fw_name},#{fw_emaile})
+		
+	</insert>
 	
 	<!-- 신고된 게시글 보기 -->
 	<select id="reportpost" parameterType="int" resultType="com.fdx.dto.managerDTO">

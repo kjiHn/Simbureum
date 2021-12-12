@@ -38,7 +38,6 @@
             <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
             <div class="col-lg-10 posts-list">
             	<div class="form-group mt-3" align = "right">
-          <!--   	<a href="MNGwriteanc"><button  class="button button-contactForm boxed-btn" class="button" id="btn_create">공지 작성</button></a> -->
             	<form action="MNGwriteanc" method="post">
             	<input type="submit" class="button button-contactForm boxed-btn" value="공지작성">
             	</form>

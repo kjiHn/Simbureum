@@ -21,6 +21,7 @@ public class MNGController {
 	@Autowired
 	ManagerDao managerDao;
 
+	
 	// 매니저 홈 화면
 	@RequestMapping(value = "/MNGhome")
 	public String MNGhome() {
@@ -153,6 +154,8 @@ public class MNGController {
 
 			List<managerDTO> mnguser = managerDao.selectList1();
 			model.addAttribute("mnguser", mnguser);
+			
+			
 			 
 			return "Manager/MNGuserboard";
 		}
@@ -160,12 +163,18 @@ public class MNGController {
 
 	// 회원 탈퇴
 		@RequestMapping(value = "/userdelete", method = RequestMethod.POST)
-		public String userdelete(@RequestParam("mb_num_pk") int mb_num_pk) throws Exception {
-			
+		public String userdelete(@RequestParam("mb_num_pk") int mb_num_pk,@RequestParam(required = true) String fw_name,@RequestParam(required = true)String fw_emaile) throws Exception {
+			 HashMap<String,Object> map = new HashMap<String,Object>();
+			  map.put("fw_name", fw_name);
+			  map.put("fw_emaile", fw_emaile);
+			  System.out.println(fw_name);
+			  System.out.println(fw_emaile);
+			  managerDao.userinsert(map);
 			managerDao.userdelete(mb_num_pk); 
 			return "redirect:/MNGuserboard";
 		}
 		
+
 	// 신고된 게시글 보기
 		@RequestMapping(value = "/MNGrptboard", method = RequestMethod.GET)
 		public String MNGrptboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {

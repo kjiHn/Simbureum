@@ -77,6 +77,14 @@ public class ManagerDao {
 			return this.sqlSessionTemplate.delete("mappers.Manager.userdelete", mb_num_pk);
 	
 		}
+	//탈퇴한 회원 정보 추가
+	
+	  public int userinsert(HashMap<String,Object> map) throws Exception {
+	  
+		  return this.sqlSessionTemplate.insert("mappers.Manager.userinsert", map);
+	  
+	  }
+	 
 	
 	
 	//신고된 게시글 팝업 보기

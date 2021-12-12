@@ -58,13 +58,13 @@
           <div><button type="button" class="close" data-dismiss="modal">×</button></div>
         </div>
         <div class="modal-body">
-          <c:forEach items="${popuppost}" var="popuppost">
+<%--           <c:forEach items="${popuppost}" var="popuppost">
 		<div>
 			<p><b>신고자</b>&nbsp; ${ popuppost.mbn_id}</p>
 			<p><b>작성자</b>&nbsp; ${ popuppost.mb_id}</p>
 			<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk=${popuppost.mb_num_pk }"> ${ popuppost.post_title}</a></p>
 		</div>
-	</c:forEach>
+	</c:forEach> --%>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,13 +85,13 @@
           <div><button type="button" class="close" data-dismiss="modal">×</button></div>
         </div>
         <div class="modal-body">
-          <c:forEach items="${popupreview}" var="popupreview">
+<%--           <c:forEach items="${popupreview}" var="popupreview">
 		<div>
 			<p><b>신고자</b>&nbsp; ${popupreview.rembn_id}</p>
 			<p><b>작성자</b>&nbsp; ${popupreview.mb_id}</p>
 			<p><b>내용</b>&nbsp; <a href="MNGrvboard?mb_num_pk=${popupreview.mb_num_pk }">${ popupreview.vr_rvc}</a></p>
 		</div>
-		</c:forEach>
+		</c:forEach> --%>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -102,6 +102,7 @@
   </div>
 </head>
 <body>
+
 
 
    <section class="blog_area single-post-area section-padding">
@@ -116,7 +117,7 @@
                <br> -->
                <h2 class="contact-title" align="center">&nbsp;</h2>
                <br>
-                  <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+                  <table id="tt1" style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr  style="background-color: #e3c4ff;">
                            <th>No.</th>
@@ -132,22 +133,23 @@
                         <tr style="border: 1px solid #e3c4ff;">
                            <td>${mnguser.mb_num_pk}</td>
                            <td>${mnguser.mb_id}</td>
-                          <%--  <td><a data-toggle="modal" href="#postModal?mb_num_pk=${mnguser.mb_num_pk}" ><u>${mnguser.report}회</u></a></td>
-                           <td><a data-toggle="modal" href="#reviewModal?mb_num_pk=${mnguser.mb_num_pk}" ><u>${mnguser.review}회</u></a></td> --%>
-                           <td><a href='MNGPopupPost?mb_num_pk=${mnguser.mb_num_pk}'><u>${mnguser.report}회</u></a></td>
-						   <td><a href='MNGPopupReview?mb_num_pk=${mnguser.mb_num_pk}'><u>${mnguser.review}회</u></a></td> 
-                           <td>
-                           <form action="userdelete" method="post">
+                           <td><a data-toggle="modal" href="#postModal" ><u>${mnguser.report}회</u></a></td>
+                           <td><a data-toggle="modal" href="#reviewModal" ><u>${mnguser.review}회</u></a></td>
+                 <%--           <td><u>${mnguser.report}회</u></td>
+						   <td><u>${mnguser.review}회</u></td> --%>
+						   <td>
+                           	<form action="userdelete" method="post">
 	                           <input  type="hidden" name="mb_num_pk" value="${mnguser.mb_num_pk}"/>
+	                           <input type="hidden" name="fw_name" value="${mnguser.mb_name}" />
+	                           <input type="hidden" name="fw_emaile" value="${mnguser.mb_emaile}" />
 	                           <input class ="button" type="submit" value="강제탈퇴"/>
-                           </form>
+                           	</form>
                            </td>
                         </tr>
 					   </c:forEach>
 
                      </tbody>
                   </table>
-            
                </div>
             </div>
 
@@ -169,7 +171,6 @@
 			/* url="../MNGPopupPost/"+${post.post_num_pk}; */
 			var openWin = window.open(url, "MNGPopupPost", "left="+popX+",top="+popY+",width="+popWidth+",height="+popHeight);
 		} -->
-	</script>
 	
 	<!-- 리뷰 신고 창 열기 -->
 	<!-- <script type="text/javascript">
@@ -192,5 +193,26 @@
 
 
 </body>
+
+<script type="text/javascript" language="javascript">
+ 
+    $(document).ready(function(){
+    	
+        $.ajax({
+            type : "GET", //전송방식을 지정한다 (POST,GET)
+            url : "MNGPopupPost?type=4",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+            dataType : "html",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+            error : function(){
+                alert("통신실패!!!!");
+            },
+            success : function(Parse_data){
+                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+                alert("통신 데이터 값 : " + Parse_data);
+            }
+             
+        });
+    });
+ 
+</script>
 </html>
 <%@include file="../model/footer.jsp" %>
