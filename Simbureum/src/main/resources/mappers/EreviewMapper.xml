@@ -17,7 +17,7 @@
 <!-- 고용자가 리뷰 작성 -->
 <insert id="EreInsert">
 	insert into Ern_Rv(er_num_pk, post_num_pk, mb_id_pk, er_grd, er_rvc, er_date, er_mbid)
-	values(ERN_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{er_grd}, #{er_rvc}, sysdate, #{er_mbid})
+	values(Em_SEQNUM.nextval, #{post_num_pk}, #{mb_id_pk}, #{er_grd}, #{er_rvc}, sysdate, #{er_mbid})
 </insert>
 
  <!--  자신이 고용자일때 받은 리뷰 전체 조회 --> 
@@ -42,7 +42,9 @@
 <select id="EReportCheck" resultType="int">
 <![CDATA[
 select count(*) from RE_REPORT
-where RERP_LNB = #{RERP_LNB}
+where RERP_CAT = 2
+and RERP_MBN = #{RERP_MBN}
+and RERP_LNB = #{RERP_LNB}
 ]]>
 </select>
 
@@ -50,8 +52,8 @@ where RERP_LNB = #{RERP_LNB}
 
 <!-- 신고하기 -->
 <insert id="EReport">
-insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CON,RERP_DATE)  
-				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CON},sysdate)				
+insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CON,RERP_DATE, RERP_CAT)  
+				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CON},sysdate,2)					
 </insert>
 
 <!-- 고용자가 심부름꾼에게 작성한 리뷰 전체조회 -->

@@ -186,7 +186,6 @@ public class MNGController {
 	//신고된 리뷰 보기
 	@RequestMapping(value = "/MNGrvboard", method = RequestMethod.GET)
 	public String MNGrvboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {
-
 		managerDTO reportreview = managerDao.reportreview(mb_num_pk);
 		model.addAttribute("reportreview", reportreview);
 		return "Manager/MNGrvboard";

@@ -116,15 +116,17 @@ where vr_mbid = #{vr_mbid}
 <!-- ============================================================================================================================================ -->
 
 <insert id="Report">
-insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CON,RERP_DATE)  
-				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CON},sysdate)				
+insert into RE_REPORT (RERP_NUM_PK, RERP_TARGET_MBN, RERP_MBN, RERP_LNB, RERP_CON,RERP_DATE, RERP_CAT)  
+				values(RP_SEQNUM.nextval,#{RERP_TARGET_MBN},#{RERP_MBN},#{RERP_LNB},#{RERP_CON},sysdate,1)				
 </insert>
 
 
 <select id="ReportCheck" resultType="int">
 <![CDATA[
 select count(*) from RE_REPORT
-where RERP_LNB = #{RERP_LNB}
+where RERP_CAT = 1
+and RERP_MBN = #{RERP_MBN}
+and RERP_LNB = #{RERP_LNB}
 ]]>
 </select>
 

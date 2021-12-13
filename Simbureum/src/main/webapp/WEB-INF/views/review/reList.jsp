@@ -106,33 +106,10 @@ table {
 
 		 <script>
 				 function clickDel(formName) {
-					  var RERP_LNB = $("#RERP_LNB").val();
-					  
-					  
-					  $.ajax({
-						  url : "/review/ReportCheck",
-						  type : "POST",
-						  dataType : "json",
-						  data : {"RERP_LNB" : RERP_LNB},
-						  success : function(data){
-							  if(data==1){
-								alert("이미 신고가 완료된 리뷰입니다.");
-								console.log(data);
-								  
-							  }else if(data==0){
-								  alert("신고가 완료되었습니다.");
-								 formName.action = "/review/Report";
-								formName.method = "post";
-								formName.submit();  
-								 
-							  }
-							  
-						  }
-						  
-						  
-					  });
-					  
-					
+					 alert("신고가 완료되었습니다")
+					  formName.action = "/review/Report";
+					  formName.method = "post";
+					  formName.submit(); 
 				} 
 			</script> 
 			
@@ -188,7 +165,7 @@ table {
                   <br>
                   <br>
                  <div class="form-group mt-3" >
-					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="Report" id="Report" >신고하기</button>
+					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="Report" id="Report">신고하기</button>
 				</div>
              
                </div>
@@ -198,6 +175,35 @@ table {
          </div>
       </div>
    </section>
+   
+   <script type="text/javascript">
+   
+   $("#Report").ready(function(){	  	  
+		  var RERP_MBN = $("#RERP_MBN").val();
+		  var RERP_LNB = $("#RERP_LNB").val();
+		  
+		  
+		  $.ajax({
+			  url : "/review/ReportCheck",
+			  type : "POST",
+			  dataType : "json",
+			  data : { "RERP_MBN" : RERP_MBN, "RERP_LNB" : RERP_LNB},
+			  success : function(data){
+				  if(data==1){
+					$("#Report").attr("disabled","disabled").trigger("create");
+					$("#Report").text("신고완료").trigger("create");
+				  }
+			  }
+		  }); 
+   });
+   
+   
+   
+   	 
+   
+   </script>
+   
+   
    
 </body>
 </html>

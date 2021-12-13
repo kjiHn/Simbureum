@@ -107,33 +107,10 @@ table {
 
 		<script>
 		 function clickDel(formName) {
-			  var RERP_LNB = $("#RERP_LNB").val();
-			  
-			  
-			  $.ajax({
-				  url : "/Ereview/EReportCheck",
-				  type : "POST",
-				  dataType : "json",
-				  data : {"RERP_LNB" : RERP_LNB},
-				  success : function(data){
-					  if(data==1){
-						alert("이미 신고가 완료된 리뷰입니다.");
-						console.log(data);
-						  
-					  }else if(data==0){
-						  alert("신고가 완료되었습니다.");
-						 formName.action = "/Ereview/EReport";
-						formName.method = "post";
-						formName.submit();  
-						 
-					  }
-					  
-				  }
-				  
-				  
-			  });
-			  
-			
+				alert("신고가 완료되었습니다");
+				formName.action = "/Ereview/EReport";
+				formName.method = "post";
+				formName.submit();  
 		} 
 				
 			</script>
@@ -197,6 +174,32 @@ table {
       </div>
    </section>
 
+	<script type="text/javascript">
+   
+   $("#Report").ready(function(){	  	  
+		  var RERP_MBN = $("#RERP_MBN").val();
+		  var RERP_LNB = $("#RERP_LNB").val();
+		  
+		  
+		  $.ajax({
+			  url : "/Ereview/EReportCheck",
+			  type : "POST",
+			  dataType : "json",
+			  data : { "RERP_MBN" : RERP_MBN, "RERP_LNB" : RERP_LNB},
+			  success : function(data){
+				  if(data==1){
+					$("#Report").attr("disabled","disabled").trigger("create");
+					$("#Report").text("신고완료").trigger("create");
+				  }
+			  }
+		  }); 
+   });
+   
+   
+   
+   	 
+   
+   </script>
    
    
 

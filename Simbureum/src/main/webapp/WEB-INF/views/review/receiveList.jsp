@@ -51,10 +51,10 @@ a:visited {
               	
               
                
-            	<h3>When <a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid")%>" style="font-weight: bold; font-size: 20px;">고용자</a> | <a href="/Ereview/EreceiveList?er_mbid=<%=session.getAttribute("mid")%>">심부름꾼</a></h3>
+            	<h3>TO. <a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid")%>" style="font-weight: bold; font-size: 20px;">고용자</a> | <a href="/Ereview/EreceiveList?er_mbid=<%=session.getAttribute("mid")%>">심부름꾼</a></h3>
            			<c:if test="${retotalPage == 0}">
             	<br><br><br><br><br>
-            		<h2 style="text-align: center; font-weight: bold; width: 1000px">고용자일 때 받은 리뷰가 없습니다.</h2>
+            		<h2 style="text-align: center; font-weight: bold;"><%=session.getAttribute("mid")%>님은 받은 리뷰가 없습니다</h2>
             	</c:if>  
        			
             	<c:if test="${retotalPage != 0}">		

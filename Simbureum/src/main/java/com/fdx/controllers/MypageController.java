@@ -96,10 +96,17 @@ public class MypageController {
 	}
 	
 	//올린 심부름 상세보기
-	@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)
-	public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) {
-		PostDto post = mypageService.onePost(postNum);
-		model.addAttribute("post", post);
+	//올린 심부름 상세보기	
+		@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)	
+		public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception {	
+			PostDto post = mypageService.onePost(postNum);	
+			model.addAttribute("post", post);
+			if(post.getSel_vr() != null) {
+				String[] sel_vr = post.getSel_vr().split(", ");	
+				model.addAttribute("vr", sel_vr);
+			}
+			
+		
 		//지원한 심부름꾼 보기
 		int check = mypageService.checkVol(postNum);
 		model.addAttribute("checkVol", check);

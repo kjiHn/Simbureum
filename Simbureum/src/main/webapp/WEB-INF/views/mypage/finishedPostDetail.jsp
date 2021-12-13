@@ -179,19 +179,9 @@ article {
 							    formName.action = "/review/reInsert";
 								formName.method = "post";
 								formName.submit();  
-							  
-						  }else{
-							alert("이미 작성된 리뷰입니다.");
-							
-							 
 						  }
-						  
 					  }
-					  
-					  
 				  }); 
-				  
-				
 			} 
 			
 			</script>
@@ -313,6 +303,35 @@ article {
 			</div>
 		</div>
 	</section>
+	
+		
+	<script type="text/javascript">	
+   	
+   $("#reInsert").ready(function(){	  	  	
+	  	  var post_num_pk = $("#post_num_pk").val();	
+		  var mb_id_pk = $("#mb_id_pk").val();	
+		  var vr_mbid = $("#vr_mbid").val();	
+		  	
+		  	
+		  $.ajax({	
+			  url : "/review/reInsertCheck",	
+			  type : "POST",	
+			  dataType : "json",	
+			  data : { "post_num_pk" : post_num_pk, "mb_id_pk" : mb_id_pk, "vr_mbid" : vr_mbid},	
+			  success : function(data){	
+				  if(data==1){	
+					$("#reInsert").attr("disabled","disabled").trigger("create");	
+					$("#reInsert").text("리뷰 작성 완료").trigger("create");	
+				  }	
+			  }	
+		  }); 	
+   });	
+   	
+   	
+   	
+   	 	
+   	
+   </script>
 	
 	
 	

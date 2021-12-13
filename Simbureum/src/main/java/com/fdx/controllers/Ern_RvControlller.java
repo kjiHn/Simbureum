@@ -31,7 +31,6 @@ public class Ern_RvControlller {
 	  @RequestMapping(value = "/EreInsertCheck", method = RequestMethod.POST)
 	  public int reInsertCheck(Model model, Ern_RvDTO erdto) throws Exception {
 		  int data = erser.EreInsertCheck(erdto);
-		  System.out.println("data :" + data);
 		  return data;
 	  }
 	  
