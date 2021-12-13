@@ -36,11 +36,15 @@ a {
 	color: black;
 }
 
-#postTable {
-	text-align: center;
-	width: 1000px;
+.postTable {
+	width: 900px;
 	align: center;
 	border: 1px solid #e3c4ff;
+}
+
+.postTable td{
+	padding: 10px;
+	width: 700px;
 }
 
 .searchDiv {
@@ -190,27 +194,16 @@ a {
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 posts-list">
-					<div class="slider-shape d-none d-lg-block">
-						
-						<table id="postTable">
-							<tr>
-								<th>제목</th>
-								<td>${post.post_title}</td>
-							</tr>
-							<tr>
-								<th>작성자</th>
-									<td><a  data-toggle="modal" data-target="#exampleModal1" href="" style="color: black; font-weight: bold;">${post.mb_id}</a></td>
-							</tr>
-							<tr>
-								<th>작성일</th>
-								<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
-							</tr>
-							<tr>
-								<th>조회수</th>
-								<td>${post.post_views}</td>
-							</tr>
-							<tr>
+				<div class="col-lg-11 posts-list" style="padding: 40px 100px;">
+					<h2 class="contact-title" align="center">${post.post_title}</h2><hr>
+					
+					<div>
+						 <p align="right">작성자: <a data-toggle="modal" data-target="#exampleModal1" href="" style="color: black; font-weight: bold;">${post.mb_id}</a>&nbsp;
+						 	조회수: ${post.post_views}&nbsp;&nbsp;작성일: <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/>
+						 </p><br><br>
+						 
+						 <table class="postTable">
+						 	<tr>
 								<th>내용</th>
 								<td>${post.post_con}</td>
 							</tr>
@@ -237,7 +230,8 @@ a {
 							</tr>
 							</c:if>
 						</table>
-						
+					</div>
+					
 						<c:if test="${post.mb_num_pk != mNum}">
 							<button class="button" onclick="checkVol()">심부름꾼 지원</button>
 						</c:if>
@@ -245,7 +239,7 @@ a {
 					</div>
 				</div>
 			</div>
-		</div>
+		
 	</section>
 	
 	<!-- 이미 신고한 게시글인지 확인 후 모달창 띄우기 -->

@@ -62,18 +62,13 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 	
 	@Override
-	public PostDto selOneWrittenPost(int postNum) {
-		return sqlSessionTemplate.selectOne("selOneWrittenPost", postNum);
+	public PostDto selOnePost(int postNum) {
+		return sqlSessionTemplate.selectOne("selOnePost", postNum);
 	}
 	
 	@Override
 	public int checkVol(int postNum) {
 		return sqlSessionTemplate.selectOne("checkVol", postNum);
-	}
-	
-	@Override
-	public int checkNumOfVol(int postNum) {
-		return sqlSessionTemplate.selectOne("checkNumOfVol", postNum);
 	}
 
 	@Override

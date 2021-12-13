@@ -38,9 +38,11 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-xl-8 col-lg-9 col-md-12 ">
                             <div class="hero__caption hero__caption2 text-center">
-                                <h1 data-animation="fadeInLeft" data-delay=".6" >해줘할게
-                                <br>
-                                </h1>
+                                <h1 data-animation="fadeInLeft" data-delay=".6" style="z-index: 1; position: relative">심부름 해줘~ 할게!</h1>
+                                <h2 style="z-index: 1; position: relative; width: 700px">
+                                	'해줘~ 할게!'는 누구든 심부름을 시킬 수도 있고 할 수도 있는 사이트입니다.<br>
+                                	심부름을 작성하여 도움을 요청하거나 <br>등록된 심부름에 심부름꾼을 지원해보세요. 
+                                </h2>
                             </div>
                         </div>
                     </div>
@@ -58,11 +60,11 @@
                         <div class="single-card text-center mb-80" >
                             <div class="card-top">
                                 <img src="/resources/view/assets/img/icon/register.png" style="width: 80px;height: 80px; ">
-                                <h4>게시글 작성</h4>
+                                <h4>심부름 작성</h4>
                             </div>
                             
                             <div class="card-bottom">
-                                <a href="javascript:checkLogin();" class="borders-btn">게시글 작성</a>
+                                <a href="javascript:checkLogin();" class="borders-btn">심부름 작성</a>
                             </div>
                         </div>
                     </div>
@@ -70,11 +72,11 @@
                         <div class="single-card text-center mb-30">
                             <div class="card-top" style="background-color: white;">
                                 <img src="/resources/view/assets/img/icon/select.png" style="width: 80px;height: 80px; ">
-                                <h4>게시글 보기</h4>
+                                <h4>심부름 보기</h4>
                             </div>
                           
                             <div class="card-bottom">
-                                <a href="/main/postPage" class="borders-btn">게시글 보기   </a>
+                                <a href="/main/postPage" class="borders-btn">심부름 보기</a>
                             </div>
                         </div>
                     </div>

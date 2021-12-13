@@ -98,22 +98,15 @@ public class MypageController {
 	//올린 심부름 상세보기
 	@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)
 	public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) {
-		PostDto post = mypageService.oneWrittenPost(postNum);
+		PostDto post = mypageService.onePost(postNum);
 		model.addAttribute("post", post);
-		return "mypage/uploadedPostDetail";
-	}
-	
-	//지원한 심부름꾼 보기
-	@RequestMapping(value = "volunteerList/{post_num_pk}", method = RequestMethod.GET)
-	public String showVol(@PathVariable("post_num_pk") int postNum, Model model) {
+		//지원한 심부름꾼 보기
 		int check = mypageService.checkVol(postNum);
 		model.addAttribute("checkVol", check);
 		if(check == 1) {
-			model.addAttribute("postNum", postNum);
-			model.addAttribute("numOfVol", mypageService.checkNumOfVol(postNum));
 			model.addAttribute("volRe", mypageService.volRe(postNum));
 		}
-		return "mypage/volunteerList";
+		return "mypage/uploadedPostDetail";
 	}
 	
 	//심부름꾼 선택 Ajax
@@ -152,7 +145,7 @@ public class MypageController {
 	//게시글 수정 페이지
 	@RequestMapping(value="updatePost/{post_num_pk}", method = RequestMethod.GET)
 	public String updatePost(@PathVariable("post_num_pk") int postNum, Model model) {
-		model.addAttribute("post", mypageService.oneWrittenPost(postNum));
+		model.addAttribute("post", mypageService.onePost(postNum));
 		return "mypage/updatePost";
 	}
 	
@@ -166,7 +159,7 @@ public class MypageController {
 	//심부름 한 게시글 상세보기
 	@RequestMapping(value="finishedPostDetail/{post_num_pk}", method = RequestMethod.GET)
 	public String finishedPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception{
-		PostDto post = mypageService.oneWrittenPost(postNum);
+		PostDto post = mypageService.onePost(postNum);
 		model.addAttribute("post", post);
 		String vr_mbid = post.getMb_id();
 		Vlntr_RvDTO grdAvg = vlservice.grdAvg(vr_mbid);
@@ -179,7 +172,7 @@ public class MypageController {
 	@RequestMapping(value="supportPostDetail/{post_num_pk}", method = RequestMethod.GET)
 	public String supportPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception{
 		mypageService.hitsup(postNum);
-		PostDto post = mypageService.oneWrittenPost(postNum);
+		PostDto post = mypageService.onePost(postNum);
 		model.addAttribute("post", post);
 		String vr_mbid = post.getMb_id();
 		Vlntr_RvDTO grdAvg = vlservice.grdAvg(vr_mbid);

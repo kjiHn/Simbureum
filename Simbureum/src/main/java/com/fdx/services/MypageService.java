@@ -53,18 +53,13 @@ public class MypageService {
 	}
 	
 	//올린 심부름 상세보기
-	public PostDto oneWrittenPost(int postNum) {
-		return mypageDAO.selOneWrittenPost(postNum);
+	public PostDto onePost(int postNum) {
+		return mypageDAO.selOnePost(postNum);
 	}
 	
 	//지원한 심부름꾼 있는지 여부 (있으면 1, 없으면 0)
 	public int checkVol(int postNum) {
 		return mypageDAO.checkVol(postNum);
-	}
-	
-	//지원한 심부름꾼이 있다면 필요한 심부름꾼 수 select
-	public int checkNumOfVol(int postNum) {
-		return mypageDAO.checkNumOfVol(postNum);
 	}
 	
 	//지원한 심부름꾼 각각의 리뷰 수 및 평점

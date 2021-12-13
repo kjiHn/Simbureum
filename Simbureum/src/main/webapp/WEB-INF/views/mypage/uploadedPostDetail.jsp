@@ -30,15 +30,16 @@
 	color: white;
 }
 
-#postTable {
+.postTable {
 	text-align: center;
-	width: 1000px;
+	width: 970px;
 	align: center;
 	border: 1px solid #e3c4ff;
 }
 
-#postTable td{
+.postTable td{
 	height: 30px;
+	width: 800px;
 }
 
 .star-er_grd {
@@ -79,7 +80,7 @@
 <title>올린 심부름</title>
 </head>
 <body>
-	<!-- 심부름꾼에게 리뷰 작성Modal -->
+	<!-- 심부름꾼에게 리뷰 작성 Modal -->
 	<div class="col-md-auto">
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
@@ -241,32 +242,114 @@
 		});
 	</script>
 	
+	<!-- 심부름꾼 보기 Modal -->
+	<div class="col-md-auto">
+		<div class="modal fade" id="volList" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title" id="exampleModalLabel">지원한 심부름꾼</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="overflow: auto; height: 300px;">
+						<c:if test="${checkVol == 0}">지원한 심부름꾼이 없습니다.</c:if>
+						<c:if test="${checkVol == 1}">
+							<table id="volTable" style="width: 100%">
+								<c:forEach var="volRe" items="${volRe}" varStatus="status">
+									<tr>
+										<td>
+											<a href="#" style="color: black">ID : ${volRe.mb_id}</a>
+										</td>
+										<td rowspan="2">
+											&nbsp;&nbsp;&nbsp;<input type="checkbox" name="selected" value="${volRe.mb_id}">
+										</td>
+									</tr>
+									<tr>
+										<td>평점 ${volRe.vrRe_avg} / 리뷰 수 ${volRe.vrRe_count}</td>
+									</tr>
+									<c:if test="${!status.last}">
+										<tr>
+										    <th colspan="2"><hr></th>  
+										</tr>
+									</c:if>
+								</c:forEach>
+							</table>
+						</c:if>
+					</div>
+					<input type="hidden" name="post_num_pk" value="${post.post_num_pk}"/>
+					<div class="modal-footer">
+						<c:if test="${checkVol == 0}">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+						</c:if>
+						<c:if test="${checkVol == 1}">
+							<button type="button" class="btn btn-primary" id="clickChoose">선택</button>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 심부름꾼 선택 -->
+	<script>
+		$("#clickChoose").on("click", function(){
+			let selected = $("input:checkbox[name=selected]:checked").length;
+			let sentence = "심부름꾼 "+${post.post_numof}+"명을 선택해 주세요.";
+			if(selected == ${post.post_numof}){
+				let sel_vol = "";
+				let url = "../selectedVolunteer?sel_vol="+sel_vol;
+				$("input:checkbox[name=selected]:checked").each(function(index){
+					sel_vol += $(this).val();
+					if(index+1 != selected){
+						sel_vol += ", ";
+					}
+				});
+				$.ajax({
+					type: "POST",
+					url: "../volunteerList?postNum="+${post.post_num_pk}+"&sel_vol="+sel_vol,
+					success: function(data){
+						if(selected == 1){
+							alert(sel_vol+"님이 심부름꾼으로 선택되었습니다.\n"+sel_vol+"님의 전화번호는 "+data+"입니다.");
+						}else{
+							alert(sel_vol+"님이 심부름꾼으로 선택되었습니다.\n"+sel_vol+"님의 전화번호는 각각 "+data+"입니다.");	
+						}
+						alert("* 심부름 하면서 문제가 발생할 경우 저희가 책임지지 않습니다.\n* 심부름이 완료될 경우 \'심부름 완료\' 버튼을 눌러주세요.");
+						window.location.reload();
+					}
+				});
+				
+			}else if(selected > ${post.post_numof}){
+				alert("필요한 심부름꾼 수보다 많이 선택하셨습니다.\n"+sentence);
+			}else if(selected < ${post.post_numof}){
+				alert("필요한 심부름꾼 수보다 적게 선택하셨습니다.\n"+sentence);
+			}else{
+				alert(sentence);
+			}
+		});
+	</script>
+	
 	<section class="blog_area single-post-area section-padding">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-8 posts-list">
-					<h2 class="contact-title">올린 심부름</h2>
+				<div class="col-lg-10 posts-list">
+					<h2 class="contact-title" align="center">올린 심부름</h2><hr>
 					<div class="slider-shape d-none d-lg-block">
-						<table id="postTable">
-							<tr>
-								<th>제목</th>
-								<td>${post.post_title}</td>
-							</tr>
-							<tr>
-								<th>작성일</th>
-								<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
-							</tr>
-							<tr>
-								<th>조회수</th>
-								<td>${post.post_views}</td>
-							</tr>
+					
+						<div>
+						    <h3 align="center">${post.post_title}</h3><br>
+						    <p align="right">조회수: ${post.post_views}&nbsp;&nbsp;작성일: <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></p><br><br>
+						</div>
+						
+						<table class="postTable">
 							<tr>
 								<th>상태</th>
 								<td>
 									<c:if test="${empty post.sel_vr}">
 										모집중
-										<input type="button" class="button" onclick="openVol()" value="심부름꾼 보기">
+										<button class="button"  data-toggle="modal" data-target="#volList" style="position: relative; right: 300px">심부름꾼 보기</button>
 									</c:if>
 									<c:if test="${!empty post.sel_vr && empty post.vh_date}">진행중</c:if>
 									<c:if test="${!empty post.sel_vr && !empty post.vh_date}">완료</c:if>

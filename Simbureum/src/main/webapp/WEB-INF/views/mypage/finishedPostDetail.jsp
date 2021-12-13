@@ -30,15 +30,16 @@
 	color: white;
 }                                                                            
 
-#postTable {
+.postTable {
 	text-align: center;
-	width: 1000px;
+	width: 970px;
 	align: center;
 	border: 1px solid #e3c4ff;
 }
 
-#postTable td{
+.postTable td{
 	height: 30px;
+	width: 800px;
 }
 
 
@@ -271,27 +272,17 @@ article {
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-8 posts-list">
-					<h2 class="contact-title">심부름 한 내역</h2>
+				<div class="col-lg-10 posts-list">
+					<h2 class="contact-title" align="center">심부름 한 내역</h2><hr>
 					<div class="slider-shape d-none d-lg-block">
-						<table id="postTable">
-							<tr>
-								<th>제목</th>
-								<td>${post.post_title}</td>
-							</tr>
-							<tr>
-								<th>작성자</th>
-								<td><a  data-toggle="modal" data-target="#exampleModal1" href="" style="color: black; font-weight: bold;">${post.mb_id}</a></td>
-								
-							</tr>
-							<tr>
-								<th>작성일</th>
-								<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
-							</tr>
-							<tr>
-								<th>조회수</th>
-								<td>${post.post_views}</td>
-							</tr>
+					
+						<div>
+						    <h3 align="center">${post.post_title}</h3><br>
+						    <p align="right">작성자: <a  data-toggle="modal" data-target="#exampleModal1" href="" style="color: black; font-weight: bold;">${post.mb_id}</a>&nbsp;
+						    	조회수: ${post.post_views}&nbsp;&nbsp;작성일: <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></p><br><br>
+						</div>
+					
+						<table class="postTable">
 							<tr>
 								<th>내용</th>
 								<td>${post.post_con}</td>

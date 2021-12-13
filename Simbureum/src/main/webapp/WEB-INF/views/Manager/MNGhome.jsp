@@ -40,14 +40,14 @@
 <body>
  
  <!-- Slider Area Start-->
-       <div class="slider-area slider-bg" style="overflow: hidden;">
+       <div class="slider-area slider-bg" style="overflow: hidden; height: 890px">
             <!-- Single Slider -->
             <div class="single-slider d-flex align-items-center slider-height2" style="height: 650px;">
                  <div class="container">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-xl-8 col-lg-9 col-md-12 ">
                             <div class="hero__caption hero__caption2 text-center">
-                                <h1 data-animation="fadeInLeft" data-delay=".6" >해줘할게</h1>
+                                <h1 data-animation="fadeInLeft" data-delay=".6" style="z-index: 1; position:relative">심부름 해줘~ 할게!</h1>
                             </div>
                         </div>
                     </div>
@@ -77,11 +77,11 @@
                         <div class="single-card text-center mb-30">
                             <div class="card-top" style="background-color: white;">
                                 <img src="/resources/view/assets/img/icon/select.png" style="width: 80px;height: 80px; ">
-                                <h4>게시글 보기</h4>
+                                <h4>심부름 보기</h4>
                             </div>
                           
                             <div class="card-bottom">
-                                <a href="MNGntcboard" class="borders-btn">게시글 보기   </a>
+                                <a href="MNGntcboard" class="borders-btn">심부름 보기</a>
                             </div>
                         </div>
                     </div>

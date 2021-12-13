@@ -128,7 +128,7 @@
 									<c:forEach items="${postList}" var="post" begin="0"
 										end="${fun:length(postList)}" step="1" varStatus="status">
 										<tr>
-											<td>${status.index + 1}</td>
+											<td style="padding: 10px;">${status.index + 1}</td>
 											<td><a href="javascript:checkLogin(${post.post_num_pk});" style="color: black">${post.post_title}</a></td>
 											<td>${post.mb_id}</td>
 											<td>${post.pbigc_name} ${post.psmallc_name}</td>

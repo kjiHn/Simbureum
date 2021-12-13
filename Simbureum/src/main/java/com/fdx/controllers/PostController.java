@@ -111,7 +111,7 @@ public class PostController {
 		return "redirect:/main/postDetail/"+postNum;
 	}
 	
-	//심부름꾼 지원 여부
+	//심부름꾼 지원 여부 Ajax
 	@ResponseBody
 	@RequestMapping(value = "/main/postDetail/checkVolunteer/{post_num_pk}", method = RequestMethod.POST)
 	public int checkVolunteer(@PathVariable("post_num_pk") int postNum, Model model, HttpSession session) {

@@ -90,7 +90,7 @@
 	 where sel_vr Like '%'||#{mb_id}||'%'
 	</select>
 	
-	<select id="selOneWrittenPost" parameterType="int" resultType="post">
+	<select id="selOnePost" parameterType="int" resultType="post">
 		select p.*, v.VH_DATE, s.PSMALLC_NAME, b.PBIGC_NAME, m.MB_ID
 		from member m, post p left join vlntr_his v on v.POST_NUM_PK = p.POST_NUM_PK,
 		(PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
@@ -105,11 +105,6 @@
 		union
 		select 1 from dual
 		where exists (select * from ap_post where POST_NUM_PK = #{post_num_pk})
-	</select>
-	
-	<select id="checkNumOfVol" parameterType="int" resultType="int">
-		select POST_NUMOF from post
-		where POST_NUM_PK = #{post_num_pk}
 	</select>
 	
 	<select id="selVolRe" parameterType="int" resultType="volRe">
