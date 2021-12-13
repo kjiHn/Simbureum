@@ -143,5 +143,19 @@ select
 	 where er_mbid = #{er_mbid}
 </select>
 
+<!-- 심부름꾼 리뷰 -->
+<select id="EgrdAvg" resultType="com.fdx.dto.Ern_RvDTO">
+	  select er_mbid, round(avg(er_grd),3) er_grd ,count(er_num_pk) er_num_pk
+	   from ern_rv 
+       where er_mbid = #{er_mbid}
+       group by er_mbid
+
+</select>
+
+
+
+
+
+
 
 </mapper>

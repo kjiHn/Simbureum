@@ -133,5 +133,22 @@ public class Ern_RvControlller {
 		  
 		  return "redirect:/Ereview/EwriteList"; 
 	  }
+	  
+	  
+	//고용자가 받은 리뷰 자세히 
+	  @ResponseBody
+		@RequestMapping(value = "/EgrdAvg", method = RequestMethod.POST)
+		public void EgrdAvg(Model model, @RequestParam(value = "er_mbid") String er_mbid) throws Exception {
+		
+			model.addAttribute("EgrdAvg",erser.EgrdAvg(er_mbid));
+			model.addAttribute("EreceiveList",erser.EreceiveList(er_mbid));
+		
+			
+		}
+	  
+	  
+	  
+	  
+	  
 
 }

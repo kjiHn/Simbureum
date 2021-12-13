@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fdx.dto.Criteria;
+import com.fdx.dto.Ern_RvDTO;
 import com.fdx.dto.MypageDTO;
 import com.fdx.dto.PageMaker;
 import com.fdx.dto.PostDto;
 import com.fdx.dto.Vlntr_RvDTO;
+import com.fdx.services.Ern_RvServiceImpl;
 import com.fdx.services.MypageService;
 import com.fdx.services.Vlntr_RvServiceImpl;
 
@@ -32,6 +34,9 @@ public class MypageController {
 	
 	@Autowired
 	public Vlntr_RvServiceImpl vlservice;
+	
+	@Autowired
+	public Ern_RvServiceImpl erser;
 	
 	@RequestMapping(value ="/upPost")
 	public String myUploadPage(@RequestParam(value = "mb_num_pk") int mb_num_pk,
@@ -100,10 +105,16 @@ public class MypageController {
 		@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)	
 		public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception {	
 			PostDto post = mypageService.onePost(postNum);	
-			model.addAttribute("post", post);
+			model.addAttribute("post", post);		
 			if(post.getSel_vr() != null) {
-				String[] sel_vr = post.getSel_vr().split(", ");	
+				String[] sel_vr = post.getSel_vr().split(", ");
+				System.out.println("***********");
+				System.out.println(sel_vr[0]);
 				model.addAttribute("vr", sel_vr);
+				for(int i=0; i<sel_vr.length;i++) {
+					erser.EreceiveList(sel_vr[i]);
+					
+				}
 			}
 			
 		

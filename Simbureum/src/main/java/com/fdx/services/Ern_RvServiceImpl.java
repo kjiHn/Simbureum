@@ -103,5 +103,11 @@ public class Ern_RvServiceImpl implements Ern_RvService{
 		return erdao.EretotalPage(cri);
 	}
 
+	@Override
+	public Ern_RvDTO EgrdAvg(String er_mbid) throws Exception {
+		// TODO Auto-generated method stub
+		return  erdao.EgrdAvg(er_mbid);
+	}
+
 
 }

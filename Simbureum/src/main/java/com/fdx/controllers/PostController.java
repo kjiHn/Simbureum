@@ -18,6 +18,7 @@ import com.fdx.dto.PageMaker2;
 import com.fdx.dto.PoReportDto;
 import com.fdx.dto.PostDto;
 import com.fdx.dto.Vlntr_RvDTO;
+import com.fdx.services.Ern_RvService;
 import com.fdx.services.PostService;
 import com.fdx.services.Vlntr_RvServiceImpl;
 
@@ -29,6 +30,9 @@ public class PostController {
 	
 	@Autowired
 	public Vlntr_RvServiceImpl vlservice;
+	
+
+	
 
 	//게시글 작성 페이지
 	@RequestMapping(value = "/main/writePost", method = RequestMethod.GET)

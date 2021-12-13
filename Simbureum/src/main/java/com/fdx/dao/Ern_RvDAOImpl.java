@@ -105,6 +105,14 @@ public class Ern_RvDAOImpl implements Ern_RvDAO{
 		return sqlSessionTemplate.selectOne("EretotalPage",cri);
 	}
 
+
+	@Override
+	public Ern_RvDTO EgrdAvg(String er_mbid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("EgrdAvg",er_mbid);
+	}
+
+	
 	
 	
 	

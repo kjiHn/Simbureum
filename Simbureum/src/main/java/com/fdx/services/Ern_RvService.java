@@ -29,4 +29,7 @@ public interface Ern_RvService {
 	
 	public List<Ern_RvDTO> EreceiveListPaging(Criteria cri) throws Exception;
 	public int EretotalPage(Criteria cri) throws Exception;
+	
+	
+	public Ern_RvDTO EgrdAvg(String er_mbid) throws Exception; //심부름꾼 리뷰
 }

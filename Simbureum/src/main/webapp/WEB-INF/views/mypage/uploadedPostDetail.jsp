@@ -105,7 +105,7 @@
 							 <div>
 								<c:forEach items="${vr }" var="vr">
 									<label for="${vr }">${vr }</label>
-									<input type="radio" name="er_mbid" id="${vr }" value="${vr } ">
+									<input type="radio" name="er_mbid" id="${vr}" value="${vr}">
 								</c:forEach>
 							</div>
 							
