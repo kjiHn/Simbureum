@@ -138,10 +138,12 @@ public class Ern_RvControlller {
 	//고용자가 받은 리뷰 자세히 
 	  @ResponseBody
 		@RequestMapping(value = "/EgrdAvg", method = RequestMethod.POST)
-		public void EgrdAvg(Model model, @RequestParam(value = "er_mbid") String er_mbid) throws Exception {
-		
-			model.addAttribute("EgrdAvg",erser.EgrdAvg(er_mbid));
-			model.addAttribute("EreceiveList",erser.EreceiveList(er_mbid));
+		public List<Ern_RvDTO> EgrdAvg(Model model, @RequestParam(value = "er_mbid") String er_mbid) throws Exception {
+		  	List<Ern_RvDTO> list = erser.EreceiveList(er_mbid);
+			//model.addAttribute("EgrdAvg",erser.EgrdAvg(er_mbid));
+			model.addAttribute("EreceiveList",list);
+			System.out.println(list);
+			return list;
 		
 			
 		}
