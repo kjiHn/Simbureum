@@ -67,8 +67,8 @@
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-8 posts-list">
-					<h2 class="contact-title">심부름 수정</h2>
+				<div class="col-lg-8 posts-list" id="centerCon">
+					<h2 class="contact-title" align="center">심부름 수정</h2>
 					<div class="slider-shape d-none d-lg-block">
 	
 						<form method="POST" action="/mypage/updatePost/${post.post_num_pk}">

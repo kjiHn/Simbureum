@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${sessionScope.mid ne null }">
-<%@ include file="../model/topBar_login_home.jsp"%>
+<%@ include file="../model/topBar_login.jsp"%>
 </c:if>
 <c:if test="${sessionScope.mid eq null }">
 <%@ include file="../model/topBar_MNG.jsp"%>

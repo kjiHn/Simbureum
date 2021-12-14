@@ -42,8 +42,8 @@ if (request.getProtocol().equals("HTTP/1.1"))
 							<div class="col-xl-2 col-lg-2">
 								<div class="#">
 									<a href="/"> <img
-										src="/resources/view/assets/img/logo/2-removebg.png"
-										style="width: 80px; height: 80px;">
+										src="/resources/view/assets/img/logo/2.png"
+										style="width: 90px; height: 60px;">
 
 									</a>
 								</div>
@@ -56,8 +56,8 @@ if (request.getProtocol().equals("HTTP/1.1"))
 									<div class="main-menu d-none d-lg-block">
 										<nav>
 											<ul id="navigation">
-												<li><a href="userancboard">공지 사항</a></li>
-												<li><a href="/user/join1">회원가입</a></li>
+												<li><a href="/userancboard" style="font-size: 16px">공지 사항</a></li>
+												<li><a href="/user/join1" style="font-size: 16px">회원가입</a></li>
 												<li><a href="/login/main" class="btn">로그인</a></li>
 											</ul>
 										</nav>

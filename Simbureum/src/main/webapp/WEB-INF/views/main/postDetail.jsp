@@ -9,28 +9,10 @@
 %>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
-.button {
-	background-color: white;
-	color: black;
-	border: 2px solid #BFA0ED;
-	padding: 2px 16px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border-radius: 20px;
-	float: right;
-}
-
-.button:hover {
-	background-color: #BFA0ED;
-	color: white;
-}
 
 a {
 	color: black;
@@ -38,22 +20,20 @@ a {
 
 .postTable {
 	width: 900px;
-	align: center;
-	border: 1px solid #e3c4ff;
 }
 
-.postTable td{
+.postTable th{
 	padding: 10px;
-	width: 700px;
+	width: 200px;
 }
 
 .searchDiv {
 	float: right;
 }
 
-.textinput {
-	width: 200px;
-	height: 30px;
+.content {
+	width: 300px;
+	height: 180px;
 }
 </style>	
 
@@ -139,13 +119,15 @@ a {
        					</button>
 					</div>
 
-					<div class="modal-body" style="overflow: auto; height: 300px; ">
-						<h3 style="float:left">신고 사유 :</h3>
+					<div class="modal-body" style="overflow: auto; height: 250px; ">
+						<h3 style="float:left">신고 사유 :</h3><br>
 						<form id="writeReport" action="/main/postDetail/writeReport/${post_num_pk}" method="post">
 							<textarea name="porp_con" id="porp_con" class="content" placeholder="내용을 입력해주세요"></textarea>
 						
-							<button type="button" class="btn btn-primary" id="submitReport">완료</button>
 						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="bigBtn" id="submitReport">완료</button>
 					</div>
 					
 				</div>
@@ -176,7 +158,7 @@ a {
 						<form id="volForm" action="/main/postDetail/volunteer/${post_num_pk}" method="POST">
 							심부름꾼 지원 하시겠습니까?<br>
 							* 심부름 하면서 문제가 발생하는 경우<br> 저희가 책임지지 않습니다.<br>
-							<button type="button" class="btn btn-primary" id="submitVol">확인</button>
+							<button type="button" class="bigBtn" id="submitVol">확인</button>
 						</form>
 					</div>
 					
@@ -203,10 +185,6 @@ a {
 						 </p><br><br>
 						 
 						 <table class="postTable">
-						 	<tr>
-								<th>내용</th>
-								<td>${post.post_con}</td>
-							</tr>
 							<tr>
 								<th>위치</th>
 								<td>${post.pbigc_name} ${post.psmallc_name}</td>
@@ -223,18 +201,23 @@ a {
 								<th>심부름 가격</th>
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
+							<tr style="height: 250px">
+								<td colspan="2">${post.post_con}</td>
+							</tr>
 							<c:if test="${post.mb_num_pk != mNum}">
 							<tr>
 								<td></td>
-								<td><button class="button" onclick="checkReport()">신고하기</button></td>
+								<td><button class="smallBtn" onclick="checkReport()" style="float: right">신고하기</button></td>
 							</tr>
 							</c:if>
 						</table>
 					</div>
-					
+					<br>
+					<div style="text-align: center">
 						<c:if test="${post.mb_num_pk != mNum}">
-							<button class="button" onclick="checkVol()">심부름꾼 지원</button>
+							<button class="bigBtn" onclick="checkVol()">심부름꾼 지원</button>
 						</c:if>
+					</div>
 
 					</div>
 				</div>

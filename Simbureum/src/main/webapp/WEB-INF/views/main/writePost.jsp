@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <%@ include file="../model/topBar_login.jsp" %>
 
 
@@ -8,6 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
 
@@ -20,26 +21,6 @@
   display: grid;
   place-items: center;
  
-}
-
-.button {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #BFA0ED;
-  padding: 8px 80px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-.button:hover {
-  background-color: #BFA0ED;
-  color: white;
 }
 
 .textinput{
@@ -66,48 +47,50 @@
 	
 	<div class="col-lg-11 posts-list" id="centerCon">
 	
-	<h2>심부름 작성</h2>
+		<h2 class="contact-title" align="center">심부름 작성</h2>
 	
-	<form method="POST" action="writePost">
-		<table>
-			<tr>
-				<th>제목 : </th>
-				<td><input name="post_title" class="textinput" placeholder="제목 입력" /></td>
-			</tr>
-			<tr>
-				<th>내용 : </th>
-				<td><textarea name="post_con" class="content" placeholder="내용 입력"></textarea></td>
-			</tr>
-			<tr>
-				<th>위치 : </th>
-				<td>
-					<select id="bigCategory" >
-						<option value="0">시/도</option>
-						<option value="1">서울</option>
-						<option value="2">경기도</option>
-					</select>
-					<select name="psmallc_pk" id="smallCategory">
-						<option value="0">시/군/구</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>마감일 : </th>
-				<td><input name="post_dline" class="textinput" placeholder="마감일 입력(ex.2021/01/01)" /></td>
-			</tr>
-			<tr>
-				<th>심부름꾼 수 : </th>
-				<td><input name="post_numof" class="textinput" placeholder="심부름꾼 수 입력" /></td>
-			</tr>
-			<tr>
-				<th>심부름 가격 : </th>
-				<td><input name="post_price" class="textinput" placeholder="심부름 가격 입력"/></td>
-			</tr>
-		</table>
-		
-		<input type="submit" class="button" value="완료">
-		
-	</form>
+		<form method="POST" action="writePost">
+			<table>
+				<tr>
+					<th>제목 : </th>
+					<td><input name="post_title" class="textinput" placeholder="제목 입력" /></td>
+				</tr>
+				<tr>
+					<th>내용 : </th>
+					<td><textarea name="post_con" class="content" placeholder="내용 입력"></textarea></td>
+				</tr>
+				<tr>
+					<th>위치 : </th>
+					<td>
+						<select id="bigCategory" >
+							<option value="0">시/도</option>
+							<option value="1">서울</option>
+							<option value="2">경기도</option>
+						</select>
+						<select name="psmallc_pk" id="smallCategory">
+							<option value="0">시/군/구</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>마감일 : </th>
+					<td><input name="post_dline" class="textinput" placeholder="마감일 입력(ex.2021/01/01)" /></td>
+				</tr>
+				<tr>
+					<th>심부름꾼 수 : </th>
+					<td><input name="post_numof" class="textinput" placeholder="심부름꾼 수 입력" /></td>
+				</tr>
+				<tr>
+					<th>심부름 가격 : </th>
+					<td><input name="post_price" class="textinput" placeholder="심부름 가격 입력"/></td>
+				</tr>
+			</table>
+			<br><br>
+			<div style="text-align: center">
+				<input type="submit" class="bigBtn" value="완료">
+			</div>
+			
+		</form>
 	</div>
 	</div>
 	</section>

@@ -69,7 +69,7 @@
 					
 					<c:if test="${pageMaker.totalCount != 0}">
 						<table
-							style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
+							style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
 							<thead>
 								<tr style="background-color: #e3c4ff;">
 									<th>No.</th>
@@ -85,7 +85,7 @@
 								<tbody>
 									<tr style="border: 1px solid #e3c4ff;">
 										<td style="padding: 10px;">${status.index +1}</td>
-										<td><a href="/mypage/finishedPostDetail/${postdto.post_num_pk}"
+										<td style="width: 500px"><a href="/mypage/finishedPostDetail/${postdto.post_num_pk}"
 											style="color: black">${postdto.post_title}</a></td>
 										<td>${postdto.plant }</td>
 										<td><fmt:formatDate value="${postdto.vh_date }"
@@ -95,7 +95,7 @@
 							</c:forEach>
 						</table>
 							
-						<nav class="blog-pagination justify-content-center d-flex">
+						<nav class="blog-pagination justify-content-center d-flex" style="width: 1000px">
 							<ul class="pagination">
 								<c:if test="${pageMaker.prev}">
 									<li class="page-item"><a href="${pageMaker.startPage -1}" class="page-link">Previous</a></li>

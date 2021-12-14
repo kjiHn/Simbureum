@@ -28,7 +28,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="/MNGhome">
-	                                    <a href="/MNGhome"> <img src="/resources/view/assets/img/logo/3.png" style="width: 80px; height: 80px;" >
+	                                    <a href="/MNGhome"> <img src="/resources/view/assets/img/logo/2.png" style="width: 90px; height: 60px;" >
 	                                    
 	                                    </a>
                                 </div>
@@ -39,7 +39,7 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">       
-                                                <li>관리자님</li>                                        
+                                                <li style="font-size: 18px">관리자님</li>                                        
                                                 <li>	
                                                 	<a href="/login/logout" class="btn">로그아웃</a>
                                                 	<a href="MNGancboard" class="btn">마이페이지</a>

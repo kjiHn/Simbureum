@@ -4,56 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fun" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
-   if(session.getAttribute("mid") != null) {
-%>
-<%@ include file="../model/topBar_login.jsp"%>
-<%
-   }else{
-      
-%>
-<%@ include file="../model/topBar1.jsp"%>
-<%
-   }
-%>
-
+<%@ include file="../model/topBar_login.jsp" %>
 
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 <title>해줘~ 할게</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="#">
-<link rel="shortcut icon" type="image/x-icon"
-   href="view/assets/img/favicon.ico">
-
-<style type="text/css">
-.button {
-   background-color: white;
-   color: black;
-   border: 2px solid #BFA0ED;
-   padding: 2px 16px;
-   text-align: center;
-   display: inline-block;
-   font-size: 16px;
-   -webkit-transition-duration: 0.4s; /* Safari */
-   transition-duration: 0.4s;
-   cursor: pointer;
-   border-radius: 20px;
-   float: none;
-}
-
-.button:hover {
-   background-color: #BFA0ED;
-   color: white;
-}
-</style>
 </head>
 <body>
-
-
 
    <section class="blog_area single-post-area section-padding">
       <div class="container">
@@ -69,7 +30,7 @@
 					
 					<c:if test="${pageMaker.totalCount != 0}">
 	                     <table
-	                        style="text-align: center; width: 900px; align: center; border: 1px solid #e3c4ff;">
+	                        style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
 	                        <thead>
 	                           <tr style="background-color: #e3c4ff;">
 	                              <th>No.</th>
@@ -86,7 +47,7 @@
 	                           <tbody>
 	                              <tr style="border: 1px solid #e3c4ff;">
 	                                 <td style="padding: 10px;">${status.index +1}</td>
-	                                 <td><a href="/mypage/supportPostDetail/${postdto.post_num_pk}"
+	                                 <td style="width: 500px"><a href="/mypage/supportPostDetail/${postdto.post_num_pk}"
 	                                    style="color: black">${postdto.post_title}</a></td>
 	                                 <td>${postdto.plant }</td>
 	                                 <td>
@@ -94,14 +55,14 @@
 	                                 <c:if test="${!empty postdto.sel_vr}">진행중</c:if>
 	                                 </td>
 	                                 <td style="text-align: center;"><input type="button"
-	                                    class="button" value="취소" name="${postdto.post_num_pk}">
+	                                    class="smallBtn" value="취소" name="${postdto.post_num_pk}">
 	                                 </td>
 	                              </tr>
 	                           </tbody>
 	                        </c:forEach>
 	                     </table>
                   
-						<nav class="blog-pagination justify-content-center d-flex">
+						<nav class="blog-pagination justify-content-center d-flex" style="width: 1000px">
 							<ul class="pagination">
 							   <c:if test="${pageMaker.prev}">
 							      <li class="page-item"><a href="${pageMaker.startPage -1}" class="page-link">Previous</a></li>
@@ -140,7 +101,7 @@
 
    <script type="text/javascript">
    
-   $(".button").click(function() {
+   $(".smallBtn").click(function() {
       event.preventDefault();
       var num = $(this).attr("name");
       var mb_num = "<%=session.getAttribute("mNum")%>";

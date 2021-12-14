@@ -8,38 +8,19 @@
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
-<style type="text/css">
-.button {
-	background-color: white;
-	color: black;
-	border: 2px solid #BFA0ED;
-	padding: 2px 16px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border-radius: 20px;
-	float: right;
-}
-
-.button:hover {
-	background-color: #BFA0ED;
-	color: white;
-}                                                                            
-
+<style type="text/css">                                                                            
 .postTable {
 	text-align: center;
 	width: 970px;
 	align: center;
-	border: 1px solid #e3c4ff;
 }
 
-.postTable td{
-	height: 30px;
-	width: 800px;
+.postTable th{
+	padding: 10px;
+	width: 200px;
 }
 
 
@@ -274,10 +255,6 @@ article {
 					
 						<table class="postTable">
 							<tr>
-								<th>내용</th>
-								<td>${post.post_con}</td>
-							</tr>
-							<tr>
 								<th>위치</th>
 								<td>${post.pbigc_name} ${post.psmallc_name}</td>
 							</tr>
@@ -293,11 +270,14 @@ article {
 								<th>심부름 가격</th>
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
+							<tr style="height: 250px">
+								<td colspan="2" style="padding: 20px">${post.post_con}</td>
+							</tr>
 						</table>
-						<br><br>
 						
-						<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="reInsert" id="reInsert" >고용자에게 리뷰 작성</button>
-						
+						<div style="text-align: center">
+							<button class="bigBtn" data-toggle="modal" data-target="#exampleModal" name="reInsert" id="reInsert" >고용자에게 리뷰 작성</button>
+						</div>
 					</div>
 				</div>
 			</div>

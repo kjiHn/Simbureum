@@ -40,7 +40,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="#">
-	                                    <a href="/"> <img src="/resources/view/assets/img/logo/3.png" style="width: 80px; height: 80px;" >
+	                                    <a href="/"> <img src="/resources/view/assets/img/logo/2.png" style="width: 90px; height: 60px;" >
 	                                    
 	                                    </a>
                                 </div>
@@ -51,10 +51,10 @@ if (request.getProtocol().equals("HTTP/1.1"))
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">       
-                                                <li><a href="/main/writePost">심부름 작성</a></li>
-                                                <li><a href="/main/postPage">심부름 보기</a></li>
-                                                <li><a href="userancboard">공지 사항</a></li>
-                                                <li><%=session.getAttribute("mid") %>님</li>                                                                            
+                                                <li><a href="/main/writePost" style="font-size: 16px">심부름 작성</a></li>
+                                                <li><a href="/main/postPage" style="font-size: 16px">심부름 보기</a></li>
+                                                <li><a href="/userancboard" style="font-size: 16px">공지 사항</a></li>
+                                                <li style="font-size: 18px"><%=session.getAttribute("mid") %>님</li>                                                                            
                                                 <li>	
                                                 	<a href="/login/logout" class="btn">로그아웃</a>
                                                 	<a href="/user/my_Info?mb_name=<%=session.getAttribute("mid") %>" class="btn">마이페이지</a>
