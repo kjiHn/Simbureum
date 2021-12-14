@@ -40,7 +40,7 @@
 		<div>
 			<p><b>신고자</b>&nbsp; ${ popuppost.mbn_id}</p>
 			<p><b>작성자</b>&nbsp; ${ popuppost.mb_id}</p>
-			<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk=${popuppost.mb_num_pk }"> ${ popuppost.post_title}</a></p>
+			<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk=${popuppost.mb_num_pk}&mbn_id=${popuppost.mbn_id}"> ${ popuppost.post_title}</a></p>
 		</div>
 	</c:forEach>
 </body>

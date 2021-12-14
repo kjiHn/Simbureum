@@ -2,146 +2,164 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="mappers.Manager">
-	
+
 	<!--게시글 보기 -->
 	<select id="post" resultType="com.fdx.dto.managerDTO">
-		
-		select a.post_num_pk, a.post_title, b.mb_id, c.pbigc_name, d.psmallc_name, a.post_views, a.post_date
+
+		select a.post_num_pk, a.post_title, b.mb_id, c.pbigc_name, d.psmallc_name,
+		a.post_views, a.post_date
 		from post a, member b , pbigc c, psmallc d
 		where a.mb_num_pk = b.mb_num_pk
 		and a.psmallc_pk = d.psmallc_pk
-		and d.pbigc_pk = c.pbigc_pk
-		
+		and
+		d.pbigc_pk = c.pbigc_pk
+
 	</select>
-	
+
 	<!--게시글 상세 보기 -->
-	<select id="postDetail" parameterType="int" resultType="com.fdx.dto.managerDTO">
-		
-		select a.post_title, b.mb_id, a.post_date, a.post_views, a.post_con, c.pbigc_name, d.psmallc_name, a.post_price, a.post_num_pk
-		from post a, member b , pbigc c, psmallc d
+	<select id="postDetail" parameterType="int"
+		resultType="com.fdx.dto.managerDTO">
+
+		select a.post_title, b.mb_id, a.post_date, a.post_views, a.post_con,
+		c.pbigc_name, d.psmallc_name, a.post_price, a.post_num_pk
+		from post a,
+		member b , pbigc c, psmallc d
 		where a.mb_num_pk = b.mb_num_pk
-		and a.psmallc_pk = d.psmallc_pk
+		and
+		a.psmallc_pk = d.psmallc_pk
 		and d.pbigc_pk = c.pbigc_pk
-		and a.post_num_pk = #{post_num_pk}
-		
+		and
+		a.post_num_pk = #{post_num_pk}
+
 	</select>
-	
+
 	<!-- 게시글 삭제 -->
-	
+
 	<delete id="postdelete" parameterType="int">
-		delete from post where post_num_pk= #{post_num_pk}   
+		delete from post where
+		post_num_pk= #{post_num_pk}
 	</delete>
-	
-	<!--공지 보기  -->
+
+	<!--공지 보기 -->
 	<select id="announce" resultType="com.fdx.dto.managerDTO">
-		
+
 		select ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
 		FROM NOTICE
-		
+
 	</select>
-	
+
 	<!-- 공지 작성 -->
-	<insert id="writeanc" parameterType="java.util.HashMap">
-		
-		insert into notice(ntc_num_pk,ntc_title,ntc_con,ntc_date) values(ntc_seqnum.nextval,#{title},#{con},sysdate)
-		
+	<insert id="writeanc" parameterType="com.fdx.dto.managerDTO">
+
+		insert into notice(ntc_num_pk,ntc_title,ntc_con,ntc_date)
+		values(ntc_seqnum.nextval,#{ntc_title},#{ntc_con},sysdate)
+
 	</insert>
 
-		
+
 	<!-- 공지 수정 -->
 	<update id="ancmodify" parameterType="java.util.HashMap">
-		
+
 		update notice
 		set ntc_title = #{ntc_title} , ntc_con = #{ntc_con}
-		where ntc_num_pk = #{ntc_num_pk}
-		
+		where
+		ntc_num_pk = #{ntc_num_pk}
+
 	</update>
-	
+
 	<!-- 공지 삭제 -->
 	<delete id="ancdelete" parameterType="int">
-		
+
 		delete notice
 		where ntc_num_pk= #{ntc_num_pk}
-		
+
 	</delete>
-	
-	<!--공지 상세 보기  -->
-	<select id="announceDetail" parameterType="int" resultType="com.fdx.dto.managerDTO">
-		
+
+	<!--공지 상세 보기 -->
+	<select id="announceDetail" parameterType="int"
+		resultType="com.fdx.dto.managerDTO">
+
 		select ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
 		FROM NOTICE
-		where ntc_num_pk = #{ntc_num_pk}
-		
+		where
+		ntc_num_pk = #{ntc_num_pk}
+
 	</select>
-	
+
 	<!--회원 관리 메인페이지 -->
 	<!-- 회원 관리 -->
 	<select id="mnguser" resultType="com.fdx.dto.managerDTO">
 
 		SELECT *
 		FROM (
-		select mb_id ,a.mb_num_pk,a.mb_name,a.mb_emaile,(select
-	   count(*)
-	   from po_report b
-	   where a.mb_num_pk = b.porp_target_mbn
-	   ) as report,
-	   (select
-	   count(*)
-	   from re_report c
-	   where a.mb_num_pk = c.rerp_target_mbn
-	   ) as review
-	   from member a
+		select mb_id
+		,a.mb_num_pk,a.mb_name,a.mb_emaile,(select
+		count(*)
+		from po_report b
+		where a.mb_num_pk = b.porp_target_mbn
+		) as report,
+		(select
+		count(*)
+		from re_report c
+		where a.mb_num_pk = c.rerp_target_mbn
+		) as review
+		from member a
 		) t
-		WHERE t.report =1 OR t.review = 1
+		WHERE t.report >=1 OR t.review >= 1
 	</select>
+	
 	<!-- 회원 조회 -->
 	<select id="usersearch" resultType="com.fdx.dto.managerDTO">
-		
+
 		SELECT mb_id,mb_num_pk
 		FROM member
-		
+
 	</select>
-	
+
 	<!-- 회원 탈퇴 -->
 	<delete id="userdelete" parameterType="int">
-	
+
 		delete from member where mb_num_pk =#{mb_num_pk}
-	
+
 	</delete>
-	
-	
+
+
 	<!-- 탈퇴회원정보추가 -->
-	
+
 	<insert id="userinsert" parameterType="java.util.HashMap">
-		
-		insert into Frc_Wth(fw_num_pk,fw_name,fw_email) values(FW_SEQNUM.nextval,#{fw_name},#{fw_emaile})
-		
+
+		insert into Frc_Wth(fw_num_pk,fw_name,fw_email)
+		values(FW_SEQNUM.nextval,#{fw_name},#{fw_emaile})
+
 	</insert>
-	
+
 	<!-- 신고된 게시글 보기 -->
-	<select id="reportpost" parameterType="int" resultType="com.fdx.dto.managerDTO">
-	
-		select b.mb_num_pk,a.post_title, b.mb_id, a.post_date, a.post_con, d.pbigc_name, c.psmallc_name, a.post_price, e.porp_con, e.porp_date,e.porp_num_pk
+	<select id="reportpost" parameterType="int"
+		resultType="com.fdx.dto.managerDTO">
+
+		select b.mb_num_pk,a.post_title, b.mb_id, a.post_date, a.post_con,
+		d.pbigc_name, c.psmallc_name, a.post_price, e.porp_con, e.porp_date,e.porp_num_pk
 		,(select b.mb_id
-   		from member b, po_report e
-   		where e.porp_mbn = b.mb_num_pk) porping_mbn
+		from member b, po_report e
+		where e.porp_mbn = b.mb_num_pk) porping_mbn
 		from post a, member b, psmallc c, pbigc d, po_report e
-		where e.porp_target_mbn = b.mb_num_pk 
+		where e.porp_target_mbn = b.mb_num_pk
 		and e.porp_lnb = a.post_num_pk
 		and c.psmallc_pk = a.psmallc_pk
 		and c.pbigc_pk = d.pbigc_pk
 		and b.mb_num_pk = #{mb_num_pk}
-	
+
 	</select>
-	
+
 	<!-- 신고된 리뷰 보기 -->
-	<select id="reportreview" parameterType="int" resultType="com.fdx.dto.managerDTO">
+	<select id="reportreview" parameterType="int"
+		resultType="com.fdx.dto.managerDTO">
 		select a.mb_id, c.post_title, d.vr_date,d.vr_rvc, b.rerp_date, b.rerp_con, b.rerp_num_pk, d.vr_rvn_pk
 		,(select a.mb_id
- 	    from member a, re_report b
- 	    where b.rerp_mbn = a.mb_num_pk) rerping_mbn
+		from member a, re_report b
+		where b.rerp_mbn = a.mb_num_pk) rerping_mbn
 		from member a, re_report b, post c, vlntr_rv d
 		where b.rerp_lnb = d.vr_rvn_pk
 		and b.rerp_target_mbn = a.mb_num_pk
@@ -149,48 +167,61 @@
 		and a.mb_num_pk = #{mb_num_pk}
 	</select>
 
-	
+
 	<!-- 신고된 게시글 팝업 -->
-	<select id="popuppost" parameterType="int" resultType="com.fdx.dto.managerDTO">
-	
-		select a.mb_id, a.mb_num_pk, c.post_title, (select a.mb_id from member a, po_report b where porp_mbn = mb_num_pk) mbn_id
-		from member a, po_report b , post c
-		where b.porp_target_mbn = a.mb_num_pk
-		and b.porp_lnb = c.post_num_pk
-		and a.mb_num_pk =  #{mb_num_pk}
-	
+
+	<select resultType="com.fdx.dto.managerDTO" id="popuppost" parameterType="int">
+	SELECT a.mb_id, a.mb_num_pk, c.post_title,t.mb_id as mbn_id 
+	from member a, po_report b , post c 
+	,( select t.mb_id ,t.mb_num_pk 
+		from member t , po_report b 
+		where t.mb_num_pk = b.porp_mbn
+		AND b.porp_target_mbn = #{mb_num_pk} )t
+	where b.porp_target_mbn = a.mb_num_pk 
+	and b.porp_lnb = c.post_num_pk 
+	AND t.mb_num_pk = b.porp_mbn
 	</select>
-	
+
+
 	<!-- 신고된 리뷰 팝업 -->
 	<select id="popupreview" parameterType="int" resultType="com.fdx.dto.managerDTO">
-	
-		select a.mb_id, a.mb_num_pk, c.vr_rvc, (select a.mb_id from member a, re_report b where rerp_mbn = mb_num_pk) rembn_id
-		from member a, re_report b , vlntr_rv c
+
+		 select a.mb_id, a.mb_num_pk, c.er_rvc,t.mb_id as mbn_id
+		 from member a, re_report b , ern_rv c
+		,(select t.mb_id ,t.mb_num_pk 
+		from member t , re_report b 
+		where t.mb_num_pk = b.rerp_mbn
+		AND b.rerp_target_mbn = #{mb_num_pk}) t
+ 	
 		where b.rerp_target_mbn = a.mb_num_pk
-		and b.rerp_lnb = c.vr_rvn_pk
-		and a.mb_num_pk =  #{mb_num_pk}
-	
+		and b.rerp_lnb = c.er_num_pk
+        and t.mb_num_pk = b.rerp_mbn
+
 	</select>
-	
-	<!--  신고된 게시글 삭제 -->
+
+	<!-- 신고된 게시글 삭제 -->
 	<delete id="reportpostdelete" parameterType="int">
-		delete from post where post_num_pk = #{post_num_pk}
+		delete from post
+		where post_num_pk = #{post_num_pk}
 	</delete>
-	
+
 	<!-- 신고된 게시글 취소 -->
 	<delete id="reportpostcancle" parameterType="int">
-		delete from po_report where porp_num_pk = #{porp_num_pk}
+		delete from
+		po_report where porp_num_pk = #{porp_num_pk}
 	</delete>
-	 
-	
-	<!--  신고된 리뷰 삭제 -->
+
+
+	<!-- 신고된 리뷰 삭제 -->
 	<delete id="reportreviewdelete" parameterType="int">
-		delete from vlntr_rv where vr_rvn_pk = #{vr_rvn_pk}
+		delete from
+		vlntr_rv where vr_rvn_pk = #{vr_rvn_pk}
 	</delete>
-	
-	<!--  신고된 리뷰 취소 -->
+
+	<!-- 신고된 리뷰 취소 -->
 	<delete id="reportreviewcancle" parameterType="int">
-		delete from re_report where rerp_num_pk = #{rerp_num_pk}
+		delete from
+		re_report where rerp_num_pk = #{rerp_num_pk}
 	</delete>
 
 

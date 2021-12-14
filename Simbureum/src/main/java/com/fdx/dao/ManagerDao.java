@@ -44,8 +44,8 @@ public class ManagerDao {
 	}
 	 
 	//공지 작성
-		public void writeanc(HashMap<String,Object> map) throws Exception {
-			this.sqlSessionTemplate.insert("mappers.Manager.writeanc",map);
+		public void writeanc(managerDTO manager) throws Exception {
+			this.sqlSessionTemplate.insert("mappers.Manager.writeanc",manager);
 	
 		}
 	//공지 수정	
@@ -102,8 +102,8 @@ public class ManagerDao {
 		}
 	
 		//신고된 게시글 보기
-		public managerDTO reportpost(int mb_num_pk) throws Exception{
-			managerDTO reportpost = this.sqlSessionTemplate.selectOne("mappers.Manager.reportpost", mb_num_pk);
+		public managerDTO reportpost(managerDTO manager) throws Exception{
+			managerDTO reportpost = this.sqlSessionTemplate.selectOne("mappers.Manager.reportpost",manager);
 			
 			return reportpost;
 		}

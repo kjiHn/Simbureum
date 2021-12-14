@@ -1,16 +1,21 @@
 package com.fdx.controllers;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fdx.dao.ManagerDao;
 import com.fdx.dto.managerDTO;
@@ -98,11 +103,9 @@ public class MNGController {
 	  // 공지 작성(공지 저장)
 		
 	  @RequestMapping(value = "/MNGwriteancIns", method = RequestMethod.POST)
-	  public String MNGwriteanc(@RequestParam(required = true) String post_title,@RequestParam(required = true)String post_con) throws Exception {
-		  HashMap<String,Object> map = new HashMap<String,Object>();
-		  map.put("title", post_title);
-		  map.put("con", post_con);
-		  managerDao.writeanc(map);
+	  public String MNGwriteanc(managerDTO manager) throws Exception {
+		  
+		  managerDao.writeanc(manager);
 		  
 		 return "redirect:/MNGancboard";
 	  
@@ -177,15 +180,18 @@ public class MNGController {
 
 	// 신고된 게시글 보기
 		@RequestMapping(value = "/MNGrptboard", method = RequestMethod.GET)
-		public String MNGrptboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {
+		public String MNGrptboard(managerDTO manager,Model model) throws Exception {
 			
-			managerDTO reportpost = managerDao.reportpost(mb_num_pk);
+			System.out.println("manager"+manager);
+			managerDTO reportpost = managerDao.reportpost(manager);
 			model.addAttribute("reportpost", reportpost);
+			System.out.println("reportpost"+reportpost);
 			return "Manager/MNGrptboard";
 		}
 	//신고된 리뷰 보기
 	@RequestMapping(value = "/MNGrvboard", method = RequestMethod.GET)
 	public String MNGrvboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {
+
 		managerDTO reportreview = managerDao.reportreview(mb_num_pk);
 		model.addAttribute("reportreview", reportreview);
 		return "Manager/MNGrvboard";
@@ -195,22 +201,28 @@ public class MNGController {
 	  // 신고된 게시글 팝업 보기
 	  
 	  @RequestMapping( value = "/MNGPopupPost", method = RequestMethod.GET) 
-	  public String MNGPopupPost(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
+	  @ResponseBody
+	  public JSONObject MNGPopupPost(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
 	  
 	  List<managerDTO> popuppost = managerDao.popuppost(mb_num_pk);
-	  model.addAttribute("popuppost", popuppost);
-	  
-	  return "Manager/MNGPopupPost"; }
+      JSONObject finalJsonObject1 = new JSONObject(); // 중괄호로 감싸 대괄호의 이름을 정의함 { "c" : [{  "a" : "1", "b" : "2" }] }
+      finalJsonObject1.put("data", popuppost);
+	  return finalJsonObject1;
+ 
+	  }
 	  
 	  // 신고된 리뷰 팝업 보기
 	  
 	  @RequestMapping(value = "/MNGPopupReview", method = RequestMethod.GET)
-	  public String MNGPopupReview(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
+	  @ResponseBody
+	  public JSONObject MNGPopupReview(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
+	  
 	  
 	  List<managerDTO> popupreview = managerDao.popupreview(mb_num_pk);
-	  model.addAttribute("popupreview", popupreview);
-	  
-	  return "Manager/MNGPopupReview"; }
+      JSONObject finalJsonObject1 = new JSONObject(); // 중괄호로 감싸 대괄호의 이름을 정의함 { "c" : [{  "a" : "1", "b" : "2" }] }
+      finalJsonObject1.put("", popupreview);
+	  return finalJsonObject1; 
+	  }
 	 
 	 
 		

@@ -109,7 +109,30 @@ public class managerDTO {
 	private String vr_mbid; //리뷰받은사람
 	private Date vr_date; //리뷰작성일
 	
+	//고용자 리뷰
+	private int er_num_pk; //리뷰번호
+	private String mb_id_pk; //작성자
+	private String er_rvc; //리뷰내용
 	
+	
+	public int getEr_num_pk() {
+		return er_num_pk;
+	}
+	public void setEr_num_pk(int er_num_pk) {
+		this.er_num_pk = er_num_pk;
+	}
+	public String getMb_id_pk() {
+		return mb_id_pk;
+	}
+	public void setMb_id_pk(String mb_id_pk) {
+		this.mb_id_pk = mb_id_pk;
+	}
+	public String getEr_rvc() {
+		return er_rvc;
+	}
+	public void setEr_rvc(String er_rvc) {
+		this.er_rvc = er_rvc;
+	}
 	public Date getVr_date() {
 		return vr_date;
 	}

@@ -79,11 +79,11 @@
 		<table>
 			<tr>
 				<th>제목 : </th>
-				<td><input name="post_title" class="textinput" placeholder="제목 입력" /></td>
+				<td><input name="ntc_title" class="textinput" placeholder="제목 입력" /></td>
 			</tr>
 			<tr>
 				<th>내용 : </th>
-				<td><textarea name="post_con" class="content" placeholder="내용 입력"></textarea></td>
+				<td><textarea name="ntc_con" class="content" placeholder="내용 입력"></textarea></td>
 			</tr>
 			
 		</table>
