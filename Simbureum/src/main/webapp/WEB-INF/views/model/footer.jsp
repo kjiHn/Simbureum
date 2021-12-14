@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="/resources/view/assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/view/assets/img/logo/loder1.jpg">
 
     <!-- CSS here -->
 	<link rel="stylesheet" href="/resources/view/assets/css/total.css">
@@ -22,7 +22,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="view/assets/img/logo/loder.png" alt="">
+                    <img src="view/assets/img/logo/loder1.jpg" alt="">
                 </div>
             </div>
         </div>

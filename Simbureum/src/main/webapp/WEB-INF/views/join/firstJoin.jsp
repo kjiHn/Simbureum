@@ -8,7 +8,7 @@
 <title>해줘~할게</title>
 <link rel="stylesheet" href="/resources/css5/style.css">
 <link rel="shortcut icon" type="image/x-icon"
-	href="/resources/view/assets/img/favicon.ico">
+	href="/resources/view/assets/img/logo/loder1.jpg">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 body {

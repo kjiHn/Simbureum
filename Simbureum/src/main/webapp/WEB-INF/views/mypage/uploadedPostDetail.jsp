@@ -280,8 +280,34 @@
 								<c:forEach var="volRe" items="${volRe}" varStatus="status">
 									<tr>
 										<td>
-										<input type="text" id="er_mbid" value="${volRe.mb_id}" />
-											<a  data-toggle="modal" data-target="#exampleModal3" id="btn" href="" style="color: black">ID : ${volRe.mb_id}</a>
+										<input type="text" id="er_mbid${status.index}" value="${volRe.mb_id}" />
+											<a  data-toggle="modal" data-target="#exampleModal3" id="btn${status.index}" href="" style="color: black">ID : ${volRe.mb_id}</a>
+											<script>
+											$("#btn${status.index}").click(function(){
+												var er_mbid = document.getElementById("er_mbid${status.index}").value;
+												console.log(er_mbid);
+												$.ajax({	
+													  url : "/Ereview/EgrdAvg/",	
+													  type : "POST",	
+													  dataType : "json",	
+													  data : {"er_mbid" : er_mbid},	
+													  success : function(data){
+														  
+														  alert(data);
+														  var str = JSON.stringify(data);
+														  alert(str);
+														  for(var i=0; i<data.length; i++){
+															 console.log(data[i].er_mbid);
+															 $("#demo").append(data[i].er_mbid + " ");
+															 $("#demo").append(data[i].er_grd + " ");
+															 $("#demo").append(data[i].er_rvc + " ");
+															 
+														 }
+													  }	
+												  });
+												
+											});
+											</script>
 										</td>
 										<td rowspan="2">
 											&nbsp;&nbsp;&nbsp;<input type="checkbox" name="selected" value="${volRe.mb_id}">
@@ -348,37 +374,6 @@
 				alert(sentence);
 			}
 		});
-		
-		
-		$("#btn").click(function(){
-			var er_mbid = $("#er_mbid").val(); 
-			//console.log(er_mbid);
-			/* $.ajax({	
-				  url : "/Ereview/EgrdAvg/",	
-				  type : "POST",	
-				  dataType : "json",	
-				  data : {"er_mbid" : er_mbid},	
-				  success : function(data){
-					  
-					  alert(data);
-					  var str = JSON.stringify(data);
-					  alert(str);
-					  for(var i=0; i<data.length; i++){
-						 $("#demo").append(data[i].vr_mbid + " ");
-						 $("#demo").append(data[i].vr_grd + " ");
-						 $("#demo").append(data[i].vr_rvc + " ");
-						 
-						 
-					 }
-				  }	
-			  }); 	 */
-			
-			
-			
-		});
-		
-		
-		
 		
 		
 	</script>
@@ -457,17 +452,7 @@
 			</div>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 171px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />

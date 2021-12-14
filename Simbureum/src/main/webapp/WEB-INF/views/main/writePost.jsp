@@ -49,15 +49,15 @@
 	
 		<h2 class="contact-title" align="center">심부름 작성</h2>
 	
-		<form method="POST" action="writePost">
+		<form method="POST" action="writePost" id="writeForm">
 			<table>
 				<tr>
 					<th>제목 : </th>
-					<td><input name="post_title" class="textinput" placeholder="제목 입력" /></td>
+					<td><input name="post_title" class="textinput" id="title" placeholder="제목 입력" /></td>
 				</tr>
 				<tr>
 					<th>내용 : </th>
-					<td><textarea name="post_con" class="content" placeholder="내용 입력"></textarea></td>
+					<td><textarea name="post_con" class="content" id="content" placeholder="내용 입력"></textarea></td>
 				</tr>
 				<tr>
 					<th>위치 : </th>
@@ -74,20 +74,20 @@
 				</tr>
 				<tr>
 					<th>마감일 : </th>
-					<td><input name="post_dline" class="textinput" placeholder="마감일 입력(ex.2021/01/01)" /></td>
+					<td><input name="post_dline" class="textinput" id="dline" placeholder="마감일 입력(ex.2021/01/01)" /></td>
 				</tr>
 				<tr>
 					<th>심부름꾼 수 : </th>
-					<td><input name="post_numof" class="textinput" placeholder="심부름꾼 수 입력" /></td>
+					<td><input name="post_numof" class="textinput" id="numof" placeholder="심부름꾼 수 입력" /></td>
 				</tr>
 				<tr>
 					<th>심부름 가격 : </th>
-					<td><input name="post_price" class="textinput" placeholder="심부름 가격 입력"/></td>
+					<td><input name="post_price" class="textinput" id="price" placeholder="심부름 가격 입력"/></td>
 				</tr>
 			</table>
 			<br><br>
 			<div style="text-align: center">
-				<input type="submit" class="bigBtn" value="완료">
+				<input type="button" class="bigBtn" id="clickButton" value="완료">
 			</div>
 			
 		</form>
@@ -95,6 +95,35 @@
 	</div>
 	</section>
 	
+	<script type="text/javascript">
+		$("#clickButton").on('click', function(){
+			var title = $("#title").val();
+			var content = $("#content").val();
+			var loc = $("#bigCategory").val();
+			var dline = $("#dline").val();
+			var numof = $("#numof").val();
+			var price = $("#price").val();
+			var datatimeRegexp = /^([0-9]{4})\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$/;
+			
+			if(title == ''){
+				alert("제목을 입력해주세요.");
+			}else if(content == ''){
+				alert("내용을 입력해주세요.");
+			}else if(loc == 0){
+				alert("위치를 선택해주세요.");
+			}else if(dline == ''){
+				alert("마감일을 입력해주세요.");
+			}else if (!datatimeRegexp.test(dline)) {
+		        alert("마감일은 yyyy-mm-dd 형식으로 입력해주세요.");
+		    }else if(numof == ''){
+				alert("심부름꾼 수를 입력해주세요.");
+			}else if(price == ''){
+				alert("심부름 가격을 입력해주세요.");
+			}else{
+				$("#writeForm").submit();
+			}
+		})
+	</script>
 	
 	<script>
 		$(document).ready(function(){

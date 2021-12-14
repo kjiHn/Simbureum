@@ -33,7 +33,7 @@
     <!-- Login Admin -->
     <form id = "testForm"class="form-default" action="" method="POST">
         <div class="login-form"> 
-            <h2>해줘~할게</h2> 
+            <h2>해줘~할게!</h2> 
             
            <div> <!-- 일반, 관리자 체크 -->
                 <input type="radio" name="chk_info" value="1" checked="checked">일반 회원    &nbsp;&nbsp;&nbsp;       
@@ -42,11 +42,11 @@
             
             <div class="form-input">
                 <label for="ID">ID</label>
-                <input id="Id"  type="text" name="ID" placeholder="아이디를 입력해주세여">
+                <input id="Id"  type="text" name="ID" placeholder="아이디 입력">
             </div>
             <div class="form-input">
                 <label for="password">Password</label>
-                <input id="pswd" type="password" name="password" placeholder="Password" >
+                <input id="pswd" type="password" name="password" placeholder="비밀번호 입력" >
                 <p id="login_error" class="validation-check"></p>
             </div>
             <div class="form-input pt-30">

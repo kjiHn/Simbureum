@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/logo/loder1.jpg">
 
     <!-- CSS here -->
 	<link rel="stylesheet" href="/resources/view/assets/css/total.css">
@@ -39,8 +39,8 @@
                         <div class="col-xl-8 col-lg-9 col-md-12 ">
                             <div class="hero__caption hero__caption2 text-center">
                                 <h1 data-animation="fadeInLeft" data-delay=".6" style="z-index: 1; position: relative">심부름 해줘~ 할게!</h1>
-                                <h2 style="z-index: 1; position: relative; width: 700px">
-                                	'해줘~ 할게!'는 누구든 심부름을 시킬 수도 있고 할 수도 있는 사이트입니다.<br>
+                                <h2 style="z-index: 1; position: relative; width: 700px; color: white">
+                                	'해줘~ 할게!'는 누구든지 심부름을 시킬 수 있고 할 수도 있는 사이트입니다.<br>
                                 	심부름을 작성하여 도움을 요청하거나 <br>등록된 심부름에 심부름꾼을 지원해보세요. 
                                 </h2>
                             </div>
@@ -50,7 +50,7 @@
             </div>    
             <!-- Slider Shape -->
             <div class="slider-shape d-none d-lg-block" >
-                <img class="slider-shape1" src="/resources/view/assets/img/hero/home.jpg" style="width:100%;  height:100%;  object-fit:cover; opacity: 0.5">
+                <img class="slider-shape1" src="/resources/view/assets/img/hero/home.jpg" style="width:100%;  height:100%;  object-fit:cover; opacity: 0.7">
                 <!-- <img class="slider-shape1" src="view/assets/img/hero/home.jpg" style=" object-fit: cover;"> -->
             </div>
             <div class="pricing-card-area pricing-card-area2 fix section-bg1" >

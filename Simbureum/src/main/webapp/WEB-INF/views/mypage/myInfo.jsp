@@ -21,7 +21,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="#">
 <link rel="shortcut icon" type="image/x-icon"
-	href="view/assets/img/favicon.ico">
+	href="view/assets/img/logo/loder1.jpg">
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
 td {
@@ -87,7 +89,7 @@ th {
 
 
 
-	<section class="blog_area single-post-area section-padding" id = "sec">
+	<section class="blog_area single-post-area section-padding" id = "sec" style="padding-top: 175px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
@@ -118,10 +120,10 @@ th {
 							</table>
 							<br> <br> <br>
 							<div class="form-group mt-3" style="margin-left: 20px;">
-								<button class="button button-contactForm boxed-btn" id="btn_up">회원정보
+								<button class="bigBtn" id="btn_up">회원정보
 									변경</button>
 								<a href="/user/mbDelete?mb_id=${mb_info.mb_id }"><button
-										class="button button-contactForm boxed-btn" id="btn_del">회원
+										class="bigBtn" id="btn_del">회원
 										탈퇴</button></a>
 							</div>
 						</div>
@@ -137,12 +139,12 @@ th {
 			<h2>비밀번호 확인</h2> 
 			<label
 				style="font-weight: bold; font-size: 20px; margin-right: 15px;">비밀번호:</label>
-			<input type="password" name="pswdCheck" placeholder="비밀번호를 입력해주세여"
+			<input type="password" name="pswdCheck" placeholder="비밀번호 입력"
 				class="single-input" style="display: inline; width: 50%;" id="inputPswd">
 				<p class="validation-check" id="join_pswd_error"></p>
-			<button id="goUpdate" class="button  boxed-btn"
+			<button id="goUpdate" class="smallBtn"
 				style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">확인</button>
-			<button id="close" class="button  boxed-btn"
+			<button id="close" class="smallBtn"
 				style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">닫기</button>
 		</div>
 	</div>

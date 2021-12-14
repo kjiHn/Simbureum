@@ -26,7 +26,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="#">
 <link rel="shortcut icon" type="image/x-icon"
-	href="view/assets/img/favicon.ico">
+	href="view/assets/img/logo/loder1.jpg">
 
 <style type="text/css">
 .button {
@@ -54,8 +54,7 @@
 <body>
 
 
-
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 175px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />

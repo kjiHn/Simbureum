@@ -65,7 +65,7 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon"
-	href="/resources/view/assets/img/favicon.ico">
+	href="/resources/view/assets/img/logo/loder1.jpg">
 <link rel="apple-touch-icon-precomposed" sizes="57x57"
 	href="https://davidhellmann.com/assets/images/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -98,7 +98,7 @@
 	href="/resources/view/assets/img/logo/3.png"
 	sizes="128x128" />
 <link rel="icon"
-	href="/resources/view/assets/img/favicon.ico">
+	href="/resources/view/assets/img/logo/loder1.jpg">
 <meta name="application-name"
 	content="David Hellmann — Digital Designer &amp; Developer" />
 <meta name="msapplication-TileColor" content="#111111" />

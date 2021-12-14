@@ -26,7 +26,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="#">
 <link rel="shortcut icon" type="image/x-icon"
-	href="view/assets/img/favicon.ico">
+	href="view/assets/img/logo/loder1.jpg">
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
 .header {
@@ -85,7 +87,7 @@
 
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 175px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
@@ -95,31 +97,31 @@
 						<h1 class="header">탈퇴 안내</h1>
 						<div class="col-lg-8 posts-list"
 							style="padding: 30px 50px; height: 600px; max-width: 100%;">
-								<p class="pContent">사용하고 계신 아이디(벌레시러)는 탈퇴할 경우 복구가 불가능합니다.</p>
+								<p class="pContent">사용하고 계신 아이디(${mb_id})는 탈퇴할 경우 복구가 불가능합니다.</p>
 
 								<p class="pContent">탈퇴할 경우 회원정보와 심부름꾼이 지원하지 않은 게시글이 삭제됩니다.
 								<p>
 								<p class="pContent">탈퇴 후에도 심부름이 완료된 게시글 및 리뷰에 관한 정보는 삭제되지
-									않습니다</p>
+									않습니다.</p>
 								<div class="checkContent">
 
 									<div style="padding: 20px; margin-bottom: 15px;">
 										<input type="checkbox" name="check" id=checkMust><label
-											for="checkMust">안내 사항을 모두 확인하였으며, 이에 동의합니다</label>
+											for="checkMust">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label>
 									</div>
 									<div style="display: block;">
 										<label
 											style="font-weight: bold; font-size: 20px; margin-right: 15px;">비밀번호:</label>
-										<input type="password" name="pswdCheck" placeholder="비밀번호를 입력해주세여"
+										<input type="password" name="pswdCheck" placeholder="비밀번호를 입력해주세요."
 											class="single-input" style="display: inline; width: 50%;"
 											disabled="disabled" id ="inputPswd">
 									</div>
 								</div>
 								<br> <br> <br>
 								<div class="form-group mt-3" style="margin-left: 33%;">
-									<button class="button button-contactForm boxed-btn" id="btn_up">회원탈퇴</button>
+									<button class="bigBtn" id="btn_up">회원탈퇴</button>
 								</div>
-								<input type="hidden" value="${mb_id }" name="mb_id"  id = "mb_id"/>
+								<input type="hidden" value="${mb_id}" name="mb_id" id = "mb_id"/>
 						</div>
 					</div>
 				</div>
@@ -133,7 +135,7 @@
 		<div class="modal_content"
 		title="클릭하면 창이 닫힙니다.">
 		회원탈퇴가 완료되었습니다.<br>
-		그동안 이용해 주셔서 감사합니다<br>
+		그동안 이용해 주셔서 감사합니다.<br>
 		<button id="deleteMb" class="button  boxed-btn" style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">창닫기</button>
 		</div>
 	</div>
