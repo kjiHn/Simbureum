@@ -70,7 +70,7 @@ public class ReviewController {
 		
 		//심부름꾼이 고용자에게 작성하는 리뷰
 		 @RequestMapping(value = "/reInsert", method = RequestMethod.POST) 
-		 public String reInsertPOST(Model model, Vlntr_RvDTO vrdto,RedirectAttributes redirect, @RequestParam(value = "vr_mbid") String mb_id) throws Exception {
+		 public String reInsertPOST(Model model, Vlntr_RvDTO vrdto,RedirectAttributes redirect, @RequestParam(value = "mb_id_pk") String mb_id) throws Exception {
 			 int data = vlservice.reInsertCheck(vrdto);
 			 try {
 				  if(data == 1) {

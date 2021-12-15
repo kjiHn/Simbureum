@@ -92,7 +92,7 @@
 					</c:if>
 					
 					<c:if test="${grdAvg.vr_grd != null }">
-					 <table style="text-align: left; width: 330px;">
+					 <table style="text-align: left; width: 300px; word-break: break-all;">
                      <thead>
                         <tr >
                            <th>

@@ -2,12 +2,15 @@ package com.fdx.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Ern_RvDTO {
 	private int er_num_pk;     //리뷰 번호 
 	private int post_num_pk;   //게시글 번호
 	private String mb_id_pk;   //작성자
     private int er_grd;        //별점
     private String er_rvc;     //리뷰내용
+    @JsonFormat(pattern = "yyyy-MM-dd") //Ajax에 날짜형 데이터로 주기 위해 
     private Date er_date;      //작성일
     private String er_mbid;    //받은사람
     

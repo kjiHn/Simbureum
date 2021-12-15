@@ -25,7 +25,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/logo/loder1.jpg">    
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">   
+    <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" /> 
 </head>
 <body>
 

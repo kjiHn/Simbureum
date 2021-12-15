@@ -14,7 +14,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/logo/loder1.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+    <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     
     
@@ -33,22 +34,6 @@ th {
 	width: 100px;
 	text-align: right;
 }
-table {
-	
-	
-}
-
-#btn_up{
-	padding: 10px 44px; position: absolute;
-}
-#btn_del{
-	padding: 10px 44px; margin-left:  200px; position: absolute;
-}
-
-#btn1{
-	padding: 10px 44px;
-}
-
 
 .star-vr_grd {
   border:solid 1px #ccc;
@@ -77,6 +62,10 @@ table {
 .star-vr_grd label:hover,
 .star-vr_grd label:hover ~ label {
   color:#fc0;
+}
+#message{
+ 	font-size: 20px;
+ 	resize: none;
 }
 
 
@@ -116,8 +105,8 @@ article {
 						</div>
 						<div class="modal-body">게시물을 삭제하시겠습니까?</div>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" onclick="clickDel(Delete)">삭제하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+							<button type="button" class="bigBtn" id="btn1" onclick="clickDel(Delete)">삭제하기</button>
+							<button type="button" class="bigBtn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 					</div>
 				</div>
@@ -175,7 +164,7 @@ article {
                         <tr style="border-top: 2px solid  #eceff8; ">
                            <th>내용</th>
                            <td style="height: 200px;">
-                           <div class="form-group"><textarea class="form-control w-100" name="vr_rvc" style="font-size: 20px;" id="message" cols="30" rows="9">${wrList.vr_rvc }</textarea>
+                           <div class="form-group"><textarea class="form-control w-100" name="vr_rvc" id="message" cols="30" rows="9">${wrList.vr_rvc }</textarea>
 								</div>
                            </td>                            
                         </tr>
@@ -186,8 +175,8 @@ article {
 						</div>
 						</form>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickUpdate(updateOk)" >수정하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+							<button type="button" class="bigBtn" id="btn1"  onclick="clickUpdate(updateOk)" >수정하기</button>
+							<button type="button" class="bigBtn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 						
 						 
@@ -232,58 +221,41 @@ article {
 
 
 
-   <section class="blog_area single-post-area section-padding">
+    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
             <jsp:include page="../model/siderbar2.jsp" flush="false" />
-            <div class="col-lg-8 posts-list" style="margin-left: 200px;">
-               <div class="slider-shape d-none d-lg-block">
-                <div class="col-lg-8 posts-list" style=" padding:  30px 50px; height:600px; border: 4px solid #e3c4ff; ">
+            <div class="col-lg-10 posts-list">
+					<h2 class="contact-title" align="center">심부름꾼 일때 작성한 리뷰</h2><hr>
+					<div class="slider-shape d-none d-lg-block">
                 
                 <form name="Delete">
-                	<input type="hidden"  name="mb_id_pk" value="${wrList.mb_id_pk }">
                 	<input type="hidden"  name="vr_rvn_pk" value="${wrList.vr_rvn_pk }">
+                	<input type="hidden"  name="mb_id_pk" value="<%=session.getAttribute("mid")%>">                	
                 </form>
-             
-                
-               <table style="text-align: center; width: 400px; align: center;" >
-                     <thead>
-                     	
-                        <tr>
-                           <th>From.</th>
-                           <td ><c:out value=" ${wrList.mb_id_pk }"></c:out></td>                                                      
-                        </tr > 
-                        <tr>
-                        	<th>해당 게시글</th>
-                            <td><c:out value=" ${wrList.post_title}"></c:out></td>
-                        </tr>
-                        
-                        <tr>
-                        	<th >작성일</th>                           
-                           <td><fmt:formatDate value="${wrList.vr_date }" pattern="yyyy.MM.dd"/></td>
-                        </tr>
-                         <tr>
-                        	 <th >별점</th>
-                             <td style="color: #ffc107"><c:if test="${wrList.vr_grd == 1}">★☆☆☆☆</c:if>
+             	
+             	<div>						   
+						    <p align="right">작성자: <c:out value=" ${wrList.mb_id_pk }"></c:out>&nbsp;
+						    	작성일: <fmt:formatDate value="${wrList.vr_date }" pattern="yyyy.MM.dd"/></p>
+							<p align="left" style="margin-left: 100px;">해당 게시글 : <c:out value=" ${wrList.post_title}"></c:out></p> 					                           		 
+						   <p style="margin-left: 100px; position: absolute;">별점 : <p align="left" style="color: #ffc107; margin-left: 150px;">
+						    	<c:if test="${wrList.vr_grd == 1}">★☆☆☆☆</c:if>
 	                            <c:if test="${wrList.vr_grd == 2}">★★☆☆☆</c:if>
 	                            <c:if test="${wrList.vr_grd == 3}">★★★☆☆</c:if>
                            		<c:if test="${wrList.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${wrList.vr_grd == 5}">★★★★★</c:if>
-                           	</td>
-                        </tr>
-                        <tr style="border-top: 2px solid  #eceff8;">
-                           <th >내용</th>
-                           
-                           <td style="height: 200px;"><c:out value=" ${wrList.vr_rvc}"></c:out></td> 
-                        </tr>
-                     </thead>
-                  </table>
-                  <br>
-                  <br>
-                 <div class="form-group mt-3" style="margin-left: 20px;">
-                 
-            		<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal1" id="btn_up">수정하기</button>
-					<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" id="btn_del">삭제하기</button>
+                           		<c:if test="${wrList.vr_grd == 5}">★★★★★</c:if></p>
+							<table style="text-align: center; width: 800px; height: 300px; margin: auto; ">
+								<tr>
+									<td style="vertical-align: text-top;">
+									<c:out value=" ${wrList.vr_rvc}"></c:out>
+									</td>
+								</tr>
+							</table>
+							<hr>
+						</div>
+                 <div style="margin-left: 30%;">
+            		<button  class="bigBtn" data-toggle="modal" data-target="#exampleModal1" id="btn_up">수정하기</button>
+					<button  class="bigBtn"  data-toggle="modal" data-target="#exampleModal" id="btn_del">삭제하기</button>
 				</div>
              
                </div>
@@ -291,7 +263,7 @@ article {
             </div>
 
          </div>
-      </div>
+     
    </section>
 
 

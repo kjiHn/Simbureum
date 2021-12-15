@@ -8,6 +8,7 @@
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
 .button {
@@ -35,6 +36,7 @@
 	width: 970px;
 	align: center;
 	border: 1px solid #e3c4ff;
+	word-break: break-all;
 }
 
 .postTable td{
@@ -71,9 +73,6 @@
   color:#fc0;
 }
 
-#btn1{
-	padding: 10px 44px;
-}
 
 </style>	
 
@@ -148,8 +147,8 @@
 						</div>
 						</form>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickDel(EreInsert)" >작성하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+							<button type="button" class="bigBtn" id="btn1"  onclick="clickDel(EreInsert)" >작성하기</button>
+							<button type="button" class="bigBtn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 						
 						 
@@ -162,8 +161,13 @@
 				  var post_num_pk = $("#post_num_pk").val();
 				  var mb_id_pk = $("#mb_id_pk").val();
 				  var er_mbid = $("input:radio[name=er_mbid]:checked").val();
-				  console.log(er_mbid);
-				  //var mb_num_pk = $("#mb_num_pk").val();
+				  var er_rvc = $("#message").val();
+				 
+				  if(er_mbid == null){
+					  alert("심부름꾼을 선택해주세요");
+				  }else if(er_rvc ==''){
+					  alert("리뷰를 작성해주세요");
+				  }else{
 				 
 				  $.ajax({
 					  url : "/Ereview/EreInsertCheck",
@@ -188,6 +192,7 @@
 					  
 					  
 				  });  
+				  }
 				  
 				
 			}	
@@ -280,34 +285,7 @@
 								<c:forEach var="volRe" items="${volRe}" varStatus="status">
 									<tr>
 										<td>
-										<input type="text" id="er_mbid${status.index}" value="${volRe.mb_id}" />
-											<a  data-toggle="modal" data-target="#exampleModal3" id="btn${status.index}" href="" style="color: black">ID : ${volRe.mb_id}</a>
-											<script>
-											$("#btn${status.index}").click(function(){
-												var er_mbid = document.getElementById("er_mbid${status.index}").value;
-												console.log(er_mbid);
-												$.ajax({	
-													  url : "/Ereview/EgrdAvg/",	
-													  type : "POST",	
-													  dataType : "json",	
-													  data : {"er_mbid" : er_mbid},	
-													  success : function(data){
-														  
-														  alert(data);
-														  var str = JSON.stringify(data);
-														  alert(str);
-														  for(var i=0; i<data.length; i++){
-															 console.log(data[i].er_mbid);
-															 $("#demo").append(data[i].er_mbid + " ");
-															 $("#demo").append(data[i].er_grd + " ");
-															 $("#demo").append(data[i].er_rvc + " ");
-															 
-														 }
-													  }	
-												  });
-												
-											});
-											</script>
+											<a  data-toggle="modal" data-target="#exampleModal3" class="bt" href="" style="color: black" data-value ="${volRe.mb_id}">ID : ${volRe.mb_id}</a>
 										</td>
 										<td rowspan="2">
 											&nbsp;&nbsp;&nbsp;<input type="checkbox" name="selected" value="${volRe.mb_id}">
@@ -375,8 +353,8 @@
 			}
 		});
 		
+		</script>
 		
-	</script>
 	
 	
 	
@@ -390,60 +368,17 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content" style="width: 350px; margin: auto;">
 						<div class="modal-header">
-							<h2 class="modal-title" id="exampleModalLabel">고용자 리뷰 정보</h2>
+							<h2 class="modal-title" id="exampleModalLabel">심부름꾼 리뷰 정보</h2>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <h1><span aria-hidden="true">&times;</span></h1> 
 					        </button>
 						</div>
-					
-						<div class="modal-body" style="overflow: auto; height: 300px; ">
-						<%-- <c:if test="${grdAvg.vr_grd ==null }">
-					<body style="text-align: center;" >
-					<div style="color: white;">
-					<br><br><br><br>
-					<h3>선택하신 고용자의 리뷰가 없습니다</h3>
-					<p>심부름을 완료하고 첫 리뷰를 작성해주세요</p>
-					</div>
-					
-					</body>	
-					</c:if> --%>
-					
-					<%-- <c:if test="${grdAvg.vr_grd != null }"> --%>
-					 <table style="text-align: left; width: 330px;">
-                     <thead>
-                        <tr >
-                           <th>
-                           		<%-- <h2> <c:out value="${grdAvg.vr_mbid }"></c:out></h2>
-                           		<p>평점 <c:out value="${grdAvg.vr_grd }"></c:out> | 리뷰 수 <c:out value="${grdAvg.vr_rvn_pk }"></c:out></p>  --%>
-                           		<h3>리뷰</h3>
-                           		<p id="demo"></p>
-                           </th>
-                        </tr>
-                     </thead>
-					<c:forEach items="${reviewList }" var="vrdto">
-                         <tr>                 
-                           <td style="border-top: 1px solid gray;">ID : ${vrdto.vr_mbid}</td>
-                         </tr>
-                         <tr>
-                           <td>${vrdto.vr_date}</td>
-                           </tr>
-                           <tr>
-                           <td style="color: #ffc107;"> 
-	                            <c:if test="${vrdto.vr_grd == 1}">★☆☆☆☆</c:if>
-	                            <c:if test="${vrdto.vr_grd == 2}">★★☆☆☆</c:if>
-	                            <c:if test="${vrdto.vr_grd == 3}">★★★☆☆</c:if>
-                           		<c:if test="${vrdto.vr_grd == 4}">★★★★☆</c:if>
-                           		<c:if test="${vrdto.vr_grd == 5}">★★★★★</c:if>
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                           <td>${vrdto.vr_rvc }</td>
-                    	</tr>
-                    
-                   </c:forEach>
-                  </table>
-                 <%--  </c:if>		 --%>			
+						
+						<div class="modal-body" style="height: 300px; overflow: auto; ">
+						<h2>리뷰</h2>
+							<div >
+							<table id="reviewTable" style="text-align: left; width: 300px; word-break: break-all;" ></table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -451,8 +386,57 @@
 			
 			</div>
 	
+	<script type="text/javascript">
+		$(".bt").click(function(){
+			const value =  $(this).attr("data-value"); /*test6  */
+			/* alert(value); */
+			 $.ajax({	
+				  url : "/Ereview/EgrdAvg",	
+				  type : "POST",	
+				  dataType : "json",	
+				  data : {"er_mbid" : value},	
+				  success : function(data){
+					  $("#reviewTable").empty();
+					  for(var i=0; i < data.length; i++){
+						 $("#reviewTable").append("<tr><td style='border-top: 1px solid gray;'>ID : " + data[i].mb_id_pk + "</td></tr>");
+						 
+						 $("#reviewTable").append("<tr><td> 작성일 : " + data[i].er_date + "</td></tr>");
+						  if(data[i].er_grd == 5){
+						 	$("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★★★</td>");
+						 }else if(data[i].er_grd == 4){
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★★☆</td>"); 
+						 }else if(data[i].er_grd == 3){
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★☆☆</td>");
+						 }else if(data[i].er_grd == 2){
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★☆☆☆</td>");
+						 }else if(data[i].er_grd == 1){
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★☆☆☆☆</td>");
+						 }
+						 
+						 $("#reviewTable").append("<tr><td>" + data[i].er_rvc + "</td></tr>"); 
+						 
+					 }
+					
+					  
+					  
+					  
+				  }	
+			  }); 	 
+		});
+		
+		
+		</script>
 	
-	<section class="blog_area single-post-area section-padding" style="padding-top: 171px;">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<section class="blog_area single-post-area section-padding">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
@@ -513,7 +497,7 @@
 							<button class="button"  data-toggle="modal" data-target="#complete">심부름 완료</button>
 						</c:if>
 						<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
-							<button  class="button button-contactForm boxed-btn"  data-toggle="modal" data-target="#exampleModal" name="EreInsert" id="EreInsert" >심부름꾼에게 리뷰 작성</button>
+							<button  class="bigBtn"  data-toggle="modal" data-target="#exampleModal" name="EreInsert" id="EreInsert" >심부름꾼에게 리뷰 작성</button>
 						</c:if>
 						
 						<!-- Modal에서 사용하는 form -->
@@ -526,6 +510,33 @@
 			</div>
 		</div>
 	</section>
+	
+	
+	<script type="text/javascript">
+	 $("#EreInsert").ready(function(){	  	  	
+	  	  var post_num_pk = $("#post_num_pk").val();	
+		  var mb_id_pk = $("#mb_id_pk").val();	
+		  var er_mbid = $("#er_mbid").val();	
+		  	
+		  	
+		  $.ajax({	
+			  url : "/Ereview/EreInsertCheck",	
+			  type : "POST",	
+			  dataType : "json",	
+			  data : { "post_num_pk" : post_num_pk, "mb_id_pk" : mb_id_pk, "er_mbid" : er_mbid},	
+			  success : function(data){	
+				  if(data==1){	
+					$("#EreInsert").attr("disabled","disabled").trigger("create");	
+					$("#EreInsert").attr("style",'border-color: gray').trigger("create");
+					$("#EreInsert").text("리뷰 작성 완료").trigger("create");	
+				  }	
+			  }	
+		  }); 	
+  });	
+	
+	</script>
+	
+	
 	
 	
 		<form name="EreInsertCheck" >	

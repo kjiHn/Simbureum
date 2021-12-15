@@ -11,6 +11,7 @@
 <!-- 만든 버튼 css -->
 <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
+
 <style type="text/css">                                                                            
 .postTable {
 	text-align: center;
@@ -68,9 +69,7 @@ article {
   max-width:30em;
   padding:2em;
 }
-#btn1{
-	padding: 10px 44px;
-}
+
 </style>	
 
 <title>심부름 한 내역</title>
@@ -101,7 +100,7 @@ article {
                         <tr>
                         	 <th >별점</th>
                              <td> 
-                             	<div class="star-vr_grd" >									
+                             	<div class="star-vr_grd" >		
 								  <input type="radio" id="5-stars" id="vr_grd" name="vr_grd" value="5"/>
 								  <label for="5-stars" class="star"  style="font-size: 25px;">★</label>
 								  <input type="radio" id="4-stars" id="vr_grd" name="vr_grd" value="4" />
@@ -134,8 +133,8 @@ article {
 						</div>
 						</form>
 						<div class="modal-footer">
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1"  onclick="clickDel(reInsert)" >작성하기</button>
-							<button type="button" class="button button-contactForm boxed-btn" id="btn1" data-dismiss="modal">취소하기</button>
+							<button type="button" class="bigBtn" id="btn1"  onclick="clickDel(reInsert)" >작성하기</button>
+							<button type="button" class="bigBtn" id="btn1" data-dismiss="modal">취소하기</button>
 						</div>
 						
 						 
@@ -148,8 +147,13 @@ article {
 				  var post_num_pk = $("#post_num_pk").val();
 				  var mb_id_pk = $("#mb_id_pk").val();
 				  var vr_mbid = $("#vr_mbid").val();
+				  var vr_rvc = $("#message").val();
 				 
-				  $.ajax({
+				  
+				  if(vr_rvc == ''){
+					  alert("리뷰를 작성해주세요");
+				  }else{	
+				    $.ajax({
 					  url : "/review/reInsertCheck",
 					  type : "POST",
 					  dataType : "json",
@@ -159,10 +163,11 @@ article {
 							    alert("리뷰작성이 완료되었습니다.");
 							    formName.action = "/review/reInsert";
 								formName.method = "post";
-								formName.submit();  
+								formName.submit();	
 						  }
 					  }
 				  }); 
+				  }
 			} 
 			
 			</script>
@@ -195,7 +200,7 @@ article {
 					</c:if>
 					
 					<c:if test="${grdAvg.vr_grd != null }">
-					 <table style="text-align: left; width: 330px;">
+					 <table style="text-align: left; width: 300px;word-break: break-all;">
                      <thead>
                         <tr >
                            <th>
@@ -301,6 +306,7 @@ article {
 			  success : function(data){	
 				  if(data==1){	
 					$("#reInsert").attr("disabled","disabled").trigger("create");	
+					$("#reInsert").attr("style",'border-color: gray').trigger("create");
 					$("#reInsert").text("리뷰 작성 완료").trigger("create");	
 				  }	
 			  }	
