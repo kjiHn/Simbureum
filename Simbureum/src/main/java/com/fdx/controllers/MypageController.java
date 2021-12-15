@@ -109,11 +109,9 @@ public class MypageController {
 			if(post.getSel_vr() != null) {
 				String[] sel_vr = post.getSel_vr().split(", ");
 				System.out.println("***********");
-				System.out.println(sel_vr[0]);
 				model.addAttribute("vr", sel_vr);
 				for(int i=0; i<sel_vr.length;i++) {
 					erser.EreceiveList(sel_vr[i]);
-					
 				}
 			}
 			

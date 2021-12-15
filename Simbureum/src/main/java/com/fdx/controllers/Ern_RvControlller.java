@@ -30,7 +30,18 @@ public class Ern_RvControlller {
 	  @ResponseBody
 	  @RequestMapping(value = "/EreInsertCheck", method = RequestMethod.POST)
 	  public int reInsertCheck(Model model, Ern_RvDTO erdto) throws Exception {
-		  int data = erser.EreInsertCheck(erdto);
+		  int data=0;
+		  System.out.println("$$$$$$$$$$$$$$$$$$$$$");		  
+		  String[] er_mbid = erdto.getEr_mbid().split(", ");
+		 System.out.println(er_mbid[0]);
+		  for(int i=0;i<er_mbid.length; i++) {
+			  erdto.setEr_mbid(er_mbid[i]);
+			  data += erser.EreInsertCheck(erdto);
+			  
+		  }
+			
+			/* int data = erser.EreInsertCheck(erdto); */
+		  System.out.println(data);
 		  return data;
 	  }
 	  

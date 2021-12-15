@@ -104,7 +104,7 @@
 							 <div>
 								<c:forEach items="${vr }" var="vr">
 									<label for="${vr }">${vr }</label>
-									<input type="radio" name="er_mbid" id="${vr}" value="${vr}">
+									<input  type="radio" name="er_mbid" id="${vr}" value="${vr}">
 								</c:forEach>
 							</div>
 							
@@ -180,14 +180,7 @@
 							    formName.action = "/Ereview/EreInsert";
 								formName.method = "post";
 								formName.submit();  
-							  
-						  }else{
-							alert("이미 작성된 리뷰입니다.");
-						
-							
-							 
 						  }
-						  
 					  }
 					  
 					  
@@ -505,6 +498,9 @@
 							<input type="hidden"  name="post_num_pk" value="${post.post_num_pk}">
 						</form>
 						
+						<input type="hidden" id="mbid" value="${post.sel_vr}">
+						<input type="hidden" id="numof" value="${post.post_numof}">
+						
 					</div>
 				</div>
 			</div>
@@ -514,24 +510,23 @@
 	
 	<script type="text/javascript">
 	 $("#EreInsert").ready(function(){	  	  	
-	  	  var post_num_pk = $("#post_num_pk").val();	
-		  var mb_id_pk = $("#mb_id_pk").val();	
-		  var er_mbid = $("#er_mbid").val();	
-		  	
-		  	
-		  $.ajax({	
+	  	   var post_num_pk = $("#post_num_pk").val();	
+		   var mb_id_pk = $("#mb_id_pk").val();	
+		   var er_mbid = $("#mbid").val();
+		   var numof = $("#numof").val();
+		   $.ajax({	
 			  url : "/Ereview/EreInsertCheck",	
 			  type : "POST",	
 			  dataType : "json",	
 			  data : { "post_num_pk" : post_num_pk, "mb_id_pk" : mb_id_pk, "er_mbid" : er_mbid},	
 			  success : function(data){	
-				  if(data==1){	
-					$("#EreInsert").attr("disabled","disabled").trigger("create");	
-					$("#EreInsert").attr("style",'border-color: gray').trigger("create");
-					$("#EreInsert").text("리뷰 작성 완료").trigger("create");	
-				  }	
+					if(numof==data){
+						$("#EreInsert").attr("disabled","disabled").trigger("create");
+						$("#EreInsert").attr("style",'border-color: gray').trigger("create");
+						$("#EreInsert").text("리뷰작성 완료").trigger("create");
+					}
 			  }	
-		  }); 	
+		  }); 	 
   });	
 	
 	</script>
