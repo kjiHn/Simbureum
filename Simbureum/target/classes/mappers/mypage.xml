@@ -21,10 +21,11 @@
 	<select id="getListWithPaging" resultType="com.fdx.dto.MypageDTO">
 	<![CDATA[
 		select * from(
-    		SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.*, vh_date, pb.pbigc_name||' '||ps.psmallc_name as plant
+    		SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.*, vh_date, pb.pbigc_name||' '||pm.pmidc_name||' '||ps.psmallc_name as plant
     		FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
     		JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-    		JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+    		JOIN pmidc pm ON ps.pmidc_pk = pm.pmidc_pk
+            JOIN pbigc pb ON pm.pbigc_pk = pb.pbigc_pk
     		where p.mb_num_pk = #{mb_num_pk})
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} -1) * #{amount}
@@ -35,7 +36,6 @@
 	 select COUNT(*)
 	 FROM post p  FULL OUTER JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
             JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
 	 where p.mb_num_pk = #{mb_num_pk}
 	</select>
 	
@@ -43,14 +43,13 @@
 		resultType="com.fdx.dto.MypageDTO">
 	<![CDATA[
 	 select * FROM(
-		 SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.post_num_pk, p.mb_num_pk, post_title
-         , post_con, post_dline, post_numof, post_price, post_views
-         , post_date, sel_vr, pb.pbigc_name||' '||ps.psmallc_name as plant
-		 FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
-		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
+		 SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.*, pb.pbigc_name||' '||pm.pmidc_name||' '||ps.psmallc_name as plant
+		 FROM POST p JOIN Ap_post ap ON p.post_num_pk = ap.post_num_pk,  psmallc ps, pmidc pm, pbigc pb
 		 WHERE ap.mb_num_pk = #{mb_num_pk}
-		 and (p.sel_vr is null or p.sel_vr like '%'||#{mb_id}||'%'))
+		 and (p.sel_vr is null or p.sel_vr like '%'||#{mb_id}||'%')
+		 and ps.PSMALLC_PK = p.PSMALLC_PK
+         and pm.PMIDC_PK = ps.PMIDC_PK
+         and pb.PBIGC_PK = pm.PBIGC_PK)
   	where rn <= #{pageNum} * #{amount}
   	and rn > (#{pageNum} -1) * #{amount}
 	]]>
@@ -60,42 +59,37 @@
 		resultType="com.fdx.dto.MypageDTO">
 	<![CDATA[
 	select * FROM(
-		SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.post_num_pk, p.mb_num_pk, post_title
-         , post_con, post_dline, post_numof, post_price, post_views
-         , post_date, pb.pbigc_name||' '||ps.psmallc_name as plant
-         ,vh_date
-		FROM post p JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
-            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-		where sel_vr Like '%'||#{mb_id}||'%')
+		SELECT ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.*, pb.pbigc_name||' '||ps.psmallc_name as plant, vh_date
+		FROM post p JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk, psmallc ps, pmidc pm, pbigc pb
+		where sel_vr Like '%'||#{mb_id}||'%'
+		and ps.PSMALLC_PK = p.PSMALLC_PK
+        and pm.PMIDC_PK = ps.PMIDC_PK
+        and pb.PBIGC_PK = pm.PBIGC_PK)
   	where rn <= #{pageNum} * #{amount}
   	and rn > (#{pageNum} -1) * #{amount}  
 	]]>
 	</select>
 	
 	<select id="suptotalPage" resultType="int">
-	 select COUNT(*)
-	 FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
-		        JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-		        JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-	 where ap.mb_num_pk = #{mb_num_pk}
-	 and (p.sel_vr is null or p.sel_vr like '%'||#{mb_id}||'%')
+		select COUNT(*)
+		FROM POST p JOIN Ap_post ap  ON p.post_num_pk = ap.post_num_pk
+		where ap.mb_num_pk = #{mb_num_pk}
+		and (p.sel_vr is null or p.sel_vr like '%'||#{mb_id}||'%')
 	</select>
 	
 	<select id="finshtotalPage" resultType="int">
-	 select COUNT(*)
-	FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
-            JOIN psmallc ps ON p.psmallc_pk = ps.psmallc_pk
-            JOIN pbigc pb ON ps.pbigc_pk = pb.pbigc_pk
-	 where sel_vr Like '%'||#{mb_id}||'%'
+		select COUNT(*)
+		FROM post p  JOIN Vlntr_His vl ON p.post_num_pk = vl.post_num_pk
+		where sel_vr Like '%'||#{mb_id}||'%'
 	</select>
 	
 	<select id="selOnePost" parameterType="int" resultType="post">
-		select p.*, v.VH_DATE, s.PSMALLC_NAME, b.PBIGC_NAME, m.MB_ID
-		from member m, post p left join vlntr_his v on v.POST_NUM_PK = p.POST_NUM_PK,
-		(PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		select p.*, v.VH_DATE, s.PSMALLC_NAME, pm.PMIDC_NAME, pm.PMIDC_PK, b.PBIGC_NAME, m.MB_ID
+		from member m, post p left join vlntr_his v on v.POST_NUM_PK = p.POST_NUM_PK, psmallc s, pmidc pm, pbigc b
 		where p.POST_NUM_PK = #{post_num_pk}
 		and p.PSMALLC_PK = s.PSMALLC_PK
+		and pm.PMIDC_PK = s.PMIDC_PK
+        and b.PBIGC_PK = pm.PBIGC_PK
 		and p.MB_NUM_PK = m.MB_NUM_PK
 	</select>
 	
@@ -132,7 +126,7 @@
 	
 	<update id="updatePost" parameterType="post">
 		update post set POST_TITLE = #{post_title}, POST_CON = #{post_con}, POST_DLINE = #{post_dline},
-		 POST_NUMOF = #{post_numof}, PSMALLC_PK = #{psmallc_pk}, POST_PRICE = #{post_price}, POST_DATE = sysdate
+		 POST_NUMOF = #{post_numof}, PSMALLC_PK = #{psmallc_pk}, POST_PRICE = #{post_price}, POST_DATE = sysdate, POST_LAT = #{post_lat}, POST_LNG = #{post_lng}
 		where POST_NUM_PK = #{post_num_pk}
 	</update>
 	

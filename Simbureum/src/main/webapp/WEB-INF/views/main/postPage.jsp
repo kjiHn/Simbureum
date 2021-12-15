@@ -20,29 +20,12 @@
 %>
 
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
-.button {
-	background-color: white;
-	color: black;
-	border: 2px solid #BFA0ED;
-	padding: 2px 16px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border-radius: 20px;
-}
-
-.button:hover {
-	background-color: #BFA0ED;
-	color: white;
-}
-
 #postTable {
 	text-align: center;
 	width: 1200px;
@@ -92,7 +75,7 @@
 								<option value="0">시/군/구</option>
 							</select>
 							
-								<input type="button" class="button" id="changeLoc" value="조회" />
+								<input type="button" class="smallBtn" id="changeLoc" value="조회" />
 								
 							</form>
 						</div>
@@ -106,7 +89,7 @@
 								</select>
 								
 								<input id="searchInput" name ="value" class="textinput" placeholder="심부름 검색" />
-								<input type="button" class="button" id="search" value="검색" />
+								<input type="button" class="smallBtn" id="search" value="검색" />
 							</form>
 						</div>
 					</div>
@@ -132,12 +115,12 @@
 									<c:forEach items="${postList}" var="post" begin="0"
 										end="${fun:length(postList)}" step="1" varStatus="status">
 										<tr>
-											<td style="padding: 10px;">${status.index + 1}</td>
+											<td style="padding: 10px">${status.index + 1}</td>
 											<td style="width: 760px">
 												<a href="javascript:checkLogin(${post.post_num_pk});" style="color: black">${post.post_title}</a>
 											</td>
 											<td>${post.mb_id}</td>
-											<td>${post.pbigc_name} ${post.psmallc_name}</td>
+											<td>${post.pbigc_name} ${post.pmidc_name} ${post.psmallc_name}</td>
 											<td>${post.post_views}</td>
 											<td><fmt:formatDate value="${post.post_date}" pattern="yyyy.MM.dd" /></td>
 										</tr>

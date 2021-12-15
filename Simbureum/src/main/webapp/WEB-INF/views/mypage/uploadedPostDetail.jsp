@@ -6,42 +6,29 @@
 <%@ include file="../model/topBar_login.jsp" %>
 
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
+<!-- 만든 버튼 css -->
 <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
-.button {
-	background-color: white;
-	color: black;
-	border: 2px solid #BFA0ED;
-	padding: 2px 16px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border-radius: 20px;
-	float: right;
-}
-
-.button:hover {
-	background-color: #BFA0ED;
-	color: white;
-}
 
 .postTable {
 	text-align: center;
-	width: 970px;
 	align: center;
-	border: 1px solid #e3c4ff;
 	word-break: break-all;
 }
 
 .postTable td{
 	height: 30px;
-	width: 800px;
+	width: 300px;
+	text-align: left;
+}
+
+.postTable th{
+	width: 170px;
 }
 
 .star-er_grd {
@@ -79,16 +66,15 @@
 <title>올린 심부름</title>
 </head>
 <body>
-	<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
+
 <div class="col-md-auto">
 	
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
 
-			<!-- Modal -->
+			<!-- 심부름꾼에게 리뷰 작성 Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true"
-			>
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -191,7 +177,7 @@
 			}	
 			</script>	
 			</div>
-			</c:if>
+			
 
 	<!-- 심부름 삭제 Modal -->
 	<div class="col-md-auto">
@@ -208,8 +194,8 @@
 					<div class="modal-body">심부름을 삭제하시겠습니까?</div>
 					<input type="hidden" name="post_num_pk" value="${post.post_num_pk}"/>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="clickDel" >삭제</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						<button type="button" class="bigBtn" id="clickDel" >삭제</button>
+						<button type="button" class="bigBtn" data-dismiss="modal">취소</button>
 					</div>
 				</div>
 			</div>
@@ -245,8 +231,8 @@
 					</div>
 					<input type="hidden" name="post_num_pk" value="${post.post_num_pk}"/>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="clickComplete">확인</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						<button type="button" class="bigBtn" id="clickComplete">확인</button>
+						<button type="button" class="bigBtn" data-dismiss="modal">취소</button>
 					</div>
 				</div>
 			</div>
@@ -299,10 +285,10 @@
 					<input type="hidden" name="post_num_pk" value="${post.post_num_pk}"/>
 					<div class="modal-footer">
 						<c:if test="${checkVol == 0}">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+							<button type="button" class="bigBtn" data-dismiss="modal">확인</button>
 						</c:if>
 						<c:if test="${checkVol == 1}">
-							<button type="button" class="btn btn-primary" id="clickChoose">선택</button>
+							<button type="button" class="bigBtn" id="clickChoose">선택</button>
 						</c:if>
 					</div>
 				</div>
@@ -417,23 +403,16 @@
 			  }); 	 
 		});
 		
-		
-		</script>
+	</script>
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 117px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-10 posts-list">
+				<div class="col-lg-10 posts-list" style="padding-left: 40px;">
 					<h2 class="contact-title" align="center">올린 심부름</h2><hr>
 					<div class="slider-shape d-none d-lg-block">
 					
@@ -448,7 +427,7 @@
 								<td>
 									<c:if test="${empty post.sel_vr}">
 										모집중
-										<button class="button"  data-toggle="modal" data-target="#volList" style="position: relative; right: 300px">심부름꾼 보기</button>
+										<button class="smallBtn"  data-toggle="modal" data-target="#volList" >심부름꾼 보기</button>
 									</c:if>
 									<c:if test="${!empty post.sel_vr && empty post.vh_date}">진행중</c:if>
 									<c:if test="${!empty post.sel_vr && !empty post.vh_date}">완료</c:if>
@@ -457,15 +436,11 @@
 										(심부름꾼 : ${post.sel_vr})
 									</c:if>
 								</td>
-							
-							</tr>
-							<tr>
-								<th>내용</th>
-								<td>${post.post_con}</td>
+								<td id="map" style="width:450px; height:360px;" rowspan="5"></td>
 							</tr>
 							<tr>
 								<th>위치</th>
-								<td>${post.pbigc_name} ${post.psmallc_name}</td>
+								<td>${post.pbigc_name} ${post.pmidc_name} ${post.psmallc_name}</td>
 							</tr>
 							<tr>
 								<th>마감일</th>
@@ -479,19 +454,24 @@
 								<th>심부름 가격</th>
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
+							<tr style="height: 250px">
+								<td colspan="3" style="padding: 20px">${post.post_con}</td>
+							</tr>
 						</table>
 						<br><br>
-						<c:if test="${empty post.sel_vr}">
-							<input type="button" class="button" onclick="location.href='/mypage/updatePost/${post.post_num_pk}'" value="수정">
-							<button class="button"  data-toggle="modal" data-target="#delPost">삭제</button>
-							
-						</c:if>
-						<c:if test="${!empty post.sel_vr && empty post.vh_date}">
-							<button class="button"  data-toggle="modal" data-target="#complete">심부름 완료</button>
-						</c:if>
-						<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
-							<button  class="bigBtn"  data-toggle="modal" data-target="#exampleModal" name="EreInsert" id="EreInsert" >심부름꾼에게 리뷰 작성</button>
-						</c:if>
+						<div style="text-align: center">
+							<c:if test="${empty post.sel_vr}">
+								<input type="button" class="bigBtn" onclick="location.href='/mypage/updatePost/${post.post_num_pk}'" value="수정">
+								<button class="bigBtn"  data-toggle="modal" data-target="#delPost">삭제</button>
+								
+							</c:if>
+							<c:if test="${!empty post.sel_vr && empty post.vh_date}">
+								<button class="bigBtn"  data-toggle="modal" data-target="#complete">심부름 완료</button>
+							</c:if>
+							<c:if test="${!empty post.sel_vr && !empty post.vh_date}">
+								<button  class="bigBtn"  data-toggle="modal" data-target="#exampleModal" name="EreInsert" id="EreInsert" >심부름꾼에게 리뷰 작성</button>
+							</c:if>
+						</div>
 						
 						<!-- Modal에서 사용하는 form -->
 						<form id="deletePost">
@@ -507,6 +487,43 @@
 		</div>
 	</section>
 	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c11e1620d5e96294da73f9c7ec269f0e"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(${post.post_lat}, ${post.post_lng}), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(${post.post_lat}, ${post.post_lng}); 
+		
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
+		// 지도에 표시할 원을 생성합니다
+		circle = new daum.maps.Circle({
+			center : new daum.maps.LatLng(${post.post_lat}, ${post.post_lng}),  // 원의 중심좌표 입니다 
+			radius: 100, // 미터 단위의 원의 반지름입니다 
+			strokeWeight: 2, // 선의 두께입니다 
+			strokeColor: '#75B8FA', // 선의 색깔입니다
+			strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			strokeStyle: 'dashed', // 선의 스타일 입니다
+			fillColor: '#CFE7FF', // 채우기 색깔입니다
+			fillOpacity: 0.7  // 채우기 불투명도 입니다   
+		});
+		
+		// 지도에 원을 표시합니다 
+		circle.setMap(map);
+		
+	</script>
 	
 	<script type="text/javascript">
 	 $("#EreInsert").ready(function(){	  	  	
@@ -527,20 +544,17 @@
 					}
 			  }	
 		  }); 	 
-  });	
+  	});	
 	
 	</script>
 	
 	
-	
-	
-		<form name="EreInsertCheck" >	
-			<input type="hidden" id="post_num_pk" name = "post_num_pk" value="${post.post_num_pk }">	
-			<input type="hidden" id="mb_id_pk" name = "mb_id_pk" value="<%=session.getAttribute("mid")%>">	
-			<input type="hidden" id=er_mbid name = "er_mbid" value="${post.sel_vr }">	
-			<input type="hidden" id=mb_num_pk name = "mb_num_pk" value="${post.mb_num_pk }">	
-		</form>	
-						
-
+	<form name="EreInsertCheck" >	
+		<input type="hidden" id="post_num_pk" name = "post_num_pk" value="${post.post_num_pk }">	
+		<input type="hidden" id="mb_id_pk" name = "mb_id_pk" value="<%=session.getAttribute("mid")%>">	
+		<input type="hidden" id=er_mbid name = "er_mbid" value="${post.sel_vr }">	
+		<input type="hidden" id=mb_num_pk name = "mb_num_pk" value="${post.mb_num_pk }">	
+	</form>	
+		
 </body>
 </html>

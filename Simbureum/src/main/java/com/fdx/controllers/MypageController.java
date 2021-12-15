@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fdx.dto.Criteria;
-import com.fdx.dto.Ern_RvDTO;
 import com.fdx.dto.MypageDTO;
 import com.fdx.dto.PageMaker;
 import com.fdx.dto.PostDto;
@@ -100,12 +99,11 @@ public class MypageController {
 		return num;
 	}
 	
-	//올린 심부름 상세보기
 	//올린 심부름 상세보기	
-		@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)	
-		public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception {	
-			PostDto post = mypageService.onePost(postNum);	
-			model.addAttribute("post", post);		
+	@RequestMapping(value = "uploadedPostDetail/{post_num_pk}", method = RequestMethod.GET)	
+	public String writtenPost(@PathVariable("post_num_pk") int postNum, Model model) throws Exception {	
+		PostDto post = mypageService.onePost(postNum);	
+		model.addAttribute("post", post);		
 			if(post.getSel_vr() != null) {
 				String[] sel_vr = post.getSel_vr().split(", ");
 				System.out.println("***********");

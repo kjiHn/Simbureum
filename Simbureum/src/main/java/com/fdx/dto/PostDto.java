@@ -21,11 +21,15 @@ public class PostDto {
 	@JsonFormat(pattern = "yyyy-MM-dd") //Ajax에 날짜형 데이터로 주기 위해 
 	private Date post_date;			//작성일
 	private String sel_vr;			//선택된 심부름꾼 id
+	private double post_lat;		//위도
+	private double post_lng;		//경도
 	
 	private String mb_id;			//작성자 id
 	
 	private String pbigc_name;		//위치 대분류 이름
+	private String pmidc_name;		//위치 중분류 이름
 	private String psmallc_name;	//위치 소분류 이름
+	private int pmidc_pk;			//위치 중분류 번호(심부름 수정할 때 필요함)
 	
 	private Date vh_date;			//완료일
 	
@@ -120,6 +124,13 @@ public class PostDto {
 		this.pbigc_name = pbigc_name;
 	}
 	
+	public String getPmidc_name() {
+		return pmidc_name;
+	}
+	public void setPmidc_name(String pmidc_name) {
+		this.pmidc_name = pmidc_name;
+	}
+	
 	public String getPsmallc_name() {
 		return psmallc_name;
 	}
@@ -127,11 +138,32 @@ public class PostDto {
 		this.psmallc_name = psmallc_name;
 	}
 	
+	public int getPmidc_pk() {
+		return pmidc_pk;
+	}
+	public void setPmidc_pk(int pmidc_pk) {
+		this.pmidc_pk = pmidc_pk;
+	}
+	
 	public Date getVh_date() {
 		return vh_date;
 	}
 	public void setVh_date(Date vh_date) {
 		this.vh_date = vh_date;
+	}
+	
+	public double getPost_lat() {
+		return post_lat;
+	}
+	public void setPost_lat(double post_lat) {
+		this.post_lat = post_lat;
+	}
+	
+	public double getPost_lng() {
+		return post_lng;
+	}
+	public void setPost_lng(double post_lng) {
+		this.post_lng = post_lng;
 	}
 	
 	

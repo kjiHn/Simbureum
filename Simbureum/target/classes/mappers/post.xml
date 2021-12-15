@@ -6,18 +6,20 @@
 <mapper namespace="com.fdx.dao.PostDao">
 
 	<insert id="insertPost" parameterType="post">
-		insert into POST (POST_NUM_PK, MB_NUM_PK, POST_TITLE, POST_CON, POST_DLINE, POST_NUMOF, PSMALLC_PK, POST_PRICE, POST_DATE)
-		values(post_seqnum.nextval, #{mb_num_pk}, #{post_title}, #{post_con}, #{post_dline}, #{post_numof}, #{psmallc_pk}, #{post_price}, sysdate)
+		insert into POST (POST_NUM_PK, MB_NUM_PK, POST_TITLE, POST_CON, POST_DLINE, POST_NUMOF, PSMALLC_PK, POST_PRICE, POST_DATE, POST_LAT, POST_LNG)
+		values(post_seqnum.nextval, #{mb_num_pk}, #{post_title}, #{post_con}, #{post_dline}, #{post_numof}, #{psmallc_pk}, #{post_price}, sysdate, #{post_lat}, #{post_lng})
 	</insert>
 	
 	<select id="selectAll" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-			from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
 			and p.PSMALLC_PK = s.PSMALLC_PK
-			and p.SEL_VR is null)
+			and p.SEL_VR is null
+            and pm.PMIDC_PK = s.PMIDC_PK
+            and b.PBIGC_PK = pm.PBIGC_PK)
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} - 1) * #{amount}
 	 ]]>
@@ -32,11 +34,13 @@
 	<select id="selectByLoc" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-			from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
 			and p.PSMALLC_PK = #{psmallc_pk}
-			and p.PSMALLC_PK = s.PSMALLC_PK)
+			and p.PSMALLC_PK = s.PSMALLC_PK
+			and pm.PMIDC_PK = s.PMIDC_PK
+            and b.PBIGC_PK = pm.PBIGC_PK)
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} - 1) * #{amount}
 	 ]]>
@@ -44,11 +48,12 @@
 	
 	<select id="countSelectByLoc" parameterType="cri2" resultType="int">
 		select COUNT(*)
-		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		from post p, member m
 		where p.MB_NUM_PK = m.MB_NUM_PK
 		and p.PSMALLC_PK = #{psmallc_pk}
-		and p.PSMALLC_PK = s.PSMALLC_PK
 	</select>
+	
+	<!-- 여기까지 수정함 -->
 	
 	<select id="selectBySearch1" parameterType="cri2" resultType="post">
 	<![CDATA[
@@ -116,11 +121,13 @@
 	</select>
 	
 	<select id="selectOnePost" parameterType="int" resultType="post">
-		select p.POST_NUM_PK, p.POST_TITLE, p.POST_CON, p.POST_DLINE, p.POST_PRICE, p.POST_NUMOF, p.POST_VIEWS, p.POST_DATE, p.MB_NUM_PK, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		select p.*, m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+		from post p, member m, psmallc s, pmidc pm, pbigc b
 		where p.MB_NUM_PK = m.MB_NUM_PK
 		and p.PSMALLC_PK = s.PSMALLC_PK
 	    and p.POST_NUM_PK = #{post_num_pk}
+	    and pm.PMIDC_PK = s.PMIDC_PK
+        and b.PBIGC_PK = pm.PBIGC_PK
 		order by POST_DATE desc
 	</select>
 	

@@ -20,32 +20,15 @@
 %>
 
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
-.button {
-	background-color: white;
-	color: black;
-	border: 2px solid #BFA0ED;
-	padding: 2px 16px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border-radius: 20px;
-}
-
-.button:hover {
-	background-color: #BFA0ED;
-	color: white;
-}
-
 #postTable {
 	text-align: center;
-	width: 1000px;
+	width: 1200px;
 	align: center;
 	border: 1px solid #e3c4ff;
 }
@@ -55,11 +38,12 @@
 }
 
 .filter {
-	width: 1000px;
+	width: 799px;
+	display: inline-block;
 }
 
 .searchDiv {
-	float: right;
+	display: inline-block;
 }
 
 .textinput {
@@ -77,7 +61,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 posts-list">
-					<div class="slider-shape d-none d-lg-block">
+					<h2 class="contact-title" align="center" style="width: 1200px">심부름 게시판<hr></h2>
+					<div class="slider-shape d-none d-lg-block" style="width: 1200px">
 						<div class="filter">
 							<form id="locFilter" action="/main/postLocFilter" method="get">
 							위치 선택 :
@@ -90,23 +75,23 @@
 								<option value="0">시/군/구</option>
 							</select>
 							
-								<input type="button" class="button" id="changeLoc" value="조회" />
+								<input type="button" class="smallBtn" id="changeLoc" value="조회" />
 							</form>
-						
-							<div class="searchDiv">
-								<form id="searchFilter" action="/main/postSearchFilter" method="get">
-									<select id="searchCategory" name="catNum">
-										<option value="1">제목</option>
-										<option value="2">제목+내용</option>
-										<option value="3">작성자</option>
-									</select>
-									
-									<input id="searchInput" name ="value" class="textinput" placeholder="심부름 검색" value="${value}" /> 
-									<input type="button" class="button" id="search" value="검색" />
-								</form>
-							</div>
-							
 						</div>
+						
+						<div class="searchDiv">
+							<form id="searchFilter" action="/main/postSearchFilter" method="get">
+								<select id="searchCategory" name="catNum">
+									<option value="1">제목</option>
+									<option value="2">제목+내용</option>
+									<option value="3">작성자</option>
+								</select>
+								
+								<input id="searchInput" name ="value" class="textinput" placeholder="심부름 검색" value="${value}" /> 
+								<input type="button" class="smallBtn" id="search" value="검색" />
+							</form>
+						</div>
+					</div>
 						
 						<c:if test="${pageMaker.totalCount == 0}">
 							<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1000px">'${value}'에 해당하는 심부름이 없습니다.</h2>
@@ -129,8 +114,8 @@
 									<c:forEach items="${postList}" var="post" begin="0"
 										end="${fun:length(postList)}" step="1" varStatus="status">
 										<tr>
-											<td>${status.index + 1}</td>
-											<td><a href="javascript:checkLogin(${post.post_num_pk});" style="color: black">${post.post_title}</a></td>
+											<td style="padding: 10px">${status.index + 1}</td>
+											<td style="width: 760px"><a href="javascript:checkLogin(${post.post_num_pk});" style="color: black">${post.post_title}</a></td>
 											<td>${post.mb_id}</td>
 											<td>${post.pbigc_name} ${post.psmallc_name}</td>
 											<td>${post.post_views}</td>
@@ -150,7 +135,7 @@
 	
 								</tbody>
 							</table>
-							<nav class="blog-pagination justify-content-center d-flex">
+							<nav class="blog-pagination justify-content-center d-flex" style="width: 1200px">
 								<ul class="pagination">
 									<c:if test="${pageMaker.prev}">
 										<li class="page-item">

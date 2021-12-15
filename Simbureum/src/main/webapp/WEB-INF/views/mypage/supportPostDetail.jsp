@@ -15,13 +15,18 @@
 <style type="text/css">
 .postTable {
 	text-align: center;
-	width: 970px;
 	align: center;
+	word-break: break-all;
+}
+
+.postTable td{
+	height: 30px;
+	width: 300px;
+	text-align: left;
 }
 
 .postTable th{
-	padding: 10px;
-	width: 200px;
+	width: 170px;
 }
 
 </style>	
@@ -138,7 +143,7 @@
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-10 posts-list">
+				<div class="col-lg-10 posts-list" style="padding-left: 40px;">
 					<h2 class="contact-title" align="center">심부름꾼 지원</h2><hr>
 					<div class="slider-shape d-none d-lg-block">
 					
@@ -160,10 +165,15 @@
 										(심부름꾼 : ${post.sel_vr})
 									</c:if>
 								</td>
+								<td id="map" style="width:450px; height:360px;" rowspan="5"></td>
 							</tr>
 							<tr>
 								<th>위치</th>
-								<td>${post.pbigc_name} ${post.psmallc_name}</td>
+								<td>${post.pbigc_name} ${post.pmidc_name} ${post.psmallc_name}</td>
+							</tr>
+							<tr>
+								<th>마감일</th>
+								<td><fmt:formatDate value="${post.post_dline}" pattern="yyyy.MM.dd" /></td>
 							</tr>
 							<tr>
 								<th>심부름꾼 수</th>
@@ -174,7 +184,7 @@
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
 							<tr style="height: 250px">
-								<td colspan="2" style="padding: 20px">${post.post_con}</td>
+								<td colspan="3" style="padding: 20px">${post.post_con}</td>
 							</tr>
 						</table>
 						
@@ -192,7 +202,43 @@
 		</div>
 	</section>
 			
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c11e1620d5e96294da73f9c7ec269f0e"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(${post.post_lat}, ${post.post_lng}), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
 		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(${post.post_lat}, ${post.post_lng}); 
+		
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
+		// 지도에 표시할 원을 생성합니다
+		circle = new daum.maps.Circle({
+			center : new daum.maps.LatLng(${post.post_lat}, ${post.post_lng}),  // 원의 중심좌표 입니다 
+			radius: 100, // 미터 단위의 원의 반지름입니다 
+			strokeWeight: 2, // 선의 두께입니다 
+			strokeColor: '#75B8FA', // 선의 색깔입니다
+			strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			strokeStyle: 'dashed', // 선의 스타일 입니다
+			fillColor: '#CFE7FF', // 채우기 색깔입니다
+			fillOpacity: 0.7  // 채우기 불투명도 입니다   
+		});
+		
+		// 지도에 원을 표시합니다 
+		circle.setMap(map);
+		
+	</script>	
 	
 </body>
 </html>

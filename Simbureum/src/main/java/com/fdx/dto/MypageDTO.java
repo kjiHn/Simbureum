@@ -21,13 +21,10 @@ public class MypageDTO {
 	
 	private String mb_id;			//작성자 id
 	
-	private String pbigc_name;		//위치 대분류 이름
-	private String psmallc_name;	//위치 소분류 이름
-	
 	private int vh_hsn_pk;			//심부름꾼 한 내역 번호
 	private int ap_apn_pk;			//지원한 게시글 테이블 고유 번호
 	
-	private String plant;			//위치 대분류, 소분류 이름 병합
+	private String plant;			//위치 이름 병합
 	
 	@JsonFormat(pattern = "yyyy-MM-dd") //Ajax에 날짜형 데이터로 주기 위해 
 	private Date vh_date;			//심부름 완료일
@@ -111,18 +108,6 @@ public class MypageDTO {
 	}
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
-	}
-	public String getPbigc_name() {
-		return pbigc_name;
-	}
-	public void setPbigc_name(String pbigc_name) {
-		this.pbigc_name = pbigc_name;
-	}
-	public String getPsmallc_name() {
-		return psmallc_name;
-	}
-	public void setPsmallc_name(String psmallc_name) {
-		this.psmallc_name = psmallc_name;
 	}
 	public int getVh_hsn_pk() {
 		return vh_hsn_pk;
