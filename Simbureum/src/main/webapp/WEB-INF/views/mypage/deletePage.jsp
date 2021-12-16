@@ -83,6 +83,14 @@
   box-sizing:border-box; padding:74px 0;
   line-height:23px;
 }
+
+
+div i{
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    color: black;
+}
 </style>
 
 </head>
@@ -109,12 +117,13 @@
 										<input type="checkbox" name="check" id=checkMust><label
 											for="checkMust">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label>
 									</div>
-									<div style="display: block;">
+									<div class="main" style="display: block;">
 										<label
 											style="font-weight: bold; font-size: 20px; margin-right: 15px;">비밀번호:</label>
 										<input type="password" name="pswdCheck" placeholder="비밀번호를 입력해주세요."
 											class="single-input" style="display: inline; width: 50%;"
 											disabled="disabled" id ="inputPswd">
+										<i class="fa fa-eye fa-lg"></i>
 									</div>
 								</div>
 								<br> <br> <br>
@@ -147,6 +156,27 @@
 		<button id="nodeleteMb" class="button  boxed-btn" style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">창닫기</button>
 		</div>
 	</div>
+	
+	
+	<script type="text/javascript">
+
+$(document).ready(function(){
+    $('.main i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
+
+
+
+</script>
 
 
 	<script type="text/javascript">

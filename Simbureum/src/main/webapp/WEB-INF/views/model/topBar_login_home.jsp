@@ -22,6 +22,7 @@ if (request.getProtocol().equals("HTTP/1.1"))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="/resources/view/assets/img/logo/loder1.jpg">
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="/resources/view/assets/css/total.css?ver=2" />

@@ -82,6 +82,12 @@ th {
 	padding: 74px 0;
 	line-height: 23px;
 }
+div i{
+    position: absolute;
+    left: 80%;
+    bottom:56%;
+    color: black;
+}
 </style>
 
 </head>
@@ -141,6 +147,7 @@ th {
 				style="font-weight: bold; font-size: 20px; margin-right: 15px;">비밀번호:</label>
 			<input type="password" name="pswdCheck" placeholder="비밀번호 입력"
 				class="single-input" style="display: inline; width: 50%;" id="inputPswd">
+				<i class="fa fa-eye fa-lg"></i>
 				<p class="validation-check" id="join_pswd_error"></p>
 			<button id="goUpdate" class="smallBtn"
 				style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">확인</button>
@@ -148,6 +155,24 @@ th {
 				style="height: 40px; padding: 10px; margin-top: 10px; width: 100px;">닫기</button>
 		</div>
 	</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('.modal_content i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
+</script>
+
 
 
 	<script type="text/javascript">

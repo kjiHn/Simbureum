@@ -24,6 +24,12 @@
 
 }
 
+div i{
+    position: absolute;
+    left: 93%;
+    top: 45px;
+    color: black;
+}
 
 </style>
 </head>
@@ -47,6 +53,7 @@
             <div class="form-input">
                 <label for="password">Password</label>
                 <input id="pswd" type="password" name="password" placeholder="비밀번호 입력" >
+                <i class="fa fa-eye fa-lg"></i>
                 <p id="login_error" class="validation-check"></p>
             </div>
             <div class="form-input pt-30">
@@ -64,6 +71,25 @@
     </form>
     <!-- /end login form -->
 </main>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('.form-input i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
+
+
+
+</script>
 
 <script type="text/javascript">
 		$("#submitButton").click(function() {
