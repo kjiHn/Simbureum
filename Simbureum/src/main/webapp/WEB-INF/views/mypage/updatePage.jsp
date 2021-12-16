@@ -111,7 +111,7 @@ select {
 													placeholder="영문, 숫자, 특수문자 포함 8자 이상" maxlength="15"
 													autocomplete="new-password"
 													class="required_join_input cleanValMsg ">
-													
+												<input type="hidden" id="no_pwsd" value="${myInfo.mb_pswd }">	
 											</div>
 											<p class="validation-check" id="join_pswd_error"></p></li>
 										<li><strong class="tit">비밀번호 확인</strong>
@@ -120,6 +120,7 @@ select {
 													placeholder="비밀번호를 다시 한번 입력해주세요." maxlength="15"
 													autocomplete="new-password"
 													class="required_join_input cleanValMsg">
+												
 											</div>
 											<p class="validation-check" id="join_pswd_check_error"></p></li>
 										<li><strong class="tit">이메일</strong>
@@ -185,6 +186,12 @@ select {
 		$(document).ready(function() {
 			var tt = "${emaileArray[1] }";
 			$("#emialSelect").val(tt);
+			
+			
+			
+			
+			
+			
 		});
 		const letterCheck = {
 			'checkNum' : /[0-9]/,
@@ -388,6 +395,11 @@ select {
 		});
 
 		function upDateMember() {
+			if($("#join_pswd").val() == ""){
+			var pwsd =$("#no_pwsd").val();
+			$("#join_pswd").val(pwsd);				
+			}
+
 			$("#join_form").submit();
 		}
 
