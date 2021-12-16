@@ -14,56 +14,61 @@
 
     <!-- CSS here -->
     <link rel="stylesheet" href="/resources/view/assets/css/total.css?ver=2" />
+    
+    <style type="text/css"> 
+   		aside {
+		  list-style-type: none;
+		  overflow: auto;
+		  position: fixed;
+		}
+		
+		.sidebar {
+		  padding-top: 10px;
+		  padding-bottom: 10px;
+		}
+   	</style>
 </head>
 <body>
 
+		<div class="col-lg-2" >
+			<!-- <div class="blog_left_sidebar"> -->
+			<div class="blog_right_sidebar" >
 
-	<!-- section class="blog_area section-padding">
-		<div class="container" style="margin-left: 10%;">
-			<div class="row"> -->
-				<div class="col-lg-2" style=" background-color: #e3c4ff; height: 600px">
-					<!-- <div class="blog_left_sidebar"> -->
-					<div class="blog_right_sidebar" >
+				<aside class="single_sidebar_widget post_category_widget"
+					style="background-color: #e3c4ff; height: 670px; width: 200px; padding-top: 70px; padding-left: 40px; padding-right: 40px">
+					<h4 class="widget_title" style="text-align: center"><b>마이페이지</b></h4>
+					<!-- 제목 -->
+					<ul class="list cat-list">
+						<li><a href="/user/my_Info?mb_name=<%=session.getAttribute("mid") %>" class="d-flex">
+								<p id = "myInfo" class="sidebar">내정보</p> <!-- 마이페이지 내용 적어요 -->
+								<!--  소제목? -->
 
-						<aside class="single_sidebar_widget post_category_widget"
-							style="margin-top: 40px; background-color: #e3c4ff;">
-							<h4 class="widget_title" style="color: #2d2d2d;">마이페이지</h4>
-							<!-- 제목 -->
-							<ul class="list cat-list">
-								<li><a href="/user/my_Info?mb_name=<%=session.getAttribute("mid") %>" class="d-flex">
-										<p id = "myInfo">내정보</p> <!-- 마이페이지 내용 적어요 -->
-										<!--  소제목? -->
+						</a></li>
+						<li><a href="/mypage/upPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+								<p id = "uploadPost" class="sidebar">올린 심부름</p>
 
-								</a></li>
-								<li><a href="/mypage/upPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p id = "uploadPost">올린 심부름</p>
+						</a></li>
+						<li><a href="/mypage/supPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+								<p id = "supPost" class="sidebar">심부름꾼 지원</p>
 
-								</a></li>
-								<li><a href="/mypage/supPost?mb_num_pk=<%=session.getAttribute("mNum") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p id = "supPost">심부름꾼 지원</p>
+						</a></li>
+						<li><a href="/mypage/endPost?mb_id=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+								<p id = "endPost" class="sidebar">심부름 한 내역</p>
 
-								</a></li>
-								<li><a href="/mypage/endPost?mb_id=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p id = "endPost">심부름 한 내역</p>
+						</a></li>
+						<li><a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
+								<p id="Ereview" class="sidebar">작성한 리뷰</p>
 
-								</a></li>
-								<li><a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid") %>" class="d-flex"> <!-- 마이페이지 내용 적어요 -->
-										<p id="Ereview">작성한 리뷰</p>
+						</a></li>
+						<li><a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid") %>" class="d-flex">
+								<p id="review" class="sidebar">받은리뷰</p>
 
-								</a></li>
-								<li><a href="/review/receiveList?vr_mbid=<%=session.getAttribute("mid") %>" class="d-flex">
-										<p id="review">받은리뷰</p>
-
-								</a></li>
-							</ul>
-						</aside>
-					</div>
-				</div>
-
-		<!-- 	</div>
+						</a></li>
+					</ul>
+				</aside>
+			</div>
 		</div>
-	</section>
- -->
+
  
  <script type="text/javascript">
  var link = window.location.pathname;

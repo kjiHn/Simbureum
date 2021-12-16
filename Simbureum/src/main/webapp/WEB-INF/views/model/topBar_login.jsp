@@ -34,14 +34,14 @@ if (request.getProtocol().equals("HTTP/1.1"))
     <header>
         <!-- Header Start -->
         <div class="header-area header-transparent" style="background-color: #E3C4FF; height: 80px">
-            <div class="main-header ">
+            <div class="main-header">
                 <div class="header-bottom">
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="#">
-	                                    <a href="/"> <img src="/resources/view/assets/img/logo/2.png" style="width: 90px; height: 60px;" >
+	                                    <a href="/"> <img src="/resources/view/assets/img/logo/2.png" style="width: 90px; height: 60px; float: left" >
 	                                    
 	                                    </a>
                                 </div>

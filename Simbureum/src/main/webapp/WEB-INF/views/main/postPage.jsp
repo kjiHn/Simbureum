@@ -26,15 +26,21 @@
 <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
-#postTable {
+.postTable {
 	text-align: center;
 	width: 1200px;
 	align: center;
 	border: 1px solid #e3c4ff;
+	margin-top: 10px;
 }
 
-#postTable tr {
+.postTable tr {
 	border: 1px solid #e3c4ff;
+}
+
+.postTable thead{
+	background-color: #e3c4ff; 
+	height: 32px;
 }
 
 .filter {
@@ -63,6 +69,7 @@
 				<div class="col-lg-8 posts-list">
 					<h2 class="contact-title" align="center" style="width: 1200px">심부름 게시판<hr></h2>
 					<div class="slider-shape d-none d-lg-block" style="width: 1200px">
+					<c:if test="${pageMaker.totalCount != 0}">
 						<div class="filter">
 							<form id="locFilter" action="/main/postLocFilter" method="get">
 							위치 선택 :
@@ -95,16 +102,17 @@
 								<input type="button" class="smallBtn" id="search" value="검색" />
 							</form>
 						</div>
+					</c:if>
 					</div>
 						
 						<c:if test="${pageMaker.totalCount == 0}">
-							<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1000px">작성된 심부름이 없습니다.</h2>
+							<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1200px">작성된 심부름이 없습니다.</h2>
 						</c:if>
 						
 						<c:if test="${pageMaker.totalCount != 0}">
-							<table id="postTable">
+							<table class="postTable">
 								<thead>
-									<tr style="background-color: #e3c4ff;">
+									<tr>
 										<th>No.</th>
 										<th>제목</th>
 										<th>작성자</th>

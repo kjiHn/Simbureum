@@ -26,15 +26,21 @@
 <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 
 <style type="text/css">
-#postTable {
+.postTable {
 	text-align: center;
 	width: 1200px;
 	align: center;
 	border: 1px solid #e3c4ff;
+	margin-top: 10px;
 }
 
-#postTable tr {
+.postTable tr {
 	border: 1px solid #e3c4ff;
+}
+
+.postTable thead{
+	background-color: #e3c4ff; 
+	height: 32px;
 }
 
 .filter {
@@ -101,7 +107,7 @@
 						</c:if>
 						
 						<c:if test="${pageMaker.totalCount != 0}">
-							<table id="postTable">
+							<table class="postTable">
 								<thead>
 									<tr style="background-color: #e3c4ff;">
 										<th>No.</th>

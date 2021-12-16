@@ -12,6 +12,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
 <!-- 만든 버튼 css -->
 <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
+
+<style type="text/css">
+.postTable{
+	text-align: center; 
+	width: 1000px; 
+	align: center; 
+	border: 1px solid #e3c4ff;
+}
+
+.postTable thead{
+	background-color: #e3c4ff; 
+	height: 32px;
+}
+</style>
+
 <title>해줘~ 할게</title>
 </head>
 <body>
@@ -29,10 +44,9 @@
 					</c:if>
 					
 					<c:if test="${pageMaker.totalCount != 0}">
-	                     <table
-	                        style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+	                     <table class="postTable">
 	                        <thead>
-	                           <tr style="background-color: #e3c4ff;">
+	                           <tr>
 	                              <th>No.</th>
 	                              <th>제목</th>
 	                              <th>위치</th>
