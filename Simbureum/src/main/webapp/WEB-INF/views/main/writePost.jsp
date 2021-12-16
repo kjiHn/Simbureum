@@ -41,7 +41,7 @@
 .content{
 	width: 500px;
 	height: 200px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	margin-top: 20px
 }
 </style>	
@@ -66,7 +66,7 @@
 				<tr>
 					<th>내용 : </th>
 					<td><textarea name="post_con" class="content" id="content" placeholder="내용 입력"></textarea>
-						<div id="text_cnt">(0 / 500)</div></td>
+						<div id="text_cnt" style="margin-bottom: 30px;">(0 / 500)</div></td>
 				</tr>
 				<tr>
 					<th>위치 : </th>

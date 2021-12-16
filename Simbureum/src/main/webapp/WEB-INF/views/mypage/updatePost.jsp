@@ -34,8 +34,13 @@
 .content{
 	width: 500px;
 	height: 200px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	margin-top: 20px
+}
+
+.postTable th{
+	padding: 10px;
+	width: 150px;
 }
 </style>	
 
@@ -43,16 +48,16 @@
 
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 175px; width: 1920px">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-8 posts-list" id="centerCon">
+				<div class="col-lg-8 posts-list" id="centerCon" style="padding-left: 150px;">
 					<h2 class="contact-title" align="center">심부름 수정</h2>
 					<div class="slider-shape d-none d-lg-block">
 	
 						<form method="POST" action="/mypage/updatePost/${post.post_num_pk}">
-							<table>
+							<table class="postTable">
 								<tr>
 									<th>제목 : </th>
 									<td><input name="post_title" class="textinput" placeholder="제목 입력" value="${post.post_title}"/></td>
@@ -60,7 +65,7 @@
 								<tr>
 									<th>내용 : </th>
 									<td><textarea id="content" name="post_con" class="content" placeholder="내용 입력">${post.post_con}</textarea>
-										<div id="text_cnt">(0 / 500)</div></td>
+										<div id="text_cnt" style="margin-bottom: 30px;">(0 / 500)</div></td>
 								</tr>
 								<tr>
 									<th>위치 : </th>
@@ -83,7 +88,7 @@
 									<td>
 										<input type="button" class="smallBtn" onclick="setCenter()" value="주변 위치 표시하기">
 										<br>* 지도에서 해당 위치를 클릭하여 표시하세요.
-										<div id="map" style="width:500px; height:400px;"></div>
+										<div id="map" style="width:500px; height:400px; z-index: 0"></div>
 									</td>
 								</tr>
 								<tr>
@@ -103,7 +108,9 @@
 							
 							<input type="hidden" name="post_lat" value="${post.post_lat}">
 							<input type="hidden" name="post_lng" value="${post.post_lng}">
-							<input type="submit" class="bigBtn" value="완료">
+							<div style="text-align: center">
+								<input type="submit" class="bigBtn" value="완료">
+							</div>
 							
 						</form>
 					</div>
@@ -502,5 +509,5 @@
 	</script>
 
 </body>
-
+<%@include file="../model/footer.jsp" %>
 </html>

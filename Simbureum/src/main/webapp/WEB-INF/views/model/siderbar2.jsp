@@ -78,7 +78,7 @@
 	$("#myInfo").css("font-weight", "bold");
 	$("#myInfo").css("text-decoration", "underline");
 	
-}else if(link == '/mypage/upPost' || link.includes('uploadedPostDetail')){
+}else if(link == '/mypage/upPost' || link.includes('uploadedPostDetail') || link.includes('updatePost')){
 	
 	$("#uploadPost").css("font-weight", "bold");
 	$("#uploadPost").css("text-decoration", "underline");
