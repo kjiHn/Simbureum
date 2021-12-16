@@ -50,8 +50,8 @@
 
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding" id="centerBody">
-	<div class="container" style="width: 700px; height:500px">
+	<section class="blog_area single-post-area section-padding" id="centerBody" style="height: 2100px">
+	<div class="container" style="width: 700px; height: 500px">
 	
 	<div class="col-lg-11 posts-list" id="centerCon">
 	
@@ -105,7 +105,7 @@
 					<td><input name="post_price" class="textinput" id="price" placeholder="심부름 가격 입력"/></td>
 				</tr>
 			</table>
-			<br><br>
+			<br>
 			<div style="text-align: center">
 				<input type="hidden" name="post_lat" value="">
 				<input type="hidden" name="post_lng" value="">
@@ -413,5 +413,5 @@
 	</script>
 
 </body>
-
+<%@include file="../model/footer.jsp" %>
 </html>

@@ -33,7 +33,7 @@
      <!-- footer-bottom area -->
       <footer>
         <div class="footer-area footer-padding" style="padding-top: 0px;">
-            <div class="footer-bottom-area" style="background-color: #E3C4FF; height: 50px; position:fixed; bottom:0; width: 100%">
+            <div class="footer-bottom-area" style="background-color: #E3C4FF; height: 50px; width: 100%">
                 <div class="container">
                     <div class="footer-border" style="padding: 10px">
                         <div class="row">
@@ -54,10 +54,5 @@
        </footer> 
 <!-- JS here -->
 
-<script src="/resources/view/assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<!-- Jquery, Popper, Bootstrap -->
-<script src="/resources/view/assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="/resources/view/assets/js/popper.min.js"></script>
-<script src="/resources/view/assets/js/bootstrap.min.js"></script>
 </body>
 </html>

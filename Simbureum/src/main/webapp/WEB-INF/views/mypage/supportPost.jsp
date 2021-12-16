@@ -175,7 +175,6 @@ $(".active > a").click(function() {
 
 </script>
 
-
-
 </body>
+<%@include file="../model/footer.jsp" %>
 </html>

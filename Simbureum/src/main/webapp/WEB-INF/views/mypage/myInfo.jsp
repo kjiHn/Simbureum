@@ -103,8 +103,9 @@ div i{
 					<div class="slider-shape d-none d-lg-block">
 						<div class="col-lg-8 posts-list"
 							style="padding: 30px 50px; height: 600px; border: 4px solid #e3c4ff;">
-							<br> <br> <br> <br>
+							<br> <br>
 							<h1>내정보</h1>
+							<br> <br>
 							<table style="text-align: center; width: 400px; align: center;">
 								<thead>
 

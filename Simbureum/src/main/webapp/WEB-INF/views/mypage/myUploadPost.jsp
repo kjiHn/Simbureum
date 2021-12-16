@@ -175,7 +175,6 @@ $(".move").on("click",function(e) {
 
 </script>
 
-
-
 </body>
+<%@include file="../model/footer.jsp" %>
 </html>

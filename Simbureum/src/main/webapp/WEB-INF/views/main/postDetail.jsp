@@ -193,7 +193,7 @@ a {
 							<tr>
 								<th>위치</th>
 								<td>${post.pbigc_name} ${post.pmidc_name} ${post.psmallc_name}</td>
-								<td id="map" style="width:500px; height:400px;" rowspan="4"></td>
+								<td id="map" style="width:500px; height:400px; z-index: -1" rowspan="4"></td>
 							</tr>
 							<tr>
 								<th>마감일</th>
@@ -302,4 +302,5 @@ a {
 	</script>
 
 </body>
+<%@include file="../model/footer.jsp" %>
 </html>

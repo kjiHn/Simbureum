@@ -31,7 +31,7 @@
 <body>
 
  <!-- Slider Area Start-->
-       <div class="slider-area slider-bg" style="overflow: hidden; height: 890px">
+       <div class="slider-area slider-bg" style="overflow: hidden; height: 888px">
             <!-- Single Slider -->
             <div class="single-slider d-flex align-items-center slider-height2" style="height: 650px;">
                  <div class="container">

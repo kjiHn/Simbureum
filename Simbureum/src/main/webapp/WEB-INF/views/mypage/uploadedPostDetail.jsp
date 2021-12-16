@@ -68,9 +68,6 @@
 
 <div class="col-md-auto">
 	
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
-
 			<!-- 심부름꾼에게 리뷰 작성 Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">

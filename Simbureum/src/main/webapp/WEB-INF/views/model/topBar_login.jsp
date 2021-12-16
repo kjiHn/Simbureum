@@ -27,6 +27,16 @@ if (request.getProtocol().equals("HTTP/1.1"))
     <!-- CSS here -->
     <link rel="stylesheet" href="/resources/view/assets/css/total.css?ver=2" />
     
+    <style>
+    header {
+  		position: fixed;
+ 		top: 0;
+ 		left: 0;
+ 		right: 0;
+ 		z-index: 1;
+	}
+    </style>
+    
 </head>
 <body>
    

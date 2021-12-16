@@ -2675,7 +2675,8 @@ transition
 }
 
 .header-area .header-bottom {
-	padding: 0px 90px
+	padding: 0px 90px;
+	margin-bottom: 80px
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
