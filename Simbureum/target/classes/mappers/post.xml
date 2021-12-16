@@ -13,7 +13,8 @@
 	<select id="selectAll" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, 
+				m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
 			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
 			and p.PSMALLC_PK = s.PSMALLC_PK
@@ -34,7 +35,8 @@
 	<select id="selectByLoc" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, 
+				m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
 			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
 			and p.PSMALLC_PK = #{psmallc_pk}
@@ -53,16 +55,17 @@
 		and p.PSMALLC_PK = #{psmallc_pk}
 	</select>
 	
-	<!-- 여기까지 수정함 -->
-	
 	<select id="selectBySearch1" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn,p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-			from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn,p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, 
+				m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
+			and p.POST_TITLE like '%'||#{post_title}||'%'
 			and p.PSMALLC_PK = s.PSMALLC_PK
-			and p.POST_TITLE like '%'||#{post_title}||'%')
+			and pm.PMIDC_PK = s.PMIDC_PK
+            and b.PBIGC_PK = pm.PBIGC_PK)
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} - 1) * #{amount}
 	 ]]>
@@ -70,21 +73,23 @@
 	
 	<select id="countSelectBySearch1" parameterType="cri2" resultType="int">
 		select COUNT(*)
-		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		from post p, member m
 		where p.MB_NUM_PK = m.MB_NUM_PK
-		and p.PSMALLC_PK = s.PSMALLC_PK
 		and p.POST_TITLE like '%'||#{post_title}||'%'
 	</select>
 	
 	<select id="selectBySearch2" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-			from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, 
+				m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
-			and p.PSMALLC_PK = s.PSMALLC_PK
 			and (p.POST_TITLE like '%'||#{post_title}||'%'
-			or p.POST_CON like '%'||#{post_con}||'%'))
+			or p.POST_CON like '%'||#{post_con}||'%')
+			and p.PSMALLC_PK = s.PSMALLC_PK
+			and pm.PMIDC_PK = s.PMIDC_PK
+            and b.PBIGC_PK = pm.PBIGC_PK)
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} - 1) * #{amount}
 	 ]]>
@@ -92,9 +97,8 @@
 	
 	<select id="countSelectBySearch2" parameterType="cri2" resultType="int">
 		select COUNT(*)
-		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		from post p, member m
 		where p.MB_NUM_PK = m.MB_NUM_PK
-		and p.PSMALLC_PK = s.PSMALLC_PK
 		and (p.POST_TITLE like '%'||#{post_title}||'%'
 		or p.POST_CON like '%'||#{post_con}||'%')
 	</select>
@@ -102,11 +106,14 @@
 	<select id="selectBySearch3" parameterType="cri2" resultType="post">
 	<![CDATA[
 		select * from(
-			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, m.MB_ID, s.PSMALLC_NAME, b.PBIGC_NAME
-			from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, 
+				m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			from post p, member m, psmallc s, pmidc pm, pbigc b
 			where p.MB_NUM_PK = m.MB_NUM_PK
+			and m.MB_ID = #{mb_id}
 			and p.PSMALLC_PK = s.PSMALLC_PK
-			and m.MB_ID = #{mb_id})
+			and pm.PMIDC_PK = s.PMIDC_PK
+            and b.PBIGC_PK = pm.PBIGC_PK)
 		where rn <= #{pageNum} * #{amount}
 		and rn > (#{pageNum} - 1) * #{amount}
 	 ]]>
@@ -114,9 +121,8 @@
 	
 	<select id="countSelectBySearch3" parameterType="cri2" resultType="int">
 		select COUNT(*)
-		from post p, member m, (PSMALLC s LEFT OUTER JOIN PBIGC b ON s.PBIGC_PK = b.PBIGC_PK)
+		from post p, member m
 		where p.MB_NUM_PK = m.MB_NUM_PK
-		and p.PSMALLC_PK = s.PSMALLC_PK
 		and m.MB_ID = #{mb_id}
 	</select>
 	

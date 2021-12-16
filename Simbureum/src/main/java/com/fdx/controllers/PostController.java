@@ -59,13 +59,15 @@ public class PostController {
 
 	//위치 필터링
 	@RequestMapping(value = "/main/postLocFilter", method = RequestMethod.GET)
-	public String locFilter(@RequestParam(value = "psmallc") int psmallc, @RequestParam(value = "pbigc") int pbigc, 
-			@ModelAttribute Criteria2 cri, Model model) {
+	public String locFilter(@RequestParam(value = "pbigc_pk") int pbigc, @RequestParam(value = "pmidc_pk") int pmidc,
+			@RequestParam(value = "psmallc_pk") int psmallc, @ModelAttribute Criteria2 cri, Model model) {
 		cri.setPsmallc_pk(psmallc);
 		model.addAttribute("postList", postService.selByLoc(cri));
 		int total = postService.countSelByLoc(cri);
 		model.addAttribute("pageMaker", new PageMaker2(cri,total));
+		//선택한 위치 카테고리 번호들 담기
 		model.addAttribute("pbigc", pbigc);
+		model.addAttribute("pmidc", pmidc);
 		model.addAttribute("psmallc", psmallc);
 		return "main/postLocFilter";
 	}

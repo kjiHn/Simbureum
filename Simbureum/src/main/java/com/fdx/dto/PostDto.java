@@ -15,7 +15,7 @@ public class PostDto {
 	private String post_con;		//내용
 	private Date post_dline;		//마감일
 	private int post_numof;			//심부름꾼 수
-	private int psmallc_pk;			//위치 소분류번호
+	private int psmallc_pk;			//위치 소분류 번호
 	private int post_price;			//심부름 가격
 	private int post_views;			//조회수
 	@JsonFormat(pattern = "yyyy-MM-dd") //Ajax에 날짜형 데이터로 주기 위해 
