@@ -101,9 +101,8 @@
 								</tr>
 							</table>
 							
-							<input type="hidden"  name="post_num_pk" value="${post.post_num_pk}">
-							<input type="hidden" name="post_lat" value="">
-							<input type="hidden" name="post_lng" value="">
+							<input type="hidden" name="post_lat" value="${post.post_lat}">
+							<input type="hidden" name="post_lng" value="${post.post_lng}">
 							<input type="submit" class="bigBtn" value="완료">
 							
 						</form>

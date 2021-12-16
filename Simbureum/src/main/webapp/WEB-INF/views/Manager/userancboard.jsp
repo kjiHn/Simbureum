@@ -32,7 +32,7 @@
 
 
 
-   <section class="blog_area single-post-area section-padding">
+   <section class="blog_area single-post-area section-padding" style="margin-bottom: 296px">
       <div class="container">
          <div class="row">
             <div class="col-lg-10 posts-list">
@@ -41,7 +41,7 @@
                		<div class="slider-shape d-none d-lg-block">
                		
             
-                  <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+                  <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff; height: 258px;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
                            <th>No.</th>

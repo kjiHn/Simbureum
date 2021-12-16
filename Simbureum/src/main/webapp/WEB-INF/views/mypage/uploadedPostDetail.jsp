@@ -430,7 +430,7 @@
 	
 	
 	
-	<section class="blog_area single-post-area section-padding" style="padding-top: 117px;">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 170px; width: 1920px">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
@@ -458,7 +458,7 @@
 										(심부름꾼 : ${post.sel_vr})
 									</c:if>
 								</td>
-								<td id="map" style="width:450px; height:360px;" rowspan="5"></td>
+								<td id="map" style="width:450px; height:360px; z-index: 0" rowspan="5"></td>
 							</tr>
 							<tr>
 								<th>위치</th>
@@ -579,4 +579,5 @@
 	</form>	
 		
 </body>
+<%@include file="../model/footer.jsp" %>
 </html>

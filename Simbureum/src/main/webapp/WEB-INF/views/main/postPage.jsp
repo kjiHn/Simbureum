@@ -63,10 +63,10 @@
 <body>
 	
 
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="margin-bottom: 389px">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 posts-list">
+				<div class="col-lg-8 posts-list" style="height: 258px;">
 					<h2 class="contact-title" align="center" style="width: 1200px">심부름 게시판<hr></h2>
 					<div class="slider-shape d-none d-lg-block" style="width: 1200px">
 					<c:if test="${pageMaker.totalCount != 0}">

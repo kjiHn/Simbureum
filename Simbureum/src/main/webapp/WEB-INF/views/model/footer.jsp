@@ -14,6 +14,14 @@
     <!-- CSS here -->
 	<link rel="stylesheet" href="/resources/view/assets/css/total.css">
     
+    <style>
+    footer{
+    	height: 50px; 
+    	width: 100%;
+    	background-color: #E3C4FF;
+    }
+    </style>
+    
 </head>
 <body>
    <!--  <!-- ? Preloader Start -->
@@ -33,7 +41,7 @@
      <!-- footer-bottom area -->
       <footer>
         <div class="footer-area footer-padding" style="padding-top: 0px;">
-            <div class="footer-bottom-area" style="background-color: #E3C4FF; height: 50px; width: 100%">
+            <div class="footer-bottom-area">
                 <div class="container">
                     <div class="footer-border" style="padding: 10px">
                         <div class="row">

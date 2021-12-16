@@ -50,7 +50,7 @@
 
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding" id="centerBody" style="height: 2100px">
+	<section class="blog_area single-post-area section-padding" id="centerBody" style="margin-bottom: 700px">
 	<div class="container" style="width: 700px; height: 500px">
 	
 	<div class="col-lg-11 posts-list" id="centerCon">
@@ -89,7 +89,7 @@
 					<td>
 						<input type="button" class="smallBtn" onclick="setCenter()" value="주변 위치 표시하기">
 						<br>* 지도에서 해당 위치를 클릭하여 표시하세요.
-						<div id="map" style="width:500px; height:400px;"></div>
+						<div id="map" style="width:500px; height:400px; z-index: 0"></div>
 					</td>
 				</tr>
 				<tr>
