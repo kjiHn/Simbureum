@@ -95,8 +95,8 @@ public class ManagerDao {
 		}
 		
 	//신고된 리뷰 팝업 보기
-		public List<managerDTO> popupreview(int mb_num_pk) throws Exception{
-			List<managerDTO> popupreview = this.sqlSessionTemplate.selectList("mappers.Manager.popupreview",mb_num_pk);
+		public List<managerDTO> popupreview(managerDTO manager) throws Exception{
+			List<managerDTO> popupreview = this.sqlSessionTemplate.selectList("mappers.Manager.popupreview",manager);
 			
 			return popupreview;
 		}
@@ -107,11 +107,17 @@ public class ManagerDao {
 			
 			return reportpost;
 		}
-		//신고된 리뷰 보기
-		public managerDTO reportreview(int mb_num_pk) throws Exception{
-			managerDTO reportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.reportreview", mb_num_pk);
+		//신고된 고용자 리뷰 보기
+		public managerDTO gyzreportreview(int mb_num_pk) throws Exception{
+			managerDTO gyzreportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.gyzreportreview", mb_num_pk);
 			
-			return reportreview;
+			return gyzreportreview;
+		}
+		//신고된 심부름꾼 리뷰 보기
+		public managerDTO sbrreportreview(int mb_num_pk) throws Exception{
+			managerDTO sbrreportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.sbrreportreview", mb_num_pk);
+					
+			return sbrreportreview;
 		}
 		
 		//신고된 게시글 처리
@@ -126,11 +132,17 @@ public class ManagerDao {
 				    
 			return reportpostcancle;
 		}
-		//신고된 리뷰 처리
-		public managerDTO repoertreviewdelete(int vr_rvn_pk) throws Exception {
-			managerDTO reportreviewdelete = this.sqlSessionTemplate.selectOne("mappers.Manager.reportreviewdelete",vr_rvn_pk);
+		//신고된 고용자 리뷰 처리
+		public managerDTO gyzrepoertreviewdelete(int vr_rvn_pk) throws Exception {
+			managerDTO gyzrepoertreviewdelete = this.sqlSessionTemplate.selectOne("mappers.Manager.gyzreportreviewdelete",vr_rvn_pk);
 				    
-			return reportreviewdelete;
+			return gyzrepoertreviewdelete;
+		}
+		//신고된 심부름꾼 리뷰 처리
+		public managerDTO sbrrepoertreviewdelete(int er_num_pk) throws Exception {
+			managerDTO sbrrepoertreviewdelete = this.sqlSessionTemplate.selectOne("mappers.Manager.sbrreportreviewdelete",er_num_pk);
+				    
+			return sbrrepoertreviewdelete;
 		}
 		//신고된 리뷰 취소
 		public managerDTO repoertreviewcancle(int rerp_num_pk) throws Exception {

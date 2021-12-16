@@ -18,7 +18,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/logo/loder1.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="view/assets/css/bootstrap.min.css">
@@ -55,7 +55,7 @@
             </div>    
             <!-- Slider Shape -->
             <div class="slider-shape d-none d-lg-block" >
-                <img class="slider-shape1" src="/resources/view/assets/img/hero/home.jpg" style="width:100%;  height:100%;  object-fit:cover; opacity: 0.7">
+                <img class="slider-shape1" src="/resources/view/assets/img/hero/home.jpg" style="width:100%;  height:100%;  object-fit:cover; opacity: 0.5">
                 <!-- <img class="slider-shape1" src="view/assets/img/hero/home.jpg" style=" object-fit: cover;"> -->
             </div>
             <div class="pricing-card-area pricing-card-area2 fix section-bg1" >

@@ -96,7 +96,29 @@ public class managerDTO {
 	private Date rerp_date;	//신고일
 	private int review;//리뷰신고당한횟수
 	private String rembn_id; //리뷰신고한회원
+	private int review_gyz; //고용자 신고 횟수
+	private int review_sbr; //심부름꾼 신고 횟수
+	private int rerp_cat; //신고카테고리
 	
+	
+	public int getRerp_cat() {
+		return rerp_cat;
+	}
+	public void setRerp_cat(int rerp_cat) {
+		this.rerp_cat = rerp_cat;
+	}
+	public int getReview_gyz() {
+		return review_gyz;
+	}
+	public void setReview_gyz(int review_gyz) {
+		this.review_gyz = review_gyz;
+	}
+	public int getReview_sbr() {
+		return review_sbr;
+	}
+	public void setReview_sbr(int review_sbr) {
+		this.review_sbr = review_sbr;
+	}
 	public String getRembn_id() {
 		return rembn_id;
 	}

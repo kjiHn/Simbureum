@@ -182,21 +182,28 @@ public class MNGController {
 		@RequestMapping(value = "/MNGrptboard", method = RequestMethod.GET)
 		public String MNGrptboard(managerDTO manager,Model model) throws Exception {
 			
-			System.out.println("manager"+manager);
 			managerDTO reportpost = managerDao.reportpost(manager);
 			model.addAttribute("reportpost", reportpost);
-			System.out.println("reportpost"+reportpost);
+			
 			return "Manager/MNGrptboard";
 		}
-	//신고된 리뷰 보기
-	@RequestMapping(value = "/MNGrvboard", method = RequestMethod.GET)
-	public String MNGrvboard(@RequestParam("mb_num_pk") int mb_num_pk,Model model) throws Exception {
+	//신고된 고용자 리뷰 보기
+	@RequestMapping(value = "/MNGrvboardgyz", method = RequestMethod.GET)
+	public String MNGrvboard1(@RequestParam("rerp_mbn") int rerp_mbn,Model model) throws Exception {
 
-		managerDTO reportreview = managerDao.reportreview(mb_num_pk);
-		model.addAttribute("reportreview", reportreview);
-		return "Manager/MNGrvboard";
+		managerDTO gyzreportreview = managerDao.gyzreportreview(rerp_mbn);
+		model.addAttribute("gyzreportreview", gyzreportreview);
+		return "Manager/MNGrvboardgyz";
 	}
 
+	//신고된 심부름꾼 리뷰 보기
+		@RequestMapping(value = "/MNGrvboardsbr", method = RequestMethod.GET)
+		public String MNGrvboard(@RequestParam("rerp_mbn") int rerp_mbn,Model model) throws Exception {
+
+			managerDTO sbrreportreview = managerDao.sbrreportreview(rerp_mbn);
+			model.addAttribute("sbrreportreview", sbrreportreview);
+			return "Manager/MNGrvboardsbr";
+		}
 	
 	  // 신고된 게시글 팝업 보기
 	  
@@ -204,9 +211,10 @@ public class MNGController {
 	  @ResponseBody
 	  public JSONObject MNGPopupPost(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
 	  
-	  List<managerDTO> popuppost = managerDao.popuppost(mb_num_pk);
+	  List<managerDTO> popuppost = managerDao.popuppost(mb_num_pk);	
       JSONObject finalJsonObject1 = new JSONObject(); // 중괄호로 감싸 대괄호의 이름을 정의함 { "c" : [{  "a" : "1", "b" : "2" }] }
       finalJsonObject1.put("data", popuppost);
+      System.out.println(finalJsonObject1.toString());
 	  return finalJsonObject1;
  
 	  }
@@ -215,10 +223,10 @@ public class MNGController {
 	  
 	  @RequestMapping(value = "/MNGPopupReview", method = RequestMethod.GET)
 	  @ResponseBody
-	  public JSONObject MNGPopupReview(@RequestParam("mb_num_pk") int mb_num_pk, Model model) throws Exception {
+	  public JSONObject MNGPopupReview(managerDTO manager, Model model) throws Exception {
 	  
 	  
-	  List<managerDTO> popupreview = managerDao.popupreview(mb_num_pk);
+	  List<managerDTO> popupreview = managerDao.popupreview(manager);
       JSONObject finalJsonObject1 = new JSONObject(); // 중괄호로 감싸 대괄호의 이름을 정의함 { "c" : [{  "a" : "1", "b" : "2" }] }
       finalJsonObject1.put("", popupreview);
 	  return finalJsonObject1; 
@@ -240,10 +248,16 @@ public class MNGController {
 			return "redirect:/MNGuserboard";
 		}
 		
-		// 신고된 리뷰 처리
-		@RequestMapping(value = "/repoertreviewdelete", method = RequestMethod.GET)
-		public String repoertreviewdelete(@RequestParam("vr_rvn_pk") int vr_rvn_pk, Model model) throws Exception {
-			managerDao.repoertreviewdelete(vr_rvn_pk);
+		// 신고된 고용자 리뷰 처리
+		@RequestMapping(value = "/gyzrepoertreviewdelete", method = RequestMethod.GET)
+		public String gyzrepoertreviewdelete(@RequestParam("vr_rvn_pk") int vr_rvn_pk, Model model) throws Exception {
+			managerDao.gyzrepoertreviewdelete(vr_rvn_pk);
+			return "redirect:/MNGuserboard";
+		}
+		// 신고된 심부름꾼 리뷰 처리
+		@RequestMapping(value = "/sbrrepoertreviewdelete", method = RequestMethod.GET)
+		public String sbrrepoertreviewdelete(@RequestParam("er_num_pk") int er_num_pk, Model model) throws Exception {
+			managerDao.sbrrepoertreviewdelete(er_num_pk);
 			return "redirect:/MNGuserboard";
 		}
 		

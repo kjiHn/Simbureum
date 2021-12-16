@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
-    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/logo/loder1.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
  
  <style>
 .button {
@@ -73,7 +73,7 @@
   </div>
   
    <!-- Modal -->
-  <div class="modal fade" id="reviewModal" role="dialog">
+  <div class="modal fade" id="GYZ_reviewModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -82,7 +82,7 @@
           <div><h2 class="modal-title"><b>신고된 리뷰</b></h2></div>
           <div><button type="button" class="close" data-dismiss="modal">×</button></div>
         </div>
-        <div class="modal-body1" id="rint" id="rint">
+        <div class="modal-body_GYZ" id="rint" id="rint">
         </div>
         <div class="modal-footer" id="rint">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -92,6 +92,25 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="SBR_reviewModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" >
+          <div><h2 class="modal-title"><b>신고된 리뷰</b></h2></div>
+          <div><button type="button" class="close" data-dismiss="modal">×</button></div>
+        </div>
+        <div class="modal-body_SBR" id="rint" id="rint">
+        </div>
+        <div class="modal-footer" id="rint">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 
    <section class="blog_area single-post-area section-padding">
@@ -112,7 +131,8 @@
                            <th>No.</th>
                            <th>아이디</th>
                            <th>게시글 신고</th>
-                           <th>리뷰 신고</th>
+                           <th>고용자 리뷰 신고</th>
+                           <th>심부름꾼 리뷰 신고</th>
                            <th>선택</th>
                         </tr>
                      </thead>
@@ -123,7 +143,8 @@
                            <td>${mnguser.mb_num_pk}</td>
                            <td>${mnguser.mb_id}</td>
                            <td><a data-toggle="modal" href="#postModal" class="postModal" data-value="${mnguser.mb_num_pk}"><u>${mnguser.report}회</u></a></td>
-                           <td><a data-toggle="modal" href="#reviewModal" class="reviewModal" data-value="${mnguser.mb_num_pk}"><u>${mnguser.review}회</u></a></td>
+                           <td><a data-toggle="modal" href="#GYZ_reviewModal" class="GYZ_reviewModal" data-value="${mnguser.mb_num_pk}"><u>${mnguser.review_gyz}회</u></a></td>
+                           <td><a data-toggle="modal" href="#SBR_reviewModal" class="SBR_reviewModal" data-value="${mnguser.mb_num_pk}"><u>${mnguser.review_sbr}회</u></a></td>
 						   <td>
                            	<form action="userdelete" method="post">
 	                           <input  type="hidden" name="mb_num_pk" value="${mnguser.mb_num_pk}"/>
@@ -150,6 +171,7 @@
  $(".postModal").click(function(e) {
 	 const value = $(this).attr("data-value");
 	 
+	 
  	 $.ajax({
 			type:"GET",
 			url:"/MNGPopupPost?mb_num_pk=" + value,
@@ -162,37 +184,65 @@
 					html +=	'<div>';
 					  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
 					 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
-					 html +=	 '<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk='+item[i].mb_num_pk +'">'+item[i].post_title +'</a></p>'; 
+					 html +=	 '<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk='+item[i].mb_num_pk +'&porp_mbn='+item[i].porp_mbn +'">'+item[i].post_title +'</a></p>';
 					 html += '<hr>';
 					html +=	'</div>';
 					}
 				}); 	
 				$(".modal-body").append(html);
+					
+			
 			} 
 		 }); 
 });
-/* 신고된 리뷰 팝업 */
- $(".reviewModal").click(function(e) {
+/* 신고된 고용자 리뷰 팝업 */
+ $(".GYZ_reviewModal").click(function(e) {
 		 const value = $(this).attr("data-value");
 		 
 	 	 $.ajax({
 				type:"GET",
-				url:"/MNGPopupReview?mb_num_pk=" + value,
+				url:"/MNGPopupReview?mb_num_pk=" + value + '&rerp_cat='+1,
 				dataType:"json",
 				success:function(datas){
-					$(".modal-body1").empty();
+					$(".modal-body_GYZ").empty();
 					var html ='';
 					 $.each (datas,function(index,item){
 						for (var i = 0; i < item.length; i++) {
 						html +=	'<div>';
 						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
 						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
-						 html +=	 '<p><b>내용</b>&nbsp;<a href="MNGrvboard?mb_num_pk='+item[i].mb_num_pk +'">'+item[i].er_rvc +'</a></p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<a href="MNGrvboardgyz?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></p>'; 
 						 html += '<hr>';
 						html +=	'</div>';
 						}
 					}); 	
-					$(".modal-body1").append(html);
+					$(".modal-body_GYZ").append(html);
+				} 
+			 }); 
+	});
+	
+ /* 신고된 심부름꾼 리뷰 팝업 */
+ $(".SBR_reviewModal").click(function(e) {
+		 const value = $(this).attr("data-value");
+		 
+	 	 $.ajax({
+				type:"GET",
+				url:"/MNGPopupReview?mb_num_pk=" + value+ '&rerp_cat='+2,
+				dataType:"json",
+				success:function(datas){
+					$(".modal-body_SBR").empty();
+					var html ='';
+					 $.each (datas,function(index,item){
+						for (var i = 0; i < item.length; i++) {
+						html +=	'<div>';
+						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
+						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<a href="MNGrvboardsbr?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></p>'; 
+						 html += '<hr>';
+						html +=	'</div>';
+						}
+					}); 	
+					$(".modal-body_SBR").append(html);
 				} 
 			 }); 
 	});

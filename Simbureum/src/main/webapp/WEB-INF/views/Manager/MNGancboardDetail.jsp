@@ -42,8 +42,7 @@
 
 			<form action="MNGancdelete" method="post">
 				<input type="hidden" name="ntc_num_pk" value="${announceDetail.ntc_num_pk}"/>
-				<input type="submit" class="button button-contactForm boxed-btn"
-					value="공지 삭제">
+				<input type="submit" class="button button-contactForm boxed-btn" value="공지 삭제">
 			</form>
 	</div>
 </body>

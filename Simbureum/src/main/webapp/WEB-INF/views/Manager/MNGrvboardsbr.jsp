@@ -50,75 +50,76 @@
 
 
 
-<section class="blog_area single-post-area section-padding">
-	<div class="container">
-		<div class="row">
-			<jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
+	<section class="blog_area single-post-area section-padding">
+     <div class="container">
+      <div class="row">
+<jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
     
 
 <div class="col-lg-8 posts-list">
 	
 	 <div class="slider-shape d-none d-lg-block" >
-			<h2 class="mb-30"><b>신고된 게시글</b></h2>
+			<h2 class="mb-30"><b>리뷰 관리</b></h2>
 	 </div>
 	 
-	<div id="div1">
-		<table width = "100%" height = "100%" >
-			<tr>
-				<td><b>제목</b></td>
-				<td>${reportpost.post_title}</td>
-			</tr>
+<div id="div1">
+	<table width = "100%" height = "100%" >
 			<tr>
 				<td><b>작성자</b></td>
-				<td>${reportpost.mb_id}</td>
+				<td>${sbrreportreview.mb_id_pk}</td>
+			</tr>
+			<tr>
+				<td><b>해당 게시글</b></td>
+				<td>${sbrreportreview.post_title}</td>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>
-				<td><fmt:formatDate value="${reportpost.post_date}" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${sbrreportreview.post_date}" pattern="yyyy-MM-dd"/></td>
 			</tr>
+			<%-- <tr>
+				<td><b>별점</b></td>
+				<td>${report.get(3)}</td>
+			</tr> --%>
 			<tr>
 				<td><b>내용</b></td>
-				<td>${reportpost.post_con}</td>
-			</tr>
-			<tr>
-				<td><b>위치</b></td>
-				<td>${reportpost.pbigc_name}&nbsp;${reportpost.psmallc_name}</td>
-			</tr>
-			<tr>
-			<td><b>심부름가격</b></td>
-			<td>${reportpost.post_price}</td>
+				<td>${sbrreportreview.er_rvc}</td>
 			</tr>
 			<tr>
 				<td><b>신고자</b></td>
-				<td>${reportpost.porping_mbn}</td>
+				<td>${sbrreportreview.mb_id}</td>
 			</tr>
 			<tr>
 				<td><b>신고일</b></td>
-				<td><fmt:formatDate value="${reportpost.porp_date}" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${sbrreportreview.rerp_date}" pattern="yyyy-MM-dd"/></td>
 			</tr>
 			<tr>
 				<td><b>신고사유</b></td>
-				<td>${reportpost.porp_con}</td>
+				<td>${sbrreportreview.rerp_con}</td>
 			</tr>
-		</table>
-	</div>
+	</table>
+</div>
+	 
+		
 </div>
 
-		</div>
-	</div>
+</div>
+</div>
 </section>
 
-</body>
+ 
+        
+ 
 
+</body>
 <footer>
  <div class="container">
                 <div class="row justify-content-center" >                   
-                 	<form action="/repoertpostcancle" method="get"> 
-						<input  type="hidden" name="porp_num_pk" value="${reportpost.porp_num_pk}"/>
+                 	<form action="/repoertreviewcancle" method="get"> 
+						<input type="hidden" name="rerp_num_pk" value="${sbrreportreview.rerp_num_pk}"/>
 						<input id="btn1" class ="button" type="submit" value="신고 취소"/>
 					</form>
-                 	<form action="/repoertpostdelete" method="get"> 
-						<input type="hidden" name="post_num_pk" value="${reportpost.post_num_pk}"/>
+                 	<form action="/sbrrepoertreviewdelete" method="get"> 
+						<input type="hidden" name="er_num_pk" value="${sbrreportreview.er_num_pk}"/>
 						<input id="btn1" class ="button" type="submit" value="신고 처리"/>
 					</form>
                 </div>
