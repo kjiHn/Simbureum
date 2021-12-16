@@ -33,7 +33,7 @@
 
 
 
-   <section class="blog_area single-post-area section-padding">
+   <section class="blog_area single-post-area section-padding" style="padding-top: 175px;">
       <div class="container">
          <div class="row">
             <jsp:include page="../model/siderbar2.jsp" flush="false" />

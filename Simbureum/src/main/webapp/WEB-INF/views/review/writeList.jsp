@@ -32,11 +32,11 @@
 
 
 
-  <section class="blog_area single-post-area section-padding">
+  <section class="blog_area single-post-area section-padding" style="padding-top: 175px;">
      <div class="container">
         <div class="row">
            <jsp:include page="../model/siderbar2.jsp" flush="false" />
-           <div class="col-lg-10 posts-list" style="padding: 40px 100px;">
+           <div class="col-lg-10 posts-list" style="padding: 40px 100px; ">
            <h2 class="contact-title">작성한 리뷰</h2>
           
               <div class="slider-shape d-none d-lg-block">

@@ -139,7 +139,7 @@ th {
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-10 posts-list">
+				<div class="col-lg-10 posts-list" style="padding-left: 70px;">
 					<h2 class="contact-title" align="center">받은 리뷰</h2><hr>
 					<div class="slider-shape d-none d-lg-block">
 					<form name="Delete">
