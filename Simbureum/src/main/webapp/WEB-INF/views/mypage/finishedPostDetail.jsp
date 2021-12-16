@@ -3,7 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../model/topBar_login.jsp" %>
+<%
+	pageContext.setAttribute("replaceChar", "\n");
+%>
 
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -295,7 +299,7 @@ article {
 								<td><fmt:formatNumber value="${post.post_price}" />원</td>
 							</tr>
 							<tr style="height: 250px">
-								<td colspan="3" style="padding: 20px">${post.post_con}</td>
+								<td colspan="3" style="padding: 20px">${fn:replace(post.post_con, replaceChar, "<br/>")}</td>
 							</tr>
 						</table>
 						

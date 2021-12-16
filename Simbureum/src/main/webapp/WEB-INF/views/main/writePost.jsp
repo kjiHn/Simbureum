@@ -50,7 +50,7 @@
 
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding" id="centerBody" style="margin-bottom: 700px">
+	<section class="blog_area single-post-area section-padding" id="centerBody" style="margin-bottom: 660px; padding-top: 160px;">
 	<div class="container" style="width: 700px; height: 500px">
 	
 	<div class="col-lg-11 posts-list" id="centerCon">
@@ -118,20 +118,20 @@
 	</div>
 	</section>
 	
-	
-	 <script type="text/javascript">
-			$(document).ready(function() {
-			    $('#content').on('keyup', function() {
-			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
-			 
-			        if($(this).val().length > 100) {
-			            $(this).val($(this).val().substring(0, 500));
-			            $('#text_cnt').html("(500 / 500)");
-			        }
-			    });
-			});
+	<!-- 글자수 제한 -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#content').on('keyup', function() {
+	        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+	 
+	        if($(this).val().length > 500) {
+	            $(this).val($(this).val().substring(0, 500));
+	            $('#text_cnt').html("(500 / 500)");
+	        }
+	    });
+	});
 
-			</script>
+	</script>
 	
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c11e1620d5e96294da73f9c7ec269f0e
@@ -257,8 +257,10 @@
 				alert("마감일을 입력해주세요.");
 			}else if (!datatimeRegexp.test(dline)) {
 		        alert("마감일은 yyyy-mm-dd 형식으로 입력해주세요.");
-		    }else if(numof == ''){
+		    }else if(numof == 0){
 				alert("심부름꾼 수를 입력해주세요.");
+			}else if(numof > 9){
+				alert("심부름꾼은 최대 9명까지 가능합니다.");
 			}else if(price == ''){
 				alert("심부름 가격을 입력해주세요.");
 			}else{

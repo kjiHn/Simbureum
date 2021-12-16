@@ -63,7 +63,7 @@
 <body>
 	
 
-	<section class="blog_area single-post-area section-padding" style="margin-bottom: 389px">
+	<section class="blog_area single-post-area section-padding" style="margin-bottom: 349px;padding-top: 160px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 posts-list" style="height: 258px;">
