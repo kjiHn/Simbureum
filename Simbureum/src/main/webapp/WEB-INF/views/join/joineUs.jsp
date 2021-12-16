@@ -21,7 +21,7 @@ body {
 }
 
 #container #contents{
-	width: 400px;
+	width: 450px;
 	position: absolute;
 	right: 39%;
 }
@@ -45,6 +45,15 @@ body {
 
 
 }
+
+select { 
+		width: 45%;
+		padding: 12px 35px 12px 12px;
+		line-height: 2	;
+		border: #dddddd solid 1px;
+		border-radius: 5px;
+		
+	}
 </style>
 </head>
 <body>
@@ -80,7 +89,7 @@ body {
 											<div class="input del">
 												<input type="text" id="join_login_id"
 													class="required_join_input cleanValMsg" name="mb_id"
-													placeholder="영어 숫자 4자 이상 입력해주세요." maxlength="40" value=""
+													placeholder="영어 숫자 8자 이상 입력해주세요." maxlength="40" value=""
 													style="ime-mode: disabled;">
 											</div>
 											<p class="validation-check" id="join_login_id_error"></p></li>
@@ -102,9 +111,22 @@ body {
 											<p class="validation-check" id="join_pswd_check_error"></p></li>
 										<li><strong class="tit requied">이메일</strong>
 											<div class="input del">
-												<input type="text" id="join_email_id" name="mb_emaile"
+												<input type="text" id="join_email_id" 
 													class="required_join_input cleanValMsg"
-													placeholder="이메일을 입력해주세요." maxlength="40" value="">
+													placeholder="이메일을 입력해주세요." maxlength="40" value=""
+													style="display: inline; width: 45%;">
+												<span>@</span>	
+												<select id="emialSelect">
+													<option value="1">==선택하세요==</option>
+													<option value="naver.com">naver.com</option>
+													<option value="gmail.com">gmail.com</option>
+													<option value="nate.com">nate.com</option>
+													<option value="daum.net">daum.net</option>
+													<option value="hanmail.net">hanmail.net</option>
+													<option value="2">직접입력</option>
+												</select>
+											<input type="hidden" value="" name="mb_emaile" id="emailFull">
+											<input class="validation-check" type="text" style="display: none; margin-top: 5px; width: 50%;" id="value2">
 											<p class="validation-check" id="join_email_error"></p></li>
 											<button id = "emailButton" class ="emailButton">인증번호보내기</button>
 											</div>
@@ -214,7 +236,7 @@ body {
 
 		// ps의 조건
 		const psCondition = {
-		    'minLength': 4,
+		    'minLength': 8,
 		    'maxLength': 20,
 		    'withNum': true,
 		    'withEngA': false,
@@ -240,6 +262,7 @@ body {
 	var code = ""; 
 	var idJ = /^[a-zA-Z0-9]{4,16}$/;
 	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	var regExp1 =/\b((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}\b/;
 	var phoneExp = /^\d{3}-\d{3,4}-\d{4}$/;
 	
 /* 	function psConditionAlert() {
@@ -293,20 +316,17 @@ body {
 				});
 		});
 		
-		$("#join_email_id").blur(function() {
+	 	$("#join_email_id").blur(function() {
 			var email = $("#join_email_id").val();
 			
 			if (email=="") {
 				$("#join_email_error").text("이메일을 입력해주세여");
 				$("#join_email_error").css("color","red");
-			}else if(!regExp.test(email)){
-				$("#join_email_error").text("이메일을 정확히 입력해주세여");
-				$("#join_email_error").css("color","red");
 			}else{
 				$("#join_email_error").text("");
 			}
 			
-		});
+		}); 
 		
 		
 		
@@ -354,13 +374,43 @@ body {
 			
 		});
 		
+		$("#emialSelect").change(function() {
+			if ($("#join_email_id").val() != "") {
+				
+				if ($(this).val() != 2) {
+					$("#value2").css("display","none");
+				const emailvalue = $("#join_email_id").val() + "@" + $(this).val();
+				$("#emailFull").val(emailvalue);
+				}else if($(this).val() == 2){
+					$("#value2").css("display","");
+					$("#value2").on("keyup",function(event){
+						const emailvalue = $("#join_email_id").val() + "@" + $("#value2").val();
+						if (!regExp1.test(emailvalue)) {
+							$("#join_email_error").text("이메일을 입력해주세여");
+							$("#join_email_error").css("color","red");
+							
+						}else{
+							$("#join_email_error").text("");
+						}
+					});
+				}
+				
+			}else{			
+				$("#join_email_error").text("이메일을 입력해주세여");
+				$("#join_email_error").css("color","red");
+				$(this).val("1");
+			}
+			
+		});
+		
 
 		
 		$("#emailButton").click(function() {
 			event.preventDefault();
 			var cehckBox  = $("#join_emailCheck");
-			 var email = $("#join_email_id").val(); //입력한 이메일
-			 
+			
+			 var email = $("#emailFull").val(); //입력한 이메일
+			alert(email); 
 			 $.ajax({
 				type:"GET",
 				url:"/user/mailDupleCheck?mb_emaile=" + email,
@@ -419,9 +469,36 @@ body {
 		var join_emailCheck = $("#join_emailCheck").val();
 		var phone = $("#join_mobile").val();
 		
-		if ( !(name=="" && id =="" && pwsCheck=="" && pws == "" &&
-			email == "" && join_emailCheck =="")) {
-			
+			if (name=="") {
+				$("#join_mobile_error").text("이름을 채워주세여")
+				$("#join_mobile_error").css("color","red");
+				$("#join_mbr_nm").focus();
+				
+			}else if(id ==""){
+				$("#join_mobile_error").text("아이디를 채워주세여")
+				$("#join_mobile_error").css("color","red");
+				$("#join_login_id").focus();
+			}else if(pws ==""){
+				$("#join_mobile_error").text("비밀번호를 채워주세여")
+				$("#join_mobile_error").css("color","red");
+				$("#join_pswd").focus();
+			}
+			else if(pwsCheck ==""){
+				$("#join_mobile_error").text("비밀번호확인을 해주세여")
+				$("#join_mobile_error").css("color","red");
+				$("#join_pswd_check").focus();
+			}
+			else if(email ==""){
+				$("#join_mobile_error").text("이메일을 채워주세여")
+				$("#join_mobile_error").css("color","red");
+				$("#join_email_id").focus();
+			}
+			else if(join_emailCheck ==""){
+				$("#join_mobile_error").text("이메일인증을 해주세여")
+				$("#join_mobile_error").css("color","red");
+				$("#join_emailCheck").focus();
+			}else{
+			$("#join_mobile_error").text("")
 			$("#inactiveBtn").css("display","none");
 			$("#activeBtn").css("display","");
 		}
@@ -478,18 +555,22 @@ body {
 	            conditionAlert.push(conditionMessage.withEnga);
 	        }
 	    }
+	    if (letterCheck.checkNum.test(idInput) !== conditionObj.withNum) {
+	        if (conditionObj.withNum) {
+	            conditionAlert.push(conditionMessage.withNum);
+	        } else {
+	            conditionAlert.push(conditionMessage.withNoNum);
+	        }
+	    }
 	  	// conditionAlert에 아무 것도 들어가 있지 않는다면 모든 조건이 충족한 것!
 	    // 성취감을 느끼며 다음 메세지를 띄운다.. '제출되었습니다아......'
 	    if (conditionAlert.length === 0) {
-	    	/* document.querySelector("#join_pswd_error").html = '제출되었습니다.'; */
-	    	$("#join_pswd_error").text('제출되었습니다.');
+	    	$("#join_pswd_error").text('사용가능한 비밀번호입니다.');
 	    	$("#join_pswd_error").css("color","blue");
 	    } else {
 	  	// 아니면 conditionAlert의 모든 엘리먼트들을 join해서 내보낸다.
-	        /* alert('조건: ' + conditionAlert.join(', ')); */
-	        $("#join_pswd_error").text('조건:' + conditionAlert.join(', '));
+	        $("#join_pswd_error").text('실패:' + conditionAlert.join(', '));
 	        $("#join_pswd_error").css("color","red");
-	        /* document.querySelector("#join_pswd_error").html = ; */
 	    }
 	    
 	}
@@ -502,7 +583,7 @@ body {
 	
 	<script type="text/javascript">
 		function test() {
-			 var email = $("#join_email_id").val(); //입력한 이메일
+			 var email = $("#emailFull").val(); //입력한 이메일
 			 $.ajax({
 					type:"GET",
 					url:"/user/mailFrc_WthCheck?mb_emaile=" + email,
