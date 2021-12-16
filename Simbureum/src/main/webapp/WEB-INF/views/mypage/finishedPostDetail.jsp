@@ -126,6 +126,7 @@ article {
 													onfocus="this.placeholder = ''"
 													onblur="this.placeholder = '리뷰를 작성해 주세요'"
 													placeholder="리뷰를 작성해 주세요"></textarea>
+													<div id="text_cnt">(0 / 500)</div>
 								</div>
                            </td>                            
                         </tr>
@@ -145,6 +146,24 @@ article {
 					</div>
 				</div>
 			</div>
+			
+			<!-- 글자수 제한 -->
+			 <script type="text/javascript">
+			$(document).ready(function() {
+			    $('#message').on('keyup', function() {
+			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			 
+			        if($(this).val().length > 500) {
+			            $(this).val($(this).val().substring(0, 500));
+			            $('#text_cnt').html("(500 / 500)");
+			        }
+			    });
+			});
+
+			</script>
+			
+			
+			
 			<script>
 			 function clickDel(formName) {
 				  var post_num_pk = $("#post_num_pk").val();

@@ -108,7 +108,7 @@ public class Vlntr_RvDTO {
 		return RERP_CON;
 	}
 
-	public void setRRERP_CON(String rERP_CON) {
+	public void setRERP_CON(String rERP_CON) {
 		RERP_CON = rERP_CON;
 	}
 

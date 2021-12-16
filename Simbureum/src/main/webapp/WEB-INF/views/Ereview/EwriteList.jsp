@@ -122,7 +122,7 @@
      	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
      	<input type='hidden' name='mb_id_pk' value='${sessionScope.mid}' />
    	  </form>
-   
+   <!-- 글자수 제한 -->
    <script>
    var actionForm = $("#actionForm");
    $(".page-item a").on("click", function (e){

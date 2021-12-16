@@ -141,25 +141,11 @@ public class ReviewController {
 	  
 	 
 	  @RequestMapping(value = "/Report", method = RequestMethod.POST)
-		public String ReportPOST(Model model, Vlntr_RvDTO vrdto, @RequestParam("vr_mbid") String vr_mbid,  RedirectAttributes redirect)  throws Exception {
-		  int data = vlservice.ReportCheck(vrdto);
-		  try {
-			  if(data == 1) {
-				  redirect.addAttribute("vr_mbid",vr_mbid);
-				// return "redirect:/review/receiveList";
-			  }else if(data == 0) {
-				  redirect.addAttribute("vr_mbid",vr_mbid);
-				    vlservice.Report(vrdto);
-				    return "redirect:/review/receiveList" ; 
-			  }
-			  
-		  }catch (Exception e) {
-			// TODO: handle exception
-			  throw new RuntimeException();
-		}
-		  redirect.addAttribute("vr_mbid",vr_mbid);
-		  return "redirect:/review/receiveList" ; 
-		}
+		public String ReportPOST(Model model, Vlntr_RvDTO vrdto, @RequestParam("RERP_LNB") int vr_rvn_pk, RedirectAttributes redirect)  throws Exception {
+		   redirect.addAttribute("vr_rvn_pk",vr_rvn_pk);
+		   vlservice.Report(vrdto);
+		   return "redirect:/review/reList" ; 
+	  }
 	  
 	//고용자가 받은 리뷰 자세히 
 	@RequestMapping(value = "/grdAvg", method = RequestMethod.POST)

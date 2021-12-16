@@ -42,19 +42,6 @@ th {
 	text-align: right;
 	/* border-right: 6px solid  #e3c4ff; */
 }
-table {
-	
-	
-}
-
-#Report{
-	padding: 10px 44px; position: absolute; 
-	margin-left: 120px;
-}
-#btn1{
-	padding: 10px 44px;
-}
-
 
 
 </style>
@@ -86,8 +73,8 @@ table {
                 				<input type="hidden" id="RERP_TARGET_MBN" name="RERP_TARGET_MBN" value="${EreList.mb_num_pk }">
                 				<input type="hidden" id="RERP_MBN" name="RERP_MBN" value="<%=session.getAttribute("mNum")%>">
                 				<input type="hidden" id="RERP_LNB" name="RERP_LNB" value="${EreList.er_num_pk }">    
-                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RERP_CON" name="RERP_CON"></textarea>            				
-					
+                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 15px; resize: none;" id="RERP_CON" name="RERP_CON"></textarea>            				
+								<div id="text_cnt">(0 / 500)</div>
 						</div>
 						</form>
 						<div class="modal-footer">
@@ -105,6 +92,23 @@ table {
 		
 	</div>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+	
+	
+		<!-- 글자수 제한 -->
+			 <script type="text/javascript">
+			$(document).ready(function() {
+			    $('#RERP_CON').on('keyup', function() {
+			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			 
+			        if($(this).val().length > 500) {
+			            $(this).val($(this).val().substring(0, 500));
+			            $('#text_cnt').html("(500 / 500)");
+			        }
+			    });
+			});
+
+			</script>
 
 		<script>
 		 function clickDel(formName) {

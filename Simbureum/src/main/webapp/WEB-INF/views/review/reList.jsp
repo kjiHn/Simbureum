@@ -73,7 +73,7 @@ th {
                 				<input type="hidden" id="RERP_TARGET_MBN" name="RERP_TARGET_MBN" value="${reList.mb_num_pk }">
                 				<input type="hidden" id="RERP_MBN" name="RERP_MBN" value="<%=session.getAttribute("mNum")%>">
                 				<input type="hidden" id="RERP_LNB" name="RERP_LNB" value="${reList.vr_rvn_pk }">    
-                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 14px; resize: none;" id="RRERP_CON" name="RRERP_CON"></textarea>            				
+                				<textarea rows="10" cols="40" class="form-control w-100" style="font-size: 15px; resize: none;" id="RERP_CON" name="RERP_CON"></textarea>            				
 					
 						</div>
 						</form>
@@ -92,21 +92,41 @@ th {
 		
 	</div>
 	<script src="<c:url value="/js/egovframework/mbl/cmm/jquery-1.11.2.min.js" />"></script>
+	
+	
+	<!-- 글자수 제한 -->
+			 <script type="text/javascript">
+			$(document).ready(function() {
+			    $('#RERP_CON').on('keyup', function() {
+			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			 
+			        if($(this).val().length > 500) {
+			            $(this).val($(this).val().substring(0, 500));
+			            $('#text_cnt').html("(500 / 500)");
+			        }
+			    });
+			});
+
+			</script>
+	
+	
 
 
 
 		 <script>
-		 var RRERP_CON = ("#RRERP_CON").val();
-		 		if(RRERP_CON = ''){
-		 			 alert("신고사유를 작성해주세요");
-		 		}else{
-				 function clickDel(formName) {
-					 alert("신고가 완료되었습니다");
-					  formName.action = "/review/Report";
-					  formName.method = "post";
-					  formName.submit(); 
-				} 
-		 		}
+		 function clickDel(formName) {
+			 var RERP_CON =  $("#RERP_CON").val();
+			 if(RERP_CON == ''){
+				 alert("신고사유를 작성해주세요")
+			 }else{
+				  alert("신고가 완료되었습니다");
+				  formName.action = "/review/Report";
+				  formName.method = "post";
+				  formName.submit(); 
+			 }
+		} 
+				
+		
 			</script> 
 			
 			

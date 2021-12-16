@@ -31,9 +31,7 @@ public class Ern_RvControlller {
 	  @RequestMapping(value = "/EreInsertCheck", method = RequestMethod.POST)
 	  public int reInsertCheck(Model model, Ern_RvDTO erdto) throws Exception {
 		  int data=0;
-		  System.out.println("$$$$$$$$$$$$$$$$$$$$$");		  
 		  String[] er_mbid = erdto.getEr_mbid().split(", ");
-		 System.out.println(er_mbid[0]);
 		  for(int i=0;i<er_mbid.length; i++) {
 			  erdto.setEr_mbid(er_mbid[i]);
 			  data += erser.EreInsertCheck(erdto);
@@ -98,10 +96,10 @@ public class Ern_RvControlller {
 	
 	
 	 @RequestMapping(value = "/EReport", method = RequestMethod.POST)
-		public String ReportPOST(Model model, Ern_RvDTO erdto, @RequestParam("er_mbid") String er_mbid,  RedirectAttributes redirect)  throws Exception {
-		  redirect.addAttribute("er_mbid",er_mbid);
+		public String ReportPOST(Model model, Ern_RvDTO erdto, @RequestParam("RERP_LNB") int er_num_pk,  RedirectAttributes redirect)  throws Exception {
+		  redirect.addAttribute("er_num_pk",er_num_pk);
 		    erser.EReport(erdto);
-			return "redirect:/Ereview/EreceiveList" ; 
+			return "redirect:/Ereview/EreList" ; 
 		}
 	 
 	 	//고용자이 심부름꾼에게 작성한 리뷰 전체 리스트 

@@ -65,7 +65,8 @@
 				</tr>
 				<tr>
 					<th>내용 : </th>
-					<td><textarea name="post_con" class="content" id="content" placeholder="내용 입력"></textarea></td>
+					<td><textarea name="post_con" class="content" id="content" placeholder="내용 입력"></textarea>
+						<div id="text_cnt">(0 / 500)</div></td>
 				</tr>
 				<tr>
 					<th>위치 : </th>
@@ -116,6 +117,21 @@
 	</div>
 	</div>
 	</section>
+	
+	
+	 <script type="text/javascript">
+			$(document).ready(function() {
+			    $('#content').on('keyup', function() {
+			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			 
+			        if($(this).val().length > 100) {
+			            $(this).val($(this).val().substring(0, 500));
+			            $('#text_cnt').html("(500 / 500)");
+			        }
+			    });
+			});
+
+			</script>
 	
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c11e1620d5e96294da73f9c7ec269f0e

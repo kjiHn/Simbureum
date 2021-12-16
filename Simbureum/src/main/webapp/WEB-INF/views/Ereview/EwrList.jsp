@@ -65,7 +65,7 @@ th {
   color:#fc0;
 }
 #message{
- 	font-size: 20px;
+ 	font-size: 14px;
  	resize: none;
 }
 
@@ -170,8 +170,10 @@ article {
                            <th>내용</th>
                            <td style="height: 200px;">
                            <div class="form-group">
-                           <textarea class="form-control w-100" name="er_rvc" id="message" cols="30" rows="9">${EwrList.er_rvc }</textarea>
+                           <textarea class="form-control w-100" name="er_rvc" id="message" cols="10" rows="10">${EwrList.er_rvc }</textarea>
+                           <div id="text_cnt">(0 / 500)</div>
 								</div>
+								
                            </td>                            
                         </tr>
                         
@@ -190,9 +192,34 @@ article {
 					</div>
 				</div>
 			</div>
+			
+			
+			<!-- 글자수 제한 -->
+			 <script type="text/javascript">
+			$(document).ready(function() {
+			    $('#message').on('focus',function() {
+			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			        $('#message').on('keyup',function() {
+			        	 $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			        
+			 
+			        if($(this).val().length > 500) {
+			            $(this).val($(this).val().substring(0, 500));
+			            $('#text_cnt').html("(500 / 500)");
+			        }
+			        });
+			    });
+			});
+			</script>
+			
+			
+			
+			
+			
+			
+			
 			<script>
 			 function clickUpdate(formName) {
-		
 			    alert("리뷰수정이 완료되었습니다.");
 			    formName.action = "/Ereview/EwreUpdate";
 				formName.method = "post";
@@ -202,6 +229,7 @@ article {
 			 
 			 var checked = 'checked';
 			 var grd = $("#er_grd").val();
+
 		
 			 
 			  if(grd == 5){				 
@@ -268,6 +296,18 @@ article {
          </div>
      
    </section>
+   
+    <script type="text/javascript">
+			 $("#btn_up").click(function(){
+				
+			  	setTimeout(function(){
+					$("textarea").focus();
+				}, 200); 
+			 });  
+			   </script>
+   
+   
+  
   
 </body>
 </html>

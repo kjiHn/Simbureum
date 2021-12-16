@@ -123,6 +123,7 @@
 													onfocus="this.placeholder = ''"
 													onblur="this.placeholder = '리뷰를 작성해 주세요'"
 													placeholder="리뷰를 작성해 주세요"></textarea>
+													<div id="text_cnt">(0 / 500)</div>
 								</div>
                            </td>                            
                         </tr>
@@ -142,6 +143,22 @@
 					</div>
 				</div>
 			</div>
+			<!-- 글자수 제한 -->
+			<script type="text/javascript">
+			$(document).ready(function() {
+			    $('#message').on('keyup', function() {
+			        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+			 
+			        if($(this).val().length > 100) {
+			            $(this).val($(this).val().substring(0, 500));
+			            $('#text_cnt').html("(500 / 500)");
+			        }
+			    });
+			});
+
+			</script>
+			
+			
 			<script>
 			 function clickDel(formName) {
 				  var post_num_pk = $("#post_num_pk").val();
@@ -254,7 +271,7 @@
 					<div class="modal-header">
 						<h2 class="modal-title" id="exampleModalLabel">지원한 심부름꾼</h2>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
+							<span aria-hidden="true" style="font-size: 25px;">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body" style="overflow: auto; height: 300px;">
@@ -354,10 +371,19 @@
 						</div>
 						
 						<div class="modal-body" style="height: 300px; overflow: auto; ">
-						<h2>리뷰</h2>
-							<div >
-							<table id="reviewTable" style="text-align: left; width: 300px; word-break: break-all;" ></table>
-							</div>
+						<%-- <c:if test="${grdAvg.vr_grd ==null }">
+							<div style="color: white; text-align: center;">
+							<br><br><br><br>
+							<h3>선택하신 심부름꾼의 리뷰가 없습니다</h3>
+							<p>심부름을 부탁하고 첫 리뷰를 작성해주세요</p>
+							</div>	
+						</c:if> --%>
+						<%-- <c:if test="${grdAvg.vr_grd !=null}"> --%>
+							<h2>리뷰</h2>
+								<div >
+								<table id="reviewTable" style="text-align: left; width: 300px; word-break: break-all;" ></table>
+								</div>
+						<%-- </c:if> --%>
 						</div>
 					</div>
 				</div>

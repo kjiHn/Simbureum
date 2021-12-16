@@ -59,7 +59,8 @@
 								</tr>
 								<tr>
 									<th>내용 : </th>
-									<td><textarea name="post_con" class="content" placeholder="내용 입력">${post.post_con}</textarea></td>
+									<td><textarea id="content" name="post_con" class="content" placeholder="내용 입력">${post.post_con}</textarea>
+										<div id="text_cnt">(0 / 500)</div></td>
 								</tr>
 								<tr>
 									<th>위치 : </th>
@@ -111,6 +112,31 @@
 			</div>
 		</div>
 	</section>
+	
+	
+	<!-- 글자수 제한 -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+		setTimeout(function(){
+			$("#content").focus();
+		}, 200); 
+		
+		
+	    $('#content').on('focus',function() {
+	        $('#text_cnt').html("("+$(this).val().length+" / 500)");
+	        $('#content').on('keyup',function() {
+	        	 $('#text_cnt').html("("+$(this).val().length+" / 500)");
+	        
+	 
+	        if($(this).val().length > 500) {
+	            $(this).val($(this).val().substring(0, 500));
+	            $('#text_cnt').html("(500 / 500)");
+	        }
+	        });
+	    });
+	});
+
+			</script>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c11e1620d5e96294da73f9c7ec269f0e
 		&libraries=services"></script>
