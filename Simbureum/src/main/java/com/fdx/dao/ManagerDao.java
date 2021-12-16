@@ -22,6 +22,11 @@ public class ManagerDao {
 		List<managerDTO> post = this.sqlSessionTemplate.selectList("mappers.Manager.post");
 	    return post;
 	}
+	//게시글 카운트
+		public int selectList2() {
+			
+		    return this.sqlSessionTemplate.selectOne("mappers.Manager.postcount");
+		}
 	
 	//게시글 상세 보기
 		public managerDTO postDetail(int post_num_pk) throws Exception {

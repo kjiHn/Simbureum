@@ -66,11 +66,11 @@
 	<table width = "100%" height = "100%" >
 			<tr>
 				<td><b>작성자</b></td>
-				<td>${sbrreportreview.mb_id_pk}</td>
+				<td>${gyzreportreview.mb_id_pk}</td>
 			</tr>
 			<tr>
 				<td><b>해당 게시글</b></td>
-				<td>${sbrreportreview.post_title}</td>
+				<td>${gyzreportreview.post_title}</td>
 			</tr>
 			<tr>
 				<td><b>작성일</b></td>

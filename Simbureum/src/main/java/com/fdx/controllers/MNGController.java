@@ -40,9 +40,18 @@ public class MNGController {
 
 		List<managerDTO> post = managerDao.selectList();
 		model.addAttribute("post", post);
-		System.out.println(post);
 		return "Manager/MNGntcboard";
 	}
+	
+	// 게시글 카운트
+		@RequestMapping(value = "/MNGntcboardcount", method = RequestMethod.GET)
+		public String MNGntcboardcount(Model model) {
+
+			int postcount = managerDao.selectList2();
+			System.out.println(postcount);
+			
+			return "Manager/MNGntcboard";
+		}
 
 	// 게시글 클릭시 상세 화면
 	@RequestMapping(value = "/MNGntcboardDetail", method = RequestMethod.GET)
