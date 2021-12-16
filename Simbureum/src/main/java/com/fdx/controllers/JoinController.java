@@ -389,6 +389,10 @@ public class JoinController {
 	public String goUpdatePage(@RequestParam(value = "mb_id") String mb_id,Model model) {
  		JoinDTO joinDTO = new JoinDTO();
  		joinDTO = loginService.memberCheck(mb_id);
+ 		String emaile = joinDTO.getMb_emaile();
+ 		String [] emaleArray =  emaile.split("@");
+ 		
+ 		model.addAttribute("emaileArray", emaleArray);
  		model.addAttribute("mb_id", mb_id);
  		model.addAttribute("myInfo", joinDTO);
 		return "mypage/updatePage";
@@ -420,8 +424,13 @@ public class JoinController {
  		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
  		JoinDTO joinDTO = new JoinDTO();
  		joinDTO = loginService.memberCheck(mb_id);
+ 		System.out.println(mb_pswd);
  		if (encoder.matches(mb_pswd, joinDTO.getMb_pswd())) {
 			num = 1;
+		}else {
+			if (mb_pswd.equals(joinDTO.getMb_pswd())) {
+				num = 1;
+			}
 		}
  		
  		return num;

@@ -408,9 +408,7 @@ select {
 		$("#emailButton").click(function() {
 			event.preventDefault();
 			var cehckBox  = $("#join_emailCheck");
-			
 			 var email = $("#emailFull").val(); //입력한 이메일
-			alert(email); 
 			 $.ajax({
 				type:"GET",
 				url:"/user/mailDupleCheck?mb_emaile=" + email,
