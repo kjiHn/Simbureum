@@ -173,11 +173,11 @@ body {
 					</div>
 					<div class="pbt pull">
 					
-						<div class="bts" id="inactiveBtn" style="display: ;">
+						<div class="bts" id="inactiveBtn" style="display: ; margin-bottom: 50px;">
 							<a href="javascript:;" id="nextBtn" class="btn lg gray"
 								data-content="" data-url="">다음</a>
 						</div>
-						<div class="bts" id="activeBtn" style="display:none ;">
+						<div class="bts" id="activeBtn" style="display:none ; margin-bottom: 50px;">
 							<a href="javascript:goNextPage();" id="nextBtn"
 								class="btn lg a" data-content="" data-url="">다음</a>
 						</div>
