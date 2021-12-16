@@ -155,7 +155,7 @@ public class MNGController {
 		
 		// 공지 삭제
 
-		@RequestMapping(value = "/MNGancdelete", method = RequestMethod.POST)
+		@RequestMapping(value = "/MNGancdelete", method = RequestMethod.GET)
 		public String ancdelete(@RequestParam("ntc_num_pk") int ntc_num_pk) throws Exception {
 			managerDao.ancdelete(ntc_num_pk);
 			return "redirect:/MNGancboard";

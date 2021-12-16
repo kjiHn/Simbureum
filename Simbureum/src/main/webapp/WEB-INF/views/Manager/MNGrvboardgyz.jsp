@@ -19,6 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+        <!-- 만든 버튼 css -->
+	<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
     <style>
     	#btn1{
     		margin-right:40px;
@@ -114,14 +116,8 @@
 <footer>
  <div class="container">
                 <div class="row justify-content-center" >                   
-                 	<form action="/repoertreviewcancle" method="get"> 
-						<input type="hidden" name="rerp_num_pk" value="${gyzreportreview.rerp_num_pk}"/>
-						<input id="btn1" class ="button" type="submit" value="신고 취소"/>
-					</form>
-                 	<form action="/gyzrepoertreviewdelete" method="get"> 
-						<input type="hidden" name="vr_rvn_pk" value="${gyzreportreview.vr_rvn_pk}"/>
-						<input id="btn1" class ="button" type="submit" value="신고 처리"/>
-					</form>
+					<Button type="button" class="bigBtn" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${gyzreportreview.rerp_num_pk}'">신고 취소</Button>
+                 	<Button type="button" class="bigBtn" onclick="location.href = '/gyzrepoertreviewdelete?vr_rvn_pk=${gyzreportreview.vr_rvn_pk}'">신고 처리</Button>
                 </div>
             </div>
 </footer>

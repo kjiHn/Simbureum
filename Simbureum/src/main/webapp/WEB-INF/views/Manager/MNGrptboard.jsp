@@ -19,6 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+    <!-- 만든 버튼 css -->
+	<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
     <style>
     	#btn1{
     		margin-right:40px;
@@ -113,16 +115,10 @@
 <footer>
  <div class="container">
                 <div class="row justify-content-center" >                   
-                 	<form action="/repoertpostcancle" method="get"> 
-						<input  type="hidden" name="porp_num_pk" value="${reportpost.porp_num_pk}"/>
-						<input id="btn1" class ="button" type="submit" value="신고 취소"/>
-					</form>
-                 	<form action="/repoertpostdelete" method="get"> 
-						<input type="hidden" name="post_num_pk" value="${reportpost.post_num_pk}"/>
-						<input id="btn1" class ="button" type="submit" value="신고 처리"/>
-					</form>
+                 	<Button type="button" class="bigBtn" onclick="location.href = '/repoertpostcancle?porp_num_pk=${reportpost.porp_num_pk}'">신고 취소</Button>
+                 	<Button type="button" class="bigBtn" onclick="location.href = '/repoertpostdelete?post_num_pk=${reportpost.post_num_pk}'">신고 처리</Button>
                 </div>
-            </div>
+</div>
 </footer>
 </html>
 <%@include file="../model/footer.jsp" %>

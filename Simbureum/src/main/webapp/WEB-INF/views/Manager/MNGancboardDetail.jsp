@@ -14,6 +14,8 @@
 <head>
 <meta charset="UTF-8">
 <title>공지 사항</title>
+<!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
 </head>
 <body>
 
@@ -33,17 +35,10 @@
 		</div>
 	</div>
 </section>
-	<div class="form-group mt-3" align="center">
-		
-	<a href="/MNGancmodify?ntc_num_pk=${announceDetail.ntc_num_pk }">
-		<input type="submit" class="button button-contactForm boxed-btn"value="공지 수정"/>
-	</a>
+			<div align="center">
+				<Button type="button" class="bigBtn" onclick="location.href = '/MNGancmodify?ntc_num_pk=${announceDetail.ntc_num_pk }'">공지 수정</Button>
+				<Button type="button" class="bigBtn" onclick="location.href = '/MNGancdelete?ntc_num_pk=${announceDetail.ntc_num_pk}'">공지 삭제</Button>
+			</div>
 	
-
-			<form action="MNGancdelete" method="post">
-				<input type="hidden" name="ntc_num_pk" value="${announceDetail.ntc_num_pk}"/>
-				<input type="submit" class="button button-contactForm boxed-btn" value="공지 삭제">
-			</form>
-	</div>
-</body>
+	</body>
 </html>

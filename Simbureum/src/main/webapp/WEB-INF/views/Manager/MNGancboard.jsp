@@ -20,6 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+    <!-- 만든 버튼 css -->
+<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
     
     <style>
     .button{
@@ -39,7 +41,7 @@
             <div class="col-lg-10 posts-list">
             	<div class="form-group mt-3" align = "right">
             	<form action="MNGwriteanc" method="post">
-            	<input type="submit" class="button button-contactForm boxed-btn" value="공지작성">
+            	<button type="submit" class="bigBtn">공지 작성</button>
             	</form>
             	
             	
