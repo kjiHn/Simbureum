@@ -29,26 +29,17 @@
 	href="view/assets/img/logo/loder1.jpg">
 
 <style type="text/css">
-.button {
-	background-color: white;
-	color: black;
-	border: 2px solid #BFA0ED;
-	padding: 2px 16px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-	cursor: pointer;
-	border-radius: 20px;
-	float: none;
+.postTable{
+	text-align: center; 
+	width: 1000px; 
+	align: center; 
+	border: 1px solid #e3c4ff;
 }
 
-.button:hover {
-	background-color: #BFA0ED;
-	color: white;
+.postTable thead{
+	background-color: #e3c4ff; 
+	height: 32px;
 }
-
 </style>
 </head>
 <body>
@@ -67,10 +58,9 @@
 					</c:if>
 					
 					<c:if test="${pageMaker.totalCount != 0}">
-						<table
-							style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+						<table class="postTable">
 							<thead>
-								<tr style="background-color: #e3c4ff;">
+								<tr>
 									<th>No.</th>
 									<th>제목</th>
 									<th>위치</th>

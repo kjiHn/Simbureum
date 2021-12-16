@@ -29,14 +29,21 @@
 	href="view/assets/img/logo/loder1.jpg">
 
 <style type="text/css">
-
-
-.active a{
-background-color: black;
-
+.postTable{
+	text-align: center; 
+	width: 1000px; 
+	align: center; 
+	border: 1px solid #e3c4ff;
 }
 
+.postTable thead{
+	background-color: #e3c4ff; 
+	height: 32px;
+}
 
+.active a{
+	background-color: black;
+}
 </style>
 </head>
 <body>
@@ -56,10 +63,9 @@ background-color: black;
 						</c:if>
 						
 						<c:if test="${pageMaker.totalCount != 0}">
-							<table
-								style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+							<table class="postTable">
 								<thead>
-									<tr style="background-color: #e3c4ff;">
+									<tr>
 										<th>No.</th>
 										<th>제목</th>
 										<th>위치</th>
