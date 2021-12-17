@@ -8,13 +8,18 @@
 <title></title>
 
 <style type="text/css">
+body{
+	box-sizing: border-box;
+	height: 969px;
+}
+
 .borderMain {
 	padding: 20px;
 	width: 600px;
 	height: 550px;
 	background: rgba(155, 89, 182, 0.2);
 	position: absolute;
-	top: 100%;
+	top: 145px;
 	left: 35%;
 	box-shadow: 0 15px 20px rgb(0 0 0 / 20%);
 	border-radius: 5px;
@@ -93,7 +98,7 @@
 </style>
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="height: 100%;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 posts-list">
@@ -168,7 +173,13 @@
 		 }); 
 	 });
 	</script>
-
+<%@ include file="../model/footer.jsp"%>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+$("footer").css("position","fixed");
+$("footer").css("bottom","0px");
+});
 
 </body>
 </html>

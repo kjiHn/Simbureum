@@ -216,6 +216,16 @@ $("#goUpdate").click(function() {
 
 
 
+<%@ include file="../model/footer.jsp"%>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	
+$("footer").css("position","fixed");
+$("footer").css("bottom","0px");
+});
+
+
+</script>
 </body>
 </html>

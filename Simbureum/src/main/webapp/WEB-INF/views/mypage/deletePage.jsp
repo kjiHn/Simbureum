@@ -231,6 +231,6 @@ $(document).ready(function(){
 	</script>
 
 
-
+<%@ include file="../model/footer.jsp"%>
 </body>
 </html>
