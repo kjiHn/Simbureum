@@ -114,10 +114,10 @@ article {
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h2 class="modal-title" id="exampleModalLabel">게시물 삭제</h2>
+							<h2 class="modal-title" id="exampleModalLabel">리뷰 삭제</h2>
 							
 						</div>
-						<div class="modal-body">게시물을 삭제하시겠습니까?</div>
+						<div class="modal-body">작성하신 리뷰를 삭제하시겠습니까?</div>
 						<div class="modal-footer">
 							<button type="button" class="bigBtn" id="btn1" onclick="clickDel(Delete)">삭제하기</button>
 							<button type="button" class="bigBtn" id="btn1"  data-dismiss="modal">취소하기</button>
@@ -127,6 +127,7 @@ article {
 			</div>
 			<script>
 				function clickDel(formName) {
+					alert("삭제가 완료되었습니다");
 					formName.action = "/Ereview/EwreDelete";
 					formName.method = "post";
 					formName.submit();
@@ -232,12 +233,18 @@ article {
 			
 			<script>
 			 function clickUpdate(formName) {
+				 var message = $("#message").val();
+				 if(message == ''){
+					 alert("리뷰를 작성해 주세요");	 
+				 }else{
+					 
+				 
 			    alert("리뷰수정이 완료되었습니다.");
-			    formName.action = "/Ereview/EwreUpdate";
+			      formName.action = "/Ereview/EwreUpdate";
 				formName.method = "post";
-				formName.submit();  
+				formName.submit();   
 			} 
-			 
+			 }
 			 
 			 var checked = 'checked';
 			 var grd = $("#er_grd").val();
