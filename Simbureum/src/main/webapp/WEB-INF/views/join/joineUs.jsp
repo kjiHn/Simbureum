@@ -596,6 +596,5 @@ select {
 		}
 	
 	</script>
-
 </body>
 </html>
