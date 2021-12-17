@@ -106,7 +106,6 @@ public class MypageController {
 		model.addAttribute("post", post);		
 			if(post.getSel_vr() != null) {
 				String[] sel_vr = post.getSel_vr().split(", ");
-				System.out.println("***********");
 				model.addAttribute("vr", sel_vr);
 				for(int i=0; i<sel_vr.length;i++) {
 					erser.EreceiveList(sel_vr[i]);

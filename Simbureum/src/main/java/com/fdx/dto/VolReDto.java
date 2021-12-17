@@ -31,6 +31,10 @@ public class VolReDto {
 	public void setVrRe_avg(double vrRe_avg) {
 		this.vrRe_avg = vrRe_avg;
 	}
+	@Override
+	public String toString() {
+		return "VolReDto [mb_id=" + mb_id + ", vrRe_count=" + vrRe_count + ", vrRe_avg=" + vrRe_avg + "]";
+	}
 	
 	
 	

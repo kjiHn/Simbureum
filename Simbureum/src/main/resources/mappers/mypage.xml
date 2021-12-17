@@ -102,7 +102,7 @@
 	</select>
 	
 	<select id="selVolRe" parameterType="int" resultType="volRe">
-		select m.MB_ID, nvl(count(v.ER_NUM_PK),0) as vrRe_count , nvl(round(avg(v.ER_GRD),0),3) as vrRe_avg
+		select m.MB_ID, nvl(count(v.ER_NUM_PK),0) as vrRe_count , nvl(round(avg(v.ER_GRD),3),0) as vrRe_avg
 		from ap_post a, (member m full join ern_rv v 
 		on v.ER_MBID = m.MB_ID)
 		where a.POST_NUM_PK = #{post_num_pk}
