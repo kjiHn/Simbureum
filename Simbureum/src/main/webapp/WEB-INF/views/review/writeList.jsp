@@ -43,7 +43,7 @@
              	
              
               
-           	<h3>TO.<a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid")%>" >고용자</a> | <a href="/review/writeList?mb_id_pk=<%=session.getAttribute("mid")%>" style="font-weight: bold; font-size: 20px;">심부름꾼</a></h3>
+           	<h3>WHEN.<a href="/Ereview/EwriteList?mb_id_pk=<%=session.getAttribute("mid")%>" >고용자</a> | <a href="/review/writeList?mb_id_pk=<%=session.getAttribute("mid")%>" style="font-weight: bold; font-size: 20px;">심부름꾼</a></h3>
            	<c:if test="${wrtotalPage == 0}">
             	<h2 style="text-align: center; font-weight: bold; padding-top: 100px; width: 1000px">작성한 리뷰가 없습니다.</h2>
             	</c:if>  

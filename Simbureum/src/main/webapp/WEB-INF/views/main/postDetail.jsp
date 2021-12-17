@@ -86,7 +86,7 @@ a {
                      </thead>
 					<c:forEach items="${reviewList }" var="vrdto">
                          <tr>                 
-                           <td style="border-top: 1px solid gray;">ID : ${vrdto.vr_mbid}</td>
+                           <td style="border-top: 1px solid gray;">ID : ${vrdto.mb_id_pk}</td>
                          </tr>
                          <tr>
                            <td>${vrdto.vr_date}</td>

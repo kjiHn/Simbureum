@@ -52,22 +52,22 @@
 
 
 
-<section class="blog_area single-post-area section-padding">
+<section class="blog_area single-post-area section-padding"  style="padding-top: 175px;  margin-bottom: 77px; height: 810px;">
 	<div class="container">
 		<div class="row">
 			<jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
     
 
-<div class="col-lg-8 posts-list">
+<div class="col-lg-8 posts-list" style="padding-left: 70px;">
 	
-	 <div class="slider-shape d-none d-lg-block" >
+	 <div class="slider-shape d-none d-lg-block"  >
 			<h2 class="mb-30"><b>신고된 게시글</b></h2>
 	 </div>
 	 
 	<div id="div1">
-		<table width = "100%" height = "100%" >
+		<table>
 			<tr>
-				<td><b>제목</b></td>
+				<td style="width: 100px;"><b>제목</b></td>
 				<td>${reportpost.post_title}</td>
 			</tr>
 			<tr>

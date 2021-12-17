@@ -56,7 +56,7 @@
 
 
 
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 175px;  margin-bottom: 77px; height: 810px;">
      <div class="container">
       <div class="row">
 <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
