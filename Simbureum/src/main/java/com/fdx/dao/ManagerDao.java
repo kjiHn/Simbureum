@@ -47,6 +47,14 @@ public class ManagerDao {
 		List<managerDTO> announce = this.sqlSessionTemplate.selectList("mappers.Manager.announce");
 	    return announce;
 	}
+	
+	
+	
+	//공지사항 카운트
+			public int announceCount() {
+				
+			    return this.sqlSessionTemplate.selectOne("mappers.Manager.announceCount");
+			}
 	 
 	//공지 작성
 		public void writeanc(managerDTO manager) throws Exception {
@@ -77,6 +85,13 @@ public class ManagerDao {
 			List<managerDTO> user = this.sqlSessionTemplate.selectList("mappers.Manager.usersearch");
 			return user;
 		}
+		
+		//공지사항 카운트
+		public int mnguserCount() {
+		    return this.sqlSessionTemplate.selectOne("mappers.Manager.mnguserCount");
+		}
+		
+		
 	//회원탈퇴
 		public int userdelete(int mb_num_pk) {
 			return this.sqlSessionTemplate.delete("mappers.Manager.userdelete", mb_num_pk);

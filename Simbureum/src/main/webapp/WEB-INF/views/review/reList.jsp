@@ -54,9 +54,7 @@ th {
 
 <div class="col-md-auto">
 	
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
-
+			
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -135,11 +133,11 @@ th {
 			
 			
 			
-	<section class="blog_area single-post-area section-padding">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 175px;  margin-bottom: 77px; height: 810px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
-				<div class="col-lg-10 posts-list" style="padding-left: 70px;">
+				<div class="col-lg-10 posts-list" style="padding-left: 70px; ">
 					<h2 class="contact-title" align="center">받은 리뷰</h2><hr>
 					<div class="slider-shape d-none d-lg-block">
 					<form name="Delete">
@@ -214,5 +212,6 @@ th {
    
    
 </body>
+<%@include file="../model/footer.jsp" %>
 </html>
-<%-- <%@include file="../model/footer.jsp" %> --%>
+

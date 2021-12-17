@@ -51,8 +51,7 @@ th {
 
 <div class="col-md-auto">
 	
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">신고</button>
+			
 
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -126,7 +125,7 @@ th {
 			</script>
 
 
-   <section class="blog_area single-post-area section-padding">
+   <section class="blog_area single-post-area section-padding" style="padding-top: 175px; margin-bottom: 77px; height: 810px;">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
@@ -203,5 +202,5 @@ th {
 
 
 </body>
+<%@include file="../model/footer.jsp" %>
 </html>
-<%-- <%@include file="../model/footer.jsp" %> --%>

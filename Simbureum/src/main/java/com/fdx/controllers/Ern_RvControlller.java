@@ -149,9 +149,8 @@ public class Ern_RvControlller {
 		@RequestMapping(value = "/EgrdAvg", method = RequestMethod.POST)
 		public List<Ern_RvDTO> EgrdAvg(Model model, @RequestParam(value = "er_mbid") String er_mbid) throws Exception {
 		  	List<Ern_RvDTO> list = erser.EreceiveList(er_mbid);
-			//model.addAttribute("EgrdAvg",erser.EgrdAvg(er_mbid));
 			model.addAttribute("EreceiveList",list);
-			System.out.println(list);
+			System.out.println("list" + list);
 			return list;
 		
 			

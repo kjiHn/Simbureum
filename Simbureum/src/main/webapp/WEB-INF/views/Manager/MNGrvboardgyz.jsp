@@ -22,7 +22,7 @@
         <!-- 만든 버튼 css -->
 	<link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
     <style>
-    	#btn1{
+    	/* #btn1{
     		margin-right:40px;
     		border-top-left-radius:5px;
     		border-bottom-left-radius:5px;
@@ -31,6 +31,10 @@
     		background-color: #E3C4FF;
     		border: 1px solid #E3C4FF;
     		padding : 10px;
+    	} */
+    	
+    	#btn{
+    	padding-left: 500px;
     	}
     	#div1{
     		height: 400px;
@@ -58,7 +62,7 @@
 <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
     
 
-<div class="col-lg-8 posts-list">
+<div class="col-lg-8 posts-list" style="padding-left: 70px;">
 	
 	 <div class="slider-shape d-none d-lg-block" >
 			<h2 class="mb-30"><b>리뷰 관리</b></h2>
@@ -103,6 +107,10 @@
 	 
 		
 </div>
+ <div class="row justify-content-center" id="btn" >                   
+					<Button type="button" id="btn1" class="bigBtn" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${gyzreportreview.rerp_num_pk}'">신고 취소</Button>
+                 	<Button type="button" id="btn2" class="bigBtn" onclick="location.href = '/gyzrepoertreviewdelete?vr_rvn_pk=${gyzreportreview.vr_rvn_pk}'">신고 처리</Button>
+                </div>
 
 </div>
 </div>
@@ -113,14 +121,11 @@
  
 
 </body>
-<footer>
- <div class="container">
-                <div class="row justify-content-center" >                   
-					<Button type="button" class="bigBtn" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${gyzreportreview.rerp_num_pk}'">신고 취소</Button>
-                 	<Button type="button" class="bigBtn" onclick="location.href = '/gyzrepoertreviewdelete?vr_rvn_pk=${gyzreportreview.vr_rvn_pk}'">신고 처리</Button>
-                </div>
-            </div>
-</footer>
+
+
+               
+         
+
 </html>
 <%@include file="../model/footer.jsp" %>
 

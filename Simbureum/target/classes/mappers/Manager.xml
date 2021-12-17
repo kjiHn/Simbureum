@@ -21,7 +21,7 @@
 	<!-- 게시글보기 카운터 -->
 	<select id="postcount" resultType="int">
 
-		select count(*)
+		select count(*) postcount
 		from post a, member b , pbigc c, psmallc d , pmidc e
 		where a.mb_num_pk = b.mb_num_pk
 		and a.psmallc_pk = d.psmallc_pk
@@ -61,6 +61,16 @@
 		FROM NOTICE
 
 	</select>
+	
+	
+	<!--공지 유무체크 -->
+	<select id="announceCount" resultType="int">
+
+		select count(*)
+		FROM NOTICE
+
+	</select>
+	
 
 	<!-- 공지 작성 -->
 	<insert id="writeanc" parameterType="com.fdx.dto.managerDTO">
@@ -128,6 +138,37 @@
         ) t
 		WHERE t.report >=1 OR t.review_gyz >= 1 OR t.review_sbr >= 1
 	</select>
+	
+	
+		<!--회원 유무체크 -->
+	<select id="mnguserCount" resultType="int">
+		SELECT count(*)
+		FROM (
+		select mb_id
+		,a.mb_num_pk,a.mb_name,a.mb_emaile,(select
+		count(*)
+		from po_report b
+		where a.mb_num_pk = b.porp_target_mbn
+		) as report,
+		(select
+		count(*)
+		from re_report c
+		where a.mb_num_pk = c.rerp_target_mbn
+        and RERP_CAT=1
+		) as review_gyz,
+        (select
+		count(*)
+		from re_report c
+		where a.mb_num_pk = c.rerp_target_mbn
+        and RERP_CAT=2
+		) as review_sbr
+		from member a
+        ) t
+		WHERE t.report >=1 OR t.review_gyz >= 1 OR t.review_sbr >= 1
+
+	</select>
+	
+	
 	
 	<!-- 회원 조회 -->
 	<select id="usersearch" resultType="com.fdx.dto.managerDTO">

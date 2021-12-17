@@ -52,7 +52,11 @@
              <div class="col-lg-10 posts-list">
             	<h2 class="contact-title" align="center">게시글 관리</h2><hr>
                <div class="slider-shape d-none d-lg-block">
+               <c:if test="${postcount == 0 }">
+               <h2 style="text-align: center;">작성된 게시글이 없습니다</h2>
+               </c:if>
             	
+            	 <c:if test="${postcount != 0 }">
                   <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
@@ -78,6 +82,7 @@
 					   </c:forEach>
                      </tbody>
                   </table>
+                  </c:if>
             
                </div>
             </div>
@@ -85,15 +90,7 @@
          </div>
       </div>
    </section>
-<script type="text/javascript">
-$(document).ready(function(){
-	
-});
-	
-</script>
-
-
-
+  
 
 </body>
 </html>

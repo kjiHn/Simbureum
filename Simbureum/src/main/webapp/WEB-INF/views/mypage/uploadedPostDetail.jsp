@@ -371,64 +371,67 @@
 						</div>
 						
 						<div class="modal-body" style="height: 300px; overflow: auto; ">
-						<%-- <c:if test="${grdAvg.vr_grd ==null }">
-							<div style="color: white; text-align: center;">
-							<br><br><br><br>
-							<h3>선택하신 심부름꾼의 리뷰가 없습니다</h3>
-							<p>심부름을 부탁하고 첫 리뷰를 작성해주세요</p>
-							</div>	
-						</c:if> --%>
-						<%-- <c:if test="${grdAvg.vr_grd !=null}"> --%>
-							<h2>리뷰</h2>
-								<div >
-								<table id="reviewTable" style="text-align: left; width: 300px; word-break: break-all;" ></table>
-								</div>
-						<%-- </c:if> --%>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			</div>
-	
-	<script type="text/javascript">
-		$(".bt").click(function(){
-			const value =  $(this).attr("data-value"); /*test6  */
-			/* alert(value); */
-			 $.ajax({	
-				  url : "/Ereview/EgrdAvg",	
-				  type : "POST",	
-				  dataType : "json",	
-				  data : {"er_mbid" : value},	
-				  success : function(data){
-					  $("#reviewTable").empty();
-					  for(var i=0; i < data.length; i++){
-						 $("#reviewTable").append("<tr><td style='border-top: 1px solid gray;'>ID : " + data[i].mb_id_pk + "</td></tr>");
-						 
-						 $("#reviewTable").append("<tr><td> 작성일 : " + data[i].er_date + "</td></tr>");
-						  if(data[i].er_grd == 5){
-						 	$("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★★★</td>");
-						 }else if(data[i].er_grd == 4){
-							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★★☆</td>"); 
-						 }else if(data[i].er_grd == 3){
-							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★☆☆</td>");
-						 }else if(data[i].er_grd == 2){
-							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★☆☆☆</td>");
-						 }else if(data[i].er_grd == 1){
-							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★☆☆☆☆</td>");
-						 }
-						 
-						 $("#reviewTable").append("<tr><td>" + data[i].er_rvc + "</td></tr>"); 
-						 
-					 }
-					
-					  
-					  
-					  
-				  }	
-			  }); 	 
-		});
+								
+							<div id="review" style="text-align: center; padding-top: 80px; "></div>	
+								<div>	
+								<table id="reviewTable" style="text-align: left; width: 300px; word-break: break-all; margin-top: -80px;" ></table>	
+								</div>	
+						 	
+						</div>	
+					</div>	
+				</div>	
+			</div>	
+				
+			</div>	
 		
+	<script type="text/javascript">	
+		$(".bt").click(function(){	
+			const value =  $(this).attr("data-value"); /*test6  */	
+			/* alert(value); */	
+			 $.ajax({		
+				  url : "/Ereview/EgrdAvg",		
+				  type : "POST",		
+				  dataType : "json",		
+				  data : {"er_mbid" : value},		
+				  success : function(data){						
+					  if(data == 0){	
+						  $("#review").empty();	
+						   $("#review").append("<h2>선택한 심부름꾼의 리뷰가 없습니다</h2>"); 	
+						   $("#review").append("<h4>심부름꾼을 선택하고 첫 리뷰를 작성해주세요</h4>");	
+					  }else{	
+						  	
+					  	
+					  	
+					  	
+					  $("#reviewTable").empty();	
+					  for(var i=0; i < data.length; i++){	
+						  $("#reviewTable").append("<h2>리뷰</h2>");	
+						 $("#reviewTable").append("<tr><td style='border-top: 1px solid gray;'>ID : " + data[i].mb_id_pk + "</td></tr>");	
+						 	
+						 $("#reviewTable").append("<tr><td> 작성일 : " + data[i].er_date + "</td></tr>");	
+						  if(data[i].er_grd == 5){	
+						 	$("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★★★</td>");	
+						 }else if(data[i].er_grd == 4){	
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★★☆</td>"); 	
+						 }else if(data[i].er_grd == 3){	
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★★☆☆</td>");	
+						 }else if(data[i].er_grd == 2){	
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★★☆☆☆</td>");	
+						 }else if(data[i].er_grd == 1){	
+							 $("#reviewTable").append("<tr><td style='color: #ffc107;'>★☆☆☆☆</td>");	
+						 }	
+						 	
+						 $("#reviewTable").append("<tr><td>" + data[i].er_rvc + "</td></tr>"); 	
+						 	
+					 }	
+						
+					  }	
+					  	
+					  	
+				  }		
+			  }); 	 	
+		});	
+			
 	</script>
 	
 	

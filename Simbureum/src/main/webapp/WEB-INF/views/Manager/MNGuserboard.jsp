@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="#">
     <link rel="shortcut icon" type="image/x-icon" href="view/assets/img/favicon.ico">
+     <link rel="stylesheet" href="/resources/view/assets/css/custom.css?ver=2" />
  
  <style>
 .button {
@@ -45,7 +46,7 @@
 	color: white;
 }
 
-#rint{background-color: #E5CCFF;}
+ #rint{background-color: #E5CCFF;}  	
 
 
 </style>
@@ -60,12 +61,12 @@
       <div class="modal-content">
         <div class="modal-header" >
           <div ><h2 class="modal-title"><b>신고된 게시글</b></h2></div>
-          <div><button type="button" class="close" data-dismiss="modal">×</button></div>
+          
         </div>
         <div class="modal-body" id="rint" >
         </div>
         <div class="modal-footer" id="rint">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="bigBtn" data-dismiss="modal">Close</button>
         </div>
       </div>
       
@@ -80,12 +81,12 @@
       <div class="modal-content">
         <div class="modal-header" >
           <div><h2 class="modal-title"><b>신고된 리뷰</b></h2></div>
-          <div><button type="button" class="close" data-dismiss="modal">×</button></div>
+          
         </div>
         <div class="modal-body_GYZ" id="rint" id="rint">
         </div>
         <div class="modal-footer" id="rint">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="bigBtn" data-dismiss="modal">Close</button>
         </div>
       </div>
       
@@ -100,12 +101,12 @@
       <div class="modal-content">
         <div class="modal-header" >
           <div><h2 class="modal-title"><b>신고된 리뷰</b></h2></div>
-          <div><button type="button" class="close" data-dismiss="modal">×</button></div>
+         
         </div>
         <div class="modal-body_SBR" id="rint" id="rint">
         </div>
         <div class="modal-footer" id="rint">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="bigBtn" data-dismiss="modal">Close</button>
         </div>
       </div>
       
@@ -124,7 +125,11 @@
                <br>
                <br> -->
                <h2 class="contact-title" align="center">&nbsp;</h2>
+               <c:if test="${mnguserCount == 0 }">
+               	<h2 style="text-align: center;">신고된 회원이 없습니다</h2>
+               </c:if>
                <br>
+                 <c:if test="${mnguserCount != 0 }">
                   <table id="tt1" style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr  style="background-color: #e3c4ff;">
@@ -138,9 +143,9 @@
                      </thead>
 
                      <tbody>
-                        <c:forEach items="${mnguser}" var="mnguser">
+                        <c:forEach items="${mnguser}" var="mnguser" varStatus="status">
                         <tr style="border: 1px solid #e3c4ff;">
-                           <td>${mnguser.mb_num_pk}</td>
+                           <td>${status.count}</td>
                            <td>${mnguser.mb_id}</td>
                            <td><a data-toggle="modal" href="#postModal" class="postModal" data-value="${mnguser.mb_num_pk}"><u>${mnguser.report}회</u></a></td>
                            <td><a data-toggle="modal" href="#GYZ_reviewModal" class="GYZ_reviewModal" data-value="${mnguser.mb_num_pk}"><u>${mnguser.review_gyz}회</u></a></td>
@@ -150,7 +155,7 @@
 	                           <input  type="hidden" name="mb_num_pk" value="${mnguser.mb_num_pk}"/>
 	                           <input type="hidden" name="fw_name" value="${mnguser.mb_name}" />
 	                           <input type="hidden" name="fw_emaile" value="${mnguser.mb_emaile}" />
-	                           <input class ="button" type="submit" value="강제탈퇴"/>
+	                           <input class ="button" id="Del" type="submit" value="강제탈퇴"/>
                            	</form>
                            </td>
                         </tr>
@@ -158,6 +163,7 @@
 
                      </tbody>
                   </table>
+                  </c:if>
                </div>
             </div>
          </div>
@@ -166,6 +172,15 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$("#Del").click(function(){
+		alert("강제탈퇴가 완료되었습니다");
+	});
+
+</script>
+
+
 <script>
 /* 신고된 게시글 팝업 */
  $(".postModal").click(function(e) {

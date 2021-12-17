@@ -37,9 +37,11 @@ public class MNGController {
 	// 게시글 보는화면
 	@RequestMapping(value = "/MNGntcboard", method = RequestMethod.GET)
 	public String MNGntcboard(Model model) {
-
+		int postcount = managerDao.selectList2();
+		System.out.println("count : " + postcount);
 		List<managerDTO> post = managerDao.selectList();
 		model.addAttribute("post", post);
+		model.addAttribute("postcount",postcount);
 		return "Manager/MNGntcboard";
 	}
 	
@@ -73,9 +75,10 @@ public class MNGController {
 	// 공지 보기
 	@RequestMapping(value = "/MNGancboard", method = RequestMethod.GET)
 	public String MNGancboard(Model model) {
-
+		int announceCount = managerDao.announceCount();
 		List<managerDTO> announce = managerDao.announce();
 		model.addAttribute("announce", announce);
+		model.addAttribute("announceCount", announceCount);
 
 		return "Manager/MNGancboard";
 	}
@@ -83,10 +86,8 @@ public class MNGController {
 	//회원 공지 보기
 	@RequestMapping(value = "/userancboard", method = RequestMethod.GET)
 	public String userancboard(Model model) {
-
 		List<managerDTO> userancboard = managerDao.announce();
 		model.addAttribute("userancboard", userancboard);
-
 		return "Manager/userancboard";
 	}
 	
@@ -163,9 +164,10 @@ public class MNGController {
 		//회원 관리 페이지
 		@RequestMapping(value = "/MNGuserboard", method = RequestMethod.GET)
 		public String MNGuserboard(Model model) throws Exception {
-
+			int mnguserCount = managerDao.mnguserCount();
 			List<managerDTO> mnguser = managerDao.selectList1();
 			model.addAttribute("mnguser", mnguser);
+			model.addAttribute("mnguserCount", mnguserCount);
 			
 			
 			 

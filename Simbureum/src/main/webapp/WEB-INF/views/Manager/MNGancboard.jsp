@@ -48,7 +48,10 @@
             	</div>
             	<h2 class="contact-title" align="center">공지 사항</h2><hr>
                <div class="slider-shape d-none d-lg-block">
-               		
+               		<c:if test="${announceCount == 0}">
+               			<h2 style="text-align: center;">작성된 공지사항이 없습니다</h2>	
+               		</c:if>
+               		<c:if test="${announceCount != 0}">
                   <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
@@ -61,9 +64,9 @@
                      </thead>
 
                      <tbody>
-                     <c:forEach items="${announce}" var="announce">
+                     <c:forEach items="${announce}" var="announce" varStatus="status">
                         <tr style="border: 1px solid #e3c4ff;">
-                           <td>${announce.ntc_num_pk}</td>
+                           <td>${status.count}</td>
                            <td><a href="/MNGancboardDetail?ntc_num_pk=${announce.ntc_num_pk }"><u>${announce.ntc_title}</u></a></td>
                            <td>관리자</td>
                            <td>${announce.ntc_views}</td>
@@ -73,7 +76,7 @@
 
                      </tbody>
                   </table>
-        
+       		 </c:if>
             
                </div>
             </div>
@@ -81,7 +84,6 @@
          </div>
       </div>
    </section>
-
 
 
 
