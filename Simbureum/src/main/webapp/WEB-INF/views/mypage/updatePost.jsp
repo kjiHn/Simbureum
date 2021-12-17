@@ -273,8 +273,10 @@
 				alert("마감일을 입력해주세요.");
 			}else if (!datatimeRegexp.test(dline)) {
 		        alert("마감일은 yyyy-mm-dd 형식으로 입력해주세요.");
-		    }else if(numof == ''){
+		    }else if(numof == 0){
 				alert("심부름꾼 수를 입력해주세요.");
+			}else if(numof > 9){
+				alert("심부름꾼은 최대 9명까지 가능합니다.");
 			}else if(price == ''){
 				alert("심부름 가격을 입력해주세요.");
 			}else{

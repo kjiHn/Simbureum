@@ -129,7 +129,7 @@
          success : function(data){
         	console.log("성공~~~");
             if (data == 1) {
-               alert("삭제 완료");
+               alert("심부름꾼 지원이 취소되었습니다.");
                location.reload();
             }
          },
