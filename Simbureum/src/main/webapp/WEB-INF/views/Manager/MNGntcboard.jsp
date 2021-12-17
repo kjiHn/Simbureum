@@ -93,5 +93,26 @@
   
 
 </body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<%@include file="../model/footer.jsp"  %>
 </html>
-<%@include file="../model/footer.jsp" %>

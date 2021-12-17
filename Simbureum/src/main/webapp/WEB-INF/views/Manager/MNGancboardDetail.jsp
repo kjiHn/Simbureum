@@ -36,9 +36,16 @@
 	</div>
 </section>
 			<div align="center">
-				<Button type="button" class="bigBtn" onclick="location.href = '/MNGancmodify?ntc_num_pk=${announceDetail.ntc_num_pk }'">공지 수정</Button>
-				<Button type="button" class="bigBtn" onclick="location.href = '/MNGancdelete?ntc_num_pk=${announceDetail.ntc_num_pk}'">공지 삭제</Button>
+				<Button type="button" class="bigBtn"  onclick="location.href = '/MNGancmodify?ntc_num_pk=${announceDetail.ntc_num_pk }'">공지 수정</Button>
+				<Button type="button" class="bigBtn" id="Del" onclick="location.href = '/MNGancdelete?ntc_num_pk=${announceDetail.ntc_num_pk}'">공지 삭제</Button>
 			</div>
 	
 	</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$("#Del").click(function(){
+		alert("삭제가 완료되었습니다");
+	});
+</script>
 </html>

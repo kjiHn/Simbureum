@@ -46,7 +46,7 @@
 	color: white;
 }
 
- #rint{background-color: #E5CCFF;}  	
+ /* #rint{background-color: #E5CCFF;} */  	
 
 
 </style>
@@ -199,7 +199,7 @@
 					html +=	'<div>';
 					  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
 					 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
-					 html +=	 '<p><b>제목</b>&nbsp;<a href="MNGrptboard?mb_num_pk='+item[i].mb_num_pk +'&porp_mbn='+item[i].porp_mbn +'">'+item[i].post_title +'</a></p>';
+					 html +=	 '<p><b>제목</b>&nbsp;<u><a style="color: black;" href="MNGrptboard?mb_num_pk='+item[i].mb_num_pk +'&porp_mbn='+item[i].porp_mbn +'">'+item[i].post_title +'</a></u></p>';
 					 html += '<hr>';
 					html +=	'</div>';
 					}
@@ -226,7 +226,7 @@
 						html +=	'<div>';
 						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
 						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
-						 html +=	 '<p><b>내용</b>&nbsp;<a href="MNGrvboardgyz?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardgyz?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></u></p>'; 
 						 html += '<hr>';
 						html +=	'</div>';
 						}
@@ -252,7 +252,7 @@
 						html +=	'<div>';
 						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
 						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
-						 html +=	 '<p><b>내용</b>&nbsp;<a href="MNGrvboardsbr?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardsbr?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></u></p>'; 
 						 html += '<hr>';
 						html +=	'</div>';
 						}

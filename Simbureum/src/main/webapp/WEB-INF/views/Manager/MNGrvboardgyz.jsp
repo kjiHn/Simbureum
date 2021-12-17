@@ -108,8 +108,8 @@
 		
 </div>
  <div class="row justify-content-center" id="btn" >                   
-					<Button type="button" id="btn1" class="bigBtn" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${gyzreportreview.rerp_num_pk}'">신고 취소</Button>
-                 	<Button type="button" id="btn2" class="bigBtn" onclick="location.href = '/gyzrepoertreviewdelete?vr_rvn_pk=${gyzreportreview.vr_rvn_pk}'">신고 처리</Button>
+					<Button type="button" id="btn1" class="bigBtn" id="cle" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${gyzreportreview.rerp_num_pk}'">신고 취소</Button>
+                 	<Button type="button" id="btn2" class="bigBtn" id="alt" onclick="location.href = '/gyzrepoertreviewdelete?vr_rvn_pk=${gyzreportreview.vr_rvn_pk}'">신고 처리</Button>
                 </div>
 
 </div>
@@ -121,7 +121,14 @@
  
 
 </body>
-
+<script type="text/javascript">
+	$("#cle").click(function(){
+		alert("취소가 완료되었습니다");
+	});
+	$("#alt").click(function(){
+		alert("처리가 완료되었습니다");
+	});
+</script>
 
                
          

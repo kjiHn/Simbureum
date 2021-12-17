@@ -103,6 +103,12 @@
 	 
 		
 </div>
+ <div class="container">
+                <div class="row justify-content-center" >                   
+					<Button type="button" class="bigBtn" id="cle" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${reportreview.rerp_num_pk}'">신고 취소</Button>
+                 	<Button type="button" class="bigBtn" id="alt" onclick="location.href = '/repoertreviewdelete?vr_rvn_pk=${reportreview.vr_rvn_pk}'">신고 처리</Button>
+                </div>
+            </div>
 
 </div>
 </div>
@@ -113,14 +119,14 @@
  
 
 </body>
-<footer>
- <div class="container">
-                <div class="row justify-content-center" >                   
-					<Button type="button" class="bigBtn" onclick="location.href = '/repoertreviewcancle?rerp_num_pk=${reportreview.rerp_num_pk}'">신고 취소</Button>
-                 	<Button type="button" class="bigBtn" onclick="location.href = '/repoertreviewdelete?vr_rvn_pk=${reportreview.vr_rvn_pk}'">신고 처리</Button>
-                </div>
-            </div>
-</footer>
+<script type="text/javascript">
+	$("#cle").click(function(){
+		alert("취소가 완료되었습니다");
+	});
+	$("#alt").click(function(){
+		alert("처리가 완료되었습니다");
+	});
+</script>
 </html>
 <%@include file="../model/footer.jsp" %>
 

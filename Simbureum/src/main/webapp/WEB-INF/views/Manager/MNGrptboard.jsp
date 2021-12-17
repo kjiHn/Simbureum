@@ -105,20 +105,28 @@
 		</table>
 	</div>
 </div>
-
+ <div class="container">
+                <div class="row justify-content-center" >                   
+                 	<Button type="button" class="bigBtn" id="cle" onclick="location.href = '/repoertpostcancle?porp_num_pk=${reportpost.porp_num_pk}'">신고 취소</Button>
+                 	<Button type="button" class="bigBtn" id="alt" onclick="location.href = '/repoertpostdelete?post_num_pk=${reportpost.post_num_pk}'">신고 처리</Button>
+                </div>
+</div>
 		</div>
 	</div>
 </section>
 
 </body>
+<script type="text/javascript">
+	$("#cle").click(function(){
+		alert("취소가 완료되었습니다");
+	});
+	$("#alt").click(function(){
+		alert("처리가 완료되었습니다");
+	});
+</script>
 
 <footer>
- <div class="container">
-                <div class="row justify-content-center" >                   
-                 	<Button type="button" class="bigBtn" onclick="location.href = '/repoertpostcancle?porp_num_pk=${reportpost.porp_num_pk}'">신고 취소</Button>
-                 	<Button type="button" class="bigBtn" onclick="location.href = '/repoertpostdelete?post_num_pk=${reportpost.post_num_pk}'">신고 처리</Button>
-                </div>
-</div>
+
 </footer>
 </html>
 <%@include file="../model/footer.jsp" %>

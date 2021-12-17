@@ -73,7 +73,7 @@
 	
 	<div class="col-lg-11 posts-list" id="centerCon">
 	
-	<h2>공지 작성</h2>
+	<h2>공지 수정</h2>
 	
 	<form method="post" action="MNGancmodify1">
 		<table>
@@ -88,7 +88,7 @@
 			
 		</table>
 		<input type="hidden" name="ntc_num_pk" value="${ancmodify.ntc_num_pk}"/>
-		<div align="right" ><input type="submit" class="button" value="완료"></div>
+		<div align="right" ><input type="submit" id="Mdf" class="button" value="완료"></div>
 		
 	</form>
 	</div>
@@ -99,5 +99,12 @@
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$("#Mdf").click(function(){
+		alert("수정이 완료되었습니다");
+	});
+</script>
 
 </html>
