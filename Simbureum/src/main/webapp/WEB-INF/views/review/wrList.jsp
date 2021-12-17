@@ -3,7 +3,21 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../model/topBar1.jsp" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    pageContext.setAttribute("replaceChar", "\n");
+	if(session.getAttribute("mid") != null) {
+%>
+<%@ include file="../model/topBar_login.jsp"%>
+<%
+	}else{
+		
+%>
+<%@ include file="../model/topBar1.jsp"%>
+<%
+	}
+%>
+
 
 
 <html>
@@ -268,7 +282,7 @@ article {
 							<table style="text-align: center; width: 800px; height: 300px; margin: auto; ">
 								<tr>
 									<td style="vertical-align: text-top;">
-									<c:out value=" ${wrList.vr_rvc}"></c:out>
+									${fn:replace(wrList.vr_rvc,replaceChar, "<br/>")}
 									</td>
 								</tr>
 							</table>

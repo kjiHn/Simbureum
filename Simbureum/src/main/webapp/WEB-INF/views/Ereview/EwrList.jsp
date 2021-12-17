@@ -3,7 +3,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../model/topBar1.jsp" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    pageContext.setAttribute("replaceChar", "\n");
+	if(session.getAttribute("mid") != null) {
+%>
+<%@ include file="../model/topBar_login.jsp"%>
+<%
+	}else{
+		
+%>
+<%@ include file="../model/topBar1.jsp"%>
+<%
+	}
+%>
 
 
 <html>
@@ -92,8 +105,7 @@ article {
 
 	<div class="col-md-auto">
 	
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">삭제</button>
+			
 
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -278,7 +290,7 @@ article {
 							<table style="text-align: center; width: 800px; height: 300px; margin: auto; ">
 								<tr>
 									<td style="vertical-align: text-top;">
-									<c:out value=" ${EwrList.er_rvc}"></c:out>
+									${fn:replace(EwrList.er_rvc,replaceChar, "<br/>")}
 									</td>
 								</tr>
 							</table>
