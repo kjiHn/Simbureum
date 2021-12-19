@@ -252,7 +252,7 @@
 						html +=	'<div>';
 						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
 						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
-						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardsbr?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></u></p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardsbr?rerp_lnb='+item[i].rerp_lnb +'">'+item[i].rerp_con +'</a></u></p>'; 
 						 html += '<hr>';
 						html +=	'</div>';
 						}

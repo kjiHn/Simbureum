@@ -200,18 +200,18 @@ public class MNGController {
 		}
 	//신고된 고용자 리뷰 보기
 	@RequestMapping(value = "/MNGrvboardgyz", method = RequestMethod.GET)
-	public String MNGrvboard1(@RequestParam("rerp_mbn") int rerp_mbn,Model model) throws Exception {
+	public String MNGrvboard1(@RequestParam("rerp_lnb") int rerp_lnb,Model model) throws Exception {
 
-		managerDTO gyzreportreview = managerDao.gyzreportreview(rerp_mbn);
+		managerDTO gyzreportreview = managerDao.gyzreportreview(rerp_lnb);
 		model.addAttribute("gyzreportreview", gyzreportreview);
 		return "Manager/MNGrvboardgyz";
 	}
 
 	//신고된 심부름꾼 리뷰 보기
 		@RequestMapping(value = "/MNGrvboardsbr", method = RequestMethod.GET)
-		public String MNGrvboard(@RequestParam("rerp_mbn") int rerp_mbn,Model model) throws Exception {
+		public String MNGrvboard(@RequestParam("rerp_lnb") int rerp_lnb,Model model) throws Exception {
 
-			managerDTO sbrreportreview = managerDao.sbrreportreview(rerp_mbn);
+			managerDTO sbrreportreview = managerDao.sbrreportreview(rerp_lnb);
 			model.addAttribute("sbrreportreview", sbrreportreview);
 			return "Manager/MNGrvboardsbr";
 		}

@@ -146,6 +146,7 @@ select {
 												<p class="validation-check" id="join_email_error"></p>
 												<button id="updateEmial" class="emailButton">이메일 수정</button>
 												<button id="emailButton" class="emailButton" style="display: none;">인증번호 보내기</button>
+												<button id="emailcancle" class="emailButton" style="display: none;">이메일 수정 취소하기</button>
 											</div></li>
 										<br>
 										<li><strong class="tit">인증번호확인</strong>
@@ -181,6 +182,22 @@ select {
 		</div>
 		</main>
 	</div>
+	
+	<script type="text/javascript">
+	
+	$("#emailcancle").click(function() {
+		event.preventDefault();
+		var tt = "${emaileArray[1] }";
+		$("#join_email_id").attr("readonly", true);
+		$("#emialSelect").attr("disabled", true);
+		$("#updateEmial").css("display","")
+		$("#emailButton").css("display","none")
+		$("#emailcancle").css("display","none")
+		$("#emialSelect").val(tt);
+		$("#join_email_id").val("${emaileArray[0] }");
+	});
+	
+	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -302,6 +319,7 @@ select {
 								$("#emialSelect").attr("disabled", false);
 								$("#updateEmial").css("display","none")
 								$("#emailButton").css("display","")
+								$("#emailcancle").css("display","")
 								$("#emialSelect").val("1");
 							});
 
@@ -395,9 +413,13 @@ select {
 		});
 
 		function upDateMember() {
+			if ($("#emialSelect").val() == "1") {
+				alert("이메일을 수정 혹은 취소를 클릭하여 주십시요");
+				event.preventDefault();
+			}
 			if($("#join_pswd").val() == ""){
-			var pwsd =$("#no_pwsd").val();
-			$("#join_pswd").val(pwsd);				
+			location.href = "/";	
+			event.preventDefault();
 			}
 
 			$("#join_form").submit();

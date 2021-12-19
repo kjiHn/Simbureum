@@ -225,7 +225,7 @@
 		where a.vr_rvn_pk = b.rerp_lnb
 		and c.post_num_pk = a.post_num_pk
 		and b.rerp_mbn = d.mb_num_pk
-		and b.rerp_mbn = #{rerp_mbn}
+		and b.rerp_lnb = #{rerp_lnb}
 		and b.rerp_cat = 1
 	</select>
 
@@ -237,7 +237,7 @@
 		where a.er_num_pk = b.rerp_lnb
 		and c.post_num_pk = a.post_num_pk
 		and b.rerp_mbn = d.mb_num_pk
-		and b.rerp_mbn = #{rerp_mbn}
+		and b.rerp_lnb= #{rerp_lnb}
 		and b.rerp_cat = 2
 	</select>
 
@@ -260,14 +260,15 @@
 	<select id="popupreview" parameterType="int" resultType="com.fdx.dto.managerDTO">
 
 	 select a.mb_id,b.rerp_cat,b.rerp_mbn, a.mb_num_pk, b.rerp_con,t.mb_id as mbn_id
-		 from member a, re_report b
-		,(select t.mb_id ,t.mb_num_pk 
-		from member t , re_report b 
-		where t.mb_num_pk = b.rerp_mbn
-        and b.rerp_cat = #{rerp_cat}
-		AND b.rerp_target_mbn = #{mb_num_pk}) t
-		where b.rerp_target_mbn = a.mb_num_pk
-        and t.mb_num_pk = b.rerp_mbn
+    ,b.rerp_lnb
+	from member a, re_report b
+    ,(select DISTINCT t.mb_id,t.mb_num_pk
+    from member t , re_report b 
+    where t.mb_num_pk = b.rerp_mbn
+    and b.rerp_cat = #{rerp_cat}
+    AND b.rerp_target_mbn = #{mb_num_pk}) t
+	where b.rerp_target_mbn = a.mb_num_pk
+	and t.mb_num_pk = b.rerp_mbn	
 	</select>
 	
 	
