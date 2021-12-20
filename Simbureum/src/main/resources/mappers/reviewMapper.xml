@@ -78,10 +78,12 @@ and vr_mbid = #{vr_mbid}
  <select id="reList" resultType="com.fdx.dto.PostRvDTO">
 	<![CDATA[
   select *
+	   select  rv.vr_mbid vr_mbid, rv.mb_id_pk mb_id_pk, rv.vr_date vr_date, p.post_title post_title,
+                  rv.vr_grd vr_grd, rv.vr_rvc vr_rvc, rv.vr_mbid vr_mbid, m.mb_num_pk mb_num_pk, rv.vr_rvn_pk vr_rvn_pk    
 	   from post p, Vlntr_Rv rv, member m	   
        where p.post_num_pk = rv.post_num_pk
        and rv.mb_id_pk = m.mb_id
-       and rv.vr_rvn_pk = #{vr_rvn_pk}       
+       and rv.vr_rvn_pk = #{vr_rvn_pk}   
 	]]>
 </select>
 <!-- ============================================================================================================================================ -->
