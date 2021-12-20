@@ -62,8 +62,6 @@
 .star-er_grd label:hover ~ label {
   color:#fc0;
 }
-
-
 </style>	
 
 <title>올린 심부름</title>

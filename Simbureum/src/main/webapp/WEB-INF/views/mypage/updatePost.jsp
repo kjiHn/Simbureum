@@ -48,7 +48,7 @@
 
 </head>
 <body>
-	<section class="blog_area single-post-area section-padding" style="padding-top: 175px; width: 1920px">
+	<section class="blog_area single-post-area section-padding" style="padding-top: 175px; width: 1900px">
 		<div class="container">
 			<div class="row">
 				<jsp:include page="../model/siderbar2.jsp" flush="false" />
