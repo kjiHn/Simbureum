@@ -6,7 +6,7 @@
 <mapper namespace="mappers.Manager">
 
 	<!--게시글 보기 -->
-	<select id="post" resultType="com.fdx.dto.managerDTO">
+<!-- 	<select id="post" resultType="com.fdx.dto.managerDTO">
 
 		select a.post_num_pk, a.post_title, b.mb_id, c.pbigc_name, d.psmallc_name,
 		a.post_views, a.post_date
@@ -16,7 +16,7 @@
 		and d.pmidc_pk = e.pmidc_pk
 		and e.pbigc_pk = c.pbigc_pk
 
-	</select>
+	</select> -->
 	
 	<!-- 게시글보기 카운터 -->
 	<select id="postcount" resultType="int">
@@ -30,6 +30,26 @@
 
 	</select>
 
+	<!-- 게시글 5개씩 보기 -->
+	<select id="postPage" parameterType="cri" resultType="com.fdx.dto.managerDTO">
+	<![CDATA[
+		select * from(
+			select ROW_NUMBER() over (order by p.POST_DATE desc) rn, p.POST_NUM_PK, p.POST_TITLE, p.POST_VIEWS, p.POST_DATE, 
+				m.MB_ID, s.PSMALLC_NAME, pm.PMIDC_NAME, b.PBIGC_NAME
+			from post p, member m, psmallc s, pmidc pm, pbigc b
+			where p.MB_NUM_PK = m.MB_NUM_PK
+			and p.PSMALLC_PK = s.PSMALLC_PK
+			and p.SEL_VR is null
+            and pm.PMIDC_PK = s.PMIDC_PK
+            and b.PBIGC_PK = pm.PBIGC_PK)
+		where rn <= #{pageNum} * #{amount}
+		and rn > (#{pageNum} - 1) * #{amount}
+	 ]]>
+	</select>
+	
+	
+	
+	
 	<!--게시글 상세 보기 -->
 	<select id="postDetail" parameterType="int"
 		resultType="com.fdx.dto.managerDTO">
@@ -55,13 +75,24 @@
 	</delete>
 
 	<!--공지 보기 -->
-	<select id="announce" resultType="com.fdx.dto.managerDTO">
+	<!-- <select id="announce" resultType="com.fdx.dto.managerDTO">
 
 		select ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
 		FROM NOTICE
 
-	</select>
+	</select> -->
 	
+	<!-- 공지5개씩보기 -->
+	<select id="announce" parameterType="cri" resultType="com.fdx.dto.managerDTO">
+	<![CDATA[
+		select * from(
+	   		 select row_number() over (order by ntc_num_pk) rn,
+	   		 ntc_num_pk, ntc_title, ntc_con, ntc_date, ntc_views
+	   		 FROM NOTICE)
+		where rn <= #{pageNum} * #{amount}
+		and rn > (#{pageNum} - 1) * #{amount}
+	 ]]>
+	</select>
 	
 	<!--공지 유무체크 -->
 	<select id="announceCount" resultType="int">
@@ -112,31 +143,22 @@
 
 	<!--회원 관리 메인페이지 -->
 	<!-- 회원 관리 -->
-	<select id="mnguser" resultType="com.fdx.dto.managerDTO">
-
-		SELECT *
-		FROM (
-		select mb_id
-		,a.mb_num_pk,a.mb_name,a.mb_emaile,(select
-		count(*)
-		from po_report b
-		where a.mb_num_pk = b.porp_target_mbn
-		) as report,
-		(select
-		count(*)
-		from re_report c
-		where a.mb_num_pk = c.rerp_target_mbn
-        and RERP_CAT=1
-		) as review_gyz,
-        (select
-		count(*)
-		from re_report c
-		where a.mb_num_pk = c.rerp_target_mbn
-        and RERP_CAT=2
-		) as review_sbr
-		from member a
+	<select id="mnguser" parameterType="cri" resultType="com.fdx.dto.managerDTO">
+	 <![CDATA[
+	 select  * 
+    from(   
+      SELECT ROW_NUMBER() over (order by t.mb_num_pk) rn , t.*
+      FROM 
+      ( select mb_id,a.mb_num_pk,a.mb_name,a.mb_emaile,
+        (select count(*) from po_report b where a.mb_num_pk = b.porp_target_mbn ) as report,
+        (select count(*) from re_report c where a.mb_num_pk = c.rerp_target_mbn and RERP_CAT=1 ) as review_gyz,
+        (select count(*) from re_report c where a.mb_num_pk = c.rerp_target_mbn and RERP_CAT=2 ) as review_sbr
+      from member a
         ) t
-		WHERE t.report >=1 OR t.review_gyz >= 1 OR t.review_sbr >= 1
+      WHERE t.report >=1 OR t.review_gyz >= 1 OR t.review_sbr >= 1)
+   where rn <= #{pageNum} * #{amount}
+   and rn > (#{pageNum} - 1) * #{amount}
+	 ]]>
 	</select>
 	
 	
@@ -182,7 +204,19 @@
 	<delete id="userdelete" parameterType="int">
 
 		delete from member where mb_num_pk =#{mb_num_pk}
+		
+	</delete>
+	<!-- 탈퇴당한사람 심부름꾼리뷰삭제 -->
+	<delete id="userdelete" parameterType="int">
 
+		delete from member where mb_num_pk =#{mb_num_pk}
+		
+	</delete>
+	<!-- 탈퇴당한사람 고용자리뷰삭제 -->
+	<delete id="userdelete" parameterType="int">
+
+		delete from member where mb_num_pk =#{mb_num_pk}
+		
 	</delete>
 
 
@@ -205,7 +239,8 @@
 		,(select g.mb_id
             from member g, po_report h
             where h.porp_mbn = g.mb_num_pk
-            and h.porp_mbn = #{porp_mbn}) porping_mbn
+            and h.porp_mbn = #{porp_mbn}
+            and h.porp_target_mbn=#{mb_num_pk}) porping_mbn
 		from post a, member b, psmallc c, pbigc d, po_report e, pmidc f
 		where e.porp_target_mbn = b.mb_num_pk
 		and e.porp_lnb = a.post_num_pk
@@ -220,13 +255,14 @@
 	<!-- 신고된 고용자 리뷰 보기 -->
 	<select id="gyzreportreview" parameterType="int"
 		resultType="com.fdx.dto.managerDTO">
-		 select a.vr_rvn_pk,a.mb_id_pk, c.post_title, c.post_date, a.vr_rvc, d.mb_id, b.rerp_date, b.rerp_con, b.rerp_target_mbn, b.rerp_cat
+	select a.vr_rvn_pk,a.mb_id_pk, c.post_title, c.post_date, a.vr_rvc, d.mb_id, b.rerp_date, b.rerp_con, b.rerp_target_mbn, b.rerp_cat
 		from vlntr_rv a ,re_report b , post c , member d
 		where a.vr_rvn_pk = b.rerp_lnb
 		and c.post_num_pk = a.post_num_pk
 		and b.rerp_mbn = d.mb_num_pk
-		and b.rerp_lnb = #{rerp_lnb}
+		and b.rerp_mbn = #{rerp_mbn}
 		and b.rerp_cat = 1
+		and b.rerp_target_mbn = #{mb_num_pk}
 	</select>
 
 	<!-- 신고된 심부름꾼 리뷰 보기 -->
@@ -237,8 +273,9 @@
 		where a.er_num_pk = b.rerp_lnb
 		and c.post_num_pk = a.post_num_pk
 		and b.rerp_mbn = d.mb_num_pk
-		and b.rerp_lnb= #{rerp_lnb}
+		and b.rerp_mbn = #{rerp_mbn}
 		and b.rerp_cat = 2
+		and b.rerp_target_mbn = #{mb_num_pk}
 	</select>
 
 	<!-- 신고된 게시글 팝업 -->
@@ -253,6 +290,7 @@
 	where b.porp_target_mbn = a.mb_num_pk 
 	and b.porp_lnb = c.post_num_pk 
 	AND t.mb_num_pk = b.porp_mbn
+	and a.mb_num_pk = #{mb_num_pk}
 	</select>
 
 
@@ -260,15 +298,15 @@
 	<select id="popupreview" parameterType="int" resultType="com.fdx.dto.managerDTO">
 
 	 select a.mb_id,b.rerp_cat,b.rerp_mbn, a.mb_num_pk, b.rerp_con,t.mb_id as mbn_id
-    ,b.rerp_lnb
-	from member a, re_report b
-    ,(select DISTINCT t.mb_id,t.mb_num_pk
-    from member t , re_report b 
-    where t.mb_num_pk = b.rerp_mbn
-    and b.rerp_cat = #{rerp_cat}
-    AND b.rerp_target_mbn = #{mb_num_pk}) t
-	where b.rerp_target_mbn = a.mb_num_pk
-	and t.mb_num_pk = b.rerp_mbn	
+		 from member a, re_report b
+		,(select t.mb_id ,t.mb_num_pk 
+		from member t , re_report b 
+		where t.mb_num_pk = b.rerp_mbn
+        and b.rerp_cat = #{rerp_cat}
+		AND b.rerp_target_mbn = #{mb_num_pk}) t
+		where b.rerp_target_mbn = a.mb_num_pk
+        and t.mb_num_pk = b.rerp_mbn
+        and a.mb_num_pk = #{mb_num_pk}
 	</select>
 	
 	

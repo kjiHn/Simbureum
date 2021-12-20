@@ -163,13 +163,53 @@
 
                      </tbody>
                   </table>
+                   <nav class="blog-pagination justify-content-center d-flex" style="width: 1000px">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a
+											href="${pageMaker.startPage -1}" class="page-link">이전</a></li>
+									</c:if>
+
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+											<a href="${num}" class="page-link">${num}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next}">
+										<li class="page-item "><a
+											href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
+									</c:if>
+
+								</ul>
+							</nav>
                   </c:if>
                </div>
             </div>
          </div>
       </div>
+      
    </section>
-
+ <form id='actionForm' action="/MNGuserboard" method='get'> 
+      	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+     	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+   	  </form>
+<script>
+  // p 312
+  var actionForm = $("#actionForm");
+  $(".page-item a").on("click", function (e){
+     e.preventDefault();
+     console.log("click");
+     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+     actionForm.submit();
+  });
+  
+  
+  $(".active > a").click(function() {
+	  event.preventDefault();
+});
+</script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -205,8 +245,7 @@
 					}
 				}); 	
 				$(".modal-body").append(html);
-					
-			
+								
 			} 
 		 }); 
 });
@@ -226,7 +265,7 @@
 						html +=	'<div>';
 						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
 						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
-						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardgyz?rerp_mbn='+item[i].rerp_mbn +'">'+item[i].rerp_con +'</a></u></p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardgyz?rerp_mbn='+item[i].rerp_mbn + '&mb_num_pk='+item[i].mb_num_pk+ '">'+item[i].rerp_con +'</a></u></p>'; 
 						 html += '<hr>';
 						html +=	'</div>';
 						}
@@ -252,7 +291,7 @@
 						html +=	'<div>';
 						  html +=	'<p><b>신고자</b>&nbsp;'+ item[i].mbn_id +'</p>'; 
 						 html +=	'<p><b>작성자</b>&nbsp;'+ item[i].mb_id +'</p>'; 
-						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardsbr?rerp_lnb='+item[i].rerp_lnb +'">'+item[i].rerp_con +'</a></u></p>'; 
+						 html +=	 '<p><b>내용</b>&nbsp;<u><a style="color: black;" href="MNGrvboardsbr?rerp_mbn='+item[i].rerp_mbn + '&mb_num_pk='+item[i].mb_num_pk+'">'+item[i].rerp_con +'</a></u></p>'; 
 						 html += '<hr>';
 						html +=	'</div>';
 						}

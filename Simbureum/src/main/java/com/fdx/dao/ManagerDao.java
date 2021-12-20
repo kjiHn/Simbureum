@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.fdx.dto.Criteria;
 import com.fdx.dto.managerDTO;
 
 @Repository
@@ -18,16 +19,23 @@ public class ManagerDao {
 
 	
 	//게시글 보기
-	public List<managerDTO> selectList() {
-		List<managerDTO> post = this.sqlSessionTemplate.selectList("mappers.Manager.post");
-	    return post;
-	}
+	/*
+	 * public List<managerDTO> selectList() { List<managerDTO> post =
+	 * this.sqlSessionTemplate.selectList("mappers.Manager.post"); return post; }
+	 */
 	//게시글 카운트
 		public int selectList2() {
 			
 		    return this.sqlSessionTemplate.selectOne("mappers.Manager.postcount");
 		}
 	
+		
+	//게시글 5개씩 보기
+		public List<managerDTO> listPage(Criteria cri) throws Exception {
+
+			return this.sqlSessionTemplate.selectList("mappers.Manager.postPage",cri);
+			
+		}
 	//게시글 상세 보기
 		public managerDTO postDetail(int post_num_pk) throws Exception {
 			managerDTO postDetail = this.sqlSessionTemplate.selectOne("mappers.Manager.postDetail",post_num_pk);
@@ -42,9 +50,9 @@ public class ManagerDao {
 		}
 
 
-	//공지 보기
-	public List<managerDTO> announce() {
-		List<managerDTO> announce = this.sqlSessionTemplate.selectList("mappers.Manager.announce");
+	//공지사항 5개씩 보기
+	public List<managerDTO> announce(Criteria cri) {
+		List<managerDTO> announce = this.sqlSessionTemplate.selectList("mappers.Manager.announce",cri);
 	    return announce;
 	}
 	
@@ -76,8 +84,8 @@ public class ManagerDao {
 		    return announceDetail;
 		}
 	//회원 관리 메인페이지
-		public List<managerDTO> selectList1() throws Exception{
-			List<managerDTO> mnguser = this.sqlSessionTemplate.selectList("mappers.Manager.mnguser");
+		public List<managerDTO> selectList1(Criteria cri) throws Exception{
+			List<managerDTO> mnguser = this.sqlSessionTemplate.selectList("mappers.Manager.mnguser",cri);
 			return mnguser;
 		}
 	//모든회원보기
@@ -86,7 +94,7 @@ public class ManagerDao {
 			return user;
 		}
 		
-		//공지사항 카운트
+		//회원 카운트
 		public int mnguserCount() {
 		    return this.sqlSessionTemplate.selectOne("mappers.Manager.mnguserCount");
 		}
@@ -128,14 +136,14 @@ public class ManagerDao {
 			return reportpost;
 		}
 		//신고된 고용자 리뷰 보기
-		public managerDTO gyzreportreview(int mb_num_pk) throws Exception{
-			managerDTO gyzreportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.gyzreportreview", mb_num_pk);
+		public managerDTO gyzreportreview(managerDTO manager) throws Exception{
+			managerDTO gyzreportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.gyzreportreview", manager);
 			
 			return gyzreportreview;
 		}
 		//신고된 심부름꾼 리뷰 보기
-		public managerDTO sbrreportreview(int mb_num_pk) throws Exception{
-			managerDTO sbrreportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.sbrreportreview", mb_num_pk);
+		public managerDTO sbrreportreview(managerDTO manager) throws Exception{
+			managerDTO sbrreportreview = this.sqlSessionTemplate.selectOne("mappers.Manager.sbrreportreview", manager);
 					
 			return sbrreportreview;
 		}

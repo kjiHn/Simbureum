@@ -78,10 +78,10 @@
                             <div class="card-top" style="background-color: white;">
                                 <img src="/resources/view/assets/img/icon/select.png" style="width: 80px;height: 80px; ">
                                 <h4>심부름 보기</h4>
-                            </div>
+                            </div>                      
                           
                             <div class="card-bottom">
-                                <a href="MNGntcboard" class="borders-btn">심부름 보기</a>
+                                <a href="MNGntcboard?pageNum=1&amount=5" class="borders-btn">심부름 보기</a>
                             </div>
                         </div>
                     </div>

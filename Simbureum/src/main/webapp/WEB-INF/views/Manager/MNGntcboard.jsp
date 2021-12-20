@@ -28,22 +28,6 @@
     
 </head>
 <body>
-  
-        
-        <%-- <p>제목:${notice.get(0).getPost_title()}</p>
-        <p>작성자:${notice.get(0).getMb_name()}</p>
-        <p>작성일:<fmt:formatDate value="${notice.get(0).getPost_date()}" pattern="yyyy-MM-dd"/></p>
-        <p>조회수:${notice.get(0).getPost_views()}</p>
-        <p>내용:${notice.get(0).getPost_con()}</p>
-        <p>위치:${notice.get(0).getPsmallc_name()}</p>
-        <p>심부름가격:${notice.get(0).getPost_price()}</p>
-        <hr> --%>
-        
-
-        
-      
-    
-   
 
    <section class="blog_area single-post-area section-padding">
       <div class="container">
@@ -70,18 +54,46 @@
                      </thead>
 
                     <tbody>
-                      <c:forEach items="${post}" var="post">
+                      <c:forEach items="${list}" var="list">
                         <tr style="border: 1px solid #e3c4ff;">
-                           <td>${post.post_num_pk}</td>
-						   <td><a href="/MNGntcboardDetail?post_num_pk=${post.post_num_pk }"><u>${post.post_title}</u></a></td>
-                           <td>${post.mb_id}</td>
-                           <td>${post.pbigc_name}&nbsp;${post.psmallc_name}</td>
-                           <td>${post.post_views}</td>
-                           <td><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></td>
+                           <td>${list.post_num_pk}</td>
+						   <td><a href="/MNGntcboardDetail?post_num_pk=${list.post_num_pk }"><u>${list.post_title}</u></a></td>
+                           <td>${list.mb_id}</td>
+                           <td>${list.pbigc_name}&nbsp;${list.psmallc_name}</td>
+                           <td>${list.post_views}</td>
+                           <td><fmt:formatDate value="${list.post_date}" pattern="yyyy-MM-dd"/></td>
                         </tr>
 					   </c:forEach>
+					
                      </tbody>
                   </table>
+                <%--       <c:forEach begin="1" end="${pageNum}" var="num">
+						    <span>
+						     <a href="MNGntcboard?num=${num}" class="page-link">${num}</a>
+						  </span>
+					  </c:forEach> --%>
+					  
+					  		<nav class="blog-pagination justify-content-center d-flex" style="width: 1000px">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a
+											href="${pageMaker.startPage -1}" class="page-link">이전</a></li>
+									</c:if>
+
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+											<a href="${num}" class="page-link">${num}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next}">
+										<li class="page-item "><a
+											href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
+									</c:if>
+
+								</ul>
+							</nav>
                   </c:if>
             
                </div>
@@ -90,8 +102,28 @@
          </div>
       </div>
    </section>
+   
+     <form id='actionForm' action="/MNGntcboard" method='get'> 
+      	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+     	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+   	  </form>
+   	  
+   	  
+   	  <script>
+  // p 312
+  var actionForm = $("#actionForm");
+  $(".page-item a").on("click", function (e){
+     e.preventDefault();
+     console.log("click");
+     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+     actionForm.submit();
+  });
   
-
+  
+  $(".active > a").click(function() {
+	  event.preventDefault();
+});
+</script>
 </body>
 <br>
 <br>

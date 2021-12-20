@@ -12,12 +12,16 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fdx.dao.ManagerDao;
+import com.fdx.dto.Criteria;
+import com.fdx.dto.PageMaker;
+import com.fdx.dto.PageMaker2;
 import com.fdx.dto.managerDTO;
 
 @Controller
@@ -36,12 +40,25 @@ public class MNGController {
 
 	// 게시글 보는화면
 	@RequestMapping(value = "/MNGntcboard", method = RequestMethod.GET)
-	public String MNGntcboard(Model model) {
+	public String MNGntcboard(Model model ,@ModelAttribute Criteria cri ) throws Exception {
 		int postcount = managerDao.selectList2();
-		System.out.println("count : " + postcount);
-		List<managerDTO> post = managerDao.selectList();
-		model.addAttribute("post", post);
+		/*
+		 * List<managerDTO> post = managerDao.selectList(); model.addAttribute("post",
+		 * post);
+		 */
 		model.addAttribute("postcount",postcount);
+		
+		//게시물 총 갯수
+		int count = managerDao.selectList2();
+		
+		model.addAttribute("pageMaker", new PageMaker(cri,count));
+		
+		List<managerDTO> list= null;
+		list = managerDao.listPage(cri); 
+		model.addAttribute("list",list);
+		
+				
+				
 		return "Manager/MNGntcboard";
 	}
 	
@@ -72,24 +89,45 @@ public class MNGController {
 		return "redirect:/MNGntcboard";
 	}
 
-	// 공지 보기
+	// 공지 5개씩 보기
 	@RequestMapping(value = "/MNGancboard", method = RequestMethod.GET)
-	public String MNGancboard(Model model) {
+	public String MNGancboard(Model model,@ModelAttribute Criteria cri ) {
+		//게시물 총 개수
 		int announceCount = managerDao.announceCount();
-		List<managerDTO> announce = managerDao.announce();
-		model.addAttribute("announce", announce);
+		/*
+		 * List<managerDTO> announce = managerDao.announce();
+		 * model.addAttribute("announce", announce);
+		 */
 		model.addAttribute("announceCount", announceCount);
-
+		model.addAttribute("pageMaker", new PageMaker(cri,announceCount));
+		List<managerDTO> list= null;
+		list = managerDao.announce(cri); 
+		model.addAttribute("list",list);
+		
 		return "Manager/MNGancboard";
 	}
 
 	//회원 공지 보기
-	@RequestMapping(value = "/userancboard", method = RequestMethod.GET)
-	public String userancboard(Model model) {
-		List<managerDTO> userancboard = managerDao.announce();
-		model.addAttribute("userancboard", userancboard);
-		return "Manager/userancboard";
-	}
+	
+	  @RequestMapping(value = "/userancboard", method = RequestMethod.GET) public
+	  String userancboard(Model model,@ModelAttribute Criteria cri) {
+		  //게시물 총 개수
+		  int announceCount = managerDao.announceCount();
+		  
+			/*
+			 * List<managerDTO> userancboard = managerDao.announce();
+			 * model.addAttribute("userancboard", userancboard);
+			 */
+		  model.addAttribute("announceCount", announceCount);
+		  model.addAttribute("pageMaker", new PageMaker(cri,announceCount));
+		  List<managerDTO> list= null;
+		  list = managerDao.announce(cri); 
+		  model.addAttribute("list",list);
+		  
+	  return "Manager/userancboard"; 
+	  
+	  }
+	 
 	
 	// 회원 공지 상세 보기
 		@RequestMapping(value = "/userancboarddetail", method = RequestMethod.GET)
@@ -163,12 +201,14 @@ public class MNGController {
 		}
 		//회원 관리 페이지
 		@RequestMapping(value = "/MNGuserboard", method = RequestMethod.GET)
-		public String MNGuserboard(Model model) throws Exception {
+		public String MNGuserboard(Model model,@ModelAttribute Criteria cri ) throws Exception {
 			int mnguserCount = managerDao.mnguserCount();
-			List<managerDTO> mnguser = managerDao.selectList1();
-			model.addAttribute("mnguser", mnguser);
-			model.addAttribute("mnguserCount", mnguserCount);
 			
+			  List<managerDTO> mnguser = managerDao.selectList1(cri);
+			  model.addAttribute("mnguser", mnguser);
+			 
+			model.addAttribute("mnguserCount", mnguserCount);
+			model.addAttribute("pageMaker", new PageMaker(cri,mnguserCount));
 			
 			 
 			return "Manager/MNGuserboard";
@@ -181,8 +221,6 @@ public class MNGController {
 			 HashMap<String,Object> map = new HashMap<String,Object>();
 			  map.put("fw_name", fw_name);
 			  map.put("fw_emaile", fw_emaile);
-			  System.out.println(fw_name);
-			  System.out.println(fw_emaile);
 			  managerDao.userinsert(map);
 			managerDao.userdelete(mb_num_pk); 
 			return "redirect:/MNGuserboard";
@@ -200,18 +238,18 @@ public class MNGController {
 		}
 	//신고된 고용자 리뷰 보기
 	@RequestMapping(value = "/MNGrvboardgyz", method = RequestMethod.GET)
-	public String MNGrvboard1(@RequestParam("rerp_lnb") int rerp_lnb,Model model) throws Exception {
+	public String MNGrvboard1(managerDTO manager,Model model) throws Exception {
 
-		managerDTO gyzreportreview = managerDao.gyzreportreview(rerp_lnb);
+		managerDTO gyzreportreview = managerDao.gyzreportreview(manager);
 		model.addAttribute("gyzreportreview", gyzreportreview);
 		return "Manager/MNGrvboardgyz";
 	}
 
 	//신고된 심부름꾼 리뷰 보기
 		@RequestMapping(value = "/MNGrvboardsbr", method = RequestMethod.GET)
-		public String MNGrvboard(@RequestParam("rerp_lnb") int rerp_lnb,Model model) throws Exception {
+		public String MNGrvboard(managerDTO manager,Model model) throws Exception {
 
-			managerDTO sbrreportreview = managerDao.sbrreportreview(rerp_lnb);
+			managerDTO sbrreportreview = managerDao.sbrreportreview(manager);
 			model.addAttribute("sbrreportreview", sbrreportreview);
 			return "Manager/MNGrvboardsbr";
 		}
@@ -225,7 +263,6 @@ public class MNGController {
 	  List<managerDTO> popuppost = managerDao.popuppost(mb_num_pk);	
       JSONObject finalJsonObject1 = new JSONObject(); // 중괄호로 감싸 대괄호의 이름을 정의함 { "c" : [{  "a" : "1", "b" : "2" }] }
       finalJsonObject1.put("data", popuppost);
-      System.out.println(finalJsonObject1.toString());
 	  return finalJsonObject1;
  
 	  }

@@ -98,7 +98,7 @@ a {
 						</table>
 						<form action="/postdelete" method="get"> 
 						<input type="hidden" name="post_num_pk" value="${postDetail.post_num_pk}"/>
-						<input class ="button" type="submit" value="게시글삭제"/>
+						<input class ="button" id="Del" type="submit" value="게시글삭제"/>
 						</form>
 						<%-- <input type="button" class="button"  value="게시글 삭제" onclick = "location.href = 'MNGpostdelete?post_num_pk=${postDetail.post_num_pk}'"> --%>
 					</div>
@@ -108,4 +108,12 @@ a {
 	</section>
 	
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$("#Del").click(function(){
+		alert("게시글삭제가 완료되었습니다");
+	});
+
+</script>
 </html>

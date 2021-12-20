@@ -43,8 +43,8 @@
 			<p><b>제목</b>&nbsp;<a href="MNGrptboard?porp_mbn=${popuppost.porp_mbn}&mb_num_pk=${popuppost.mb_num_pk}"> ${ popuppost.post_title}</a></p>
 		</div>
 	</c:forEach>
-	<p><b>porp</b>&nbsp; ${ popuppost.porp_mbn}</p>
-	<p><b>mb_num</b>&nbsp; ${ popuppost.mb_num_pk}</p>
+<%-- 	<p><b>porp</b>&nbsp; ${ popuppost.porp_mbn}</p>
+	<p><b>mb_num</b>&nbsp; ${ popuppost.mb_num_pk}</p> --%>
 </body>
 </html>
 

@@ -64,19 +64,40 @@
                      </thead>
 
                      <tbody>
-                     <c:forEach items="${announce}" var="announce" varStatus="status">
+                     <c:forEach items="${list}" var="list" varStatus="status">
                         <tr style="border: 1px solid #e3c4ff;">
                            <td>${status.count}</td>
-                           <td><a href="/MNGancboardDetail?ntc_num_pk=${announce.ntc_num_pk }"><u>${announce.ntc_title}</u></a></td>
+                           <td><a href="/MNGancboardDetail?ntc_num_pk=${list.ntc_num_pk }"><u>${list.ntc_title}</u></a></td>
                            <td>관리자</td>
-                           <td>${announce.ntc_views}</td>
-                           <td><fmt:formatDate value="${announce.ntc_date}" pattern="yyyy-MM-dd"/></td>
+                           <td>${list.ntc_views}</td>
+                           <td><fmt:formatDate value="${list.ntc_date}" pattern="yyyy-MM-dd"/></td>
                         </tr>
 					 </c:forEach>
 
                      </tbody>
                   </table>
-       		 </c:if>
+                  <nav class="blog-pagination justify-content-center d-flex" style="width: 1000px">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item"><a
+											href="${pageMaker.startPage -1}" class="page-link">이전</a></li>
+									</c:if>
+
+									<c:forEach var="num" begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}">
+										<li class='page-item ${pageMaker.cri.pageNum == num ? "active":""} '>
+											<a href="${num}" class="page-link">${num}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next}">
+										<li class="page-item "><a
+											href="${pageMaker.endPage +1 }" class="page-link">다음</a></li>
+									</c:if>
+
+								</ul>
+							</nav>
+       			 </c:if>
             
                </div>
             </div>
@@ -84,8 +105,25 @@
          </div>
       </div>
    </section>
-
-
+ <form id='actionForm' action="/MNGancboard" method='get'> 
+      	<input type='hidden' name='pageNum' value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+     	<input type='hidden' name='amount' value='<c:out value="${pageMaker.cri.amount}"/>' />
+   	  </form>
+<script>
+  // p 312
+  var actionForm = $("#actionForm");
+  $(".page-item a").on("click", function (e){
+     e.preventDefault();
+     console.log("click");
+     actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+     actionForm.submit();
+  });
+  
+  
+  $(".active > a").click(function() {
+	  event.preventDefault();
+});
+</script>
 
 
 </body>
