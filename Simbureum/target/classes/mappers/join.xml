@@ -63,5 +63,11 @@
 		FROM Frc_Wth
 		WHERE fw_email = #{mb_emaile}
 	</select>
+	
+	<select id="frc_WthCheckID" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM Frc_Wth
+		WHERE mb_id = #{mb_id}
+	</select>
 
 </mapper>	

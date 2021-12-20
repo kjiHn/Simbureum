@@ -122,6 +122,10 @@ $(document).ready(function(){
 					}else if (data == 3){
 						window.location.href = '/MNGhome';
 					}
+					else if (data == -2){
+						$("#login_error").text("신고가 누적되어 강제탈퇴가 되었습니다");
+						$("#login_error").css("color","red");
+					}
 			    },
 			    error: function(data) {
 			    	

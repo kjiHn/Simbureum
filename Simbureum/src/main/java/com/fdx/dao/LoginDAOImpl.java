@@ -29,4 +29,11 @@ public class LoginDAOImpl implements LoginDAO{
 		return joinDTO;
 	}
 
+
+	@Override
+	public int mailFrc_WthCheckID(String mb_id) {
+		
+		return sqlSessionTemplate.selectOne("mappers.login.frc_WthCheckID", mb_id);
+	}
+
 }

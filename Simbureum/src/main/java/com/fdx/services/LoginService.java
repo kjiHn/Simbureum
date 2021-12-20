@@ -33,5 +33,10 @@ public class LoginService {
 		
 	}
 	
+	public int mailFrc_WthCheckID(String mb_id) {
+		return loginDAO.mailFrc_WthCheckID(mb_id);
+		
+	}
+	
 	
 }

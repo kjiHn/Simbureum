@@ -60,6 +60,9 @@ public class LogInController {
 			joinDTO = loginService.memberCheck(mb_id);	
 			if (joinDTO==null) {
 				num = 0;
+				if (loginService.mailFrc_WthCheckID(mb_id) == 1) {
+					num = -2;
+				}
 			}else {
 				if (encoder.matches(pswd, joinDTO.getMb_pswd())) {
 					num = 1;
@@ -75,6 +78,9 @@ public class LogInController {
 						session.setAttribute("mNum", joinDTO.getMb_num_pk());
 					}else {						
 						num = -1;
+						if (loginService.mailFrc_WthCheckID(mb_id) == 1) {
+							num = -2;
+						}
 					}
 				}
 			}	

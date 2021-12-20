@@ -16,6 +16,12 @@
 		FROM Manager
 		WHERE mng_id_pk = #{mng_id_pk}
 	</select>
+	
+	<select id="frc_WthCheckID" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM Frc_Wth
+		WHERE mb_id = #{mb_id}
+	</select>
 
 
 

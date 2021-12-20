@@ -7,6 +7,7 @@ public interface LoginDAO {
 	
 	public AdminDTO adminCheck(String mng_id_pk);
 	public JoinDTO memberCheck(String mb_id);
+	int mailFrc_WthCheckID(String mb_id);
 	
 	
 }
