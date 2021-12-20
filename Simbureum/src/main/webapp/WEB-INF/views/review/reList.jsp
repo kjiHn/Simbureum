@@ -150,7 +150,8 @@ th {
 						    <p align="right">작성자: <c:out value=" ${reList.mb_id_pk }"></c:out>&nbsp;
 						    	작성일: <fmt:formatDate value="${reList.vr_date }" pattern="yyyy.MM.dd"/></p>
 							<p align="left" style="margin-left: 100px;">해당 게시글 : <c:out value=" ${reList.post_title}"></c:out> </p> 					                           		 
-						    <p style="margin-left: 100px; position: absolute;">별점 : <p align="left" style="color: #ffc107; margin-left: 150px;"><c:if test="${reList.vr_grd == 1}">★☆☆☆☆</c:if>
+						    <p style="margin-left: 100px; position: absolute;">별점 : <p align="left" style="color: #ffc107; margin-left: 150px;">
+						    													 <c:if test="${reList.vr_grd == 1}">★☆☆☆☆</c:if>
 													                             <c:if test="${reList.vr_grd == 2}">★★☆☆☆</c:if>
 													                             <c:if test="${reList.vr_grd == 3}">★★★☆☆</c:if>
 												                           		 <c:if test="${reList.vr_grd == 4}">★★★★☆</c:if>

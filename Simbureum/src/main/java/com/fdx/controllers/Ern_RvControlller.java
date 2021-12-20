@@ -45,24 +45,24 @@ public class Ern_RvControlller {
 	  
 	//고용자가 심부름꾼에게 리뷰 작성
 		 @RequestMapping(value = "/EreInsert", method = RequestMethod.POST) 
-		 public String EreInsertPOST(Model model, Ern_RvDTO erdto,RedirectAttributes redirect, @RequestParam(value = "mb_num_pk") int mb_num_pk) throws Exception {
+		 public String EreInsertPOST(Model model, Ern_RvDTO erdto, @RequestParam(value = "mb_num_pk") int mb_num_pk, @RequestParam(value = "post_num_pk")int post_num_pk) throws Exception {
 			 int data = erser.EreInsertCheck(erdto);
 			 try {
 				  if(data == 1) {
-					  redirect.addAttribute("mb_num_pk",mb_num_pk);
-					 return "redirect:/mypage/upPost";
+					  
+					 return "redirect:/mypage/uploadedPostDetail/"+post_num_pk;
 				  }else if(data == 0) {
-					  redirect.addAttribute("mb_num_pk",mb_num_pk);
+					  
 					  erser.EreInsert(erdto);
-					  return "redirect:/mypage/upPost";
+					  return "redirect:/mypage/uploadedPostDetail/"+post_num_pk;
 				  }
 				  
 			  }catch (Exception e) {
 				// TODO: handle exception
 				  throw new RuntimeException();
 			}
-			  redirect.addAttribute("mb_num_pk",mb_num_pk);
-			  return "redirect:/mypage/upPost";
+			 
+			  return "redirect:/mypage/uploadedPostDetail/"+post_num_pk;
 			}
 		 
 	//심부름꾼이 받은 전체 리스트 
