@@ -162,7 +162,7 @@ a {
        					</button>
 					</div>
 
-					<div class="modal-body" style="overflow: auto; height: 300px; ">
+					<div class="modal-body" style="overflow: auto; height: 300px; text-align: center">
 						<form id="volForm" action="/main/postDetail/volunteer/${post_num_pk}" method="POST">
 							심부름꾼 지원 하시겠습니까?<br>
 							* 심부름 하면서 문제가 발생하는 경우<br> 저희가 책임지지 않습니다.<br>
