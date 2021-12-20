@@ -48,6 +48,8 @@ public class MNGController {
 		 */
 		model.addAttribute("postcount",postcount);
 		
+		System.out.println("pageNum "+cri.getPageNum());
+		
 		//게시물 총 갯수
 		int count = managerDao.selectList2();
 		
@@ -217,12 +219,16 @@ public class MNGController {
 
 	// 회원 탈퇴
 		@RequestMapping(value = "/userdelete", method = RequestMethod.POST)
-		public String userdelete(@RequestParam("mb_num_pk") int mb_num_pk,@RequestParam(required = true) String fw_name,@RequestParam(required = true)String fw_emaile) throws Exception {
+		public String userdelete(@RequestParam("mb_num_pk") int mb_num_pk,@RequestParam(required = true) String fw_name,@RequestParam(required = true)String fw_emaile,@RequestParam(required = true)String mb_id) throws Exception {
 			 HashMap<String,Object> map = new HashMap<String,Object>();
 			  map.put("fw_name", fw_name);
 			  map.put("fw_emaile", fw_emaile);
+			  map.put("mb_id", mb_id);
 			  managerDao.userinsert(map);
-			managerDao.userdelete(mb_num_pk); 
+			  managerDao.userdelete(mb_num_pk); 
+			  managerDao.vlntrdelete(mb_id);
+			  managerDao.erndelete(mb_id);
+			  
 			return "redirect:/MNGuserboard";
 		}
 		

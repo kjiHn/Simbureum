@@ -113,7 +113,18 @@ public class ManagerDao {
 	  
 	  }
 	 
-	
+	//탈퇴당한사람 고용자리뷰삭제
+		public void vlntrdelete(String mb_id) {
+			
+			this.sqlSessionTemplate.delete("mappers.Manager.vlntrdelete", mb_id);
+		
+			}
+	//탈퇴당한사람 심부름꾼리뷰삭제
+		public void erndelete(String mb_id) {
+			
+			this.sqlSessionTemplate.delete("mappers.Manager.erndelete", mb_id);
+		
+			}
 	
 	//신고된 게시글 팝업 보기
 		public List<managerDTO> popuppost(int mb_num_pk) throws Exception{

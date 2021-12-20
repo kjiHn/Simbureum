@@ -54,9 +54,9 @@
                      </thead>
 
                     <tbody>
-                      <c:forEach items="${list}" var="list">
+                      <c:forEach items="${list}" var="list" varStatus="status">
                         <tr style="border: 1px solid #e3c4ff;">
-                           <td>${list.post_num_pk}</td>
+                           <td>${status.count}</td>
 						   <td><a href="/MNGntcboardDetail?post_num_pk=${list.post_num_pk }"><u>${list.post_title}</u></a></td>
                            <td>${list.mb_id}</td>
                            <td>${list.pbigc_name}&nbsp;${list.psmallc_name}</td>

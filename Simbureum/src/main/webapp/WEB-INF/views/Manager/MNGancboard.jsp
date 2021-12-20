@@ -34,7 +34,7 @@
 
 
 
-   <section class="blog_area single-post-area section-padding">
+   <section class="blog_area single-post-area section-padding" style="padding-bottom: 199px">
       <div class="container">
          <div class="row">
             <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
@@ -52,7 +52,7 @@
                			<h2 style="text-align: center;">작성된 공지사항이 없습니다</h2>	
                		</c:if>
                		<c:if test="${announceCount != 0}">
-                  <table style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+                  <table style="text-align: center; width: 1000px; height:220px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr style="background-color: #e3c4ff;">
                            <th>No.</th>

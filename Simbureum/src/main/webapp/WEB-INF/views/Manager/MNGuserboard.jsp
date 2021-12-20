@@ -114,23 +114,28 @@
   </div>
 
 
-   <section class="blog_area single-post-area section-padding">
+
+   <section class="blog_area single-post-area section-padding" style="padding-bottom: 199px">
       <div class="container">
          <div class="row">
             <jsp:include page="../model/siderbarMNG.jsp" flush="false"/>
-            <div class="col-lg-6 posts-list">
+            <div class="col-lg-10 posts-list">
+            <br>
+            <br>
+            <br>
+            <h2 class="contact-title" align="center" >회원 관리</h2><hr>
                <div class="slider-shape d-none d-lg-block">
               <!--  <br>
                <br>
                <br>
                <br> -->
-               <h2 class="contact-title" align="center">&nbsp;</h2>
+               
                <c:if test="${mnguserCount == 0 }">
                	<h2 style="text-align: center;">신고된 회원이 없습니다</h2>
                </c:if>
                <br>
                  <c:if test="${mnguserCount != 0 }">
-                  <table id="tt1" style="text-align: center; width: 1000px; align: center; border: 1px solid #e3c4ff;">
+                  <table id="tt1" style="text-align: center; width: 1000px; height:100px; align: center; border: 1px solid #e3c4ff;">
                      <thead>
                         <tr  style="background-color: #e3c4ff;">
                            <th>No.</th>
@@ -155,7 +160,8 @@
 	                           <input  type="hidden" name="mb_num_pk" value="${mnguser.mb_num_pk}"/>
 	                           <input type="hidden" name="fw_name" value="${mnguser.mb_name}" />
 	                           <input type="hidden" name="fw_emaile" value="${mnguser.mb_emaile}" />
-	                           <input class ="button" id="Del" type="submit" value="강제탈퇴"/>
+	                           <input type="hidden" name="mb_id" value="${mnguser.mb_id}" />
+	                           <button class ="button" id="Del" type="submit">강제탈퇴</button>
                            	</form>
                            </td>
                         </tr>

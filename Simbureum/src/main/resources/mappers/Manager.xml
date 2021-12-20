@@ -21,9 +21,8 @@
 	<!-- 게시글보기 카운터 -->
 	<select id="postcount" resultType="int">
 
-		select count(*) 
+		select count(sel_vr) postcount
 		from post a
-        where sel_vr is null
 
 	</select>
 
@@ -203,14 +202,28 @@
 		delete from member where mb_num_pk =#{mb_num_pk}
 		
 	</delete>
+	<!-- 탈퇴당한사람 고용자리뷰삭제 -->
+	<delete id="vlntrdelete" parameterType="String">
+
+		delete from vlntr_rv where mb_id_pk =#{mb_id} or
+		vr_mbid=#{mb_id}
+		
+	</delete>
+	<!-- 탈퇴당한사람 심부름꾼리뷰삭제 -->
+	<delete id="erndelete" parameterType="String">
+
+		delete from ern_rv where mb_id_pk =#{mb_id} or
+		er_mbid=#{mb_id}
+		
+	</delete>
 
 
 	<!-- 탈퇴회원정보추가 -->
 
 	<insert id="userinsert" parameterType="java.util.HashMap">
 
-		insert into Frc_Wth(fw_num_pk,fw_name,fw_email)
-		values(FW_SEQNUM.nextval,#{fw_name},#{fw_emaile})
+		insert into Frc_Wth(fw_num_pk,fw_name,fw_email,mb_id)
+		values(FW_SEQNUM.nextval,#{fw_name},#{fw_emaile},#{mb_id})
 
 	</insert>
 
