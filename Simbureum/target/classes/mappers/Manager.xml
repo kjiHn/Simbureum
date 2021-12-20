@@ -21,12 +21,9 @@
 	<!-- 게시글보기 카운터 -->
 	<select id="postcount" resultType="int">
 
-		select count(*) postcount
-		from post a, member b , pbigc c, psmallc d , pmidc e
-		where a.mb_num_pk = b.mb_num_pk
-		and a.psmallc_pk = d.psmallc_pk
-		and d.pmidc_pk = e.pmidc_pk
-		and e.pbigc_pk = c.pbigc_pk
+		select count(*) 
+		from post a
+        where sel_vr is null
 
 	</select>
 
@@ -201,18 +198,6 @@
 	</select>
 
 	<!-- 회원 탈퇴 -->
-	<delete id="userdelete" parameterType="int">
-
-		delete from member where mb_num_pk =#{mb_num_pk}
-		
-	</delete>
-	<!-- 탈퇴당한사람 심부름꾼리뷰삭제 -->
-	<delete id="userdelete" parameterType="int">
-
-		delete from member where mb_num_pk =#{mb_num_pk}
-		
-	</delete>
-	<!-- 탈퇴당한사람 고용자리뷰삭제 -->
 	<delete id="userdelete" parameterType="int">
 
 		delete from member where mb_num_pk =#{mb_num_pk}
